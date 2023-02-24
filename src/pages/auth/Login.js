@@ -5,9 +5,10 @@ import usePost from 'hooks/axios/usePost';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
+import authService from 'data/jsons/services/auth.service.json';
 
 const Login = () => {
-  const [loginAction, loginLoading] = usePost('/auth/login');
+  const [loginAction, loginLoading] = usePost(authService.login);
 
   useEffect(() => {
     Cookies.remove('authToken');
