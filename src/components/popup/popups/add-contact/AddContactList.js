@@ -15,7 +15,7 @@ const AddContactList = ({ id, name }) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
-    dispatch(setEditContactDynamicData({ id: id, name: name }));
+    dispatch(setEditContactDynamicData({ contactItemId: id, name: name }));
     dispatch(setEditContactDynamicChild({ isChild: true }));
     dispatch(editContactDynamicToggle());
   }, [dispatch, id, name]);

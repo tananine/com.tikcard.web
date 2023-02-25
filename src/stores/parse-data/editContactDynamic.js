@@ -6,7 +6,7 @@ export const editContactDynamicSlice = createSlice({
     isChild: false,
     data: {
       isEdit: false,
-      contactId: null,
+      contactItemId: null,
       name: null,
     },
   },
@@ -15,7 +15,7 @@ export const editContactDynamicSlice = createSlice({
       state.isChild = action.payload.isChild;
     },
     setEditContactDynamicData: (state, action) => {
-      state.data.contactId = action.payload.id;
+      state.data.contactItemId = action.payload.contactItemId;
       state.data.name = action.payload.name;
     },
   },
