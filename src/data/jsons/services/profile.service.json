@@ -1,0 +1,4 @@
+{
+  "getActivation": "/activation",
+  "setPrimaryProfile": "/activation/primary"
+}
