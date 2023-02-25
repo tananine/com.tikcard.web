@@ -6,7 +6,7 @@ import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import CardList from 'components/CardList';
 import { useDispatch } from 'react-redux';
 import { editContactDynamicToggle } from 'stores/popup';
-import { setEditContactDynamicData } from 'stores/parse-data/editContactDynamic';
+import { setEditContactDynamicChild } from 'stores/parse-data/editContactDynamic';
 
 import PhoneAPP from 'assets/images/phone.png';
 
@@ -14,7 +14,7 @@ const ContactList = ({ id }) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
-    dispatch(setEditContactDynamicData({ isChild: false }));
+    dispatch(setEditContactDynamicChild({ isChild: false }));
     dispatch(editContactDynamicToggle());
   }, [dispatch]);
 

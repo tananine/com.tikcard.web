@@ -13,6 +13,11 @@ const EditContact = () => {
     (state) => state.layout.addContactListHeight
   );
 
+  const appData = {
+    contactId: useSelector((state) => state.editContactDynamic.data.contactId),
+    name: useSelector((state) => state.editContactDynamic.data.name),
+  };
+
   const isChild = useSelector((state) => state.editContactDynamic.isChild);
 
   const open = useSelector((state) => state.popup.editContactDynamicPopup);
@@ -37,13 +42,13 @@ const EditContact = () => {
       >
         <Box>
           <Box display="flex" justifyContent="space-between">
-            <Typography variant="h2">Phone</Typography>
+            <Typography variant="h2">{appData.name}</Typography>
             <Button>ตัวอย่างเมื่อคลิก</Button>
           </Box>
           <Box textAlign="center" padding={2}>
             <img src={PhoneAPP} alt="" width="70px" height="70px" />
           </Box>
-          <TextField label="เบอร์โทร" variant="outlined" fullWidth />
+          <TextField label={appData.name} variant="outlined" fullWidth />
           <Button
             sx={{
               marginTop: 1,

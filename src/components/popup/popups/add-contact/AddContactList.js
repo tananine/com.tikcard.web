@@ -4,17 +4,21 @@ import { Box, Button, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useDispatch } from 'react-redux';
 import { editContactDynamicToggle } from 'stores/popup';
-import { setEditContactDynamicData } from 'stores/parse-data/editContactDynamic';
+import {
+  setEditContactDynamicChild,
+  setEditContactDynamicData,
+} from 'stores/parse-data/editContactDynamic';
 
 import PhoneAPP from 'assets/images/phone.png';
 
-const AddContactList = ({ name }) => {
+const AddContactList = ({ id, name }) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
-    dispatch(setEditContactDynamicData({ isChild: true }));
+    dispatch(setEditContactDynamicData({ id: id, name: name }));
+    dispatch(setEditContactDynamicChild({ isChild: true }));
     dispatch(editContactDynamicToggle());
-  }, [dispatch]);
+  }, [dispatch, id, name]);
 
   return (
     <>
