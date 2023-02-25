@@ -8,6 +8,7 @@ const PopupWrapper = ({
   onClose,
   onOpen,
   forwardedRef,
+  fullHeight,
 }) => {
   return (
     <SwipeableDrawer
@@ -26,7 +27,7 @@ const PopupWrapper = ({
         marginX="auto"
         borderRadius={4}
       />
-      <Box ref={forwardedRef}>
+      <Box ref={forwardedRef} height={fullHeight ? '75vh' : 'auto'}>
         <Scrollbars autoHeight autoHeightMax="75vh">
           <Box paddingX={2} paddingBottom={2}>
             {children}
