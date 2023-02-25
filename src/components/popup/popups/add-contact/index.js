@@ -19,7 +19,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const ContactList = (appListData) => {
   return appListData?.map((app) => {
-    return <AddContactList key={app.id} app="phone" />;
+    return <AddContactList key={app.id} name={app.name} />;
   });
 };
 
