@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Box, Container, Paper, TextField } from '@mui/material';
 import Cookies from 'js-cookie';
 import usePost from 'hooks/axios/usePost';
@@ -6,9 +6,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
 import authServicePath from 'data/jsons/services/auth.service.json';
+import { useForm } from 'react-hook-form';
 
 const Login = () => {
   const [loginAction, loginLoading] = usePost(authServicePath.login);
+
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     Cookies.remove('authToken');
@@ -17,13 +20,10 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const login = async () => {
+  const login = async (form) => {
     const body = {
-      email: email,
-      password: password,
+      email: form.email,
+      password: form.password,
     };
     loginAction(body).then(async (res) => {
       Cookies.set('authToken', res.data.token);
@@ -50,22 +50,20 @@ const Login = () => {
             label="Email"
             variant="outlined"
             fullWidth
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register('email')}
           />
           <TextField
             label="Password"
             variant="outlined"
             fullWidth
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            {...register('password')}
           />
           <LoadingButton
             variant="contained"
             color="secondary"
             size="large"
             fullWidth
-            onClick={login}
+            onClick={handleSubmit(login)}
             loading={loginLoading}
           >
             Login
