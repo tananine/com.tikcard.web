@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setActivationProfile } from 'stores/account';
 
 import useGet from 'hooks/axios/useGet';
-import profileService from 'data/jsons/services/profile.service.json';
+import profileServicePath from 'data/jsons/services/profile.service.json';
 
 import Header from 'layouts/Header';
 import Body from 'layouts/Body';
@@ -17,7 +17,7 @@ const Application = ({ header, body, footer }) => {
   const dispatch = useDispatch();
 
   const [getActivationAction, getActivationLoading, getActivationData] = useGet(
-    profileService.getActivation
+    profileServicePath.getActivation
   );
 
   useEffect(() => {

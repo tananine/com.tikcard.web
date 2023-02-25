@@ -11,7 +11,7 @@ import { LoadingButton } from '@mui/lab';
 import { setPrimaryProfile } from 'stores/account';
 
 import usePut from 'hooks/axios/usePut';
-import profileService from 'data/jsons/services/profile.service.json';
+import profileServicePath from 'data/jsons/services/profile.service.json';
 
 const ButtonStatus = (flickingMove, disableButton) => {
   if (flickingMove) {
@@ -44,7 +44,7 @@ const SwitchProfile = () => {
   const flickingRef = useRef();
 
   const [setPrimaryAction, setPrimaryLoading] = usePut(
-    profileService.setPrimaryProfile
+    profileServicePath.setPrimaryProfile
   );
 
   const [profileId, setProfileId] = useState();
