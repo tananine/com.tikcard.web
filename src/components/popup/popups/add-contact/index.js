@@ -4,11 +4,30 @@ import { addContactToggle } from 'stores/popup';
 import { setAddContactListHeight } from 'stores/offset';
 import PopupWrapper from 'components/popup/PopupWrapper';
 import AddContactList from 'components/popup/popups/add-contact/AddContactList';
-import { Box, Button, Divider, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Divider,
+  Typography,
+} from '@mui/material';
+
+import useGet from 'hooks/axios/useGet';
+import profileServicePath from 'data/jsons/services/profile.service.json';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
+const ContactList = (appListData) => {
+  return appListData?.map((app) => {
+    return <AddContactList key={app.id} app="phone" />;
+  });
+};
+
 const AddContact = () => {
+  const [getAppListAction, getAppListLoading, getAppListData] = useGet(
+    profileServicePath.getAppList
+  );
+
   const open = useSelector((state) => state.popup.addContactPopup);
 
   const addContactDrawerRef = useRef();
@@ -23,6 +42,12 @@ const AddContact = () => {
     }
   }, [dispatch, open]);
 
+  useEffect(() => {
+    if (open) {
+      getAppListAction();
+    }
+  }, [getAppListAction, open]);
+
   const addContactToggleHandler = useCallback(() => {
     dispatch(addContactToggle());
   }, [dispatch]);
@@ -33,6 +58,7 @@ const AddContact = () => {
       open={open}
       onClose={addContactToggleHandler}
       onOpen={addContactToggleHandler}
+      fullHeight
     >
       <Box
         display="flex"
@@ -48,27 +74,27 @@ const AddContact = () => {
         <Typography variant="h3">เพิ่มข้อมูล</Typography>
         <Typography fontSize="14px">มีแล้ว 6 / 25</Typography>
       </Box>
-      <Divider sx={{ width: '60px', margin: 'auto' }} />
-      <AddContactList app="phone" />
-      <AddContactList app="phone" />
-      <AddContactList app="phone" />
-      <AddContactList app="phone" />
-      <AddContactList app="phone" />
-      <AddContactList app="phone" />
-      <AddContactList app="phone" />
-      <AddContactList app="phone" />
-      <AddContactList app="phone" />
-      <Divider sx={{ width: '60px', margin: 'auto' }} />
-      <Button
-        sx={{
-          display: 'flex',
-          marginX: 'auto',
-          marginY: 2,
-        }}
-        endIcon={<InfoOutlinedIcon />}
-      >
-        ไม่พบตัวเลือกของคุณใช่ไหม
-      </Button>
+      {getAppListLoading || !getAppListData ? (
+        <Box display="flex" justifyContent="center">
+          <CircularProgress disableShrink />
+        </Box>
+      ) : (
+        <>
+          <Divider sx={{ width: '60px', margin: 'auto' }} />
+          {ContactList(getAppListData?.data)}
+          <Divider sx={{ width: '60px', margin: 'auto' }} />
+          <Button
+            sx={{
+              display: 'flex',
+              marginX: 'auto',
+              marginY: 2,
+            }}
+            endIcon={<InfoOutlinedIcon />}
+          >
+            ไม่พบตัวเลือกของคุณใช่ไหม
+          </Button>
+        </>
+      )}
     </PopupWrapper>
   );
 };

@@ -1,4 +1,5 @@
 {
+  "getAppList": "/contact",
   "getProfile": "/profile",
   "getActivation": "/activation",
   "setPrimaryProfile": "/activation/primary"
