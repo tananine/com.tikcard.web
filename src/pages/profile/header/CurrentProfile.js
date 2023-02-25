@@ -6,6 +6,7 @@ import { switchProfileToggle } from 'stores/popup';
 import { setProfiles } from 'stores/account';
 
 import useGet from 'hooks/axios/useGet';
+import profileServicePath from 'data/jsons/services/profile.service.json';
 
 const Profile = ({ name, company }) => {
   return (
@@ -33,8 +34,9 @@ const CurrentProfile = () => {
 
   const [activationProfileData, setActivationProfileData] = useState();
 
-  const [getProfileAction, getProfileLoading, getProfileData] =
-    useGet('/profile');
+  const [getProfileAction, getProfileLoading, getProfileData] = useGet(
+    profileServicePath.getProfile
+  );
 
   const switchProfileToggleHandler = useCallback(() => {
     if (getProfileData?.data.length > 0) {
