@@ -27,7 +27,7 @@ const Profile = ({ name, company }) => {
 
 const CurrentProfile = () => {
   const profileActivationId = useSelector(
-    (state) => state.account.activation.primaryProfile
+    (state) => state.controller.profileInUse.profileId
   );
 
   const dispatch = useDispatch();

@@ -8,7 +8,7 @@ import { switchProfileToggle } from 'stores/popup';
 import PopupWrapper from 'components/popup/PopupWrapper';
 import Profile from 'components/popup/popups/switch-profile/Profile';
 import { LoadingButton } from '@mui/lab';
-import { setPrimaryProfile } from 'stores/account';
+import { setPrimaryProfile, setSecondaryProfile } from 'stores/account';
 
 import usePut from 'hooks/axios/usePut';
 import profileServicePath from 'data/jsons/services/profile.service.json';
@@ -46,6 +46,9 @@ const SwitchProfile = () => {
   const [setPrimaryAction, setPrimaryLoading] = usePut(
     profileServicePath.setPrimaryProfile
   );
+  const [setSecondaryAction, setSecondaryLoading] = usePut(
+    profileServicePath.setSecondaryProfile
+  );
 
   const [profileId, setProfileId] = useState();
   const [indexFlicking, setIndexFlicking] = useState();
@@ -55,8 +58,9 @@ const SwitchProfile = () => {
   const open = useSelector((state) => state.popup.switchProfilePopup);
   const profiles = useSelector((state) => state.account.profiles);
   const selectProfileId = useSelector(
-    (state) => state.account.activation.primaryProfile
+    (state) => state.controller.profileInUse.profileId
   );
+  const type = useSelector((state) => state.controller.profileInUse.profile);
 
   const isSelectHandler = useCallback(() => {
     if (profiles[indexFlicking]?.profileId === selectProfileId) {
@@ -93,11 +97,18 @@ const SwitchProfile = () => {
   }, [dispatch]);
 
   const setProfileHandler = useCallback(() => {
-    setPrimaryAction({}, profileId).then(() => {
-      dispatch(setPrimaryProfile(profileId));
-      dispatch(switchProfileToggle());
-    });
-  }, [dispatch, setPrimaryAction, profileId]);
+    if (type === 'primary') {
+      setPrimaryAction({}, profileId).then(() => {
+        dispatch(setPrimaryProfile(profileId));
+        dispatch(switchProfileToggle());
+      });
+    } else if (type === 'secondary') {
+      setSecondaryAction({}, profileId).then(() => {
+        dispatch(setSecondaryProfile(profileId));
+        dispatch(switchProfileToggle());
+      });
+    }
+  }, [dispatch, setPrimaryAction, setSecondaryAction, profileId, type]);
 
   const flickingChanged = (e) => {
     setIndexFlicking(e.index);

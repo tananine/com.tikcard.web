@@ -25,7 +25,7 @@ const EditContact = () => {
   );
 
   const appData = {
-    profileId: useSelector((state) => state.account.activation.primaryProfile),
+    profileId: useSelector((state) => state.controller.profileInUse.profileId),
     contactId: useSelector(
       (state) => state.editContactDynamic.data.contactItemId
     ),

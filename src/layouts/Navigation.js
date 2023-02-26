@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
   Container,
   BottomNavigation,
@@ -12,7 +12,71 @@ import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setProfileInUse } from 'stores/controller';
+
 import pagePath from 'data/jsons/page-path.json';
+
+const ProfilePart = () => {
+  const profileActivation = useSelector((state) => state.account.activation);
+
+  const [type, setType] = useState('primary');
+
+  const dispatch = useDispatch();
+
+  const setPrimary = useCallback(() => {
+    setType('primary');
+    dispatch(
+      setProfileInUse({
+        profile: 'primary',
+        profileId: profileActivation.primaryProfile,
+      })
+    );
+  }, [dispatch, profileActivation]);
+
+  const setSecondary = useCallback(() => {
+    setType('secondary');
+    dispatch(
+      setProfileInUse({
+        profile: 'secondary',
+        profileId: profileActivation.secondaryProfile,
+      })
+    );
+  }, [dispatch, profileActivation]);
+
+  useEffect(() => {
+    if (type === 'primary') {
+      setPrimary();
+    } else if (type === 'secondary') {
+      setSecondary();
+    }
+  }, [setPrimary, setSecondary, type]);
+
+  return (
+    <Grid container>
+      <Grid item xs={6}>
+        <Button
+          variant="contained"
+          fullWidth
+          sx={{ borderRadius: 0 }}
+          onClick={setPrimary}
+        >
+          โพรไฟล์หลัก
+        </Button>
+      </Grid>
+      <Grid item xs={6}>
+        <Button
+          variant="contained"
+          fullWidth
+          sx={{ borderRadius: 0 }}
+          onClick={setSecondary}
+        >
+          โพรไฟล์รอง
+        </Button>
+      </Grid>
+    </Grid>
+  );
+};
 
 const Navigation = () => {
   const [value, setValue] = useState(0);
@@ -68,18 +132,7 @@ const Navigation = () => {
           icon={<ConnectWithoutContactIcon />}
         />
       </BottomNavigation>
-      <Grid container>
-        <Grid item xs={6}>
-          <Button variant="contained" fullWidth sx={{ borderRadius: 0 }}>
-            โพรไฟล์หลัก
-          </Button>
-        </Grid>
-        <Grid item xs={6}>
-          <Button variant="contained" fullWidth sx={{ borderRadius: 0 }}>
-            โพรไฟล์รอง
-          </Button>
-        </Grid>
-      </Grid>
+      {ProfilePart()}
     </Container>
   );
 };

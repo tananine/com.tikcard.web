@@ -3,5 +3,6 @@
   "getProfile": "/profile",
   "getActivation": "/activation",
   "setPrimaryProfile": "/activation/primary",
+  "setSecondaryProfile": "/activation/secondary",
   "addContact": "/contact/me/app"
 }

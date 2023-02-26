@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { setActivationProfile } from 'stores/account';
+import { setProfileInUse } from 'stores/controller';
 
 import useGet from 'hooks/axios/useGet';
 import profileServicePath from 'data/jsons/services/profile.service.json';
@@ -28,6 +29,12 @@ const Application = ({ header, body, footer }) => {
         setActivationProfile({
           primaryProfile: primary,
           secondaryProfile: secondary,
+        })
+      );
+      dispatch(
+        setProfileInUse({
+          profile: 'primary',
+          profileId: primary,
         })
       );
     });
