@@ -56,7 +56,7 @@ const ProfilePart = () => {
     <Grid container>
       <Grid item xs={6}>
         <Button
-          variant="contained"
+          variant={type === 'primary' ? '' : 'contained'}
           fullWidth
           sx={{ borderRadius: 0 }}
           onClick={setPrimary}
@@ -66,7 +66,7 @@ const ProfilePart = () => {
       </Grid>
       <Grid item xs={6}>
         <Button
-          variant="contained"
+          variant={type === 'secondary' ? '' : 'contained'}
           fullWidth
           sx={{ borderRadius: 0 }}
           onClick={setSecondary}
