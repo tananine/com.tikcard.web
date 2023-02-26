@@ -15,6 +15,9 @@ const EditContact = () => {
 
   const appData = {
     contactId: useSelector((state) => state.editContactDynamic.data.contactId),
+    contactId: useSelector(
+      (state) => state.editContactDynamic.data.contactItemId
+    ),
     name: useSelector((state) => state.editContactDynamic.data.name),
   };
 
