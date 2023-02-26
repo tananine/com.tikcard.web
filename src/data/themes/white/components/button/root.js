@@ -10,7 +10,7 @@ const root = {
   color: black.main,
   minHeight: pxToRem(40.5),
   fontWeight: fontWeightBold,
-  backgroundColor: white,
+  backgroundColor: white.main,
 };
 
 export default root;
