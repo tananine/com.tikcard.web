@@ -9,12 +9,6 @@ const DrawerWrapper = ({ open, onClose, onOpen, children, title }) => {
       open={open}
       onClose={onClose}
       onOpen={onOpen}
-      sx={{
-        '& .MuiDrawer-paperAnchorBottom': {
-          borderTopLeftRadius: 0,
-          borderTopRightRadius: 0,
-        },
-      }}
     >
       <Scrollbars autoHeight autoHeightMax="100vh">
         <Box
