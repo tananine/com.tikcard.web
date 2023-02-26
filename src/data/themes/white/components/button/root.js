@@ -11,6 +11,10 @@ const root = {
   minHeight: pxToRem(40.5),
   fontWeight: fontWeightBold,
   backgroundColor: white.main,
+
+  '&:hover': {
+    backgroundColor: white.main,
+  },
 };
 
 export default root;
