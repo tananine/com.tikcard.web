@@ -9,6 +9,8 @@ import Router from 'Router';
 import 'assets/css/disable-scroll.css';
 import 'assets/css/disable-text-selection.css';
 
+import 'assets/css/custom-mui.css';
+
 import 'config/axios.config';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
