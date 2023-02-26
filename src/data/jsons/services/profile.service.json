@@ -2,5 +2,6 @@
   "getAppList": "/contact",
   "getProfile": "/profile",
   "getActivation": "/activation",
-  "setPrimaryProfile": "/activation/primary"
+  "setPrimaryProfile": "/activation/primary",
+  "addContact": "/contact/me/app"
 }
