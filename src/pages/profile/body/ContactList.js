@@ -10,7 +10,7 @@ import { setEditContactDynamicChild } from 'stores/parse-data/editContactDynamic
 
 import PhoneAPP from 'assets/images/phone.png';
 
-const ContactList = ({ id }) => {
+const ContactList = ({ id, name, data }) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
@@ -53,9 +53,9 @@ const ContactList = ({ id }) => {
               <img src={PhoneAPP} alt="" width="46px" height="46px" />
               <Box>
                 <Typography variant="h3" lineHeight="26.5px">
-                  Phone
+                  {name}
                 </Typography>
-                <Typography variant="caption">01 2345 6789</Typography>
+                <Typography variant="caption">{data}</Typography>
               </Box>
             </Box>
           </Box>
