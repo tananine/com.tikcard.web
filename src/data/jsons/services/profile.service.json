@@ -4,6 +4,6 @@
   "getActivation": "/activation",
   "setPrimaryProfile": "/activation/primary",
   "setSecondaryProfile": "/activation/secondary",
-  "addContact": "/contact/me/app",
-  "getMyContact": "/contact/me/list"
+  "getMyContact": "/contact/me/list",
+  "contactData": "/contact/me/app"
 }

@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 
 import usePost from 'hooks/axios/usePost';
+import usePut from 'hooks/axios/usePut';
 import profileService from 'data/jsons/services/profile.service.json';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -17,7 +18,10 @@ const EditContact = () => {
   const { register, handleSubmit, setValue } = useForm();
 
   const [addContactAction, addContactLoading] = usePost(
-    profileService.addContact
+    profileService.contactData
+  );
+  const [updateContactAction, updateContactLoading] = usePut(
+    profileService.contactData
   );
 
   const addContactListHeight = useSelector(
@@ -49,14 +53,17 @@ const EditContact = () => {
   }, [dispatch]);
 
   const save = (form) => {
-    if (appData.contactId) {
-      return alert(appData.contactId);
-    }
     const body = {
       profileId: appData.profileId,
+      contactId: appData.contactId,
       contactItemId: appData.contactItemId,
       urlUnique: form.contact,
     };
+    if (appData.contactId) {
+      return updateContactAction(body).then(() => {
+        dispatch(editContactDynamicToggle());
+      });
+    }
     return addContactAction(body).then(() => {
       dispatch(editContactDynamicToggle());
     });
@@ -102,7 +109,7 @@ const EditContact = () => {
             size="large"
             fullWidth
             onClick={handleSubmit(save)}
-            loading={addContactLoading}
+            loading={addContactLoading || updateContactLoading}
           >
             บันทึก
           </LoadingButton>
