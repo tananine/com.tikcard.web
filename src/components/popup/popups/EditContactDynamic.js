@@ -39,15 +39,17 @@ const EditContact = () => {
     contact: useSelector((state) => state.editContactDynamic.data.contact),
   };
 
-  useEffect(() => {
-    setValue('contact', appData.contact);
-  }, [setValue, appData.contact]);
-
   const isChild = useSelector((state) => state.editContactDynamic.isChild);
 
   const open = useSelector((state) => state.popup.editContactDynamicPopup);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (open) {
+      setValue('contact', appData.contact);
+    }
+  }, [setValue, appData.contact, open]);
 
   const editContactDynamicToggleHandler = useCallback(() => {
     dispatch(editContactDynamicToggle());
