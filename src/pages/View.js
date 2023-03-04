@@ -62,54 +62,6 @@ const View = ({ isPreview }) => {
               Phone
             </Typography>
           </Grid>
-          <Grid item xs={3} textAlign="center">
-            <img
-              src={PhoneAPP}
-              alt=""
-              width="100%"
-              height="auto"
-              style={{ maxWidth: '100px' }}
-            />
-            <Typography variant="caption" lineHeight={0.5} marginBottom={1.2}>
-              Phone
-            </Typography>
-          </Grid>
-          <Grid item xs={3} textAlign="center">
-            <img
-              src={PhoneAPP}
-              alt=""
-              width="100%"
-              height="auto"
-              style={{ maxWidth: '100px' }}
-            />
-            <Typography variant="caption" lineHeight={0.5} marginBottom={1.2}>
-              Phone
-            </Typography>
-          </Grid>
-          <Grid item xs={3} textAlign="center">
-            <img
-              src={PhoneAPP}
-              alt=""
-              width="100%"
-              height="auto"
-              style={{ maxWidth: '100px' }}
-            />
-            <Typography variant="caption" lineHeight={0.5} marginBottom={1.2}>
-              Phone
-            </Typography>
-          </Grid>
-          <Grid item xs={3} textAlign="center">
-            <img
-              src={PhoneAPP}
-              alt=""
-              width="100%"
-              height="auto"
-              style={{ maxWidth: '100px' }}
-            />
-            <Typography variant="caption" lineHeight={0.5} marginBottom={1.2}>
-              Phone
-            </Typography>
-          </Grid>
         </Grid>
       </Box>
     </Box>
