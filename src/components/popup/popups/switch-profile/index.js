@@ -17,9 +17,9 @@ const ButtonStatus = (flickingMove, disableButton) => {
   if (flickingMove) {
     return <CircularProgress color="black" size={20} />;
   } else if (disableButton) {
-    return 'กำลังใช้งาน';
+    return <>กำลังใช้งาน</>;
   } else {
-    return 'เลือก';
+    return <>เลือก</>;
   }
 };
 
@@ -139,7 +139,7 @@ const SwitchProfile = () => {
         }}
         onClick={setProfileHandler}
         disabled={disableButton || flickingMove}
-        loading={setPrimaryLoading}
+        loading={setPrimaryLoading || setSecondaryLoading}
       >
         {ButtonStatus(flickingMove, disableButton)}
       </LoadingButton>
