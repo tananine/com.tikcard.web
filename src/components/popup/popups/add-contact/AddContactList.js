@@ -11,7 +11,7 @@ import {
 
 import PhoneAPP from 'assets/images/phone.png';
 
-const AddContactList = ({ id, name, data }) => {
+const AddContactList = ({ id, name }) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
