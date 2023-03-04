@@ -54,7 +54,13 @@ const ProfileBody = () => {
       >
         <SortableContext items={items}>
           {items.map((item) => (
-            <ContactList key={item.id} id={item.id} name={item.ContactItem.name} data={item.urlUnique} />
+            <ContactList
+              key={item.id}
+              contactId={item.id}
+              contactItemId={item.contactItemId}
+              name={item.ContactItem.name}
+              data={item.urlUnique}
+            />
           ))}
         </SortableContext>
       </DndContext>

@@ -6,20 +6,31 @@ import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import CardList from 'components/CardList';
 import { useDispatch } from 'react-redux';
 import { editContactDynamicToggle } from 'stores/popup';
-import { setEditContactDynamicChild } from 'stores/parse-data/editContactDynamic';
+import {
+  setEditContactDynamicChild,
+  setEditContactDynamicData,
+} from 'stores/parse-data/editContactDynamic';
 
 import PhoneAPP from 'assets/images/phone.png';
 
-const ContactList = ({ id, name, data }) => {
+const ContactList = ({ contactId, contactItemId, name, data }) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
     dispatch(setEditContactDynamicChild({ isChild: false }));
     dispatch(editContactDynamicToggle());
-  }, [dispatch]);
+    dispatch(
+      setEditContactDynamicData({
+        contactId: contactId,
+        contactItemId: contactItemId,
+        name: name,
+        contact: data,
+      })
+    );
+  }, [dispatch, contactId, contactItemId, name, data]);
 
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: id });
+    useSortable({ id: contactId });
 
   return (
     <>

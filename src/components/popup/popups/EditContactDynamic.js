@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import PopupWrapper from 'components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,7 +14,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PhoneAPP from 'assets/images/phone.png';
 
 const EditContact = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
 
   const [addContactAction, addContactLoading] = usePost(
     profileService.addContact
@@ -26,11 +26,17 @@ const EditContact = () => {
 
   const appData = {
     profileId: useSelector((state) => state.controller.profileInUse.profileId),
-    contactId: useSelector(
+    contactId: useSelector((state) => state.editContactDynamic.data.contactId),
+    contactItemId: useSelector(
       (state) => state.editContactDynamic.data.contactItemId
     ),
     name: useSelector((state) => state.editContactDynamic.data.name),
+    contact: useSelector((state) => state.editContactDynamic.data.contact),
   };
+
+  useEffect(() => {
+    setValue('contact', appData.contact);
+  }, [setValue, appData.contact]);
 
   const isChild = useSelector((state) => state.editContactDynamic.isChild);
 
@@ -43,12 +49,15 @@ const EditContact = () => {
   }, [dispatch]);
 
   const save = (form) => {
+    if (appData.contactId) {
+      return alert(appData.contactId);
+    }
     const body = {
       profileId: appData.profileId,
-      contactItemId: appData.contactId,
+      contactItemId: appData.contactItemId,
       urlUnique: form.contact,
     };
-    addContactAction(body).then(() => {
+    return addContactAction(body).then(() => {
       dispatch(editContactDynamicToggle());
     });
   };
@@ -73,12 +82,7 @@ const EditContact = () => {
           <Box textAlign="center" padding={2}>
             <img src={PhoneAPP} alt="" width="70px" height="70px" />
           </Box>
-          <TextField
-            label={appData.name}
-            variant="outlined"
-            fullWidth
-            {...register('contact')}
-          />
+          <TextField variant="outlined" fullWidth {...register('contact')} />
           <Button
             sx={{
               marginTop: 1,

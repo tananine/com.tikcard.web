@@ -5,9 +5,10 @@ export const editContactDynamicSlice = createSlice({
   initialState: {
     isChild: false,
     data: {
-      isEdit: false,
+      contactId: null,
       contactItemId: null,
       name: null,
+      contact: null,
     },
   },
   reducers: {
@@ -15,8 +16,10 @@ export const editContactDynamicSlice = createSlice({
       state.isChild = action.payload.isChild;
     },
     setEditContactDynamicData: (state, action) => {
-      state.data.contactItemId = action.payload.contactItemId;
-      state.data.name = action.payload.name;
+      state.data.contactId = action.payload.contactId || null;
+      state.data.contactItemId = action.payload.contactItemId || null;
+      state.data.name = action.payload.name || null;
+      state.data.contact = action.payload.contact || null;
     },
   },
 });

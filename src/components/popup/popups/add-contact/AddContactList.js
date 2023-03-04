@@ -11,11 +11,16 @@ import {
 
 import PhoneAPP from 'assets/images/phone.png';
 
-const AddContactList = ({ id, name }) => {
+const AddContactList = ({ id, name, data }) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
-    dispatch(setEditContactDynamicData({ contactItemId: id, name: name }));
+    dispatch(
+      setEditContactDynamicData({
+        contactItemId: id,
+        name: name,
+      })
+    );
     dispatch(setEditContactDynamicChild({ isChild: true }));
     dispatch(editContactDynamicToggle());
   }, [dispatch, id, name]);
