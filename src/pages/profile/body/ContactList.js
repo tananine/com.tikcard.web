@@ -42,7 +42,13 @@ const ContactList = ({ contactId, contactItemId, name, data }) => {
         }}
       >
         <Box display="flex" alignItems="center" gap={2}>
-          <Box display="flex" alignItems="center" flexGrow={1} gap={2}>
+          <Box
+            display="flex"
+            alignItems="center"
+            flexGrow={1}
+            gap={2}
+            overflow="hidden"
+          >
             <Box
               {...attributes}
               {...listeners}
@@ -66,7 +72,9 @@ const ContactList = ({ contactId, contactItemId, name, data }) => {
                 <Typography variant="h3" lineHeight="26.5px">
                   {name}
                 </Typography>
-                <Typography variant="caption">{data}</Typography>
+                <Typography variant="caption" noWrap>
+                  {data}
+                </Typography>
               </Box>
             </Box>
           </Box>
