@@ -23,12 +23,13 @@ const ProfileBody = () => {
   const profileId = useSelector(
     (state) => state.controller.profileInUse.profileId
   );
+  const reloadContactList = useSelector((state) => state.reload.contactList);
 
   useEffect(() => {
     getMyContactAction(profileId).then((res) => {
       setItems(res.data);
     });
-  }, [getMyContactAction, profileId]);
+  }, [getMyContactAction, profileId, reloadContactList]);
 
   if (getMyContactLoading || !getMyContactData) {
     return (

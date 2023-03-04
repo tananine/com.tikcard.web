@@ -3,6 +3,7 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 import PopupWrapper from 'components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { editContactDynamicToggle } from 'stores/popup';
+import { reloadContactList } from 'stores/reload';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 
@@ -52,6 +53,11 @@ const EditContact = () => {
     dispatch(editContactDynamicToggle());
   }, [dispatch]);
 
+  const closePopupHandler = () => {
+    dispatch(editContactDynamicToggle());
+    dispatch(reloadContactList());
+  };
+
   const save = (form) => {
     const body = {
       profileId: appData.profileId,
@@ -61,11 +67,11 @@ const EditContact = () => {
     };
     if (appData.contactId) {
       return updateContactAction(body).then(() => {
-        dispatch(editContactDynamicToggle());
+        closePopupHandler();
       });
     }
     return addContactAction(body).then(() => {
-      dispatch(editContactDynamicToggle());
+      closePopupHandler();
     });
   };
 
