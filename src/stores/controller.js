@@ -17,6 +17,7 @@ export const controllerSlice = createSlice({
     setProfileInUse: (state, action) => {
       state.profileInUse.profileState = action.payload.profileState;
       state.profileInUse.profileId = action.payload.profileId;
+      axios.defaults.headers.common['profile'] = state.profileInUse.profileId;
     },
   },
 });

@@ -26,7 +26,7 @@ const ProfileBody = () => {
   const reloadContactList = useSelector((state) => state.reload.contactList);
 
   useEffect(() => {
-    getMyContactAction(profileId).then((res) => {
+    getMyContactAction().then((res) => {
       setItems(res.data);
     });
   }, [getMyContactAction, profileId, reloadContactList]);

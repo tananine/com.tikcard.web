@@ -16,6 +16,7 @@ const Login = () => {
   useEffect(() => {
     Cookies.remove('authToken');
     delete axios.defaults.headers.common['Authorization'];
+    delete axios.defaults.headers.common['profile'];
   }, []);
 
   const navigate = useNavigate();

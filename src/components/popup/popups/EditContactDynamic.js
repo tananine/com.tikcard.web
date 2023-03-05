@@ -30,7 +30,6 @@ const EditContact = () => {
   );
 
   const appData = {
-    profileId: useSelector((state) => state.controller.profileInUse.profileId),
     contactId: useSelector((state) => state.editContactDynamic.data.contactId),
     contactItemId: useSelector(
       (state) => state.editContactDynamic.data.contactItemId
@@ -62,7 +61,6 @@ const EditContact = () => {
 
   const save = (form) => {
     const body = {
-      profileId: appData.profileId,
       contactId: appData.contactId,
       contactItemId: appData.contactItemId,
       urlUnique: form.contact,
