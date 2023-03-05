@@ -105,7 +105,13 @@ const EditContact = () => {
           <Box textAlign="center" padding={2}>
             <img src={PhoneAPP} alt="" width="70px" height="70px" />
           </Box>
-          <TextField variant="outlined" fullWidth {...register('contact')} />
+          <TextField
+            label={appData.name}
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            {...register('contact')}
+          />
           <Button
             sx={{
               marginTop: 1,
