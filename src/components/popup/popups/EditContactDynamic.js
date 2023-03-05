@@ -9,6 +9,7 @@ import { LoadingButton } from '@mui/lab';
 
 import usePost from 'hooks/axios/usePost';
 import usePut from 'hooks/axios/usePut';
+import useDelete from 'hooks/axios/useDelete';
 import profileService from 'data/jsons/services/profile.service.json';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -22,6 +23,9 @@ const EditContact = () => {
     profileService.contactData
   );
   const [updateContactAction, updateContactLoading] = usePut(
+    profileService.contactData
+  );
+  const [deleteContactAction, deleteContactLoading] = useDelete(
     profileService.contactData
   );
 
@@ -75,6 +79,12 @@ const EditContact = () => {
     });
   };
 
+  const deleteContact = () => {
+    deleteContactAction(appData.contactId).then(() => {
+      closePopupHandler();
+    });
+  };
+
   return (
     <PopupWrapper
       open={open}
@@ -114,6 +124,8 @@ const EditContact = () => {
               variant="text"
               color="error"
               sx={{ marginBottom: 2 }}
+              onClick={deleteContact}
+              loading={deleteContactLoading}
             >
               ลบ
             </LoadingButton>
