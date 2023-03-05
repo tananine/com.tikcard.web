@@ -108,7 +108,16 @@ const EditContact = () => {
             คำแนะนำ
           </Button>
         </Box>
-        <Box>
+        <Box textAlign="center">
+          {appData.contactId && (
+            <LoadingButton
+              variant="text"
+              color="error"
+              sx={{ marginBottom: 2 }}
+            >
+              ลบ
+            </LoadingButton>
+          )}
           <LoadingButton
             variant="contained"
             color="secondary"
