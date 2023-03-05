@@ -1,5 +1,6 @@
 import root from 'data/themes/white/components/button/root';
 import contained from 'data/themes/white/components/button/contained';
+import text from 'data/themes/white/components/button/text';
 
 const button = {
   defaultProps: {
@@ -11,6 +12,7 @@ const button = {
     containedSizeSmall: { ...contained.small },
     containedSizeLarge: { ...contained.large },
     containedSecondary: { ...contained.secondary },
+    textError: { ...text.error },
   },
 };
 
