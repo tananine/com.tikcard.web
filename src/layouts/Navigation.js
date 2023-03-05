@@ -28,7 +28,7 @@ const ProfilePart = () => {
     setType('primary');
     dispatch(
       setProfileInUse({
-        profile: 'primary',
+        profileState: 'primary',
         profileId: profileActivation.primaryProfile,
       })
     );
@@ -38,7 +38,7 @@ const ProfilePart = () => {
     setType('secondary');
     dispatch(
       setProfileInUse({
-        profile: 'secondary',
+        profileState: 'secondary',
         profileId: profileActivation.secondaryProfile,
       })
     );

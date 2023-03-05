@@ -60,7 +60,9 @@ const SwitchProfile = () => {
   const selectProfileId = useSelector(
     (state) => state.controller.profileInUse.profileId
   );
-  const type = useSelector((state) => state.controller.profileInUse.profile);
+  const type = useSelector(
+    (state) => state.controller.profileInUse.profileState
+  );
 
   const isSelectHandler = useCallback(() => {
     if (profiles[indexFlicking]?.profileId === selectProfileId) {

@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const controllerSlice = createSlice({
   name: 'controller',
   initialState: {
     darkMode: false,
     profileInUse: {
-      profile: null,
+      profileState: null,
       profileId: null,
     },
   },
@@ -14,7 +15,7 @@ export const controllerSlice = createSlice({
       state.darkMode = !state.darkMode;
     },
     setProfileInUse: (state, action) => {
-      state.profileInUse.profile = action.payload.profile;
+      state.profileInUse.profileState = action.payload.profileState;
       state.profileInUse.profileId = action.payload.profileId;
     },
   },

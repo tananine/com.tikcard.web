@@ -33,7 +33,7 @@ const Application = ({ header, body, footer }) => {
       );
       dispatch(
         setProfileInUse({
-          profile: 'primary',
+          profileState: 'primary',
           profileId: primary,
         })
       );
