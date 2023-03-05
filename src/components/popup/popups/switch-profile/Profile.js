@@ -29,7 +29,9 @@ const Profile = ({ profileName, company, isSelect }) => {
         sx={{ width: 76, height: 76, marginX: 'auto', marginBottom: 2 }}
       />
       <Typography variant="h3">{profileName}</Typography>
-      <Typography variant="caption">{company}</Typography>
+      <Box height={20}>
+        <Typography variant="caption">{company}</Typography>
+      </Box>
     </Box>
   );
 };
