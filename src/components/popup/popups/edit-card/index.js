@@ -1,22 +1,45 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import PopupWrapper from 'components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { editCardToggle } from 'stores/popup';
 import { Box, Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
+import useGet from 'hooks/axios/useGet';
+import profileService from 'data/jsons/services/profile.service.json';
+
 import ProfileImageHead from 'components/popup/popups/edit-card/ProfileImageHead';
 
 const EditCard = () => {
   const open = useSelector((state) => state.popup.editCardPopup);
+  const profileId = useSelector(
+    (state) => state.controller.profileInUse.profileId
+  );
 
   const dispatch = useDispatch();
+
+  const [getInformationAction, getInformationLoading] = useGet(
+    profileService.getInformation
+  );
 
   const { register, handleSubmit, setValue } = useForm();
 
   const editCardToggleHandler = useCallback(() => {
     dispatch(editCardToggle());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (profileId) {
+      getInformationAction().then((res) => {
+        setValue('profileName', res.data.profileName);
+        setValue('name', res.data.name);
+        setValue('work', res.data.work);
+        setValue('company', res.data.company);
+        setValue('position', res.data.position);
+        setValue('bio', res.data.bio);
+      });
+    }
+  }, [getInformationAction, profileId, setValue]);
 
   return (
     <PopupWrapper
