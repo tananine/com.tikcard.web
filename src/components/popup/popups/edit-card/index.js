@@ -2,13 +2,15 @@ import { useCallback, useEffect } from 'react';
 import PopupWrapper from 'components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { editCardToggle } from 'stores/popup';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 import useGet from 'hooks/axios/useGet';
+import usePut from 'hooks/axios/usePut';
 import profileService from 'data/jsons/services/profile.service.json';
 
 import ProfileImageHead from 'components/popup/popups/edit-card/ProfileImageHead';
+import { LoadingButton } from '@mui/lab';
 
 const EditCard = () => {
   const open = useSelector((state) => state.popup.editCardPopup);
@@ -19,6 +21,9 @@ const EditCard = () => {
   const dispatch = useDispatch();
 
   const [getInformationAction, getInformationLoading] = useGet(
+    profileService.profileInformation
+  );
+  const [updateInformationAction, updateInformationLoading] = usePut(
     profileService.profileInformation
   );
 
@@ -40,6 +45,20 @@ const EditCard = () => {
       });
     }
   }, [getInformationAction, profileId, setValue]);
+
+  const save = (form) => {
+    const body = {
+      profileName: form.profileName,
+      name: form.name,
+      work: form.work,
+      company: form.company,
+      position: form.position,
+      bio: form.bio,
+    };
+    updateInformationAction(body).then(() => {
+      dispatch(editCardToggle());
+    });
+  };
 
   return (
     <PopupWrapper
@@ -110,9 +129,16 @@ const EditCard = () => {
           zIndex={9}
           bgcolor="#ffffff"
         >
-          <Button variant="contained" fullWidth size="large" color="secondary">
+          <LoadingButton
+            variant="contained"
+            fullWidth
+            size="large"
+            color="secondary"
+            onClick={handleSubmit(save)}
+            loading={updateInformationLoading}
+          >
             บันทึก
-          </Button>
+          </LoadingButton>
         </Box>
       </Box>
     </PopupWrapper>
