@@ -19,7 +19,7 @@ const EditCard = () => {
   const dispatch = useDispatch();
 
   const [getInformationAction, getInformationLoading] = useGet(
-    profileService.getInformation
+    profileService.profileInformation
   );
 
   const { register, handleSubmit, setValue } = useForm();
