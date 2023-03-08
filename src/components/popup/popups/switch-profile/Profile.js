@@ -15,7 +15,7 @@ const Select = (isSelect) => {
   }
 };
 
-const Profile = ({ profileName, company, isSelect }) => {
+const Profile = ({ profileName, name, company, isSelect }) => {
   return (
     <Box
       textAlign="center"
@@ -29,6 +29,9 @@ const Profile = ({ profileName, company, isSelect }) => {
         sx={{ width: 76, height: 76, marginX: 'auto', marginBottom: 2 }}
       />
       <Typography variant="h3">{profileName}</Typography>
+      <Box height={20}>
+        <Typography variant="caption">{name}</Typography>
+      </Box>
       <Box height={20}>
         <Typography variant="caption">{company}</Typography>
       </Box>
