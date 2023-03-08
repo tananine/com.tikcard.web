@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { previewToggle } from 'stores/drawer';
 import DrawerWrapper from 'components/drawer/DrawerWrapper';
 
-import View from 'pages/View';
+import View from 'pages/view';
 
 const Preview = () => {
   const open = useSelector((state) => state.drawer.previewDrawer);
