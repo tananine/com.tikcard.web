@@ -17,7 +17,7 @@ const Profile = ({ profileName, name }) => {
           <Typography variant="h3" lineHeight="26.5px">
             {profileName}
           </Typography>
-          <Typography variant="body2">{name}</Typography>
+          <Typography variant="caption" fontSize={14}>{name}</Typography>
         </Box>
       </Box>
       <ExpandMoreIcon sx={{ fontSize: '38px' }} />
