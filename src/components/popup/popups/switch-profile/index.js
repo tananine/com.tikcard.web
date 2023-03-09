@@ -13,6 +13,8 @@ import { setPrimaryProfile, setSecondaryProfile } from 'stores/account';
 import usePut from 'hooks/axios/usePut';
 import profileServicePath from 'data/jsons/services/profile.service.json';
 
+import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
+
 const ButtonStatus = (flickingMove, disableButton) => {
   if (flickingMove) {
     return <CircularProgress color="black" size={20} />;
@@ -117,6 +119,12 @@ const SwitchProfile = () => {
     setIndexFlicking(e.index);
   };
 
+  const delayMoveEndLoading = () => {
+    setTimeout(() => {
+      setFlickingMove(false);
+    }, 100);
+  };
+
   return (
     <PopupWrapper
       open={open}
@@ -125,27 +133,60 @@ const SwitchProfile = () => {
     >
       <Flicking
         ref={flickingRef}
-        onWillChange={flickingChanged}
+        onChanged={flickingChanged}
         onMoveStart={() => setFlickingMove(true)}
-        onMoveEnd={() => setFlickingMove(false)}
+        onMoveEnd={delayMoveEndLoading}
         plugins={plugins}
       >
         {ProfileCard(profiles, selectProfileId)}
+        <Box key={99} width="70%" paddingTop={1}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            border={4}
+            borderColor="#f7f7f7"
+            borderRadius={4}
+            padding={3}
+            height={212}
+          >
+            <Box display="inline" textAlign="center" sx={{ cursor: 'pointer' }}>
+              <PersonAddAltRoundedIcon
+                sx={{ fontSize: 58, color: '#cfd4da' }}
+              />
+            </Box>
+          </Box>
+        </Box>
       </Flicking>
-      <LoadingButton
-        variant="contained"
-        fullWidth
-        size="large"
-        color="secondary"
-        sx={{
-          marginTop: 2,
-        }}
-        onClick={setProfileHandler}
-        disabled={disableButton || flickingMove}
-        loading={setPrimaryLoading || setSecondaryLoading}
-      >
-        {ButtonStatus(flickingMove, disableButton)}
-      </LoadingButton>
+      {indexFlicking === profiles.length ? (
+        <LoadingButton
+          variant="contained"
+          fullWidth
+          size="large"
+          color="secondary"
+          loading={flickingMove}
+          sx={{
+            marginTop: 2,
+          }}
+        >
+          เพิ่มโพรไฟล์
+        </LoadingButton>
+      ) : (
+        <LoadingButton
+          variant="contained"
+          fullWidth
+          size="large"
+          color="secondary"
+          sx={{
+            marginTop: 2,
+          }}
+          onClick={setProfileHandler}
+          disabled={disableButton || flickingMove}
+          loading={setPrimaryLoading || setSecondaryLoading}
+        >
+          {ButtonStatus(flickingMove, disableButton)}
+        </LoadingButton>
+      )}
     </PopupWrapper>
   );
 };
