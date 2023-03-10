@@ -15,11 +15,11 @@ const ProfileBody = () => {
 
   const handleDragEnd = useCallback(() => {
     dispatch(setShowFooter());
-  }, []);
+  }, [dispatch]);
 
   const handleDragOver = useCallback(() => {
     dispatch(setHideFooter());
-  }, []);
+  }, [dispatch]);
 
   const [items, setItems] = useState([]);
 
