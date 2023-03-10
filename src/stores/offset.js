@@ -6,6 +6,9 @@ export const layoutSlice = createSlice({
     headerHeight: 0,
     footerHeight: 0,
     addContactListHeight: 0,
+    isShow: {
+      footer: true,
+    },
   },
   reducers: {
     setHeaderHeight: (state, action) => {
@@ -17,10 +20,21 @@ export const layoutSlice = createSlice({
     setAddContactListHeight: (state, action) => {
       state.addContactListHeight = action.payload;
     },
+    setShowFooter: (state) => {
+      state.isShow.footer = true;
+    },
+    setHideFooter: (state) => {
+      state.isShow.footer = false;
+    },
   },
 });
 
-export const { setHeaderHeight, setFooterHeight, setAddContactListHeight } =
-  layoutSlice.actions;
+export const {
+  setHeaderHeight,
+  setFooterHeight,
+  setAddContactListHeight,
+  setShowFooter,
+  setHideFooter,
+} = layoutSlice.actions;
 
 export default layoutSlice.reducer;

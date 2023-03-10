@@ -4,15 +4,22 @@ import { Box, CircularProgress, Divider, Typography } from '@mui/material';
 import { SortableContext } from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import ContactList from 'pages/profile/body/ContactList';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setShowFooter, setHideFooter } from 'stores/offset';
 
 import useGet from 'hooks/axios/useGet';
 import profileService from 'data/jsons/services/profile.service.json';
 
 const ProfileBody = () => {
-  const handleDragEnd = useCallback(() => {}, []);
+  const dispatch = useDispatch();
 
-  const handleDragOver = useCallback(() => {}, []);
+  const handleDragEnd = useCallback(() => {
+    dispatch(setShowFooter());
+  }, []);
+
+  const handleDragOver = useCallback(() => {
+    dispatch(setHideFooter());
+  }, []);
 
   const [items, setItems] = useState([]);
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { Box, Container } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setFooterHeight } from 'stores/offset';
 import { useLocation } from 'react-router-dom';
 
@@ -9,6 +9,8 @@ import Navigation from 'layouts/Navigation';
 const Footer = ({ component }) => {
   const dispatch = useDispatch();
   const footerRef = useRef();
+
+  const isShow = useSelector((state) => state.layout.isShow.footer);
 
   const { pathname } = useLocation();
 
@@ -20,10 +22,15 @@ const Footer = ({ component }) => {
 
   useEffect(() => {
     setFooterHeightHandler();
-  }, [setFooterHeightHandler, pathname]);
+  }, [setFooterHeightHandler, pathname, isShow]);
 
   return (
-    <Box ref={footerRef} position="sticky" bottom={0}>
+    <Box
+      ref={footerRef}
+      display={!isShow && 'none'}
+      position="sticky"
+      bottom={0}
+    >
       <Container>
         <Box
           paddingX={component ? 2 : 0}
