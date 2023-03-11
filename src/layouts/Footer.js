@@ -16,17 +16,13 @@ const Footer = ({ component }) => {
 
   const setFooterHeightHandler = useCallback(() => {
     if (footerRef.current) {
-      if (!isShow) {
-        dispatch(setFooterHeight(0));
-      } else {
-        dispatch(setFooterHeight(footerRef.current.offsetHeight));
-      }
+      dispatch(setFooterHeight(footerRef.current.offsetHeight));
     }
-  }, [dispatch, isShow]);
+  }, [dispatch]);
 
   useEffect(() => {
     setFooterHeightHandler();
-  }, [setFooterHeightHandler, pathname, isShow]);
+  }, [setFooterHeightHandler, pathname]);
 
   return (
     <Fade in={isShow}>
