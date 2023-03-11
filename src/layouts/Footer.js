@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Fade } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFooterHeight } from 'stores/offset';
 import { useLocation } from 'react-router-dom';
@@ -16,33 +16,34 @@ const Footer = ({ component }) => {
 
   const setFooterHeightHandler = useCallback(() => {
     if (footerRef.current) {
-      dispatch(setFooterHeight(footerRef.current.offsetHeight));
+      if (!isShow) {
+        dispatch(setFooterHeight(0));
+      } else {
+        dispatch(setFooterHeight(footerRef.current.offsetHeight));
+      }
     }
-  }, [dispatch]);
+  }, [dispatch, isShow]);
 
   useEffect(() => {
     setFooterHeightHandler();
   }, [setFooterHeightHandler, pathname, isShow]);
 
   return (
-    <Box
-      ref={footerRef}
-      display={!isShow && 'none'}
-      position="sticky"
-      bottom={0}
-    >
-      <Container>
-        <Box
-          paddingX={component ? 2 : 0}
-          paddingTop={component ? 1 : 0}
-          paddingBottom={component ? 1.5 : 0}
-          bgcolor="#ffffff"
-        >
-          {component}
-        </Box>
-      </Container>
-      <Navigation />
-    </Box>
+    <Fade in={isShow}>
+      <Box ref={footerRef} position="sticky" bottom={0}>
+        <Container>
+          <Box
+            paddingX={component ? 2 : 0}
+            paddingTop={component ? 1 : 0}
+            paddingBottom={component ? 1.5 : 0}
+            bgcolor="#ffffff"
+          >
+            {component}
+          </Box>
+        </Container>
+        <Navigation />
+      </Box>
+    </Fade>
   );
 };
 
