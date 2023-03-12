@@ -65,7 +65,6 @@ const EditCard = () => {
       open={open}
       onClose={editCardToggleHandler}
       onOpen={editCardToggleHandler}
-      fullHeight
     >
       <Box paddingY={1}>
         {getInformationLoading ? (
