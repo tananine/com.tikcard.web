@@ -27,12 +27,16 @@ const ProfileBody = () => {
   );
   const activeIndex = activeId ? getIndex(activeId) : -1;
 
-  const handleDragStart = useCallback(({ active }) => {
-    if (!active) {
-      return;
-    }
-    setActiveId(active.id);
-  }, []);
+  const handleDragStart = useCallback(
+    ({ active }) => {
+      dispatch(setHideFooter());
+      if (!active) {
+        return;
+      }
+      setActiveId(active.id);
+    },
+    [dispatch]
+  );
 
   const handleDragEnd = useCallback(
     ({ over }) => {
@@ -47,10 +51,6 @@ const ProfileBody = () => {
     },
     [dispatch, activeIndex, getIndex]
   );
-
-  const handleDragOver = useCallback(() => {
-    dispatch(setHideFooter());
-  }, [dispatch]);
 
   const [getMyContactAction, getMyContactLoading, getMyContactData] = useGet(
     profileService.getMyContact
@@ -88,7 +88,6 @@ const ProfileBody = () => {
         modifiers={[restrictToVerticalAxis]}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
-        onDragOver={handleDragOver}
       >
         <SortableContext items={items}>
           {items.map((item) => (
