@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { DndContext } from '@dnd-kit/core';
 import { Box, CircularProgress, Divider, Typography } from '@mui/material';
-import { SortableContext } from '@dnd-kit/sortable';
+import { SortableContext, arrayMove } from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import ContactList from 'pages/profile/body/ContactList';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,17 +11,46 @@ import useGet from 'hooks/axios/useGet';
 import profileService from 'data/jsons/services/profile.service.json';
 
 const ProfileBody = () => {
+  const [items, setItems] = useState([]);
+  const [activeId, setActiveId] = useState(null);
   const dispatch = useDispatch();
 
-  const handleDragEnd = useCallback(() => {
-    dispatch(setShowFooter());
-  }, [dispatch]);
+  const getIndex = useCallback(
+    (id) => {
+      return items
+        .map((item) => {
+          return item.id;
+        })
+        .indexOf(id);
+    },
+    [items]
+  );
+  const activeIndex = activeId ? getIndex(activeId) : -1;
+
+  const handleDragStart = useCallback(({ active }) => {
+    if (!active) {
+      return;
+    }
+    setActiveId(active.id);
+  }, []);
+
+  const handleDragEnd = useCallback(
+    ({ over }) => {
+      dispatch(setShowFooter());
+      setActiveId(null);
+      if (over) {
+        const overIndex = getIndex(over.id);
+        if (activeIndex !== overIndex) {
+          setItems((items) => arrayMove(items, activeIndex, overIndex));
+        }
+      }
+    },
+    [dispatch, activeIndex, getIndex]
+  );
 
   const handleDragOver = useCallback(() => {
     dispatch(setHideFooter());
   }, [dispatch]);
-
-  const [items, setItems] = useState([]);
 
   const [getMyContactAction, getMyContactLoading, getMyContactData] = useGet(
     profileService.getMyContact
@@ -57,6 +86,7 @@ const ProfileBody = () => {
       <Divider sx={{ width: '60px', margin: 'auto' }} />
       <DndContext
         modifiers={[restrictToVerticalAxis]}
+        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
       >
