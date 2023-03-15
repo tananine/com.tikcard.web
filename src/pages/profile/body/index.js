@@ -8,12 +8,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setShowFooter, setHideFooter } from 'stores/offset';
 
 import useGet from 'hooks/axios/useGet';
+import usePut from 'hooks/axios/usePut';
 import profileService from 'data/jsons/services/profile.service.json';
 
 const ProfileBody = () => {
   const [items, setItems] = useState([]);
   const [activeId, setActiveId] = useState(null);
   const dispatch = useDispatch();
+
+  const [sortContactAction] = usePut(profileService.sortContact);
 
   const getIndex = useCallback(
     (id) => {
@@ -46,10 +49,20 @@ const ProfileBody = () => {
         const overIndex = getIndex(over.id);
         if (activeIndex !== overIndex) {
           setItems((items) => arrayMove(items, activeIndex, overIndex));
+          const body = {
+            contactId: items[activeIndex].id,
+            afterContactId:
+              activeIndex > overIndex
+                ? items[overIndex - 1]?.id
+                : items[overIndex]?.id,
+          };
+          sortContactAction(body).catch(() => {
+            setItems((items) => arrayMove(items, overIndex, activeIndex));
+          });
         }
       }
     },
-    [dispatch, activeIndex, getIndex]
+    [dispatch, activeIndex, getIndex, items, sortContactAction]
   );
 
   const [getMyContactAction, getMyContactLoading, getMyContactData] = useGet(

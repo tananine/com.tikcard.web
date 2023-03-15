@@ -6,5 +6,6 @@
   "setSecondaryProfile": "/activation/secondary",
   "getMyContact": "/contact/me/list",
   "contactData": "/contact/me/app",
+  "sortContact": "/contact/me/sort",
   "profileInformation": "/profile/information"
 }
