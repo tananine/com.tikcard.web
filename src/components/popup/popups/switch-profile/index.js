@@ -117,7 +117,6 @@ const SwitchProfile = () => {
 
   const flickingChanged = (e) => {
     setIndexFlicking(e.index);
-    setFlickingMove(false);
   };
 
   return (
@@ -130,6 +129,7 @@ const SwitchProfile = () => {
         ref={flickingRef}
         onChanged={flickingChanged}
         onMoveStart={() => setFlickingMove(true)}
+        onMoveEnd={() => setFlickingMove(false)}
         plugins={plugins}
       >
         {ProfileCard(profiles, selectProfileId)}
