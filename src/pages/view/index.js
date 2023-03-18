@@ -2,7 +2,26 @@ import { Avatar, Box, Divider, Grid, Typography } from '@mui/material';
 
 import PhoneAPP from 'assets/images/phone.png';
 
-const View = ({ isPreview }) => {
+const ContactLists = (contacts) => {
+  return contacts?.map((contact) => {
+    return (
+      <Grid key={contact.id} item xs={3} textAlign="center">
+        <img
+          src={PhoneAPP}
+          alt=""
+          width="100%"
+          height="auto"
+          style={{ maxWidth: '100px' }}
+        />
+        <Typography variant="caption" lineHeight={0.5} marginBottom={1.2}>
+          {contact.ContactItem.name}
+        </Typography>
+      </Grid>
+    );
+  });
+};
+
+const View = ({ isPreview, profileData }) => {
   return (
     <Box>
       <Box
@@ -33,13 +52,13 @@ const View = ({ isPreview }) => {
       <Box padding={2} marginBottom={8}>
         <Box marginBottom={2}>
           <Typography marginTop={5} textAlign="center" variant="h1">
-            Tanadon Chiraphaisansakun
+            {profileData?.info.name}
           </Typography>
           <Typography marginTop={1} textAlign="center" variant="body2">
-            Nayoo Coporation
+            {profileData?.info.company}
           </Typography>
           <Typography marginTop={2} textAlign="center" variant="body2">
-            I like developer
+            {profileData?.info.bio}
           </Typography>
         </Box>
         <Divider variant="middle" />
@@ -50,18 +69,7 @@ const View = ({ isPreview }) => {
           marginTop={2}
           paddingX={2}
         >
-          <Grid item xs={3} textAlign="center">
-            <img
-              src={PhoneAPP}
-              alt=""
-              width="100%"
-              height="auto"
-              style={{ maxWidth: '100px' }}
-            />
-            <Typography variant="caption" lineHeight={0.5} marginBottom={1.2}>
-              Phone
-            </Typography>
-          </Grid>
+          {ContactLists(profileData?.contacts)}
         </Grid>
       </Box>
     </Box>
