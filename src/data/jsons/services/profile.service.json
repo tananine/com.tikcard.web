@@ -7,5 +7,6 @@
   "getMyContact": "/contact/me/list",
   "contactData": "/contact/me/app",
   "sortContact": "/contact/me/sort",
-  "profileInformation": "/profile/information"
+  "profileInformation": "/profile/information",
+  "viewProfile": "/view"
 }
