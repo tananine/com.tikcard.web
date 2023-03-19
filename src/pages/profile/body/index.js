@@ -109,7 +109,7 @@ const ProfileBody = () => {
               contactId={item.id}
               contactItemId={item.contactItemId}
               name={item.ContactItem.name}
-              data={item.urlUnique}
+              data={item.url}
             />
           ))}
         </SortableContext>

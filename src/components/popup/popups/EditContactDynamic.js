@@ -67,7 +67,7 @@ const EditContact = () => {
     const body = {
       contactId: appData.contactId,
       contactItemId: appData.contactItemId,
-      urlUnique: form.contact,
+      url: form.contact,
     };
     if (appData.contactId) {
       return updateContactAction(body).then(() => {
