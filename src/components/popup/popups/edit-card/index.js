@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react';
 import PopupWrapper from 'components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { editCardToggle } from 'stores/popup';
+import { reloadCurrentProfile } from 'stores/reload';
 import { Box, CircularProgress, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
@@ -56,6 +57,7 @@ const EditCard = () => {
       bio: form.bio,
     };
     updateInformationAction(body).then(() => {
+      dispatch(reloadCurrentProfile());
       dispatch(editCardToggle());
     });
   };

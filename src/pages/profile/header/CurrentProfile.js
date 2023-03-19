@@ -17,7 +17,9 @@ const Profile = ({ profileName, name }) => {
           <Typography variant="h3" lineHeight="26.5px">
             {profileName}
           </Typography>
-          <Typography variant="caption" fontSize={14}>{name}</Typography>
+          <Typography variant="caption" fontSize={14}>
+            {name}
+          </Typography>
         </Box>
       </Box>
       <ExpandMoreIcon sx={{ fontSize: '38px' }} />
@@ -28,6 +30,9 @@ const Profile = ({ profileName, name }) => {
 const CurrentProfile = () => {
   const profileActivationId = useSelector(
     (state) => state.controller.profileInUse.profileId
+  );
+  const reloadCurrentProfile = useSelector(
+    (state) => state.reload.currentProfile
   );
 
   const dispatch = useDispatch();
@@ -52,7 +57,7 @@ const CurrentProfile = () => {
       });
       setActivationProfileData(profileData[0]);
     });
-  }, [getProfileAction, dispatch, profileActivationId]);
+  }, [getProfileAction, dispatch, profileActivationId, reloadCurrentProfile]);
 
   return (
     <Card
