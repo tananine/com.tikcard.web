@@ -11,7 +11,7 @@ import {
 
 import PhoneAPP from 'assets/images/phone.png';
 
-const AddContactList = ({ id, name }) => {
+const AddContactList = ({ id, name, defaultUri, androidUri, iosUri }) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
@@ -19,11 +19,16 @@ const AddContactList = ({ id, name }) => {
       setEditContactDynamicData({
         contactItemId: id,
         name: name,
+        uri: {
+          defaultUri: defaultUri,
+          androidUri: androidUri,
+          iosUri: iosUri,
+        },
       })
     );
     dispatch(setEditContactDynamicChild({ isChild: true }));
     dispatch(editContactDynamicToggle());
-  }, [dispatch, id, name]);
+  }, [dispatch, id, name, defaultUri, androidUri, iosUri]);
 
   return (
     <>

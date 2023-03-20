@@ -1,5 +1,7 @@
 import { Avatar, Box, Divider, Grid, Typography } from '@mui/material';
 
+import { openAppUri } from 'functions/openAppUri';
+
 import PhoneAPP from 'assets/images/phone.png';
 
 const ContactLists = (contacts) => {
@@ -11,7 +13,15 @@ const ContactLists = (contacts) => {
           alt=""
           width="100%"
           height="auto"
-          style={{ maxWidth: '100px' }}
+          style={{ maxWidth: '100px', cursor: 'pointer' }}
+          onClick={() =>
+            openAppUri(
+              contact.ContactItem.defaultUri,
+              contact.ContactItem.androidUri,
+              contact.ContactItem.iosUri,
+              contact.url
+            )
+          }
         />
         <Typography variant="caption" lineHeight={0.5} marginBottom={1.2}>
           {contact.ContactItem.name}

@@ -7,6 +7,8 @@ import { reloadContactList } from 'stores/reload';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 
+import { openAppUri } from 'functions/openAppUri';
+
 import usePost from 'hooks/axios/usePost';
 import usePut from 'hooks/axios/usePut';
 import useDelete from 'hooks/axios/useDelete';
@@ -17,7 +19,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PhoneAPP from 'assets/images/phone.png';
 
 const EditContact = () => {
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, getValues } = useForm();
 
   const [addContactAction, addContactLoading] = usePost(
     profileService.contactData
@@ -39,7 +41,8 @@ const EditContact = () => {
       (state) => state.editContactDynamic.data.contactItemId
     ),
     name: useSelector((state) => state.editContactDynamic.data.name),
-    contact: useSelector((state) => state.editContactDynamic.data.contact),
+    url: useSelector((state) => state.editContactDynamic.data.url),
+    uri: useSelector((state) => state.editContactDynamic.data.uri),
   };
 
   const isChild = useSelector((state) => state.editContactDynamic.isChild);
@@ -50,9 +53,9 @@ const EditContact = () => {
 
   useEffect(() => {
     if (open) {
-      setValue('contact', appData.contact);
+      setValue('url', appData.url);
     }
-  }, [setValue, appData.contact, open]);
+  }, [setValue, appData.url, open]);
 
   const editContactDynamicToggleHandler = useCallback(() => {
     dispatch(editContactDynamicToggle());
@@ -67,7 +70,7 @@ const EditContact = () => {
     const body = {
       contactId: appData.contactId,
       contactItemId: appData.contactItemId,
-      url: form.contact,
+      url: form.url,
     };
     if (appData.contactId) {
       return updateContactAction(body).then(() => {
@@ -85,6 +88,19 @@ const EditContact = () => {
     });
   };
 
+  const goContact = () => {
+    if (getValues('url')) {
+      openAppUri(
+        appData.uri.defaultUri,
+        appData.uri.androidUri,
+        appData.uri.iosUri,
+        getValues('url')
+      );
+    } else {
+      alert('กรุณากรอกข้อมูลติดต่อ');
+    }
+  };
+
   return (
     <PopupWrapper
       open={open}
@@ -100,7 +116,7 @@ const EditContact = () => {
         <Box>
           <Box display="flex" justifyContent="space-between">
             <Typography variant="h2">{appData.name}</Typography>
-            <Button>ตัวอย่างเมื่อคลิก</Button>
+            <Button onClick={goContact}>ตัวอย่างเมื่อคลิก</Button>
           </Box>
           <Box textAlign="center" padding={2}>
             <img src={PhoneAPP} alt="" width="70px" height="70px" />
@@ -110,7 +126,7 @@ const EditContact = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            {...register('contact')}
+            {...register('url')}
           />
           <Button
             sx={{

@@ -8,7 +8,12 @@ export const editContactDynamicSlice = createSlice({
       contactId: null,
       contactItemId: null,
       name: null,
-      contact: null,
+      url: null,
+      uri: {
+        defaultUri: null,
+        androidUri: null,
+        iosUri: null,
+      },
     },
   },
   reducers: {
@@ -19,7 +24,10 @@ export const editContactDynamicSlice = createSlice({
       state.data.contactId = action.payload.contactId || null;
       state.data.contactItemId = action.payload.contactItemId || null;
       state.data.name = action.payload.name || null;
-      state.data.contact = action.payload.contact || null;
+      state.data.url = action.payload.url || null;
+      state.data.uri.defaultUri = action.payload.uri.defaultUri || null;
+      state.data.uri.androidUri = action.payload.uri.androidUri || null;
+      state.data.uri.iosUri = action.payload.uri.iosUri || null;
     },
   },
 });

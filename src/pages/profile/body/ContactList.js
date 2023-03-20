@@ -13,7 +13,7 @@ import {
 
 import PhoneAPP from 'assets/images/phone.png';
 
-const ContactList = ({ contactId, contactItemId, name, data }) => {
+const ContactList = ({ contactId, contactItem, url }) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
@@ -22,12 +22,17 @@ const ContactList = ({ contactId, contactItemId, name, data }) => {
     dispatch(
       setEditContactDynamicData({
         contactId: contactId,
-        contactItemId: contactItemId,
-        name: name,
-        contact: data,
+        contactItemId: contactItem.id,
+        name: contactItem.name,
+        url: url,
+        uri: {
+          defaultUri: contactItem.defaultUri,
+          androidUri: contactItem.androidUri,
+          iosUri: contactItem.iosUri,
+        },
       })
     );
-  }, [dispatch, contactId, contactItemId, name, data]);
+  }, [dispatch, contactId, contactItem, url]);
 
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: contactId });
@@ -70,10 +75,10 @@ const ContactList = ({ contactId, contactItemId, name, data }) => {
               <img src={PhoneAPP} alt="" width="46px" height="46px" />
               <Box>
                 <Typography variant="h3" lineHeight="26.5px">
-                  {name}
+                  {contactItem.name}
                 </Typography>
                 <Typography variant="caption" noWrap>
-                  {data}
+                  {url}
                 </Typography>
               </Box>
             </Box>
