@@ -16,8 +16,6 @@ import profileService from 'data/jsons/services/profile.service.json';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
-import PhoneAPP from 'assets/images/phone.png';
-
 const EditContact = () => {
   const { register, handleSubmit, setValue, getValues } = useForm();
 
@@ -42,6 +40,7 @@ const EditContact = () => {
     ),
     name: useSelector((state) => state.editContactDynamic.data.name),
     url: useSelector((state) => state.editContactDynamic.data.url),
+    imageIcon: useSelector((state) => state.editContactDynamic.data.imageIcon),
     uri: useSelector((state) => state.editContactDynamic.data.uri),
   };
 
@@ -119,7 +118,7 @@ const EditContact = () => {
             <Button onClick={goContact}>ตัวอย่างเมื่อคลิก</Button>
           </Box>
           <Box textAlign="center" padding={2}>
-            <img src={PhoneAPP} alt="" width="70px" height="70px" />
+            <img src={appData.imageIcon} alt="" width="70px" height="70px" />
           </Box>
           <TextField
             label={appData.name}

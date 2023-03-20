@@ -11,8 +11,6 @@ import {
   setEditContactDynamicData,
 } from 'stores/parse-data/editContactDynamic';
 
-import PhoneAPP from 'assets/images/phone.png';
-
 const ContactList = ({ contactId, contactItem, url }) => {
   const dispatch = useDispatch();
 
@@ -24,6 +22,7 @@ const ContactList = ({ contactId, contactItem, url }) => {
         contactId: contactId,
         contactItemId: contactItem.id,
         name: contactItem.name,
+        imageIcon: contactItem.imageIcon,
         url: url,
         uri: {
           defaultUri: contactItem.defaultUri,
@@ -72,7 +71,7 @@ const ContactList = ({ contactId, contactItem, url }) => {
               sx={{ cursor: 'pointer' }}
               onClick={editContactDynamicToggleHandler}
             >
-              <img src={PhoneAPP} alt="" width="46px" height="46px" />
+              <img src={contactItem.imageIcon} alt="" width="46px" height="46px" />
               <Box>
                 <Typography variant="h3" lineHeight="26.5px">
                   {contactItem.name}

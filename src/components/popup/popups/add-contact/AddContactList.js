@@ -9,9 +9,7 @@ import {
   setEditContactDynamicData,
 } from 'stores/parse-data/editContactDynamic';
 
-import PhoneAPP from 'assets/images/phone.png';
-
-const AddContactList = ({ id, name, defaultUri, androidUri, iosUri }) => {
+const AddContactList = ({ id, name, defaultUri, androidUri, iosUri, imageIcon }) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
@@ -19,6 +17,7 @@ const AddContactList = ({ id, name, defaultUri, androidUri, iosUri }) => {
       setEditContactDynamicData({
         contactItemId: id,
         name: name,
+        imageIcon: imageIcon,
         uri: {
           defaultUri: defaultUri,
           androidUri: androidUri,
@@ -28,7 +27,7 @@ const AddContactList = ({ id, name, defaultUri, androidUri, iosUri }) => {
     );
     dispatch(setEditContactDynamicChild({ isChild: true }));
     dispatch(editContactDynamicToggle());
-  }, [dispatch, id, name, defaultUri, androidUri, iosUri]);
+  }, [dispatch, id, name, defaultUri, androidUri, iosUri, imageIcon]);
 
   return (
     <>
@@ -37,7 +36,7 @@ const AddContactList = ({ id, name, defaultUri, androidUri, iosUri }) => {
         onClick={editContactDynamicToggleHandler}
       >
         <Box display="flex" gap={1} alignItems="center">
-          <img src={PhoneAPP} alt="" width="34px" height="34px" />
+          <img src={imageIcon} alt="" width="34px" height="34px" />
           <Typography variant="h4">{name}</Typography>
         </Box>
         <Button startIcon={<AddIcon />} variant="contained" size="small">

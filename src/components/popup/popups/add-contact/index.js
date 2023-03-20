@@ -27,6 +27,7 @@ const ContactList = (appListData) => {
         defaultUri={app.defaultUri}
         androidUri={app.androidUri}
         iosUri={app.iosUri}
+        imageIcon={app.imageIcon}
       />
     );
   });

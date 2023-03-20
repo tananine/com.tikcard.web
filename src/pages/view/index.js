@@ -2,14 +2,12 @@ import { Avatar, Box, Divider, Grid, Typography } from '@mui/material';
 
 import { openAppUri } from 'functions/openAppUri';
 
-import PhoneAPP from 'assets/images/phone.png';
-
 const ContactLists = (contacts) => {
   return contacts?.map((contact) => {
     return (
       <Grid key={contact.id} item xs={3} textAlign="center">
         <img
-          src={PhoneAPP}
+          src={contact.ContactItem.imageIcon}
           alt=""
           width="100%"
           height="auto"
