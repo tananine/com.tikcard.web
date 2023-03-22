@@ -8,5 +8,6 @@
   "contactData": "/contact/me/app",
   "sortContact": "/contact/me/sort",
   "profileInformation": "/profile/information",
-  "viewProfile": "/view"
+  "viewProfile": "/view",
+  "useLink": "/share/link"
 }
