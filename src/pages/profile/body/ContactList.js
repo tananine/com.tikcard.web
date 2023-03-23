@@ -71,7 +71,12 @@ const ContactList = ({ contactId, contactItem, url }) => {
               sx={{ cursor: 'pointer' }}
               onClick={editContactDynamicToggleHandler}
             >
-              <img src={contactItem.imageIcon} alt="" width="46px" height="46px" />
+              <img
+                src={contactItem.imageIcon}
+                alt=""
+                width="46px"
+                height="46px"
+              />
               <Box>
                 <Typography variant="h3" lineHeight="26.5px">
                   {contactItem.name}

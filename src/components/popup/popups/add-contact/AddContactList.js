@@ -9,7 +9,14 @@ import {
   setEditContactDynamicData,
 } from 'stores/parse-data/editContactDynamic';
 
-const AddContactList = ({ id, name, defaultUri, androidUri, iosUri, imageIcon }) => {
+const AddContactList = ({
+  id,
+  name,
+  defaultUri,
+  androidUri,
+  iosUri,
+  imageIcon,
+}) => {
   const dispatch = useDispatch();
 
   const editContactDynamicToggleHandler = useCallback(() => {
