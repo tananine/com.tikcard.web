@@ -1,5 +1,5 @@
-import rgba from 'data/themes/white/functions/rgba';
-import pxToRem from 'data/themes/white/functions/pxToRem';
+import rgba from '@/data/themes/white/functions/rgba';
+import pxToRem from '@/data/themes/white/functions/pxToRem';
 
 const boxShadow = (offset, radius, color, opacity, inset = '') => {
   const [x, y] = offset;

@@ -1,1 +1,1 @@
-# vickq-web-app
+# com.vickq.web

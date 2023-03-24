@@ -1,5 +1,5 @@
-import colors from 'data/themes/white/base/colors';
-import boxShadow from 'data/themes/white/functions/boxShadow';
+import colors from '@/data/themes/white/base/colors';
+import boxShadow from '@/data/themes/white/functions/boxShadow';
 
 const { black } = colors;
 

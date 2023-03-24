@@ -1,4 +1,4 @@
-import colors from 'data/themes/white/base/colors';
+import colors from '@/data/themes/white/base/colors';
 
 const { error } = colors;
 

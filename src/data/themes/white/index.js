@@ -1,14 +1,14 @@
 import { createTheme } from '@mui/material/styles';
 
-import breakpoints from 'data/themes/white/base/breakpoints';
-import typography from 'data/themes/white/base/typography';
-import globals from 'data/themes/white/base/globals';
-import colors from 'data/themes/white/base/colors';
+import breakpoints from '@/data/themes/white/base/breakpoints';
+import typography from '@/data/themes/white/base/typography';
+import globals from '@/data/themes/white/base/globals';
+import colors from '@/data/themes/white/base/colors';
 
-import container from 'data/themes/white/components/container';
-import button from 'data/themes/white/components/button';
-import card from 'data/themes/white/components/card';
-import drawer from 'data/themes/white/components/drawer';
+import container from '@/data/themes/white/components/container';
+import button from '@/data/themes/white/components/button';
+import card from '@/data/themes/white/components/card';
+import drawer from '@/data/themes/white/components/drawer';
 
 export default createTheme({
   breakpoints: { ...breakpoints },

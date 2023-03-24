@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import accountReducer from 'stores/account';
-import popupReducer from 'stores/popup';
-import controllerReducer from 'stores/controller';
-import layoutReducer from 'stores/offset';
-import drawerReducer from 'stores/drawer';
-import reloadReducer from 'stores/reload';
+import accountReducer from '@/stores/account';
+import popupReducer from '@/stores/popup';
+import controllerReducer from '@/stores/controller';
+import layoutReducer from '@/stores/offset';
+import drawerReducer from '@/stores/drawer';
+import reloadReducer from '@/stores/reload';
 
-import editContactDynamicReducer from 'stores/parse-data/editContactDynamic';
+import editContactDynamicReducer from '@/stores/parse-data/editContactDynamic';
 
 export default configureStore({
   reducer: {

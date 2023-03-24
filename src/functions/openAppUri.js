@@ -1,4 +1,4 @@
-exports.openAppUri = (defaultUri, androidUri, iosUri, url) => {
+const openAppUri = (defaultUri, androidUri, iosUri, url) => {
   const userAgent = navigator.userAgent;
 
   if (/android/i.test(userAgent)) {
@@ -11,3 +11,5 @@ exports.openAppUri = (defaultUri, androidUri, iosUri, url) => {
 
   return window.open(defaultUri.replace('$', url));
 };
+
+export default openAppUri;

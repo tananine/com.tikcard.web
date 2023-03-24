@@ -1,8 +1,8 @@
-import colors from 'data/themes/white/base/colors';
-import typography from 'data/themes/white/base/typography';
-import boxShadows from 'data/themes/white/base/boxShadows';
-import borders from 'data/themes/white/base/borders';
-import pxToRem from 'data/themes/white/functions/pxToRem';
+import colors from '@/data/themes/white/base/colors';
+import typography from '@/data/themes/white/base/typography';
+import boxShadows from '@/data/themes/white/base/boxShadows';
+import borders from '@/data/themes/white/base/borders';
+import pxToRem from '@/data/themes/white/functions/pxToRem';
 
 const { white, black, primary, secondary } = colors;
 const { size, fontWeightBold, fontWeightMedium } = typography;

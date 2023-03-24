@@ -1,5 +1,5 @@
-import borders from 'data/themes/white/base/borders';
-import pxToRem from 'data/themes/white/functions/pxToRem';
+import borders from '@/data/themes/white/base/borders';
+import pxToRem from '@/data/themes/white/functions/pxToRem';
 
 const { borderRadius } = borders;
 

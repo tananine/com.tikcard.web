@@ -1,4 +1,4 @@
-import breakpoints from 'data/themes/white/base/breakpoints';
+import breakpoints from '@/data/themes/white/base/breakpoints';
 
 const {
   values: { xs, sm, md, lg, xl },

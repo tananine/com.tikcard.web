@@ -1,6 +1,6 @@
-import typography from 'data/themes/white/base/typography';
-import colors from 'data/themes/white/base/colors';
-import pxToRem from 'data/themes/white/functions/pxToRem';
+import typography from '@/data/themes/white/base/typography';
+import colors from '@/data/themes/white/base/colors';
+import pxToRem from '@/data/themes/white/functions/pxToRem';
 
 const { black, white } = colors;
 

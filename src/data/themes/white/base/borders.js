@@ -1,5 +1,5 @@
-import colors from 'data/themes/white/base/colors';
-import pxToRem from 'data/themes/white/functions/pxToRem';
+import colors from '@/data/themes/white/base/colors';
+import pxToRem from '@/data/themes/white/functions/pxToRem';
 
 const { grey } = colors;
 
