@@ -9,5 +9,6 @@
   "sortContact": "/contact/me/sort",
   "profileInformation": "/profile/information",
   "viewProfile": "/view",
-  "useLink": "/share/link"
+  "useLink": "/share/link",
+  "getLink": "/share/get"
 }
