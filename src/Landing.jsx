@@ -1,4 +1,4 @@
-import { ThemeProvider, Container, CircularProgress } from '@mui/material';
+import { ThemeProvider, Container, CircularProgress, Box } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -31,7 +31,9 @@ const Landing = () => {
         <CssBaseline />
         <Container>
           {!getProfileData || getProfileLoading ? (
-            <CircularProgress disableShrink />
+            <Box textAlign="center" marginTop={6}>
+              <CircularProgress disableShrink />
+            </Box>
           ) : (
             <View profileData={getProfileData.data} />
           )}
