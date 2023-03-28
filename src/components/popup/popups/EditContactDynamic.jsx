@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import PopupWrapper from '@/components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
-import { editContactDynamicToggle } from '@/stores/popup';
+import { addContactToggle, editContactDynamicToggle } from '@/stores/popup';
 import { reloadContactList } from '@/stores/reload';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
@@ -81,6 +81,7 @@ const EditContact = () => {
     }
     return addContactAction(body).then(() => {
       closePopupHandler();
+      dispatch(addContactToggle());
       toast.success('เพิ่มสำเร็จ');
     });
   };
