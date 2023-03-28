@@ -15,6 +15,8 @@ import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
 
+import toast from 'react-hot-toast';
+
 const ButtonStatus = (flickingMove, disableButton) => {
   if (flickingMove) {
     return <CircularProgress color="black" size={20} />;
@@ -106,11 +108,13 @@ const SwitchProfile = () => {
       setPrimaryAction({}, profileId).then(() => {
         dispatch(setPrimaryProfile(profileId));
         dispatch(switchProfileToggle());
+        toast.success('เปลี่ยนสำเร็จ');
       });
     } else if (type === 'secondary') {
       setSecondaryAction({}, profileId).then(() => {
         dispatch(setSecondaryProfile(profileId));
         dispatch(switchProfileToggle());
+        toast.success('เปลี่ยนสำเร็จ');
       });
     }
   }, [dispatch, setPrimaryAction, setSecondaryAction, profileId, type]);

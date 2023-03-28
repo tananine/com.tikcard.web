@@ -13,6 +13,8 @@ import profileService from '@/data/jsons/services/profile.service.json';
 import ProfileImageHead from '@/components/popup/popups/edit-card/ProfileImageHead';
 import { LoadingButton } from '@mui/lab';
 
+import toast from 'react-hot-toast';
+
 const EditCard = () => {
   const open = useSelector((state) => state.popup.editCardPopup);
   const profileId = useSelector(
@@ -59,6 +61,7 @@ const EditCard = () => {
     updateInformationAction(body).then(() => {
       dispatch(reloadCurrentProfile());
       dispatch(editCardToggle());
+      toast.success('แก้ไขสำเร็จ');
     });
   };
 

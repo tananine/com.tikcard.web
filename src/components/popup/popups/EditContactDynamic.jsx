@@ -16,6 +16,8 @@ import profileService from '@/data/jsons/services/profile.service.json';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
+import toast from 'react-hot-toast';
+
 const EditContact = () => {
   const { register, handleSubmit, setValue, getValues } = useForm();
 
@@ -74,16 +76,19 @@ const EditContact = () => {
     if (appData.contactId) {
       return updateContactAction(body).then(() => {
         closePopupHandler();
+        toast.success('แก้ไขสำเร็จ');
       });
     }
     return addContactAction(body).then(() => {
       closePopupHandler();
+      toast.success('เพิ่มสำเร็จ');
     });
   };
 
   const deleteContact = () => {
     deleteContactAction(appData.contactId).then(() => {
       closePopupHandler();
+      toast.success('ลบสำเร็จ');
     });
   };
 

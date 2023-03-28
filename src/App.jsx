@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -25,6 +25,8 @@ import InsightBody from '@/pages/insight/body';
 import ShareBody from '@/pages/share/body';
 
 const createEmotionCache = createCache({ key: 'css', prepend: true });
+
+import toast, { Toaster, useToasterStore } from 'react-hot-toast';
 
 const App = () => {
   const darkMode = useSelector((state) => state.controller.darkMode);
@@ -54,15 +56,27 @@ const App = () => {
     }
   }, [page]);
 
+  const { toasts } = useToasterStore();
+  const TOAST_LIMIT = 1;
+  useEffect(() => {
+    toasts
+      .filter((t) => t.visible)
+      .filter((_, i) => i >= TOAST_LIMIT)
+      .forEach((t) => toast.dismiss(t.id));
+  }, [toasts]);
+
   return (
-    <CacheProvider value={createEmotionCache}>
-      <ThemeProvider theme={darkMode ? darkTheme : whiteTheme}>
-        <CssBaseline />
-        {CurrentPage()}
-        {Popups()}
-        {Drawers()}
-      </ThemeProvider>
-    </CacheProvider>
+    <>
+      <CacheProvider value={createEmotionCache}>
+        <ThemeProvider theme={darkMode ? darkTheme : whiteTheme}>
+          <CssBaseline />
+          {CurrentPage()}
+          {Popups()}
+          {Drawers()}
+        </ThemeProvider>
+      </CacheProvider>
+      <Toaster />
+    </>
   );
 };
 
