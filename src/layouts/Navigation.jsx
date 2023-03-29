@@ -125,11 +125,13 @@ const Navigation = () => {
           onClick={navigatePageInsight}
           label="สถิติ"
           icon={<LeaderboardIcon />}
+          disabled
         />
         <BottomNavigationAction
           onClick={navigatePageConnection}
           label="คอนเนคชั่น"
           icon={<ConnectWithoutContactIcon />}
+          disabled
         />
       </BottomNavigation>
       {ProfilePart()}
