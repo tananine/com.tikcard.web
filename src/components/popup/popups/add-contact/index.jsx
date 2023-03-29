@@ -53,7 +53,7 @@ const AddContact = () => {
   }, [dispatch, open]);
 
   useEffect(() => {
-    if (open) {
+    if (open && !getAppListData) {
       getAppListAction();
     }
   }, [getAppListAction, open]);
@@ -82,7 +82,9 @@ const AddContact = () => {
         paddingBottom={1.5}
       >
         <Typography variant="h3">เพิ่มข้อมูล</Typography>
-        <Typography fontSize="14px">มีแล้ว 6 / 25</Typography>
+        <Typography fontSize="14px">
+          พบ {getAppListData?.data.length || 0} รายการ
+        </Typography>
       </Box>
       {getAppListLoading || !getAppListData ? (
         <Box display="flex" justifyContent="center">

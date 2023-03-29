@@ -95,7 +95,6 @@ const ProfileBody = () => {
 
   return (
     <>
-      <Typography variant="caption">ทั้งหมด 6</Typography>
       <Divider sx={{ width: '60px', margin: 'auto' }} />
       <DndContext
         modifiers={[restrictToVerticalAxis]}
@@ -114,9 +113,6 @@ const ProfileBody = () => {
         </SortableContext>
       </DndContext>
       <Divider sx={{ width: '60px', margin: 'auto' }} />
-      <Typography variant="caption" textAlign="end">
-        6 / 25
-      </Typography>
     </>
   );
 };
