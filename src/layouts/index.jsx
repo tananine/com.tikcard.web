@@ -1,5 +1,5 @@
 import { Container, Paper } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { setActivationProfile } from '@/stores/account';
@@ -12,10 +12,14 @@ import Header from '@/layouts/Header';
 import Body from '@/layouts/Body';
 import Footer from '@/layouts/Footer';
 
+import Welcome from '@/pages/welcome';
+
 import Loading from '@/pages/loading';
 
 const Application = ({ header, body, footer }) => {
   const dispatch = useDispatch();
+
+  const [showWelcomePage, setShowWelcomePage] = useState(false);
 
   const [getActivationAction, getActivationLoading, getActivationData] = useGet(
     profileServicePath.getActivation
@@ -25,6 +29,9 @@ const Application = ({ header, body, footer }) => {
     getActivationAction().then((res) => {
       const primary = res.data.primary;
       const secondary = res.data.secondary;
+      if (!primary) {
+        setShowWelcomePage(true);
+      }
       dispatch(
         setActivationProfile({
           primaryProfile: primary,
@@ -39,6 +46,18 @@ const Application = ({ header, body, footer }) => {
       );
     });
   }, [getActivationAction, dispatch]);
+
+  if (showWelcomePage) {
+    return (
+      <>
+        <Container>
+          <Paper elevation={3}>
+            <Welcome />
+          </Paper>
+        </Container>
+      </>
+    );
+  }
 
   return (
     <>
