@@ -44,6 +44,7 @@ const EditCard = () => {
         setValue('work', res.data.work);
         setValue('company', res.data.company);
         setValue('position', res.data.position);
+        setValue('address', res.data.address);
         setValue('bio', res.data.bio);
       });
     }
@@ -56,6 +57,7 @@ const EditCard = () => {
       work: form.work,
       company: form.company,
       position: form.position,
+      address: form.address,
       bio: form.bio,
     };
     updateInformationAction(body).then(() => {
