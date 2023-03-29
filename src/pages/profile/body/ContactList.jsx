@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Box, Switch, Typography } from '@mui/material';
@@ -16,6 +16,8 @@ import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 const ContactList = ({ contactId, contactItem, url, show }) => {
   const dispatch = useDispatch();
+
+  const [showState, setShowState] = useState(show);
 
   const [toggleShowAction] = usePut(profileServicePath.contactToggleShow);
 
@@ -46,6 +48,14 @@ const ContactList = ({ contactId, contactItem, url, show }) => {
       contactId: contactId,
     };
     toggleShowAction(body);
+    setShowState((prev) => (prev === 'enable' ? 'disable' : 'enable'));
+  };
+
+  const opacityLevel = () => {
+    if (showState !== 'enable') {
+      return 0.3;
+    }
+    return 1;
   };
 
   return (
@@ -80,7 +90,7 @@ const ContactList = ({ contactId, contactItem, url, show }) => {
               display="flex"
               gap={2}
               width="100%"
-              sx={{ cursor: 'pointer' }}
+              sx={{ cursor: 'pointer', opacity: opacityLevel }}
               onClick={editContactDynamicToggleHandler}
             >
               <img
