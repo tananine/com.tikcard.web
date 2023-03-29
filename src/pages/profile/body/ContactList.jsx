@@ -11,8 +11,13 @@ import {
   setEditContactDynamicData,
 } from '@/stores/parse-data/editContactDynamic';
 
-const ContactList = ({ contactId, contactItem, url }) => {
+import usePut from '@/hooks/axios/usePut';
+import profileServicePath from '@/data/jsons/services/profile.service.json';
+
+const ContactList = ({ contactId, contactItem, url, show }) => {
   const dispatch = useDispatch();
+
+  const [toggleShowAction] = usePut(profileServicePath.contactToggleShow);
 
   const editContactDynamicToggleHandler = useCallback(() => {
     dispatch(setEditContactDynamicChild({ isChild: false }));
@@ -35,6 +40,13 @@ const ContactList = ({ contactId, contactItem, url }) => {
 
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: contactId });
+
+  const toggleShow = (e) => {
+    const body = {
+      contactId: contactId,
+    };
+    toggleShowAction(body);
+  };
 
   return (
     <>
@@ -87,7 +99,11 @@ const ContactList = ({ contactId, contactItem, url }) => {
               </Box>
             </Box>
           </Box>
-          <Switch size="small" defaultChecked />
+          <Switch
+            size="small"
+            defaultChecked={show === 'enable'}
+            onChange={toggleShow}
+          />
         </Box>
       </CardList>
     </>

@@ -108,6 +108,7 @@ const ProfileBody = () => {
               contactId={item.id}
               contactItem={item.ContactItem}
               url={item.url}
+              show={item.show}
             />
           ))}
         </SortableContext>

@@ -10,5 +10,6 @@
   "profileInformation": "/profile/information",
   "viewProfile": "/view",
   "useLink": "/share/link",
-  "getLink": "/share/get"
+  "getLink": "/share/get",
+  "contactToggleShow": "/contact/me/toggle"
 }
