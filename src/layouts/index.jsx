@@ -1,7 +1,7 @@
 import { Container, Paper } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setActivationProfile } from '@/stores/account';
 import { setProfileInUse } from '@/stores/controller';
 
@@ -21,6 +21,8 @@ const Application = ({ header, body, footer }) => {
 
   const [showWelcomePage, setShowWelcomePage] = useState(false);
 
+  const reloadLayoutsIndex = useSelector((state) => state.reload.layoutsIndex);
+
   const [getActivationAction, getActivationLoading, getActivationData] = useGet(
     profileServicePath.getActivation
   );
@@ -31,6 +33,8 @@ const Application = ({ header, body, footer }) => {
       const secondary = res.data.secondary;
       if (!primary) {
         setShowWelcomePage(true);
+      } else {
+        setShowWelcomePage(false);
       }
       dispatch(
         setActivationProfile({
@@ -45,7 +49,7 @@ const Application = ({ header, body, footer }) => {
         })
       );
     });
-  }, [getActivationAction, dispatch]);
+  }, [getActivationAction, dispatch, reloadLayoutsIndex]);
 
   if (showWelcomePage) {
     return (
