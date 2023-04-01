@@ -50,8 +50,9 @@ const colors = {
   },
 
   error: {
-    main: '#f44335',
+    main: '#b00000',
     focus: '#f65f53',
+    disable: '#e8e8e8',
   },
 
   light: {

@@ -4,7 +4,7 @@ import boxShadows from '@/data/themes/white/base/boxShadows';
 import borders from '@/data/themes/white/base/borders';
 import pxToRem from '@/data/themes/white/functions/pxToRem';
 
-const { white, black, primary, secondary } = colors;
+const { white, black, primary, secondary, error } = colors;
 const { size, fontWeightBold, fontWeightMedium } = typography;
 const { xs } = boxShadows;
 const { borderRadius } = borders;
@@ -60,6 +60,19 @@ const contained = {
 
     '&.Mui-disabled': {
       backgroundColor: secondary.disable,
+    },
+  },
+
+  error: {
+    backgroundColor: error.main,
+    color: white.main,
+
+    '&:hover': {
+      backgroundColor: error.main,
+    },
+
+    '&.Mui-disabled': {
+      backgroundColor: error.disable,
     },
   },
 };

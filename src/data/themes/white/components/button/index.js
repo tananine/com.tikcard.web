@@ -12,6 +12,7 @@ const button = {
     containedSizeSmall: { ...contained.small },
     containedSizeLarge: { ...contained.large },
     containedSecondary: { ...contained.secondary },
+    containedError: { ...contained.error },
     textError: { ...text.error },
   },
 };

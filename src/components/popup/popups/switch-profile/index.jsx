@@ -1,5 +1,5 @@
 import { useRef, useCallback, useEffect, useState } from 'react';
-import { Box, CircularProgress } from '@mui/material';
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import Flicking from '@egjs/react-flicking';
 import '@egjs/react-flicking/dist/flicking.css';
 import { Perspective } from '@egjs/flicking-plugins';
@@ -12,15 +12,18 @@ import { LoadingButton } from '@mui/lab';
 import { setPrimaryProfile, setSecondaryProfile } from '@/stores/account';
 
 import usePut from '@/hooks/axios/usePut';
+import useDelete from '@/hooks/axios/useDelete';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
 
 import toast from 'react-hot-toast';
 
-const ButtonStatus = (flickingMove, disableButton) => {
+const ButtonStatus = (flickingMove, disableButton, edit) => {
   if (flickingMove) {
     return <CircularProgress color="black" size={20} />;
+  } else if (edit) {
+    return <>ลบ</>;
   } else if (disableButton) {
     return <>กำลังใช้งาน</>;
   } else {
@@ -33,7 +36,7 @@ const ProfileCard = (profiles, selectProfileId) => {
     const isSelect = selectProfileId === profile.profileId;
 
     return (
-      <Box key={profile.profileId} width="70%" paddingTop={1}>
+      <Box key={profile.profileId} width="80%" paddingTop={1}>
         <Profile
           profileName={profile.profileName}
           name={profile.name}
@@ -46,14 +49,23 @@ const ProfileCard = (profiles, selectProfileId) => {
 };
 
 const SwitchProfile = () => {
-  const plugins = [new Perspective({ rotate: 0, scale: 0.3 })];
+  const plugins = [new Perspective({ rotate: 0, scale: 0.1 })];
   const flickingRef = useRef();
+
+  const [edit, setEdit] = useState(false);
+
+  const editToggleHandler = useCallback(() => {
+    setEdit((prev) => !prev);
+  }, [setEdit]);
 
   const [setPrimaryAction, setPrimaryLoading] = usePut(
     profileServicePath.setPrimaryProfile
   );
   const [setSecondaryAction, setSecondaryLoading] = usePut(
     profileServicePath.setSecondaryProfile
+  );
+  const [removeProfileAction, removeProfileLoading] = useDelete(
+    profileServicePath.getProfile
   );
 
   const [profileId, setProfileId] = useState();
@@ -94,6 +106,7 @@ const SwitchProfile = () => {
 
   useEffect(() => {
     if (profiles.length > 0 && open) {
+      setEdit(false);
       changeIndexToSelected();
     }
   }, [changeIndexToSelected, profiles, open]);
@@ -135,7 +148,14 @@ const SwitchProfile = () => {
         setSwitchProfileHeight(switchProfilePopupRef.current.offsetHeight)
       );
     }
-  }, [dispatch, open]);
+  }, [dispatch, open, switchProfilePopupRef]);
+
+  const removeProfileHandler = useCallback(() => {
+    removeProfileAction(profileId).then(() => {
+      switchProfileToggleHandler();
+      toast.success('ลบสำเร็จ');
+    });
+  }, [removeProfileAction, profileId]);
 
   return (
     <PopupWrapper
@@ -144,6 +164,15 @@ const SwitchProfile = () => {
       onClose={switchProfileToggleHandler}
       onOpen={switchProfileToggleHandler}
     >
+      <Box
+        marginBottom={1}
+        display="flex"
+        justifyContent="space-between"
+        alignItems="baseline"
+      >
+        <Typography variant="h4">กระเป๋านามบัตร</Typography>
+        <Button onClick={editToggleHandler}>{edit ? 'เสร็จ' : 'แก้ไข'}</Button>
+      </Box>
       <Flicking
         ref={flickingRef}
         onChanged={flickingChanged}
@@ -152,7 +181,7 @@ const SwitchProfile = () => {
         plugins={plugins}
       >
         {ProfileCard(profiles, selectProfileId)}
-        <Box key={99} width="70%" paddingTop={1}>
+        <Box key={99} width="80%" paddingTop={1}>
           <Box
             display="flex"
             justifyContent="center"
@@ -163,7 +192,7 @@ const SwitchProfile = () => {
             padding={3}
             height={212}
           >
-            <Box display="inline" textAlign="center" sx={{ cursor: 'pointer' }}>
+            <Box display="inline" textAlign="center">
               <PersonAddAltRoundedIcon
                 sx={{ fontSize: 58, color: '#cfd4da' }}
               />
@@ -178,6 +207,7 @@ const SwitchProfile = () => {
           size="large"
           color="secondary"
           loading={flickingMove}
+          disabled={edit}
           sx={{
             marginTop: 2,
           }}
@@ -190,15 +220,17 @@ const SwitchProfile = () => {
           variant="contained"
           fullWidth
           size="large"
-          color="secondary"
+          color={edit ? 'error' : 'secondary'}
           sx={{
             marginTop: 2,
           }}
-          onClick={setProfileHandler}
+          onClick={edit ? removeProfileHandler : setProfileHandler}
           disabled={disableButton || flickingMove}
-          loading={setPrimaryLoading || setSecondaryLoading}
+          loading={
+            setPrimaryLoading || setSecondaryLoading || removeProfileLoading
+          }
         >
-          {ButtonStatus(flickingMove, disableButton)}
+          {ButtonStatus(flickingMove, disableButton, edit)}
         </LoadingButton>
       )}
     </PopupWrapper>
