@@ -2,9 +2,9 @@ import { useRef, useCallback, useEffect, useState } from 'react';
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import Flicking from '@egjs/react-flicking';
 import '@egjs/react-flicking/dist/flicking.css';
-import { Perspective } from '@egjs/flicking-plugins';
 import { useSelector, useDispatch } from 'react-redux';
 import { switchProfileToggle, addProfileToggle } from '@/stores/popup';
+import { reloadCurrentProfile } from '@/stores/reload';
 import { setSwitchProfileHeight } from '@/stores/offset';
 import PopupWrapper from '@/components/popup/PopupWrapper';
 import Profile from '@/components/popup/popups/switch-profile/Profile';
@@ -36,7 +36,7 @@ const ProfileCard = (profiles, selectProfileId) => {
     const isSelect = selectProfileId === profile.profileId;
 
     return (
-      <Box key={profile.profileId} width="80%" paddingTop={1}>
+      <Box key={profile.profileId} width="80%" paddingTop={1} marginX={1}>
         <Profile
           profileName={profile.profileName}
           name={profile.name}
@@ -49,7 +49,6 @@ const ProfileCard = (profiles, selectProfileId) => {
 };
 
 const SwitchProfile = () => {
-  const plugins = [new Perspective({ rotate: 0, scale: 0.1 })];
   const flickingRef = useRef();
 
   const [edit, setEdit] = useState(false);
@@ -74,7 +73,8 @@ const SwitchProfile = () => {
   const [flickingMove, setFlickingMove] = useState();
 
   const open = useSelector((state) => state.popup.switchProfilePopup);
-  const profiles = useSelector((state) => state.account.profiles);
+  const profilesArr = useSelector((state) => state.account.profiles);
+  const [profiles, setProfiles] = useState([]);
   const selectProfileId = useSelector(
     (state) => state.controller.profileInUse.profileId
   );
@@ -105,11 +105,12 @@ const SwitchProfile = () => {
   }, [isSelectHandler]);
 
   useEffect(() => {
-    if (profiles.length > 0 && open) {
+    if (profilesArr.length > 0 && open) {
+      setProfiles(profilesArr);
       setEdit(false);
       changeIndexToSelected();
     }
-  }, [changeIndexToSelected, profiles, open]);
+  }, [changeIndexToSelected, profilesArr, setProfiles, open]);
 
   const dispatch = useDispatch();
 
@@ -152,6 +153,7 @@ const SwitchProfile = () => {
 
   const removeProfileHandler = useCallback(() => {
     removeProfileAction(profileId).then(() => {
+      dispatch(reloadCurrentProfile());
       switchProfileToggleHandler();
       toast.success('ลบสำเร็จ');
     });
@@ -178,10 +180,9 @@ const SwitchProfile = () => {
         onChanged={flickingChanged}
         onMoveStart={() => setFlickingMove(true)}
         onMoveEnd={() => setFlickingMove(false)}
-        plugins={plugins}
       >
         {ProfileCard(profiles, selectProfileId)}
-        <Box key={99} width="80%" paddingTop={1}>
+        <Box key={99} width="80%" paddingTop={1} marginX={1}>
           <Box
             display="flex"
             justifyContent="center"
