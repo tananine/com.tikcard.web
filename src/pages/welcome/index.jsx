@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import '@egjs/react-flicking/dist/flicking.css';
 import Flicking from '@egjs/react-flicking';
@@ -18,12 +18,13 @@ const Welcome = () => {
 
   const flickingRef = useRef();
 
-  const pageNext = () => {
+  const pageNext = useCallback(() => {
     flickingRef.current.next();
-  };
-  const pageBack = () => {
+  }, [flickingRef]);
+
+  const pageBack = useCallback(() => {
     flickingRef.current.prev();
-  };
+  }, [flickingRef]);
 
   const dispatch = useDispatch();
 
