@@ -9,14 +9,14 @@ import whiteTheme from '@/data/themes/white';
 import View from '@/pages/view';
 
 import useGet from '@/hooks/axios/useGet';
-import profileService from '@/data/jsons/services/profile.service.json';
+import profileServicePath from '@/data/jsons/services/profile.service.json';
 import { useEffect } from 'react';
 
 const createEmotionCache = createCache({ key: 'css', prepend: true });
 
 const Landing = () => {
   const [getProfileAction, getProfileLoading, getProfileData] = useGet(
-    profileService.useLink
+    profileServicePath.useLink
   );
 
   const { linkId } = useParams();

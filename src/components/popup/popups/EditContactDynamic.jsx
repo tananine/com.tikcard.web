@@ -12,7 +12,7 @@ import openAppUri from '@/functions/openAppUri';
 import usePost from '@/hooks/axios/usePost';
 import usePut from '@/hooks/axios/usePut';
 import useDelete from '@/hooks/axios/useDelete';
-import profileService from '@/data/jsons/services/profile.service.json';
+import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
@@ -22,13 +22,13 @@ const EditContact = () => {
   const { register, handleSubmit, setValue, getValues } = useForm();
 
   const [addContactAction, addContactLoading] = usePost(
-    profileService.contactData
+    profileServicePath.contactData
   );
   const [updateContactAction, updateContactLoading] = usePut(
-    profileService.contactData
+    profileServicePath.contactData
   );
   const [deleteContactAction, deleteContactLoading] = useDelete(
-    profileService.contactData
+    profileServicePath.contactData
   );
 
   const addContactListHeight = useSelector(

@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 
 import useGet from '@/hooks/axios/useGet';
 import usePut from '@/hooks/axios/usePut';
-import profileService from '@/data/jsons/services/profile.service.json';
+import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import ProfileImageHead from '@/components/popup/popups/edit-card/ProfileImageHead';
 import { LoadingButton } from '@mui/lab';
@@ -24,10 +24,10 @@ const EditCard = () => {
   const dispatch = useDispatch();
 
   const [getInformationAction, getInformationLoading] = useGet(
-    profileService.profileInformation
+    profileServicePath.profileInformation
   );
   const [updateInformationAction, updateInformationLoading] = usePut(
-    profileService.profileInformation
+    profileServicePath.profileInformation
   );
 
   const { register, handleSubmit, setValue } = useForm();

@@ -9,14 +9,14 @@ import { setShowFooter, setHideFooter } from '@/stores/offset';
 
 import useGet from '@/hooks/axios/useGet';
 import usePut from '@/hooks/axios/usePut';
-import profileService from '@/data/jsons/services/profile.service.json';
+import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 const ProfileBody = () => {
   const [items, setItems] = useState([]);
   const [activeId, setActiveId] = useState(null);
   const dispatch = useDispatch();
 
-  const [sortContactAction] = usePut(profileService.sortContact);
+  const [sortContactAction] = usePut(profileServicePath.sortContact);
 
   const getIndex = useCallback(
     (id) => {
@@ -66,7 +66,7 @@ const ProfileBody = () => {
   );
 
   const [getMyContactAction, getMyContactLoading, getMyContactData] = useGet(
-    profileService.getMyContact
+    profileServicePath.getMyContact
   );
 
   const profileId = useSelector(

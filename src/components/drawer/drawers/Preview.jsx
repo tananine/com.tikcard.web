@@ -5,12 +5,12 @@ import DrawerWrapper from '@/components/drawer/DrawerWrapper';
 
 import View from '@/pages/view';
 import useGet from '@/hooks/axios/useGet';
-import profileService from '@/data/jsons/services/profile.service.json';
+import profileServicePath from '@/data/jsons/services/profile.service.json';
 import { Box, CircularProgress } from '@mui/material';
 
 const Preview = () => {
   const [getViewProfileAction, getViewProfileLoading] = useGet(
-    profileService.viewProfile
+    profileServicePath.viewProfile
   );
 
   const [profileData, setProfileData] = useState(null);
