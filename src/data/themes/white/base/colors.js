@@ -50,7 +50,7 @@ const colors = {
   },
 
   error: {
-    main: '#b00000',
+    main: '#e01414',
     focus: '#f65f53',
     disable: '#e8e8e8',
   },
