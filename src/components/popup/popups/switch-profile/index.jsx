@@ -19,13 +19,11 @@ import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
 
 import toast from 'react-hot-toast';
 
-const ButtonStatus = (flickingMove, disableButton, edit) => {
+const ButtonStatus = (flickingMove, edit) => {
   if (flickingMove) {
     return <CircularProgress color="black" size={20} />;
   } else if (edit) {
     return <>ลบ</>;
-  } else if (disableButton) {
-    return <>กำลังใช้งาน</>;
   } else {
     return <>เลือก</>;
   }
@@ -73,8 +71,7 @@ const SwitchProfile = () => {
   const [flickingMove, setFlickingMove] = useState();
 
   const open = useSelector((state) => state.popup.switchProfilePopup);
-  const profilesArr = useSelector((state) => state.account.profiles);
-  const [profiles, setProfiles] = useState([]);
+  const profiles = useSelector((state) => state.account.profiles);
   const selectProfileId = useSelector(
     (state) => state.controller.profileInUse.profileId
   );
@@ -105,12 +102,11 @@ const SwitchProfile = () => {
   }, [isSelectHandler]);
 
   useEffect(() => {
-    if (profilesArr.length > 0 && open) {
-      setProfiles(profilesArr);
+    if (profiles.length > 0 && open) {
       setEdit(false);
       changeIndexToSelected();
     }
-  }, [changeIndexToSelected, profilesArr, setProfiles, open]);
+  }, [changeIndexToSelected, profiles, open]);
 
   const dispatch = useDispatch();
 
@@ -231,7 +227,7 @@ const SwitchProfile = () => {
             setPrimaryLoading || setSecondaryLoading || removeProfileLoading
           }
         >
-          {ButtonStatus(flickingMove, disableButton, edit)}
+          {ButtonStatus(flickingMove, edit)}
         </LoadingButton>
       )}
     </PopupWrapper>
