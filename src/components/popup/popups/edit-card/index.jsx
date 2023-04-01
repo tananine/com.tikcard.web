@@ -153,11 +153,6 @@ const EditCard = () => {
                 บันทึก
               </LoadingButton>
             </Box>
-            <Box textAlign="center">
-              <LoadingButton variant="text" color="error" sx={{ marginTop: 1 }}>
-                ลบโพรไฟล์
-              </LoadingButton>
-            </Box>
           </>
         )}
       </Box>
