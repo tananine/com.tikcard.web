@@ -40,14 +40,14 @@ const AddContact = () => {
 
   const open = useSelector((state) => state.popup.addContactPopup);
 
-  const addContactDrawerRef = useRef();
+  const addContactPopupRef = useRef();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (addContactDrawerRef.current && open) {
+    if (addContactPopupRef.current && open) {
       dispatch(
-        setAddContactListHeight(addContactDrawerRef.current.offsetHeight)
+        setAddContactListHeight(addContactPopupRef.current.offsetHeight)
       );
     }
   }, [dispatch, open]);
@@ -64,7 +64,7 @@ const AddContact = () => {
 
   return (
     <PopupWrapper
-      forwardedRef={addContactDrawerRef}
+      forwardedRef={addContactPopupRef}
       open={open}
       onClose={addContactToggleHandler}
       onOpen={addContactToggleHandler}

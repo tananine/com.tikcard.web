@@ -4,7 +4,8 @@ import Flicking from '@egjs/react-flicking';
 import '@egjs/react-flicking/dist/flicking.css';
 import { Perspective } from '@egjs/flicking-plugins';
 import { useSelector, useDispatch } from 'react-redux';
-import { switchProfileToggle } from '@/stores/popup';
+import { switchProfileToggle, addProfileToggle } from '@/stores/popup';
+import { setSwitchProfileHeight } from '@/stores/offset';
 import PopupWrapper from '@/components/popup/PopupWrapper';
 import Profile from '@/components/popup/popups/switch-profile/Profile';
 import { LoadingButton } from '@mui/lab';
@@ -82,7 +83,7 @@ const SwitchProfile = () => {
     const select = profiles.findIndex(
       (item) => item.profileId === selectProfileId
     );
-    if (flickingRef.current) {
+    if (flickingRef.current && select > -1) {
       flickingRef.current.moveTo(select, 0);
     }
   }, [profiles, selectProfileId]);
@@ -103,28 +104,42 @@ const SwitchProfile = () => {
     dispatch(switchProfileToggle());
   }, [dispatch]);
 
-  const setProfileHandler = useCallback(() => {
+  const addProfileToggleHandler = useCallback(() => {
+    dispatch(addProfileToggle());
+  }, [dispatch]);
+
+  const setProfileHandler = useCallback(async () => {
     if (type === 'primary') {
-      setPrimaryAction({}, profileId).then(() => {
+      await setPrimaryAction({}, profileId).then(() => {
         dispatch(setPrimaryProfile(profileId));
-        dispatch(switchProfileToggle());
         toast.success('เปลี่ยนสำเร็จ');
       });
     } else if (type === 'secondary') {
-      setSecondaryAction({}, profileId).then(() => {
+      await setSecondaryAction({}, profileId).then(() => {
         dispatch(setSecondaryProfile(profileId));
-        dispatch(switchProfileToggle());
         toast.success('เปลี่ยนสำเร็จ');
       });
     }
+    dispatch(switchProfileToggle());
   }, [dispatch, setPrimaryAction, setSecondaryAction, profileId, type]);
 
   const flickingChanged = (e) => {
     setIndexFlicking(e.index);
   };
 
+  const switchProfilePopupRef = useRef();
+
+  useEffect(() => {
+    if (switchProfilePopupRef.current && open) {
+      dispatch(
+        setSwitchProfileHeight(switchProfilePopupRef.current.offsetHeight)
+      );
+    }
+  }, [dispatch, open]);
+
   return (
     <PopupWrapper
+      forwardedRef={switchProfilePopupRef}
       open={open}
       onClose={switchProfileToggleHandler}
       onOpen={switchProfileToggleHandler}
@@ -166,8 +181,9 @@ const SwitchProfile = () => {
           sx={{
             marginTop: 2,
           }}
+          onClick={addProfileToggleHandler}
         >
-          เพิ่มโพรไฟล์
+          เพิ่มนามบัตร
         </LoadingButton>
       ) : (
         <LoadingButton

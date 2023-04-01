@@ -7,6 +7,7 @@ export const popupSlice = createSlice({
     addContactPopup: false,
     editCardPopup: false,
     editContactDynamicPopup: false,
+    addProfilePopup: false,
   },
   reducers: {
     switchProfileToggle: (state) => {
@@ -21,6 +22,9 @@ export const popupSlice = createSlice({
     editContactDynamicToggle: (state) => {
       state.editContactDynamicPopup = !state.editContactDynamicPopup;
     },
+    addProfileToggle: (state) => {
+      state.addProfilePopup = !state.addProfilePopup;
+    },
   },
 });
 
@@ -30,6 +34,7 @@ export const {
   editCardToggle,
   previewToggle,
   editContactDynamicToggle,
+  addProfileToggle,
 } = popupSlice.actions;
 
 export default popupSlice.reducer;
