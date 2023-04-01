@@ -43,7 +43,7 @@ const AddProfile = () => {
 
   const save = (form) => {
     const body = {
-      profileName: form.cardName,
+      cardName: form.cardName,
     };
     addProfileAction(body).then(async (res) => {
       const profileId = res.data.returnData.id;

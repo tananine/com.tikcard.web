@@ -39,7 +39,7 @@ const EditCard = () => {
   useEffect(() => {
     if (profileId && open) {
       getInformationAction().then((res) => {
-        setValue('profileName', res.data.profileName);
+        setValue('cardName', res.data.cardName);
         setValue('name', res.data.name);
         setValue('work', res.data.work);
         setValue('company', res.data.company);
@@ -52,7 +52,7 @@ const EditCard = () => {
 
   const save = (form) => {
     const body = {
-      profileName: form.profileName,
+      cardName: form.cardName,
       name: form.name,
       work: form.work,
       company: form.company,
@@ -85,7 +85,7 @@ const EditCard = () => {
               variant="outlined"
               fullWidth
               InputLabelProps={{ shrink: true }}
-              {...register('profileName')}
+              {...register('cardName')}
             />
             <ProfileImageHead />
             <Box marginTop={4} display="flex" flexDirection="column" gap={2}>

@@ -8,14 +8,14 @@ import { setProfiles } from '@/stores/account';
 import useGet from '@/hooks/axios/useGet';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
-const Profile = ({ profileName, name }) => {
+const Profile = ({ cardName, name }) => {
   return (
     <>
       <Box display="flex" gap={2} flexGrow={1} alignItems="center">
         <Avatar sx={{ width: 46, height: 46 }} />
         <Box height="100%">
           <Typography variant="h3" lineHeight="26.5px">
-            {profileName}
+            {cardName}
           </Typography>
           <Typography variant="caption" fontSize={14}>
             {name}
@@ -76,7 +76,7 @@ const CurrentProfile = () => {
         <CircularProgress disableShrink />
       ) : (
         <Profile
-          profileName={activationProfileData?.profileName}
+          cardName={activationProfileData?.cardName}
           name={activationProfileData?.name}
         />
       )}

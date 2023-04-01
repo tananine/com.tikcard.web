@@ -15,7 +15,7 @@ const Select = (isSelect) => {
   }
 };
 
-const Profile = ({ profileName, name, company, isSelect }) => {
+const Profile = ({ cardName, name, company, isSelect }) => {
   return (
     <Box
       textAlign="center"
@@ -29,7 +29,7 @@ const Profile = ({ profileName, name, company, isSelect }) => {
       <Avatar
         sx={{ width: 76, height: 76, marginX: 'auto', marginBottom: 2 }}
       />
-      <Typography variant="h3">{profileName}</Typography>
+      <Typography variant="h3">{cardName}</Typography>
       <Typography variant="caption" fontSize={14}>
         {name}
       </Typography>

@@ -36,7 +36,7 @@ const ProfileCard = (profiles, selectProfileId) => {
     return (
       <Box key={profile.profileId} width="80%" paddingTop={1} marginX={1}>
         <Profile
-          profileName={profile.profileName}
+          cardName={profile.cardName}
           name={profile.name}
           company={profile.company}
           isSelect={isSelect}
