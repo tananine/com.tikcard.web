@@ -18,8 +18,12 @@ const AddProfile = () => {
 
   const { register, handleSubmit, setValue } = useForm();
 
-  const [addProfileAction] = usePost(profileServicePath.getProfile);
-  const [setPrimaryAction] = usePut(profileServicePath.setPrimaryProfile);
+  const [addProfileAction, addProfileLoading] = usePost(
+    profileServicePath.getProfile
+  );
+  const [setPrimaryAction, setPrimaryLoading] = usePut(
+    profileServicePath.setPrimaryProfile
+  );
 
   const switchProfileHeight = useSelector(
     (state) => state.layout.switchProfileHeight
@@ -87,6 +91,7 @@ const AddProfile = () => {
             size="large"
             color="secondary"
             onClick={handleSubmit(save)}
+            loading={addProfileLoading || setPrimaryLoading}
           >
             เพิ่ม
           </LoadingButton>
