@@ -3,7 +3,7 @@ import PopupWrapper from '@/components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { editCardToggle } from '@/stores/popup';
 import { reloadCurrentProfile } from '@/stores/reload';
-import { Box, CircularProgress, TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 import useGet from '@/hooks/axios/useGet';
@@ -23,9 +23,7 @@ const EditCard = () => {
 
   const dispatch = useDispatch();
 
-  const [getInformationAction, getInformationLoading] = useGet(
-    profileServicePath.profileInformation
-  );
+  const [getInformationAction] = useGet(profileServicePath.profileInformation);
   const [updateInformationAction, updateInformationLoading] = usePut(
     profileServicePath.profileInformation
   );
@@ -74,87 +72,79 @@ const EditCard = () => {
       onOpen={editCardToggleHandler}
     >
       <Box paddingY={1}>
-        {getInformationLoading ? (
-          <Box textAlign="center">
-            <CircularProgress disableShrink />
-          </Box>
-        ) : (
-          <>
-            <TextField
-              label="ชื่อนามบัตร"
-              variant="outlined"
-              fullWidth
-              InputLabelProps={{ shrink: true }}
-              {...register('cardName')}
-            />
-            <ProfileImageHead />
-            <Box marginTop={4} display="flex" flexDirection="column" gap={2}>
-              <TextField
-                label="ชื่อ"
-                variant="outlined"
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-                {...register('name')}
-              />
-              <TextField
-                label="อาชีพ"
-                variant="outlined"
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-                {...register('work')}
-              />
-              <TextField
-                label="บริษัท"
-                variant="outlined"
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-                {...register('company')}
-              />
-              <TextField
-                label="ตำแหน่ง"
-                variant="outlined"
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-                {...register('position')}
-              />
-              <TextField
-                label="ที่อยู่"
-                variant="outlined"
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-                {...register('address')}
-              />
-              <TextField
-                label="เกี่ยวกับฉัน"
-                variant="outlined"
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-                {...register('bio')}
-                multiline
-                rows={3}
-              />
-            </Box>
-            <Box
-              paddingY={1}
-              marginTop={8}
-              position="sticky"
-              bottom={0}
-              zIndex={9}
-              bgcolor="#ffffff"
-            >
-              <LoadingButton
-                variant="contained"
-                fullWidth
-                size="large"
-                color="secondary"
-                onClick={handleSubmit(save)}
-                loading={updateInformationLoading}
-              >
-                บันทึก
-              </LoadingButton>
-            </Box>
-          </>
-        )}
+        <TextField
+          label="ชื่อนามบัตร"
+          variant="outlined"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          {...register('cardName')}
+        />
+        <ProfileImageHead />
+        <Box marginTop={4} display="flex" flexDirection="column" gap={2}>
+          <TextField
+            label="ชื่อ"
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            {...register('name')}
+          />
+          <TextField
+            label="อาชีพ"
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            {...register('work')}
+          />
+          <TextField
+            label="บริษัท"
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            {...register('company')}
+          />
+          <TextField
+            label="ตำแหน่ง"
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            {...register('position')}
+          />
+          <TextField
+            label="ที่อยู่"
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            {...register('address')}
+          />
+          <TextField
+            label="เกี่ยวกับฉัน"
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            {...register('bio')}
+            multiline
+            rows={3}
+          />
+        </Box>
+        <Box
+          paddingY={1}
+          marginTop={8}
+          position="sticky"
+          bottom={0}
+          zIndex={9}
+          bgcolor="#ffffff"
+        >
+          <LoadingButton
+            variant="contained"
+            fullWidth
+            size="large"
+            color="secondary"
+            onClick={handleSubmit(save)}
+            loading={updateInformationLoading}
+          >
+            บันทึก
+          </LoadingButton>
+        </Box>
       </Box>
     </PopupWrapper>
   );
