@@ -3,9 +3,6 @@ import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import copy from 'copy-to-clipboard';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import WifiOffIcon from '@mui/icons-material/WifiOff';
-import DownloadIcon from '@mui/icons-material/Download';
-import ShareIcon from '@mui/icons-material/Share';
 
 import useGet from '@/hooks/axios/useGet';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
@@ -55,30 +52,6 @@ const ShareBody = () => {
               onClick={copyClipboard}
             >
               {link}
-            </Button>
-            <Button
-              variant="contained"
-              fullWidth
-              startIcon={<WifiOffIcon />}
-              sx={{ justifyContent: 'flex-start' }}
-            >
-              QR Code แบบไม่ใช้อินเตอร์เน็ต
-            </Button>
-            <Button
-              variant="contained"
-              fullWidth
-              startIcon={<DownloadIcon />}
-              sx={{ justifyContent: 'flex-start' }}
-            >
-              บันทึกลงเครื่อง
-            </Button>
-            <Button
-              variant="contained"
-              fullWidth
-              startIcon={<ShareIcon />}
-              sx={{ justifyContent: 'flex-start' }}
-            >
-              แชร์
             </Button>
           </Box>
         </>
