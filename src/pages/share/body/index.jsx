@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
+import copy from 'copy-to-clipboard';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import WifiOffIcon from '@mui/icons-material/WifiOff';
@@ -10,6 +11,8 @@ import useGet from '@/hooks/axios/useGet';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import { QRCodeSVG } from 'qrcode.react';
+
+import toast from 'react-hot-toast';
 
 const ShareBody = () => {
   const [link, setLink] = useState('');
@@ -23,6 +26,11 @@ const ShareBody = () => {
       setLink('info.vickq.com/' + res.data.linkId);
     });
   }, [getLinkAction]);
+
+  const copyClipboard = () => {
+    copy(link);
+    toast.success('คัดลอกลิงค์');
+  };
 
   return (
     <>
@@ -44,6 +52,7 @@ const ShareBody = () => {
               fullWidth
               endIcon={<ContentCopyIcon />}
               sx={{ marginBottom: 2, justifyContent: 'space-between' }}
+              onClick={copyClipboard}
             >
               {link}
             </Button>
