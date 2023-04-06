@@ -20,7 +20,7 @@ const ShareBody = () => {
 
   useEffect(() => {
     getLinkAction().then((res) => {
-      setLink('info.vickq.com/' + res.data.linkId);
+      setLink('info.tikcard.me/' + res.data.linkId);
     });
   }, [getLinkAction]);
 
