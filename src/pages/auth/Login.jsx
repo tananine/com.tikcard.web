@@ -3,7 +3,7 @@ import { Box, Container, Paper, TextField } from '@mui/material';
 import Cookies from 'js-cookie';
 import usePost from '@/hooks/axios/usePost';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
 import authServicePath from '@/data/jsons/services/auth.service.json';
 import { useForm } from 'react-hook-form';
@@ -12,6 +12,8 @@ const Login = () => {
   const [loginAction, loginLoading] = usePost(authServicePath.login);
 
   const { register, handleSubmit } = useForm();
+
+  const location = useLocation();
 
   useEffect(() => {
     Cookies.remove('authToken');
@@ -31,7 +33,13 @@ const Login = () => {
       axios.defaults.headers.common[
         'Authorization'
       ] = `Bearer ${res.data.token}`;
-      navigate('/app/profile', { replace: true });
+      const searchParams = new URLSearchParams(location.search);
+      const redirect = searchParams.get('redirect');
+      if (redirect) {
+        navigate(redirect, { replace: true });
+      } else {
+        navigate('/app/profile', { replace: true });
+      }
     });
   };
 
