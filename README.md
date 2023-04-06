@@ -1,1 +1,1 @@
-# com.vickq.web
+# com.tikcard.web
