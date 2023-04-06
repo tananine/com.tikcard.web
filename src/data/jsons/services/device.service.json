@@ -1,3 +1,4 @@
 {
-  "getRedirect": "/device/scan"
+  "getRedirect": "/device/scan",
+  "activation": "/device/activate"
 }
