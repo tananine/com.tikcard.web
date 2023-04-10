@@ -1,6 +1,5 @@
 import CardList from '@/components/CardList';
 
-import PhoneAPP from '@/assets/images/phone.png';
 import { Box, Typography } from '@mui/material';
 
 const InsightContact = () => {
@@ -8,7 +7,7 @@ const InsightContact = () => {
     <CardList>
       <Box display="flex">
         <Box display="flex" gap={2} width="100%" sx={{ cursor: 'pointer' }}>
-          <img src={PhoneAPP} alt="" width="46px" height="46px" />
+          <img src={''} alt="" width="46px" height="46px" />
           <Box>
             <Typography variant="h3" lineHeight="26.5px">
               Phone
