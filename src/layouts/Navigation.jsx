@@ -5,6 +5,7 @@ import {
   BottomNavigationAction,
   Grid,
   Button,
+  Paper,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -16,6 +17,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setProfileInUse } from '@/stores/controller';
 
 import pagePath from '@/data/jsons/page-path.json';
+
+import EditIcon from '@mui/icons-material/Edit';
 
 const ProfilePart = () => {
   const profileActivation = useSelector((state) => state.account.activation);
@@ -53,28 +56,30 @@ const ProfilePart = () => {
   }, [setPrimary, setSecondary, type]);
 
   return (
-    <Grid container>
-      <Grid item xs={6}>
-        <Button
-          variant={type === 'primary' ? '' : 'contained'}
-          fullWidth
-          sx={{ borderRadius: 0 }}
-          onClick={setPrimary}
-        >
-          โพรไฟล์หลัก
-        </Button>
+    <Paper elevation={2}>
+      <Grid container>
+        <Grid item xs={6}>
+          <Button
+            fullWidth
+            sx={{ borderRadius: 0, opacity: type === 'primary' ? 1 : 0.5 }}
+            onClick={setPrimary}
+            startIcon={type === 'primary' && <EditIcon />}
+          >
+            โพรไฟล์หลัก
+          </Button>
+        </Grid>
+        <Grid item xs={6}>
+          <Button
+            fullWidth
+            sx={{ borderRadius: 0, opacity: type === 'secondary' ? 1 : 0.5 }}
+            onClick={setSecondary}
+            startIcon={type === 'secondary' && <EditIcon />}
+          >
+            โพรไฟล์รอง
+          </Button>
+        </Grid>
       </Grid>
-      <Grid item xs={6}>
-        <Button
-          variant={type === 'secondary' ? '' : 'contained'}
-          fullWidth
-          sx={{ borderRadius: 0 }}
-          onClick={setSecondary}
-        >
-          โพรไฟล์รอง
-        </Button>
-      </Grid>
-    </Grid>
+    </Paper>
   );
 };
 
