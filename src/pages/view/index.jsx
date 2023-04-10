@@ -60,7 +60,7 @@ const View = ({ isPreview, profileData }) => {
       <Box padding={2} marginBottom={8}>
         <Box marginBottom={2}>
           <Typography marginTop={5} textAlign="center" variant="h1">
-            {profileData?.info.name}
+            {profileData?.info.name || 'ไม่มีชื่อ'}
           </Typography>
           <Typography marginTop={1} textAlign="center" variant="body2">
             {profileData?.info.company}
