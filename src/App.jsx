@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 
 import Popups from '@/utils/Popups';
 import Drawers from '@/utils/Drawers';
@@ -38,7 +38,7 @@ const App = () => {
       case 'connection':
         return <Layouts body={<ConnectionBody />} />;
       default:
-        break;
+        return <Navigate to="/app/profile" replace />;
     }
   }, [page]);
 
