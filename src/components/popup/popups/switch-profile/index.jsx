@@ -178,24 +178,26 @@ const SwitchProfile = () => {
         onMoveEnd={() => setFlickingMove(false)}
       >
         {ProfileCard(profiles, selectProfileId)}
-        <Box key={99} width="80%" paddingTop={1} marginX={1}>
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            border={4}
-            borderColor="#f7f7f7"
-            borderRadius={4}
-            padding={3}
-            height={212}
-          >
-            <Box display="inline" textAlign="center">
-              <PersonAddAltRoundedIcon
-                sx={{ fontSize: 58, color: '#cfd4da' }}
-              />
+        {selectProfileId && (
+          <Box key={99} width="80%" paddingTop={1} marginX={1}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              border={4}
+              borderColor="#f7f7f7"
+              borderRadius={4}
+              padding={3}
+              height={212}
+            >
+              <Box display="inline" textAlign="center">
+                <PersonAddAltRoundedIcon
+                  sx={{ fontSize: 58, color: '#cfd4da' }}
+                />
+              </Box>
             </Box>
           </Box>
-        </Box>
+        )}
       </Flicking>
       {indexFlicking === profiles.length ? (
         <LoadingButton

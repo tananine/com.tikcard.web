@@ -69,19 +69,19 @@ const ProfileBody = () => {
     profileServicePath.getMyContact
   );
 
-  const profileId = useSelector(
+  const profileActivationId = useSelector(
     (state) => state.controller.profileInUse.profileId
   );
   const reloadContactList = useSelector((state) => state.reload.contactList);
 
   useEffect(() => {
     setItems([]);
-    if (profileId) {
+    if (profileActivationId) {
       getMyContactAction().then((res) => {
         setItems(res.data);
       });
     }
-  }, [getMyContactAction, profileId, reloadContactList]);
+  }, [getMyContactAction, profileActivationId, reloadContactList]);
 
   if (getMyContactLoading || !getMyContactData) {
     return (

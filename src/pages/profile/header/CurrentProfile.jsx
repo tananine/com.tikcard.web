@@ -30,10 +30,7 @@ const Profile = ({ cardName, name, showSelectProfileText }) => {
   );
 };
 
-const CurrentProfile = () => {
-  const profileActivationId = useSelector(
-    (state) => state.controller.profileInUse.profileId
-  );
+const CurrentProfile = ({ profileActivationId }) => {
   const reloadCurrentProfile = useSelector(
     (state) => state.reload.currentProfile
   );
