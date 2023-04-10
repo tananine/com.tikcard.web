@@ -8,7 +8,10 @@ import { setProfiles } from '@/stores/account';
 import useGet from '@/hooks/axios/useGet';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
-const Profile = ({ cardName, name }) => {
+const Profile = ({ cardName, name, showSelectProfileText }) => {
+  if (showSelectProfileText) {
+    return <>เลือกใช้งานนามบัตร</>;
+  }
   return (
     <>
       <Box display="flex" gap={2} flexGrow={1} alignItems="center">
@@ -35,6 +38,8 @@ const CurrentProfile = () => {
     (state) => state.reload.currentProfile
   );
 
+  const [showSelectProfileText, setShowSelectProfileText] = useState(false);
+
   const dispatch = useDispatch();
 
   const [activationProfileData, setActivationProfileData] = useState();
@@ -55,7 +60,12 @@ const CurrentProfile = () => {
       const profileData = res.data.filter((item) => {
         return item.profileId === profileActivationId;
       });
-      setActivationProfileData(profileData[0]);
+      if (!profileData[0]) {
+        setShowSelectProfileText(true);
+      } else {
+        setShowSelectProfileText(false);
+        setActivationProfileData(profileData[0]);
+      }
     });
   }, [getProfileAction, dispatch, profileActivationId, reloadCurrentProfile]);
 
@@ -78,6 +88,7 @@ const CurrentProfile = () => {
         <Profile
           cardName={activationProfileData?.cardName}
           name={activationProfileData?.name}
+          showSelectProfileText={showSelectProfileText}
         />
       )}
     </Card>

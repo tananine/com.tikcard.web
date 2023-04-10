@@ -75,9 +75,12 @@ const ProfileBody = () => {
   const reloadContactList = useSelector((state) => state.reload.contactList);
 
   useEffect(() => {
-    getMyContactAction().then((res) => {
-      setItems(res.data);
-    });
+    setItems([]);
+    if (profileId) {
+      getMyContactAction().then((res) => {
+        setItems(res.data);
+      });
+    }
   }, [getMyContactAction, profileId, reloadContactList]);
 
   if (getMyContactLoading || !getMyContactData) {
