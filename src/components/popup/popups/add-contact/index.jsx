@@ -82,7 +82,6 @@ const AddContact = () => {
         display="flex"
         alignItems="center"
         justifyContent="space-between"
-        marginBottom={2}
         position="sticky"
         top={0}
         bgcolor="#ffffff"
