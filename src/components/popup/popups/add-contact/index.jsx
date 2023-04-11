@@ -1,4 +1,4 @@
-import { useCallback, useRef, useEffect } from 'react';
+import { useCallback, useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContactToggle } from '@/stores/popup';
 import { setAddContactListHeight } from '@/stores/offset';
@@ -9,6 +9,7 @@ import {
   Button,
   CircularProgress,
   Divider,
+  Tab,
   Typography,
 } from '@mui/material';
 
@@ -16,6 +17,7 @@ import useGet from '@/hooks/axios/useGet';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 const ContactList = (appListData) => {
   return appListData?.map((app) => {
@@ -37,6 +39,12 @@ const AddContact = () => {
   const [getAppListAction, getAppListLoading, getAppListData] = useGet(
     profileServicePath.getAppList
   );
+
+  const [tabValue, setTabValue] = useState(1);
+
+  const tabChangeHandler = (event, newValue) => {
+    setTabValue(newValue);
+  };
 
   const open = useSelector((state) => state.popup.addContactPopup);
 
@@ -92,9 +100,19 @@ const AddContact = () => {
         </Box>
       ) : (
         <>
-          <Divider sx={{ width: '60px', margin: 'auto' }} />
-          {ContactList(getAppListData?.data)}
-          <Divider sx={{ width: '60px', margin: 'auto' }} />
+          <TabContext value={tabValue}>
+            <TabList
+              onChange={tabChangeHandler}
+              sx={{ justifyContent: 'center' }}
+            >
+              <Tab label="ตารางแอพ" value={1} />
+              <Tab label="โฟกัสบล็อค" value={2} />
+            </TabList>
+            <TabPanel value={1} sx={{ marginTop: 2, padding: 0 }}>
+              {ContactList(getAppListData?.data)}
+              <Divider sx={{ width: '60px', margin: 'auto' }} />
+            </TabPanel>
+          </TabContext>
           <Button
             sx={{
               display: 'flex',

@@ -9,6 +9,7 @@ import container from '@/data/themes/white/components/container';
 import button from '@/data/themes/white/components/button';
 import card from '@/data/themes/white/components/card';
 import drawer from '@/data/themes/white/components/drawer';
+import tabs from '@/data/themes/white/components/tabs';
 
 export default createTheme({
   breakpoints: { ...breakpoints },
@@ -24,5 +25,6 @@ export default createTheme({
     MuiButton: { ...button },
     MuiCard: { ...card },
     MuiDrawer: { ...drawer },
+    MuiTabs: { ...tabs },
   },
 });
