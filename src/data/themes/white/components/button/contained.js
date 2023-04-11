@@ -14,7 +14,7 @@ const contained = {
     backgroundColor: primary.main,
     minHeight: pxToRem(40.5),
     color: black.main,
-    padding: `${pxToRem(9)} ${pxToRem(24)}`,
+    padding: `${pxToRem(9)} ${pxToRem(9)}`,
     fontWeight: fontWeightBold,
     boxShadow: xs,
     borderRadius: borderRadius.xxl,
@@ -37,12 +37,12 @@ const contained = {
   small: {
     fontSize: size.sm,
     fontWeight: fontWeightMedium,
-    padding: `${pxToRem(4)} ${pxToRem(14)}`,
+    padding: `${pxToRem(4)} ${pxToRem(4)}`,
   },
 
   large: {
     minHeight: pxToRem(52),
-    padding: `${pxToRem(12)} ${pxToRem(64)}`,
+    padding: `${pxToRem(12)} ${pxToRem(12)}`,
     fontSize: size.md,
 
     '& .material-icon, .material-icons-round, svg': {

@@ -11,6 +11,7 @@ const root = {
   minHeight: pxToRem(40.5),
   fontWeight: fontWeightBold,
   backgroundColor: white.main,
+  whiteSpace: 'nowrap',
 
   '&:hover': {
     backgroundColor: white.main,
