@@ -65,7 +65,7 @@ const ProfileBody = () => {
     [dispatch, activeIndex, getIndex, items, sortContactAction]
   );
 
-  const [getMyContactAction, getMyContactLoading, getMyContactData] = useGet(
+  const [getMyContactAction, getMyContactLoading] = useGet(
     profileServicePath.getMyContact
   );
 
@@ -83,7 +83,7 @@ const ProfileBody = () => {
     }
   }, [getMyContactAction, profileActivationId, reloadContactList]);
 
-  if (getMyContactLoading || !getMyContactData) {
+  if (getMyContactLoading) {
     return (
       <Box
         position="absolute"
