@@ -1,4 +1,4 @@
-import { Avatar, Box, Divider, Grid, Typography } from '@mui/material';
+import { Avatar, Box, Button, Divider, Grid, Typography } from '@mui/material';
 
 import openAppUri from '@/functions/openAppUri';
 
@@ -30,6 +30,10 @@ const ContactLists = (contacts) => {
 };
 
 const View = ({ isPreview, profileData }) => {
+  const goNewCreate = () => {
+    window.open('/app/login');
+  };
+
   return (
     <Box>
       <Box
@@ -57,7 +61,7 @@ const View = ({ isPreview, profileData }) => {
           border: '4px solid white',
         }}
       />
-      <Box padding={2} marginBottom={8}>
+      <Box padding={2} minHeight="100vh">
         <Box marginBottom={2}>
           <Typography marginTop={5} textAlign="center" variant="h1">
             {profileData?.info.name || 'ไม่มีชื่อ'}
@@ -80,6 +84,15 @@ const View = ({ isPreview, profileData }) => {
           {ContactLists(profileData?.contacts)}
         </Grid>
       </Box>
+      {!isPreview && (
+        <Box textAlign="center" padding={2}>
+          <Typography variant="caption">สร้างโดย</Typography>
+          <Typography variant="caption">Tikcard.me</Typography>
+          <Button variant="text" size="large" onClick={goNewCreate}>
+            สร้างนามบัตรของคุณ ฟรี
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 };
