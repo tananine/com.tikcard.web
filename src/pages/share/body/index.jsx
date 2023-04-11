@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 import copy from 'copy-to-clipboard';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -14,6 +15,10 @@ import toast from 'react-hot-toast';
 const ShareBody = () => {
   const [link, setLink] = useState('');
 
+  const profileActivationId = useSelector(
+    (state) => state.controller.profileInUse.profileId
+  );
+
   const [getLinkAction, getLinkLoading, getLinkData] = useGet(
     profileServicePath.getLink
   );
@@ -22,7 +27,7 @@ const ShareBody = () => {
     getLinkAction().then((res) => {
       setLink('info.tikcard.me/' + res.data.linkId);
     });
-  }, [getLinkAction]);
+  }, [getLinkAction, profileActivationId]);
 
   const copyClipboard = () => {
     copy(link);
