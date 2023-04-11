@@ -1,5 +1,7 @@
 import { Avatar, Box, Button, Divider, Grid, Typography } from '@mui/material';
 
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+
 import openAppUri from '@/functions/openAppUri';
 
 const ContactLists = (contacts) => {
@@ -73,6 +75,24 @@ const View = ({ isPreview, profileData }) => {
             {profileData?.info.bio}
           </Typography>
         </Box>
+        <Grid container spacing={1} sx={{ marginY: 2 }}>
+          <Grid item xs={7}>
+            <Button variant="contained" fullWidth size="large">
+              ฝากข้อมูลติดต่อ
+            </Button>
+          </Grid>
+          <Grid item xs={5}>
+            <Button
+              variant="contained"
+              fullWidth
+              size="large"
+              color="secondary"
+              startIcon={<PersonAddIcon />}
+            >
+              บันทึก
+            </Button>
+          </Grid>
+        </Grid>
         <Divider variant="middle" />
         <Grid
           container
