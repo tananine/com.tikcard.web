@@ -41,8 +41,9 @@ const DrawerWrapper = ({ open, onClose, onOpen, children, title }) => {
             <ExpandMoreIcon />
           </IconButton>
         </Box>
-        <Box minHeight="100vh" paddingBottom={8}>
+        <Box minHeight="100vh" display="flex" flexDirection="column">
           {children}
+          <Box flexGrow={1} minHeight={74} bgcolor="#f5f5f5" />
         </Box>
       </Scrollbars>
     </SwipeableDrawer>
