@@ -15,6 +15,10 @@ const Landing = () => {
   const { linkId } = useParams();
 
   useEffect(() => {
+    document.getElementsByTagName('body')[0].style.overflow = 'auto';
+  }, []);
+
+  useEffect(() => {
     getProfileAction(linkId);
   }, [getProfileAction, linkId]);
 
