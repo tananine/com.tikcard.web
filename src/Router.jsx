@@ -35,7 +35,14 @@ const Router = () => {
         <ThemeProvider theme={darkMode ? darkTheme : whiteTheme}>
           <CssBaseline />
           <Routes>
-            <Route path="/app/:page" element={<App />} />
+            <Route
+              path="/app/:page"
+              element={
+                <div className="disable-text-selection">
+                  <App />
+                </div>
+              }
+            />
             <Route path="/scan/:scannerId" element={<Scanner />} />
             <Route path="/:linkId" element={<Landing />} />
             <Route path="*" element={<Navigate to="/app/profile" replace />} />
