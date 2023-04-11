@@ -7,7 +7,7 @@ import {
   Button,
   Paper,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
@@ -22,6 +22,8 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const ProfilePart = () => {
   const profileActivation = useSelector((state) => state.account.activation);
+
+  const navigate = useNavigate();
 
   const [type, setType] = useState('primary');
 
@@ -45,6 +47,9 @@ const ProfilePart = () => {
         profileId: profileActivation.secondaryProfile,
       })
     );
+    if (!profileActivation.secondaryProfile) {
+      navigate('/app/profile', { replace: true });
+    }
   }, [dispatch, profileActivation]);
 
   useEffect(() => {
@@ -84,7 +89,37 @@ const ProfilePart = () => {
 };
 
 const Navigation = () => {
-  const [value, setValue] = useState(0);
+  const profileActivationId = useSelector(
+    (state) => state.controller.profileInUse.profileId
+  );
+
+  const [value, setValue] = useState();
+
+  const { page } = useParams();
+
+  const setValueNavigation = useCallback(() => {
+    switch (page) {
+      case 'profile':
+        setValue(0);
+        break;
+      case 'share':
+        setValue(1);
+        break;
+      case 'insight':
+        setValue(2);
+        break;
+      case 'connection':
+        setValue(3);
+        break;
+      default:
+        setValue(0);
+        break;
+    }
+  }, [page, setValue]);
+
+  useEffect(() => {
+    setValueNavigation();
+  }, [setValueNavigation]);
 
   const navigate = useNavigate();
 
@@ -125,18 +160,19 @@ const Navigation = () => {
           onClick={navigatePageShare}
           label="แชร์ QR"
           icon={<QrCode2Icon />}
+          disabled={!profileActivationId}
         />
         <BottomNavigationAction
           onClick={navigatePageInsight}
           label="สถิติ"
           icon={<LeaderboardIcon />}
-          disabled
+          disabled={!profileActivationId}
         />
         <BottomNavigationAction
           onClick={navigatePageConnection}
           label="คอนเนคชั่น"
           icon={<ConnectWithoutContactIcon />}
-          disabled
+          disabled={!profileActivationId}
         />
       </BottomNavigation>
       {ProfilePart()}
