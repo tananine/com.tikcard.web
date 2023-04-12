@@ -12,8 +12,6 @@ import ProfileHeader from '@/pages/profile/header';
 import ProfileBody from '@/pages/profile/body';
 import ProfileFooter from '@/pages/profile/Footer';
 import ConnectionBody from '@/pages/connection/body';
-import InsightHeader from '@/pages/insight/header';
-import InsightBody from '@/pages/insight/body';
 import ShareBody from '@/pages/share/body';
 
 const App = () => {
@@ -33,8 +31,6 @@ const App = () => {
         );
       case 'share':
         return <Layouts body={<ShareBody />} />;
-      case 'insight':
-        return <Layouts header={<InsightHeader />} body={<InsightBody />} />;
       case 'connection':
         return <Layouts body={<ConnectionBody />} />;
       default:
