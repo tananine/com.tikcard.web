@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { useEffect, useState, useRef } from 'react';
 
-const Lead = () => {
+const Lead = ({ isPreview }) => {
   const [openForm, setOpenForm] = useState(false);
   const timeoutRef = useRef(null);
 
@@ -41,6 +41,7 @@ const Lead = () => {
         ฝากข้อมูลติดต่อ
       </Button>
       <Dialog
+        hidden={isPreview}
         open={openForm}
         maxWidth="xl"
         PaperProps={{ sx: { margin: 2, width: '100%', borderRadius: 6 } }}

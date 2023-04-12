@@ -109,7 +109,7 @@ const View = ({ isPreview, profileData }) => {
               </Box>
               <Grid container spacing={1} sx={{ marginY: 2 }}>
                 <Grid item xs={7}>
-                  <Lead />
+                  <Lead isPreview={isPreview} />
                 </Grid>
                 <Grid item xs={5}>
                   <Button
