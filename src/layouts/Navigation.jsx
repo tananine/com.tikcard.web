@@ -11,7 +11,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
-import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setProfileInUse } from '@/stores/controller';
@@ -105,11 +104,8 @@ const Navigation = () => {
       case 'share':
         setValue(1);
         break;
-      case 'insight':
-        setValue(2);
-        break;
       case 'connection':
-        setValue(3);
+        setValue(2);
         break;
       default:
         setValue(0);
@@ -129,10 +125,6 @@ const Navigation = () => {
 
   const navigatePageShare = useCallback(() => {
     navigate(pagePath.share, { replace: true });
-  }, [navigate]);
-
-  const navigatePageInsight = useCallback(() => {
-    navigate(pagePath.insight, { replace: true });
   }, [navigate]);
 
   const navigatePageConnection = useCallback(() => {
@@ -160,12 +152,6 @@ const Navigation = () => {
           onClick={navigatePageShare}
           label="แชร์ QR"
           icon={<QrCode2Icon />}
-          disabled={!profileActivationId}
-        />
-        <BottomNavigationAction
-          onClick={navigatePageInsight}
-          label="สถิติ"
-          icon={<LeaderboardIcon />}
           disabled={!profileActivationId}
         />
         <BottomNavigationAction
