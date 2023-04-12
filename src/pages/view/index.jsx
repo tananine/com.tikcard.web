@@ -12,6 +12,7 @@ import {
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 import openAppUri from '@/functions/openAppUri';
+import saveVCard from '@/functions/saveVCard';
 
 const ContactLists = (contacts) => {
   return contacts?.map((contact, index) => {
@@ -116,6 +117,7 @@ const View = ({ isPreview, profileData }) => {
                   size="large"
                   color="secondary"
                   startIcon={<PersonAddIcon />}
+                  onClick={() => saveVCard(profileData?.info)}
                 >
                   บันทึก
                 </Button>
