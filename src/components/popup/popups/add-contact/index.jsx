@@ -16,6 +16,9 @@ import {
 import useGet from '@/hooks/axios/useGet';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
+import phoneGrid from '@/assets/svg/phone-grid.svg';
+import phoneBlock from '@/assets/svg/phone-block.svg';
+
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 
@@ -104,8 +107,12 @@ const AddContact = () => {
               onChange={tabChangeHandler}
               sx={{ justifyContent: 'center' }}
             >
-              <Tab label="ตารางแอพ" value={1} />
-              <Tab label="โฟกัสบล็อค" value={2} />
+              <Tab icon={<img src={phoneGrid} />} label="ตารางแอพ" value={1} />
+              <Tab
+                icon={<img src={phoneBlock} />}
+                label="โฟกัสบล็อค"
+                value={2}
+              />
             </TabList>
             <TabPanel value={1} sx={{ marginTop: 2, padding: 0 }}>
               {ContactList(getAppListData?.data)}
