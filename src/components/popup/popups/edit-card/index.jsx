@@ -80,7 +80,7 @@ const EditCard = () => {
           {...register('cardName')}
         />
         <ProfileImageHead />
-        <Box marginTop={4} display="flex" flexDirection="column" gap={2}>
+        <Box marginTop={6} display="flex" flexDirection="column" gap={2}>
           <TextField
             label="ชื่อ"
             variant="outlined"
