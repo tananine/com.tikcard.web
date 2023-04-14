@@ -12,10 +12,15 @@ import {
 import Cropper from 'react-easy-crop';
 import { useState } from 'react';
 
+import CollectionsIcon from '@mui/icons-material/Collections';
+
 const ProfileImageHead = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [cacheImage, setCacheImage] = useState(null);
   const [type, setType] = useState(null);
+
+  const [mainProfileImage, setMainProfileImage] = useState(null);
+  const [subProfileImage, setSubProfileImage] = useState(null);
 
   const openEditDialogHandler = () => {
     setOpenDialog(true);
@@ -35,6 +40,8 @@ const ProfileImageHead = () => {
     e.target.value = null;
   };
 
+  const saveCropImage = () => {};
+
   return (
     <>
       <Input
@@ -53,15 +60,23 @@ const ProfileImageHead = () => {
         <Box
           position="relative"
           height={180}
-          bgcolor="#ced4da"
-          sx={{ borderBottomRightRadius: 60, cursor: 'pointer' }}
+          sx={{
+            borderBottomRightRadius: 60,
+            cursor: 'pointer',
+            overflow: 'hidden',
+          }}
         >
-          <Typography
+          <img
+            src="https://media.istockphoto.com/id/1284691550/vector/blue-abstract-geometric-dynamic-shape-paper-layers-subtle-background-vector.jpg?s=612x612&w=0&k=20&c=8a0N0F6hcHc08o2aZgTZdreUMhTxS24Zp61KgdQzGgM="
+            alt="cover image"
+            width="100%"
+            height="100%"
+          />
+
+          <CollectionsIcon
             variant="caption"
             sx={{ position: 'absolute', right: 6, top: 6 }}
-          >
-            เปลี่ยน
-          </Typography>
+          />
         </Box>
         <Box
           position="absolute"
@@ -80,6 +95,10 @@ const ProfileImageHead = () => {
                 cursor: 'pointer',
               }}
             >
+              <img
+                src={mainProfileImage && URL.createObjectURL(mainProfileImage)}
+                alt="รูปโพรไฟล์"
+              />
               <Box
                 sx={{
                   position: 'absolute',
@@ -111,6 +130,10 @@ const ProfileImageHead = () => {
                 cursor: 'pointer',
               }}
             >
+              <img
+                src={subProfileImage && URL.createObjectURL(subProfileImage)}
+                alt="รูปบริษัท"
+              />
               <Box
                 sx={{
                   position: 'absolute',
@@ -155,7 +178,7 @@ const ProfileImageHead = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={closeEditDialogHandler}>ยกเลิก</Button>
-          <Button>บันทึก</Button>
+          <Button onClick={saveCropImage}>บันทึก</Button>
         </DialogActions>
       </Dialog>
     </>
