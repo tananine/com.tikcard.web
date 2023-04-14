@@ -12,71 +12,25 @@ import {
 import Cropper from 'react-easy-crop';
 import { useState } from 'react';
 
-const DialogCropImage = ({ image, open, closeHandler }) => {
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-
-  return (
-    <Dialog
-      open={open}
-      maxWidth="xl"
-      PaperProps={{ sx: { margin: 2, width: '100%', borderRadius: 6 } }}
-    >
-      <DialogTitle>เปลี่ยนรูป</DialogTitle>
-      <DialogContent>
-        <Box
-          width="100%"
-          overflow="hidden"
-          position="relative"
-          borderRadius={6}
-          sx={{ aspectRatio: '1' }}
-        >
-          <Cropper
-            image="https://img.huffingtonpost.com/asset/5ab4d4ac2000007d06eb2c56.jpeg?cache=sih0jwle4e&ops=1910_1000"
-            crop={crop}
-            zoom={zoom}
-            aspect={1}
-            cropShape="round"
-            showGrid={false}
-            onCropChange={setCrop}
-            onZoomChange={setZoom}
-          />
-        </Box>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={closeHandler}>ยกเลิก</Button>
-        <Button>บันทึก</Button>
-      </DialogActions>
-    </Dialog>
-  );
-};
-
 const ProfileImageHead = () => {
-  const [editDialog, setEditDialog] = useState(false);
-  const [coverImage, setCoverImage] = useState(null);
-  const [mainProfileImage, setMainProfileImage] = useState(null);
-  const [subProfileImage, setSubProfileImage] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [cacheImage, setCacheImage] = useState(null);
+  const [type, setType] = useState(null);
 
   const openEditDialogHandler = () => {
-    setEditDialog(true);
+    setOpenDialog(true);
   };
 
   const closeEditDialogHandler = () => {
-    setEditDialog(false);
+    setOpenDialog(false);
   };
 
-  const changeCoverImage = (e) => {
-    setCoverImage(e.target.files[0]);
-    openEditDialogHandler();
-    e.target.value = null;
-  };
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
 
-  const changeMainProfileImage = (e) => {
-    openEditDialogHandler();
-    e.target.value = null;
-  };
-
-  const changeSubProfileImage = (e) => {
+  const inputImage = (e, type) => {
+    setCacheImage(e.target.files[0]);
+    setType(type);
     openEditDialogHandler();
     e.target.value = null;
   };
@@ -85,38 +39,30 @@ const ProfileImageHead = () => {
     <>
       <Input
         type="file"
-        id="upload-cover"
-        onInput={changeCoverImage}
-        sx={{ display: 'none' }}
-      />
-      <Input
-        type="file"
         id="upload-main-profile"
-        onInput={changeMainProfileImage}
         sx={{ display: 'none' }}
+        onChange={(e) => inputImage(e, 'mainImage')}
       />
       <Input
         type="file"
         id="upload-sub-profile"
-        onInput={changeSubProfileImage}
         sx={{ display: 'none' }}
+        onChange={(e) => inputImage(e, 'subImage')}
       />
       <Box marginY={2}>
-        <label htmlFor="upload-cover">
-          <Box
-            position="relative"
-            height={180}
-            bgcolor="#ced4da"
-            sx={{ borderBottomRightRadius: 60, cursor: 'pointer' }}
+        <Box
+          position="relative"
+          height={180}
+          bgcolor="#ced4da"
+          sx={{ borderBottomRightRadius: 60, cursor: 'pointer' }}
+        >
+          <Typography
+            variant="caption"
+            sx={{ position: 'absolute', right: 6, top: 6 }}
           >
-            <Typography
-              variant="caption"
-              sx={{ position: 'absolute', right: 6, top: 6 }}
-            >
-              เปลี่ยน
-            </Typography>
-          </Box>
-        </label>
+            เปลี่ยน
+          </Typography>
+        </Box>
         <Box
           position="absolute"
           sx={{
@@ -181,11 +127,37 @@ const ProfileImageHead = () => {
           </label>
         </Box>
       </Box>
-      <DialogCropImage
-        image={coverImage}
-        open={editDialog}
-        closeHandler={closeEditDialogHandler}
-      />
+      <Dialog
+        open={openDialog}
+        maxWidth="xl"
+        PaperProps={{ sx: { margin: 2, width: '100%', borderRadius: 6 } }}
+      >
+        <DialogTitle>เปลี่ยนรูป</DialogTitle>
+        <DialogContent>
+          <Box
+            width="100%"
+            overflow="hidden"
+            position="relative"
+            borderRadius={6}
+            sx={{ aspectRatio: '1' }}
+          >
+            <Cropper
+              image={cacheImage && URL.createObjectURL(cacheImage)}
+              crop={crop}
+              zoom={zoom}
+              aspect={1}
+              cropShape="round"
+              showGrid={false}
+              onCropChange={setCrop}
+              onZoomChange={setZoom}
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeEditDialogHandler}>ยกเลิก</Button>
+          <Button>บันทึก</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
