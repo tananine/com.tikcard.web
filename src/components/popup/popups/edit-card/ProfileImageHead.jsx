@@ -9,9 +9,13 @@ import {
   Button,
   Input,
 } from '@mui/material';
+import Cropper from 'react-easy-crop';
 import { useState } from 'react';
 
-const DialogCropImage = ({ open, closeHandler }) => {
+const DialogCropImage = ({ image, open, closeHandler }) => {
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+
   return (
     <Dialog
       open={open}
@@ -19,7 +23,26 @@ const DialogCropImage = ({ open, closeHandler }) => {
       PaperProps={{ sx: { margin: 2, width: '100%', borderRadius: 6 } }}
     >
       <DialogTitle>เปลี่ยนรูป</DialogTitle>
-      <DialogContent>ok</DialogContent>
+      <DialogContent>
+        <Box
+          width="100%"
+          overflow="hidden"
+          position="relative"
+          borderRadius={6}
+          sx={{ aspectRatio: '1' }}
+        >
+          <Cropper
+            image="https://img.huffingtonpost.com/asset/5ab4d4ac2000007d06eb2c56.jpeg?cache=sih0jwle4e&ops=1910_1000"
+            crop={crop}
+            zoom={zoom}
+            aspect={1}
+            cropShape="round"
+            showGrid={false}
+            onCropChange={setCrop}
+            onZoomChange={setZoom}
+          />
+        </Box>
+      </DialogContent>
       <DialogActions>
         <Button onClick={closeHandler}>ยกเลิก</Button>
         <Button>บันทึก</Button>
@@ -30,6 +53,9 @@ const DialogCropImage = ({ open, closeHandler }) => {
 
 const ProfileImageHead = () => {
   const [editDialog, setEditDialog] = useState(false);
+  const [coverImage, setCoverImage] = useState(null);
+  const [mainProfileImage, setMainProfileImage] = useState(null);
+  const [subProfileImage, setSubProfileImage] = useState(null);
 
   const openEditDialogHandler = () => {
     setEditDialog(true);
@@ -40,6 +66,7 @@ const ProfileImageHead = () => {
   };
 
   const changeCoverImage = (e) => {
+    setCoverImage(e.target.files[0]);
     openEditDialogHandler();
     e.target.value = null;
   };
@@ -94,8 +121,8 @@ const ProfileImageHead = () => {
           position="absolute"
           sx={{
             position: 'absolute',
-            left: 40,
-            top: 145,
+            left: 30,
+            top: 160,
           }}
         >
           <label htmlFor="upload-main-profile">
@@ -125,8 +152,8 @@ const ProfileImageHead = () => {
         <Box
           sx={{
             position: 'absolute',
-            left: 140,
-            top: 225,
+            left: 130,
+            top: 240,
           }}
         >
           <label htmlFor="upload-sub-profile">
@@ -155,6 +182,7 @@ const ProfileImageHead = () => {
         </Box>
       </Box>
       <DialogCropImage
+        image={coverImage}
         open={editDialog}
         closeHandler={closeEditDialogHandler}
       />
