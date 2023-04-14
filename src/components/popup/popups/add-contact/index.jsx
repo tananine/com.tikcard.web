@@ -43,7 +43,7 @@ const AddContact = () => {
     profileServicePath.getAppList
   );
 
-  const [tabValue, setTabValue] = useState(1);
+  const [tabValue, setTabValue] = useState('grid');
 
   const tabChangeHandler = (event, newValue) => {
     setTabValue(newValue);
@@ -107,14 +107,18 @@ const AddContact = () => {
               onChange={tabChangeHandler}
               sx={{ justifyContent: 'center' }}
             >
-              <Tab icon={<img src={phoneGrid} />} label="ตารางแอพ" value={1} />
+              <Tab
+                icon={<img src={phoneGrid} />}
+                label="ตารางแอพ"
+                value={'grid'}
+              />
               <Tab
                 icon={<img src={phoneBlock} />}
                 label="โฟกัสบล็อค"
-                value={2}
+                value={'block'}
               />
             </TabList>
-            <TabPanel value={1} sx={{ marginTop: 2, padding: 0 }}>
+            <TabPanel value={'grid'} sx={{ marginTop: 2, padding: 0 }}>
               {ContactList(getAppListData?.data)}
               <Divider sx={{ width: '60px', margin: 'auto' }} />
             </TabPanel>
