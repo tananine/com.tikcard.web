@@ -11,6 +11,23 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 
+const DialogCropImage = ({ open, closeHandler }) => {
+  return (
+    <Dialog
+      open={open}
+      maxWidth="xl"
+      PaperProps={{ sx: { margin: 2, width: '100%', borderRadius: 6 } }}
+    >
+      <DialogTitle>เปลี่ยนรูป</DialogTitle>
+      <DialogContent>ok</DialogContent>
+      <DialogActions>
+        <Button onClick={closeHandler}>ยกเลิก</Button>
+        <Button>บันทึก</Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
 const ProfileImageHead = () => {
   const [editDialog, setEditDialog] = useState(false);
 
@@ -137,18 +154,10 @@ const ProfileImageHead = () => {
           </label>
         </Box>
       </Box>
-      <Dialog
+      <DialogCropImage
         open={editDialog}
-        maxWidth="xl"
-        PaperProps={{ sx: { margin: 2, width: '100%', borderRadius: 6 } }}
-      >
-        <DialogTitle>เปลี่ยนรูป</DialogTitle>
-        <DialogContent>ok</DialogContent>
-        <DialogActions>
-          <Button onClick={closeEditDialogHandler}>ยกเลิก</Button>
-          <Button>บันทึก</Button>
-        </DialogActions>
-      </Dialog>
+        closeHandler={closeEditDialogHandler}
+      />
     </>
   );
 };
