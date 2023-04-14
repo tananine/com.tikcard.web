@@ -18,6 +18,8 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import toast from 'react-hot-toast';
 
+import getUrlS3 from '@/functions/getUrlS3';
+
 const EditContact = () => {
   const { register, handleSubmit, setValue, getValues } = useForm();
 
@@ -124,7 +126,12 @@ const EditContact = () => {
             <Button onClick={goContact}>ตัวอย่างเมื่อคลิก</Button>
           </Box>
           <Box textAlign="center" padding={2}>
-            <img src={appData.imageIcon} alt="" width="70px" height="70px" />
+            <img
+              src={getUrlS3(`theme-app-icon/${appData.imageIcon}`)}
+              alt=""
+              width="70px"
+              height="70px"
+            />
           </Box>
           <TextField
             label={appData.name}

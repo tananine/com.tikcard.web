@@ -9,6 +9,8 @@ import {
   setEditContactDynamicData,
 } from '@/stores/parse-data/editContactDynamic';
 
+import getUrlS3 from '@/functions/getUrlS3';
+
 const AddContactList = ({
   id,
   name,
@@ -43,7 +45,12 @@ const AddContactList = ({
         onClick={editContactDynamicToggleHandler}
       >
         <Box display="flex" gap={1} alignItems="center">
-          <img src={imageIcon} alt="" width="34px" height="34px" />
+          <img
+            src={getUrlS3(`theme-app-icon/${imageIcon}`)}
+            alt=""
+            width="34px"
+            height="34px"
+          />
           <Typography variant="h4">{name}</Typography>
         </Box>
         <Button startIcon={<AddIcon />} variant="contained" size="small">
