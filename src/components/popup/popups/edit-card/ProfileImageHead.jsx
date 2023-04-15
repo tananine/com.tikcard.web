@@ -8,9 +8,11 @@ import {
   DialogActions,
   Button,
   Input,
+  Slider,
 } from '@mui/material';
 import Cropper from 'react-easy-crop';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import getCropOutput from '@/functions/cropOutput';
 
 import CollectionsIcon from '@mui/icons-material/Collections';
 
@@ -18,6 +20,7 @@ const ProfileImageHead = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [cacheImage, setCacheImage] = useState(null);
   const [type, setType] = useState(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
   const [mainProfileImage, setMainProfileImage] = useState(null);
   const [subProfileImage, setSubProfileImage] = useState(null);
@@ -33,14 +36,39 @@ const ProfileImageHead = () => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
 
+  const setZoomHandler = (e, newValue) => {
+    setZoom(newValue);
+  };
+
   const inputImage = (e, type) => {
+    setCrop({ x: 0, y: 0 });
+    setZoom(1);
     setCacheImage(e.target.files[0]);
     setType(type);
     openEditDialogHandler();
     e.target.value = null;
   };
 
-  const saveCropImage = () => {};
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const saveCropImage = async () => {
+    try {
+      const croppedImage = await getCropOutput(
+        URL.createObjectURL(cacheImage),
+        croppedAreaPixels
+      );
+      if (type === 'mainImage') {
+        setMainProfileImage(croppedImage);
+      } else if (type === 'subImage') {
+        setSubProfileImage(croppedImage);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    closeEditDialogHandler();
+  };
 
   return (
     <>
@@ -67,7 +95,7 @@ const ProfileImageHead = () => {
           }}
         >
           <img
-            src="https://media.istockphoto.com/id/1284691550/vector/blue-abstract-geometric-dynamic-shape-paper-layers-subtle-background-vector.jpg?s=612x612&w=0&k=20&c=8a0N0F6hcHc08o2aZgTZdreUMhTxS24Zp61KgdQzGgM="
+            src="https://img.freepik.com/free-vector/minimal-white-gray-background-with-wavy-lines_1017-25099.jpg?w=2000"
             alt="cover image"
             width="100%"
             height="100%"
@@ -95,10 +123,16 @@ const ProfileImageHead = () => {
                 cursor: 'pointer',
               }}
             >
-              <img
-                src={mainProfileImage && URL.createObjectURL(mainProfileImage)}
-                alt="รูปโพรไฟล์"
-              />
+              {mainProfileImage ? (
+                <img
+                  src={mainProfileImage}
+                  alt="รูปโพรไฟล์"
+                  width="100%"
+                  height="100%"
+                />
+              ) : (
+                <Avatar />
+              )}
               <Box
                 sx={{
                   position: 'absolute',
@@ -130,10 +164,16 @@ const ProfileImageHead = () => {
                 cursor: 'pointer',
               }}
             >
-              <img
-                src={subProfileImage && URL.createObjectURL(subProfileImage)}
-                alt="รูปบริษัท"
-              />
+              {subProfileImage ? (
+                <img
+                  src={subProfileImage}
+                  alt="รูปบริษัท"
+                  width="100%"
+                  height="100%"
+                />
+              ) : (
+                <Avatar />
+              )}
               <Box
                 sx={{
                   position: 'absolute',
@@ -172,9 +212,16 @@ const ProfileImageHead = () => {
               cropShape="round"
               showGrid={false}
               onCropChange={setCrop}
-              onZoomChange={setZoom}
+              onCropComplete={onCropComplete}
             />
           </Box>
+          <Slider
+            value={zoom}
+            onChange={setZoomHandler}
+            min={1}
+            max={3}
+            step={0.1}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={closeEditDialogHandler}>ยกเลิก</Button>
