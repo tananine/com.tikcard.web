@@ -43,7 +43,7 @@ const AddContactList = ({
         onClick={editContactDynamicToggleHandler}
       >
         <Box display="flex" gap={1} alignItems="center">
-          <img src="S3" alt="" width="34px" height="34px" />
+          <img src={imageIcon} alt="" width="34px" height="34px" />
           <Typography variant="h4">{name}</Typography>
         </Box>
         <Button startIcon={<AddIcon />} variant="contained" size="small">

@@ -28,7 +28,7 @@ const ContactLists = (contacts) => {
           }}
         >
           <img
-            src="S3"
+            src={contact.ContactItem.imageIcon}
             alt=""
             width="100%"
             height="auto"

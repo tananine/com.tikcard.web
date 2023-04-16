@@ -124,7 +124,7 @@ const EditContact = () => {
             <Button onClick={goContact}>ตัวอย่างเมื่อคลิก</Button>
           </Box>
           <Box textAlign="center" padding={2}>
-            <img src="S3" alt="" width="70px" height="70px" />
+            <img src={appData.imageIcon} alt="" width="70px" height="70px" />
           </Box>
           <TextField
             label={appData.name}
