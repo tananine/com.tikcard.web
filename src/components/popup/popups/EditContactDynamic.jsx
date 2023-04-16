@@ -127,7 +127,10 @@ const EditContact = () => {
           </Box>
           <Box textAlign="center" padding={2}>
             <img
-              src={getUrlS3(`theme-app-icon/${appData.imageIcon}`)}
+              src={
+                appData.imageIcon &&
+                getUrlS3(`theme-app-icon/${appData.imageIcon}`)
+              }
               alt=""
               width="70px"
               height="70px"

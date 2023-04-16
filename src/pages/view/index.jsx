@@ -34,7 +34,7 @@ const ContactLists = (contacts) => {
             alt=""
             width="100%"
             height="auto"
-            style={{ maxWidth: '100px', cursor: 'pointer' }}
+            style={{ maxWidth: '100px', cursor: 'pointer', aspectRatio: '1' }}
             onClick={() =>
               openAppUri(
                 contact.ContactItem.defaultUri,
@@ -45,7 +45,7 @@ const ContactLists = (contacts) => {
             }
           />
         </Fade>
-        <Typography variant="caption" lineHeight={0.5} marginBottom={1.2}>
+        <Typography variant="caption" marginBottom={1.2}>
           {contact.ContactItem.name}
         </Typography>
       </Grid>

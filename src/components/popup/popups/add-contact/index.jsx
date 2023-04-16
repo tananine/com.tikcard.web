@@ -108,12 +108,12 @@ const AddContact = () => {
               sx={{ justifyContent: 'center' }}
             >
               <Tab
-                icon={<img src={phoneGrid} />}
+                icon={<img src={phoneGrid} height={44} />}
                 label="ตารางแอพ"
                 value={'grid'}
               />
               <Tab
-                icon={<img src={phoneBlock} />}
+                icon={<img src={phoneBlock} height={44} />}
                 label="โฟกัสบล็อค"
                 value={'block'}
               />
