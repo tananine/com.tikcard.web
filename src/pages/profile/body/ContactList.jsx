@@ -14,8 +14,6 @@ import {
 import usePut from '@/hooks/axios/usePut';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
-import getUrlS3 from '@/functions/getUrlS3';
-
 const ContactList = ({ contactId, contactItem, url, show }) => {
   const dispatch = useDispatch();
 
@@ -95,12 +93,7 @@ const ContactList = ({ contactId, contactItem, url, show }) => {
               sx={{ cursor: 'pointer', opacity: opacityLevel }}
               onClick={editContactDynamicToggleHandler}
             >
-              <img
-                src={getUrlS3(`theme-app-icon/${contactItem.imageIcon}`)}
-                alt=""
-                width="46px"
-                height="46px"
-              />
+              <img src="S3" alt="" width="46px" height="46px" />
               <Box>
                 <Typography variant="h3" lineHeight="26.5px">
                   {contactItem.name}

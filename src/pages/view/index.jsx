@@ -16,8 +16,6 @@ import saveVCard from '@/functions/saveVCard';
 
 import Lead from '@/pages/view/Lead';
 
-import getUrlS3 from '@/functions/getUrlS3';
-
 const ContactLists = (contacts) => {
   return contacts?.map((contact, index) => {
     return (
@@ -30,7 +28,7 @@ const ContactLists = (contacts) => {
           }}
         >
           <img
-            src={getUrlS3(`theme-app-icon/${contact.ContactItem.imageIcon}`)}
+            src="S3"
             alt=""
             width="100%"
             height="auto"
