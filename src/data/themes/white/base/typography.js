@@ -4,7 +4,7 @@ import pxToRem from '@/data/themes/white/functions/pxToRem';
 const { dark } = colors;
 
 const baseProperties = {
-  fontFamily: 'Prompt, sans-serif',
+  fontFamily: 'Anuphan, sans-serif',
   fontWeightLighter: 200,
   fontWeightLight: 300,
   fontWeightRegular: 400,
