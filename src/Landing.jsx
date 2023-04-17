@@ -16,6 +16,8 @@ const Landing = () => {
 
   useEffect(() => {
     document.getElementsByTagName('body')[0].style.overflow = 'auto';
+    document.getElementsByTagName('html')[0].style.overflow = 'auto';
+    document.getElementsByTagName('html')[0].style.height = 'auto';
   }, []);
 
   useEffect(() => {
