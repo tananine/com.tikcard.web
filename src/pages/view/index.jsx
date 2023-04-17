@@ -62,8 +62,15 @@ const View = ({ isPreview, profileData }) => {
         <Box
           height={180}
           bgcolor="#ced4da"
-          sx={{ borderBottomRightRadius: 60 }}
-        />
+          sx={{ borderBottomRightRadius: 60, overflow: 'hidden' }}
+        >
+          <img
+            src="https://img.freepik.com/free-vector/minimal-white-gray-background-with-wavy-lines_1017-25099.jpg?w=2000"
+            alt="cover image"
+            width="100%"
+            height="100%"
+          />
+        </Box>
         <Grow
           in={true}
           sx={{
@@ -80,6 +87,7 @@ const View = ({ isPreview, profileData }) => {
                 height: 140,
                 border: '4px solid white',
               }}
+              src={profileData?.info.profileImage}
             />
             <Avatar
               sx={{
@@ -90,6 +98,7 @@ const View = ({ isPreview, profileData }) => {
                 height: 60,
                 border: '4px solid white',
               }}
+              src={profileData?.info.companyImage}
             />
           </Box>
         </Grow>

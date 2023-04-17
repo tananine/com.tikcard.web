@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import PopupWrapper from '@/components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { editCardToggle } from '@/stores/popup';
@@ -16,6 +16,9 @@ import { LoadingButton } from '@mui/lab';
 import toast from 'react-hot-toast';
 
 const EditCard = () => {
+  const [mainProfileImage, setMainProfileImage] = useState(null);
+  const [subProfileImage, setSubProfileImage] = useState(null);
+
   const open = useSelector((state) => state.popup.editCardPopup);
   const profileId = useSelector(
     (state) => state.controller.profileInUse.profileId
@@ -44,21 +47,34 @@ const EditCard = () => {
         setValue('position', res.data.position);
         setValue('address', res.data.address);
         setValue('bio', res.data.bio);
+        setMainProfileImage(res.data.profileImage);
+        setSubProfileImage(res.data.companyImage);
       });
     }
   }, [getInformationAction, profileId, setValue, open]);
 
-  const save = (form) => {
-    const body = {
-      cardName: form.cardName,
-      name: form.name,
-      work: form.work,
-      company: form.company,
-      position: form.position,
-      address: form.address,
-      bio: form.bio,
-    };
-    updateInformationAction(body).then(() => {
+  const save = async (form) => {
+    const formData = new FormData();
+    formData.append('cardName', form.cardName);
+    formData.append('name', form.name);
+    formData.append('work', form.work);
+    formData.append('company', form.company);
+    formData.append('position', form.position);
+    formData.append('address', form.address);
+    formData.append('bio', form.bio);
+
+    if (mainProfileImage.split(':')[0] === 'blob') {
+      const mainProfileImageBlob = await fetch(mainProfileImage);
+      const mainProfileImageObject = await mainProfileImageBlob.blob();
+      formData.append('profileImage', mainProfileImageObject);
+    }
+    if (subProfileImage.split(':')[0] === 'blob') {
+      const subProfileImageBlob = await fetch(subProfileImage);
+      const subProfileImageObject = await subProfileImageBlob.blob();
+      formData.append('companyImage', subProfileImageObject);
+    }
+
+    updateInformationAction(formData).then(() => {
       dispatch(reloadCurrentProfile());
       dispatch(editCardToggle());
       toast.success('แก้ไขสำเร็จ');
@@ -79,7 +95,12 @@ const EditCard = () => {
           InputLabelProps={{ shrink: true }}
           {...register('cardName')}
         />
-        <ProfileImageHead />
+        <ProfileImageHead
+          mainProfileImage={mainProfileImage}
+          setMainProfileImage={setMainProfileImage}
+          subProfileImage={subProfileImage}
+          setSubProfileImage={setSubProfileImage}
+        />
         <Box marginTop={8} display="flex" flexDirection="column" gap={2}>
           <TextField
             label="ชื่อ"

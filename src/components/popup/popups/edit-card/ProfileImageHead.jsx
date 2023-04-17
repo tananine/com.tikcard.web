@@ -15,15 +15,18 @@ import { useState, useCallback } from 'react';
 import getCropOutput from '@/functions/cropOutput';
 
 import CollectionsIcon from '@mui/icons-material/Collections';
+import EditIcon from '@mui/icons-material/Edit';
 
-const ProfileImageHead = () => {
+const ProfileImageHead = ({
+  mainProfileImage,
+  setMainProfileImage,
+  subProfileImage,
+  setSubProfileImage,
+}) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [cacheImage, setCacheImage] = useState(null);
   const [type, setType] = useState(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-
-  const [mainProfileImage, setMainProfileImage] = useState(null);
-  const [subProfileImage, setSubProfileImage] = useState(null);
 
   const openEditDialogHandler = () => {
     setOpenDialog(true);
@@ -131,7 +134,7 @@ const ProfileImageHead = () => {
                   height="100%"
                 />
               ) : (
-                <Avatar />
+                <EditIcon />
               )}
               <Box
                 sx={{
@@ -172,7 +175,7 @@ const ProfileImageHead = () => {
                   height="100%"
                 />
               ) : (
-                <Avatar />
+                <EditIcon sx={{ fontSize: 16 }} />
               )}
               <Box
                 sx={{
