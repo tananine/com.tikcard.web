@@ -81,25 +81,35 @@ const View = ({ isPreview, profileData }) => {
           timeout={{ enter: 1000 }}
         >
           <Box>
-            <Avatar
+            <Box sx={{ border: '4px solid white', borderRadius: '50%' }}>
+              <Avatar
+                sx={{
+                  width: 130,
+                  height: 130,
+                  boxShadow:
+                    'rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em',
+                }}
+                src={profileData?.info.profileImage}
+              />
+            </Box>
+            <Box
               sx={{
-                width: 140,
-                height: 140,
-                border: '4px solid white',
-              }}
-              src={profileData?.info.profileImage}
-            />
-            <Avatar
-              sx={{
+                border: '2px solid white',
+                borderRadius: '50%',
                 position: 'absolute',
-                left: 110,
+                left: 100,
                 top: 80,
-                width: 60,
-                height: 60,
-                border: '4px solid white',
               }}
-              src={profileData?.info.companyImage}
-            />
+            >
+              <Avatar
+                sx={{
+                  width: 52,
+                  height: 52,
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
+                }}
+                src={profileData?.info.companyImage}
+              />
+            </Box>
           </Box>
         </Grow>
         <Box padding={2} minHeight="100vh">

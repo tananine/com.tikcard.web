@@ -11,7 +11,7 @@ import {
   Slider,
 } from '@mui/material';
 import Cropper from 'react-easy-crop';
-import Resizer from 'react-image-file-resizer';
+import Resizer from '@/functions/resizer';
 import { useState, useCallback } from 'react';
 import getCropOutput from '@/functions/cropOutput';
 
@@ -134,37 +134,40 @@ const ProfileImageHead = ({
           }}
         >
           <label htmlFor="upload-main-profile">
-            <Avatar
-              sx={{
-                width: 140,
-                height: 140,
-                border: '4px solid white',
-                cursor: 'pointer',
-              }}
-            >
-              {mainProfileImage ? (
-                <img
-                  src={mainProfileImage}
-                  alt="รูปโพรไฟล์"
-                  width="100%"
-                  height="100%"
-                />
-              ) : (
-                <EditIcon />
-              )}
-              <Box
+            <Box sx={{ border: '4px solid white', borderRadius: '50%' }}>
+              <Avatar
                 sx={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: '50%',
-                  width: '100%',
-                  textAlign: 'center',
-                  transform: 'translateX(-50%)',
+                  width: 130,
+                  height: 130,
+                  cursor: 'pointer',
+                  boxShadow:
+                    'rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em',
                 }}
               >
-                <Typography variant="caption">เปลี่ยน</Typography>
-              </Box>
-            </Avatar>
+                {mainProfileImage ? (
+                  <img
+                    src={mainProfileImage}
+                    alt="รูปโพรไฟล์"
+                    width="100%"
+                    height="100%"
+                  />
+                ) : (
+                  <EditIcon />
+                )}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: '50%',
+                    width: '100%',
+                    textAlign: 'center',
+                    transform: 'translateX(-50%)',
+                  }}
+                >
+                  <Typography variant="caption">เปลี่ยน</Typography>
+                </Box>
+              </Avatar>
+            </Box>
           </label>
         </Box>
         <Box
@@ -172,15 +175,17 @@ const ProfileImageHead = ({
             position: 'absolute',
             left: 130,
             top: 240,
+            border: '2px solid white',
+            borderRadius: '50%',
           }}
         >
           <label htmlFor="upload-sub-profile">
             <Avatar
               sx={{
-                width: 60,
-                height: 60,
-                border: '4px solid white',
+                width: 52,
+                height: 52,
                 cursor: 'pointer',
+                boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
               }}
             >
               {subProfileImage ? (
