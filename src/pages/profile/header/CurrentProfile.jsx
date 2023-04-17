@@ -8,14 +8,14 @@ import { setProfiles } from '@/stores/account';
 import useGet from '@/hooks/axios/useGet';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
-const Profile = ({ cardName, name, showSelectProfileText }) => {
+const Profile = ({ profileImage, cardName, name, showSelectProfileText }) => {
   if (showSelectProfileText) {
     return <>เลือกใช้งานนามบัตร</>;
   }
   return (
     <>
       <Box display="flex" gap={2} flexGrow={1} alignItems="center">
-        <Avatar sx={{ width: 46, height: 46 }} />
+        <Avatar sx={{ width: 46, height: 46 }} src={profileImage} />
         <Box height="100%">
           <Typography variant="h3" lineHeight="26.5px">
             {cardName}
@@ -83,6 +83,7 @@ const CurrentProfile = ({ profileActivationId }) => {
         <CircularProgress disableShrink />
       ) : (
         <Profile
+          profileImage={activationProfileData?.profileImage}
           cardName={activationProfileData?.cardName}
           name={activationProfileData?.name}
           showSelectProfileText={showSelectProfileText}
