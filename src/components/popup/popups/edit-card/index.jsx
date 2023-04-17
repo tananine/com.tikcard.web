@@ -70,12 +70,12 @@ const EditCard = () => {
     formData.append('address', form.address);
     formData.append('bio', form.bio);
 
-    if (mainProfileImage.split(':')[0] === 'blob') {
+    if (mainProfileImage?.split(':')[0] === 'blob') {
       const mainProfileImageBlob = await fetch(mainProfileImage);
       const mainProfileImageObject = await mainProfileImageBlob.blob();
       formData.append('profileImage', mainProfileImageObject);
     }
-    if (subProfileImage.split(':')[0] === 'blob') {
+    if (subProfileImage?.split(':')[0] === 'blob') {
       const subProfileImageBlob = await fetch(subProfileImage);
       const subProfileImageObject = await subProfileImageBlob.blob();
       formData.append('companyImage', subProfileImageObject);
