@@ -31,14 +31,21 @@ const EditCard = () => {
     profileServicePath.profileInformation
   );
 
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, reset } = useForm();
 
   const editCardToggleHandler = useCallback(() => {
     dispatch(editCardToggle());
   }, [dispatch]);
 
+  const clearData = () => {
+    reset();
+    setMainProfileImage(null);
+    setSubProfileImage(null);
+  };
+
   useEffect(() => {
     if (profileId && open) {
+      clearData();
       getInformationAction().then((res) => {
         setValue('cardName', res.data.cardName);
         setValue('name', res.data.name);
