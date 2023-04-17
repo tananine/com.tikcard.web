@@ -11,6 +11,7 @@ import {
   Slider,
 } from '@mui/material';
 import Cropper from 'react-easy-crop';
+import Resizer from 'react-image-file-resizer';
 import { useState, useCallback } from 'react';
 import getCropOutput from '@/functions/cropOutput';
 
@@ -46,7 +47,25 @@ const ProfileImageHead = ({
   const inputImage = (e, type) => {
     setCrop({ x: 0, y: 0 });
     setZoom(1);
-    setCacheImage(e.target.files[0]);
+
+    try {
+      const file = e.target.files[0];
+      Resizer.imageFileResizer(
+        file,
+        800,
+        800,
+        'JPEG',
+        100,
+        0,
+        (uri) => {
+          setCacheImage(uri);
+        },
+        'base64'
+      );
+    } catch (error) {
+      console.error('Failed to resize image:', error);
+    }
+
     setType(type);
     openEditDialogHandler();
     e.target.value = null;
@@ -58,10 +77,7 @@ const ProfileImageHead = ({
 
   const saveCropImage = async () => {
     try {
-      const croppedImage = await getCropOutput(
-        URL.createObjectURL(cacheImage),
-        croppedAreaPixels
-      );
+      const croppedImage = await getCropOutput(cacheImage, croppedAreaPixels);
       if (type === 'mainImage') {
         setMainProfileImage(croppedImage);
       } else if (type === 'subImage') {
@@ -208,7 +224,7 @@ const ProfileImageHead = ({
             sx={{ aspectRatio: '1' }}
           >
             <Cropper
-              image={cacheImage && URL.createObjectURL(cacheImage)}
+              image={cacheImage}
               crop={crop}
               zoom={zoom}
               aspect={1}
