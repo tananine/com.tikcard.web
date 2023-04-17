@@ -33,6 +33,7 @@
     "react-easy-crop": "^4.7.4",
     "react-hook-form": "^7.43.7",
     "react-hot-toast": "^2.4.0",
+    "react-image-file-resizer": "^0.4.8",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "vcard-creator": "^0.6.0"
