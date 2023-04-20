@@ -107,7 +107,7 @@ const View = ({ isPreview, profileData }) => {
                   height: 52,
                   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
                 }}
-                src={profileData?.info.companyImage}
+                src={profileData?.info.logoImage}
               />
             </Box>
           </Box>

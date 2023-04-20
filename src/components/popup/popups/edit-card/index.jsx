@@ -16,8 +16,8 @@ import { LoadingButton } from '@mui/lab';
 import toast from 'react-hot-toast';
 
 const EditCard = () => {
-  const [mainProfileImage, setMainProfileImage] = useState(null);
-  const [subProfileImage, setSubProfileImage] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
+  const [logoImage, setLogoImage] = useState(null);
 
   const open = useSelector((state) => state.popup.editCardPopup);
   const profileId = useSelector(
@@ -39,8 +39,8 @@ const EditCard = () => {
 
   const clearData = () => {
     reset();
-    setMainProfileImage(null);
-    setSubProfileImage(null);
+    setProfileImage(null);
+    setLogoImage(null);
   };
 
   useEffect(() => {
@@ -54,8 +54,8 @@ const EditCard = () => {
         setValue('position', res.data.position);
         setValue('address', res.data.address);
         setValue('bio', res.data.bio);
-        setMainProfileImage(res.data.profileImage);
-        setSubProfileImage(res.data.companyImage);
+        setProfileImage(res.data.profileImage);
+        setLogoImage(res.data.logoImage);
       });
     }
   }, [getInformationAction, profileId, setValue, open]);
@@ -70,15 +70,15 @@ const EditCard = () => {
     formData.append('address', form.address);
     formData.append('bio', form.bio);
 
-    if (mainProfileImage?.split(':')[0] === 'blob') {
-      const mainProfileImageBlob = await fetch(mainProfileImage);
-      const mainProfileImageObject = await mainProfileImageBlob.blob();
-      formData.append('profileImage', mainProfileImageObject);
+    if (profileImage?.split(':')[0] === 'blob') {
+      const profileImageBlob = await fetch(profileImage);
+      const profileImageObject = await profileImageBlob.blob();
+      formData.append('profileImage', profileImageObject);
     }
-    if (subProfileImage?.split(':')[0] === 'blob') {
-      const subProfileImageBlob = await fetch(subProfileImage);
-      const subProfileImageObject = await subProfileImageBlob.blob();
-      formData.append('companyImage', subProfileImageObject);
+    if (logoImage?.split(':')[0] === 'blob') {
+      const logoImageBlob = await fetch(logoImage);
+      const logoImageObject = await logoImageBlob.blob();
+      formData.append('logoImage', logoImageObject);
     }
 
     updateInformationAction(formData).then(() => {
@@ -103,10 +103,10 @@ const EditCard = () => {
           {...register('cardName')}
         />
         <ProfileImageHead
-          mainProfileImage={mainProfileImage}
-          setMainProfileImage={setMainProfileImage}
-          subProfileImage={subProfileImage}
-          setSubProfileImage={setSubProfileImage}
+          profileImage={profileImage}
+          setProfileImage={setProfileImage}
+          logoImage={logoImage}
+          setLogoImage={setLogoImage}
         />
         <Box marginTop={8} display="flex" flexDirection="column" gap={2}>
           <TextField

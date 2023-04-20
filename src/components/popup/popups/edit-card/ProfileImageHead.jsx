@@ -19,10 +19,10 @@ import CollectionsIcon from '@mui/icons-material/Collections';
 import EditIcon from '@mui/icons-material/Edit';
 
 const ProfileImageHead = ({
-  mainProfileImage,
-  setMainProfileImage,
-  subProfileImage,
-  setSubProfileImage,
+  profileImage,
+  setProfileImage,
+  logoImage,
+  setLogoImage,
 }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [cacheImage, setCacheImage] = useState(null);
@@ -78,10 +78,10 @@ const ProfileImageHead = ({
   const saveCropImage = async () => {
     try {
       const croppedImage = await getCropOutput(cacheImage, croppedAreaPixels);
-      if (type === 'mainImage') {
-        setMainProfileImage(croppedImage);
-      } else if (type === 'subImage') {
-        setSubProfileImage(croppedImage);
+      if (type === 'profileImage') {
+        setProfileImage(croppedImage);
+      } else if (type === 'logoImage') {
+        setLogoImage(croppedImage);
       }
     } catch (error) {
       console.error(error);
@@ -93,15 +93,15 @@ const ProfileImageHead = ({
     <>
       <Input
         type="file"
-        id="upload-main-profile"
+        id="upload-profile-image"
         sx={{ display: 'none' }}
-        onChange={(e) => inputImage(e, 'mainImage')}
+        onChange={(e) => inputImage(e, 'profileImage')}
       />
       <Input
         type="file"
-        id="upload-sub-profile"
+        id="upload-logo-image"
         sx={{ display: 'none' }}
-        onChange={(e) => inputImage(e, 'subImage')}
+        onChange={(e) => inputImage(e, 'logoImage')}
       />
       <Box marginY={2}>
         <Box
@@ -115,7 +115,7 @@ const ProfileImageHead = ({
         >
           <img
             src="https://img.freepik.com/free-vector/minimal-white-gray-background-with-wavy-lines_1017-25099.jpg?w=2000"
-            alt="cover image"
+            alt=""
             width="100%"
             height="100%"
           />
@@ -133,7 +133,7 @@ const ProfileImageHead = ({
             top: 160,
           }}
         >
-          <label htmlFor="upload-main-profile">
+          <label htmlFor="upload-profile-image">
             <Box sx={{ border: '4px solid white', borderRadius: '50%' }}>
               <Avatar
                 sx={{
@@ -144,10 +144,10 @@ const ProfileImageHead = ({
                     'rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em',
                 }}
               >
-                {mainProfileImage ? (
+                {profileImage ? (
                   <img
-                    src={mainProfileImage}
-                    alt="รูปโพรไฟล์"
+                    src={profileImage}
+                    alt=""
                     width="100%"
                     height="100%"
                   />
@@ -179,7 +179,7 @@ const ProfileImageHead = ({
             borderRadius: '50%',
           }}
         >
-          <label htmlFor="upload-sub-profile">
+          <label htmlFor="upload-logo-image">
             <Avatar
               sx={{
                 width: 52,
@@ -188,10 +188,10 @@ const ProfileImageHead = ({
                 boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
               }}
             >
-              {subProfileImage ? (
+              {logoImage ? (
                 <img
-                  src={subProfileImage}
-                  alt="รูปบริษัท"
+                  src={logoImage}
+                  alt=""
                   width="100%"
                   height="100%"
                 />
