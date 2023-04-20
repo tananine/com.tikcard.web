@@ -44,6 +44,9 @@ const EditContact = () => {
     data: useSelector((state) => state.editContactDynamic.data.data),
     imageIcon: useSelector((state) => state.editContactDynamic.data.imageIcon),
     uri: useSelector((state) => state.editContactDynamic.data.uri),
+    typeLayout: useSelector(
+      (state) => state.editContactDynamic.data.typeLayout
+    ),
   };
 
   const isChild = useSelector((state) => state.editContactDynamic.isChild);
@@ -133,10 +136,19 @@ const EditContact = () => {
             InputLabelProps={{ shrink: true }}
             {...register('data')}
           />
+          {appData.typeLayout === 'block' && (
+            <TextField
+              label="Note"
+              multiline
+              rows={3}
+              fullWidth
+              sx={{ marginTop: 2 }}
+              InputLabelProps={{ shrink: true }}
+            />
+          )}
           <Button
             sx={{
               marginTop: 1,
-              marginBottom: 4,
               display: 'flex',
               marginX: 'auto',
             }}

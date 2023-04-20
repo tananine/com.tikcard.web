@@ -16,6 +16,7 @@ const AddContactList = ({
   androidUri,
   iosUri,
   imageIcon,
+  typeLayout,
 }) => {
   const dispatch = useDispatch();
 
@@ -30,6 +31,7 @@ const AddContactList = ({
           androidUri: androidUri,
           iosUri: iosUri,
         },
+        typeLayout: typeLayout,
       })
     );
     dispatch(setEditContactDynamicChild({ isChild: true }));

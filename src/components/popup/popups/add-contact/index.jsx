@@ -22,7 +22,7 @@ import phoneBlock from '@/assets/svg/phone-block.svg';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 
-const ContactList = (appListData) => {
+const ContactList = (appListData, typeLayout) => {
   return appListData?.map((app) => {
     return (
       <AddContactList
@@ -33,6 +33,7 @@ const ContactList = (appListData) => {
         androidUri={app.androidUri}
         iosUri={app.iosUri}
         imageIcon={app.imageIcon}
+        typeLayout={typeLayout}
       />
     );
   });
@@ -42,6 +43,9 @@ const AddContact = () => {
   const [getAppListAction, getAppListLoading, getAppListData] = useGet(
     profileServicePath.getAppList
   );
+
+  const [gridList, setGridList] = useState([]);
+  const [blockList, setBlockList] = useState([]);
 
   const [tabValue, setTabValue] = useState('grid');
 
@@ -65,7 +69,10 @@ const AddContact = () => {
 
   useEffect(() => {
     if (open && !getAppListData) {
-      getAppListAction();
+      getAppListAction().then((res) => {
+        setGridList(res.data.filter((item) => item.typeLayout === 'grid'));
+        setBlockList(res.data.filter((item) => item.typeLayout === 'block'));
+      });
     }
   }, [getAppListAction, open]);
 
@@ -96,7 +103,7 @@ const AddContact = () => {
           พบ {getAppListData?.data.length || 0} รายการ
         </Typography>
       </Box>
-      {getAppListLoading || !getAppListData ? (
+      {getAppListLoading ? (
         <Box display="flex" justifyContent="center">
           <CircularProgress disableShrink />
         </Box>
@@ -119,7 +126,11 @@ const AddContact = () => {
               />
             </TabList>
             <TabPanel value={'grid'} sx={{ marginTop: 2, padding: 0 }}>
-              {ContactList(getAppListData?.data)}
+              {ContactList(gridList, 'grid')}
+              <Divider sx={{ width: '60px', margin: 'auto' }} />
+            </TabPanel>
+            <TabPanel value={'block'} sx={{ marginTop: 2, padding: 0 }}>
+              {ContactList(blockList, 'block')}
               <Divider sx={{ width: '60px', margin: 'auto' }} />
             </TabPanel>
           </TabContext>
