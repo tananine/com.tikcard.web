@@ -38,7 +38,7 @@ const ContactLists = (contacts) => {
                 contact.ContactItem.defaultUri,
                 contact.ContactItem.androidUri,
                 contact.ContactItem.iosUri,
-                contact.url
+                contact.data
               )
             }
           />

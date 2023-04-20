@@ -41,7 +41,7 @@ const EditContact = () => {
       (state) => state.editContactDynamic.data.contactItemId
     ),
     name: useSelector((state) => state.editContactDynamic.data.name),
-    url: useSelector((state) => state.editContactDynamic.data.url),
+    data: useSelector((state) => state.editContactDynamic.data.data),
     imageIcon: useSelector((state) => state.editContactDynamic.data.imageIcon),
     uri: useSelector((state) => state.editContactDynamic.data.uri),
   };
@@ -54,9 +54,9 @@ const EditContact = () => {
 
   useEffect(() => {
     if (open) {
-      setValue('url', appData.url);
+      setValue('data', appData.data);
     }
-  }, [setValue, appData.url, open]);
+  }, [setValue, appData.data, open]);
 
   const editContactDynamicToggleHandler = useCallback(() => {
     dispatch(editContactDynamicToggle());
@@ -71,7 +71,7 @@ const EditContact = () => {
     const body = {
       contactId: appData.contactId,
       contactItemId: appData.contactItemId,
-      url: form.url,
+      data: form.data,
     };
     if (appData.contactId) {
       return updateContactAction(body).then(() => {
@@ -94,12 +94,12 @@ const EditContact = () => {
   };
 
   const goContact = () => {
-    if (getValues('url')) {
+    if (getValues('data')) {
       openAppUri(
         appData.uri.defaultUri,
         appData.uri.androidUri,
         appData.uri.iosUri,
-        getValues('url')
+        getValues('data')
       );
     } else {
       alert('กรุณากรอกข้อมูลติดต่อ');
@@ -131,7 +131,7 @@ const EditContact = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            {...register('url')}
+            {...register('data')}
           />
           <Button
             sx={{

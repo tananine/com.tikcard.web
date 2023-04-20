@@ -14,7 +14,7 @@ import {
 import usePut from '@/hooks/axios/usePut';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
-const ContactList = ({ contactId, contactItem, url, show }) => {
+const ContactList = ({ contactId, contactItem, data, show }) => {
   const dispatch = useDispatch();
 
   const [showState, setShowState] = useState(show);
@@ -30,7 +30,7 @@ const ContactList = ({ contactId, contactItem, url, show }) => {
         contactItemId: contactItem.id,
         name: contactItem.name,
         imageIcon: contactItem.imageIcon,
-        url: url,
+        data: data,
         uri: {
           defaultUri: contactItem.defaultUri,
           androidUri: contactItem.androidUri,
@@ -38,7 +38,7 @@ const ContactList = ({ contactId, contactItem, url, show }) => {
         },
       })
     );
-  }, [dispatch, contactId, contactItem, url]);
+  }, [dispatch, contactId, contactItem, data]);
 
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: contactId });
@@ -104,7 +104,7 @@ const ContactList = ({ contactId, contactItem, url, show }) => {
                   {contactItem.name}
                 </Typography>
                 <Typography variant="caption" noWrap>
-                  {url}
+                  {data}
                 </Typography>
               </Box>
             </Box>
