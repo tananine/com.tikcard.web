@@ -7,6 +7,9 @@ import { reloadContactList } from '@/stores/reload';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 
+import GridLayout from '@/components/layoutContact/GridLayout';
+import BlockLayout from '@/components/layoutContact/BlockLayout';
+
 import openAppUri from '@/functions/openAppUri';
 
 import usePost from '@/hooks/axios/usePost';
@@ -19,7 +22,8 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import toast from 'react-hot-toast';
 
 const EditContact = () => {
-  const { register, handleSubmit, setValue, getValues } = useForm();
+  const { register, handleSubmit, setValue, getValues, watch } = useForm();
+  watch();
 
   const [addContactAction, addContactLoading] = usePost(
     profileServicePath.contactData
@@ -74,7 +78,9 @@ const EditContact = () => {
     const body = {
       contactId: appData.contactId,
       contactItemId: appData.contactItemId,
+      name: form.name,
       data: form.data,
+      note: form.note,
     };
     if (appData.contactId) {
       return updateContactAction(body).then(() => {
@@ -109,6 +115,67 @@ const EditContact = () => {
     }
   };
 
+  const layoutContact = () => {
+    if (appData.typeLayout === 'grid') {
+      return (
+        <Box width={70} marginY={2} marginX="auto">
+          <GridLayout imageIcon={appData.imageIcon} title={appData.name} />
+        </Box>
+      );
+    } else if (appData.typeLayout === 'block') {
+      return (
+        <Box marginY={2}>
+          <BlockLayout
+            imageIcon={appData.imageIcon}
+            name={getValues('name')}
+            note={getValues('note')}
+          />
+        </Box>
+      );
+    }
+  };
+
+  const fieldInput = () => {
+    if (appData.typeLayout === 'grid') {
+      return (
+        <TextField
+          label={appData.name}
+          variant="outlined"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          {...register('data')}
+        />
+      );
+    } else if (appData.typeLayout === 'block') {
+      return (
+        <Box display="flex" flexDirection="column" gap={2}>
+          <TextField
+            label="ชื่อบล็อค"
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            {...register('name')}
+          />
+          <TextField
+            label={appData.name}
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            {...register('data')}
+          />
+          <TextField
+            label="รายละเอียด"
+            multiline
+            rows={2}
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            {...register('note')}
+          />
+        </Box>
+      );
+    }
+  };
+
   return (
     <PopupWrapper
       open={open}
@@ -121,54 +188,51 @@ const EditContact = () => {
         flexDirection="column"
         justifyContent="space-between"
       >
-        <Box>
-          <Box display="flex" justifyContent="space-between">
+        <Box marginBottom={4}>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            position="sticky"
+            top={0}
+            bgcolor="#ffffff"
+            zIndex={2}
+          >
             <Typography variant="h2">{appData.name}</Typography>
             <Button onClick={goContact}>ตัวอย่างเมื่อคลิก</Button>
           </Box>
-          <Box textAlign="center" padding={2}>
-            <img src={appData.imageIcon} alt="" width="70px" height="70px" />
-          </Box>
-          <TextField
-            label={appData.name}
-            variant="outlined"
-            fullWidth
-            InputLabelProps={{ shrink: true }}
-            {...register('data')}
-          />
-          {appData.typeLayout === 'block' && (
-            <TextField
-              label="Note"
-              multiline
-              rows={3}
-              fullWidth
-              sx={{ marginTop: 2 }}
-              InputLabelProps={{ shrink: true }}
-            />
-          )}
+          {layoutContact()}
           <Button
             sx={{
-              marginTop: 1,
+              marginY: 1,
               display: 'flex',
-              marginX: 'auto',
+              marginLeft: 'auto',
             }}
             endIcon={<InfoOutlinedIcon />}
           >
             คำแนะนำ
           </Button>
+          {fieldInput()}
         </Box>
-        <Box textAlign="center">
-          {appData.contactId && (
+        {appData.contactId && (
+          <Box textAlign="center">
             <LoadingButton
               variant="text"
               color="error"
-              sx={{ marginBottom: 2 }}
+              sx={{ marginY: 2 }}
               onClick={deleteContact}
               loading={deleteContactLoading}
             >
               ลบ
             </LoadingButton>
-          )}
+          </Box>
+        )}
+        <Box
+          position="sticky"
+          bottom={0}
+          paddingY={1}
+          bgcolor="#ffffff"
+          zIndex={2}
+        >
           <LoadingButton
             variant="contained"
             color="secondary"
