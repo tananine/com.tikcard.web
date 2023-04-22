@@ -16,6 +16,9 @@ import saveVCard from '@/functions/saveVCard';
 
 import Lead from '@/pages/view/Lead';
 
+import GridLayout from '@/components/layoutContact/GridLayout';
+import BlockLayout from '@/components/layoutContact/BlockLayout';
+
 const ContactLists = (contacts) => {
   return contacts?.map((contact, index) => {
     return (
@@ -27,12 +30,7 @@ const ContactLists = (contacts) => {
             transitionDelay: `${40 * index}ms`,
           }}
         >
-          <img
-            src={contact.ContactItem.imageIcon}
-            alt=""
-            width="100%"
-            height="auto"
-            style={{ maxWidth: '100px', cursor: 'pointer', aspectRatio: '1' }}
+          <Box
             onClick={() =>
               openAppUri(
                 contact.ContactItem.defaultUri,
@@ -41,11 +39,13 @@ const ContactLists = (contacts) => {
                 contact.data
               )
             }
-          />
+          >
+            <GridLayout
+              imageIcon={contact.ContactItem.imageIcon}
+              title={contact.ContactItem.name}
+            />
+          </Box>
         </Fade>
-        <Typography variant="caption" marginBottom={1.2}>
-          {contact.ContactItem.name}
-        </Typography>
       </Grid>
     );
   });
@@ -114,7 +114,7 @@ const View = ({ isPreview, profileData }) => {
         </Grow>
         <Box padding={2} minHeight="100vh">
           <Fade in={true} timeout={{ enter: 1000 }}>
-            <Box>
+            <Box marginBottom={4}>
               <Box marginBottom={2}>
                 <Typography marginTop={5} textAlign="center" variant="h1">
                   {profileData?.info.name || 'ไม่มีชื่อ'}
@@ -126,7 +126,11 @@ const View = ({ isPreview, profileData }) => {
                   {profileData?.info.bio}
                 </Typography>
               </Box>
-              <Grid container spacing={1} sx={{ marginY: 2 }}>
+              <Grid
+                container
+                spacing={1}
+                sx={{ marginTop: 2, marginBottom: 4 }}
+              >
                 <Grid item xs={7}>
                   <Lead isPreview={isPreview} />
                 </Grid>
@@ -150,7 +154,7 @@ const View = ({ isPreview, profileData }) => {
             container
             rowSpacing={1}
             columnSpacing={3}
-            marginTop={2}
+            marginY={3}
             paddingX={2}
           >
             {ContactLists(profileData?.contacts)}
