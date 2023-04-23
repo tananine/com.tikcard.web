@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   Avatar,
   Box,
@@ -19,46 +20,117 @@ import Lead from '@/pages/view/Lead';
 import GridLayout from '@/components/layoutContact/GridLayout';
 import BlockLayout from '@/components/layoutContact/BlockLayout';
 
-const ContactLists = (contacts) => {
-  return contacts?.map((contact, index) => {
-    return (
-      <Grid key={contact.id} item xs={3} textAlign="center">
-        <Fade
-          in={true}
-          timeout={{ enter: 1000 }}
-          style={{
-            transitionDelay: `${40 * index}ms`,
-          }}
-        >
-          <Box
-            onClick={() =>
-              openAppUri(
-                contact.ContactItem.defaultUri,
-                contact.ContactItem.androidUri,
-                contact.ContactItem.iosUri,
-                contact.data
-              )
-            }
-          >
-            <GridLayout
-              imageIcon={contact.ContactItem.imageIcon}
-              title={contact.ContactItem.name}
+const ContactLists = (contactItems) => {
+  return contactItems?.map((section, index) => {
+    return section.typeLayout === 'grid' ? (
+      <Grid
+        key={section.id}
+        container
+        rowSpacing={1}
+        columnSpacing={3}
+        marginY={2}
+        paddingX={2}
+      >
+        {section.contacts?.map((item) => {
+          return (
+            <Grid key={item.id} item xs={3} textAlign="center">
+              <GridLayout
+                onClick={() =>
+                  openAppUri(
+                    item.ContactItem.defaultUri,
+                    item.ContactItem.androidUri,
+                    item.ContactItem.iosUri,
+                    item.data
+                  )
+                }
+                imageIcon={item.ContactItem.imageIcon}
+                title={item.ContactItem.name}
+              />
+            </Grid>
+          );
+        })}
+      </Grid>
+    ) : (
+      section.contacts?.map((item) => {
+        return (
+          <Box key={item.id} width="100%" marginY={2}>
+            <BlockLayout
+              onClick={() =>
+                openAppUri(
+                  item.ContactItem.defaultUri,
+                  item.ContactItem.androidUri,
+                  item.ContactItem.iosUri,
+                  item.data
+                )
+              }
+              imageIcon={item.ContactItem.imageIcon}
+              name={item.name}
+              note={item.note}
             />
           </Box>
-        </Fade>
-      </Grid>
+        );
+      })
     );
   });
 };
 
 const View = ({ isPreview, profileData }) => {
+  const [contactItems, setContactItems] = useState([]);
+
+  const setListContactItems = () => {
+    const contactSection = [];
+    let contactList = [];
+
+    const pushContactSection = () => {
+      contactSection.push({
+        id: contactSection.length,
+        typeLayout: contactList[0].ContactItem.typeLayout,
+        contacts: contactList,
+      });
+    };
+
+    profileData?.contacts.forEach((contact, index) => {
+      if (index === 0) {
+        contactList.push(contact);
+        if (profileData.contacts.length - 1 === 0) {
+          pushContactSection();
+        }
+        return;
+      }
+      const lastIndexItem = contactList.length - 1;
+      if (
+        contactList[lastIndexItem]?.ContactItem.typeLayout ===
+        contact?.ContactItem.typeLayout
+      ) {
+        contactList.push(contact);
+      } else {
+        pushContactSection();
+        contactList = [];
+        contactList.push(contact);
+      }
+      if (index === profileData.contacts.length - 1) {
+        pushContactSection();
+      }
+    });
+    setContactItems(contactSection);
+  };
+
+  useEffect(() => {
+    setListContactItems();
+  }, [profileData, setContactItems]);
+
   const goNewCreate = () => {
     window.open('/app/login');
   };
 
   return (
-    <>
-      <Box>
+    <Box
+      minHeight="100vh"
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-between"
+    >
+      <Box marginBottom={8}>
         <Box
           height={180}
           bgcolor="#ced4da"
@@ -112,9 +184,9 @@ const View = ({ isPreview, profileData }) => {
             </Box>
           </Box>
         </Grow>
-        <Box padding={2} minHeight="100vh">
+        <Box padding={2} minHeight={500}>
           <Fade in={true} timeout={{ enter: 1000 }}>
-            <Box marginBottom={4}>
+            <Box marginBottom={2}>
               <Box marginBottom={2}>
                 <Typography marginTop={5} textAlign="center" variant="h1">
                   {profileData?.info.name || 'ไม่มีชื่อ'}
@@ -150,27 +222,19 @@ const View = ({ isPreview, profileData }) => {
               <Divider variant="middle" />
             </Box>
           </Fade>
-          <Grid
-            container
-            rowSpacing={1}
-            columnSpacing={3}
-            marginY={3}
-            paddingX={2}
-          >
-            {ContactLists(profileData?.contacts)}
-          </Grid>
+          {ContactLists(contactItems)}
         </Box>
-        {!isPreview && (
-          <Box textAlign="center" padding={2}>
-            <Typography variant="caption">สร้างโดย</Typography>
-            <Typography variant="caption">Tikcard.me</Typography>
-            <Button variant="text" size="large" onClick={goNewCreate}>
-              สร้างนามบัตรของคุณ ฟรี
-            </Button>
-          </Box>
-        )}
       </Box>
-    </>
+      {!isPreview && (
+        <Box textAlign="center" padding={2}>
+          <Typography variant="caption">สร้างโดย</Typography>
+          <Typography variant="caption">Tikcard.me</Typography>
+          <Button variant="text" size="large" onClick={goNewCreate}>
+            สร้างนามบัตรของคุณ ฟรี
+          </Button>
+        </Box>
+      )}
+    </Box>
   );
 };
 

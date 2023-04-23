@@ -14,7 +14,7 @@ import {
 import usePut from '@/hooks/axios/usePut';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
-const ContactList = ({ contactId, contactItem, data, show }) => {
+const ContactList = ({ contactId, contactItem, dataItem, show }) => {
   const dispatch = useDispatch();
 
   const [showState, setShowState] = useState(show);
@@ -30,15 +30,20 @@ const ContactList = ({ contactId, contactItem, data, show }) => {
         contactItemId: contactItem.id,
         name: contactItem.name,
         imageIcon: contactItem.imageIcon,
-        data: data,
+        dataItem: {
+          name: dataItem.name,
+          data: dataItem.data,
+          note: dataItem.note,
+        },
         uri: {
           defaultUri: contactItem.defaultUri,
           androidUri: contactItem.androidUri,
           iosUri: contactItem.iosUri,
         },
+        typeLayout: contactItem.typeLayout,
       })
     );
-  }, [dispatch, contactId, contactItem, data]);
+  }, [dispatch, contactId, contactItem, dataItem]);
 
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: contactId });
@@ -65,6 +70,10 @@ const ContactList = ({ contactId, contactItem, data, show }) => {
         sx={{
           transform: CSS.Transform.toString(transform),
           transition,
+          border:
+            dataItem.ContactItem.typeLayout === 'block'
+              ? '1px solid #c2c2c2'
+              : '1px solid #ffffff',
         }}
       >
         <Box display="flex" alignItems="center" gap={2}>
@@ -104,7 +113,7 @@ const ContactList = ({ contactId, contactItem, data, show }) => {
                   {contactItem.name}
                 </Typography>
                 <Typography variant="caption" noWrap>
-                  {data}
+                  {dataItem.data}
                 </Typography>
               </Box>
             </Box>

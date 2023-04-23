@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, Divider, TextField, Typography } from '@mui/material';
 import PopupWrapper from '@/components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContactToggle, editContactDynamicToggle } from '@/stores/popup';
@@ -45,7 +45,7 @@ const EditContact = () => {
       (state) => state.editContactDynamic.data.contactItemId
     ),
     name: useSelector((state) => state.editContactDynamic.data.name),
-    data: useSelector((state) => state.editContactDynamic.data.data),
+    dataItem: useSelector((state) => state.editContactDynamic.data.dataItem),
     imageIcon: useSelector((state) => state.editContactDynamic.data.imageIcon),
     uri: useSelector((state) => state.editContactDynamic.data.uri),
     typeLayout: useSelector(
@@ -61,7 +61,9 @@ const EditContact = () => {
 
   useEffect(() => {
     if (open) {
-      setValue('data', appData.data);
+      setValue('name', appData.dataItem?.name);
+      setValue('data', appData.dataItem?.data);
+      setValue('note', appData.dataItem?.note);
     }
   }, [setValue, appData.data, open]);
 
@@ -201,16 +203,18 @@ const EditContact = () => {
             <Button onClick={goContact}>ตัวอย่างเมื่อคลิก</Button>
           </Box>
           {layoutContact()}
-          <Button
-            sx={{
-              marginY: 1,
-              display: 'flex',
-              marginLeft: 'auto',
-            }}
-            endIcon={<InfoOutlinedIcon />}
-          >
-            คำแนะนำ
-          </Button>
+          <Divider sx={{ marginBottom: 2 }}>
+            <Button
+              sx={{
+                display: 'flex',
+                marginLeft: 'auto',
+              }}
+              endIcon={<InfoOutlinedIcon />}
+            >
+              ดูวิธีใส่ข้อมูล {appData.name}
+            </Button>
+          </Divider>
+
           {fieldInput()}
         </Box>
         {appData.contactId && (

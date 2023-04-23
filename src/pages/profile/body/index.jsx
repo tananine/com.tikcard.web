@@ -110,7 +110,7 @@ const ProfileBody = () => {
               key={item.id}
               contactId={item.id}
               contactItem={item.ContactItem}
-              data={item.data}
+              dataItem={item}
               show={item.show}
             />
           ))}
