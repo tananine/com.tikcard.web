@@ -4,7 +4,6 @@ import VCard from 'vcard-creator';
 const saveVCard = (data) => {
   const vCardData = new VCard();
 
-  console.log(data);
   vCardData
     .addName(data?.name)
     .addAddress(data?.address)
