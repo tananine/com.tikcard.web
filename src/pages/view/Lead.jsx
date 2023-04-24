@@ -21,13 +21,15 @@ const Lead = ({ isPreview }) => {
   };
 
   useEffect(() => {
-    timeoutRef.current = setTimeout(() => {
-      setOpenForm(true);
-    }, 3500);
+    if (!isPreview) {
+      timeoutRef.current = setTimeout(() => {
+        setOpenForm(true);
+      }, 3500);
 
-    return () => {
-      clearTimeout(timeoutRef.current);
-    };
+      return () => {
+        clearTimeout(timeoutRef.current);
+      };
+    }
   }, []);
 
   return (
@@ -41,7 +43,6 @@ const Lead = ({ isPreview }) => {
         ฝากข้อมูลติดต่อ
       </Button>
       <Dialog
-        hidden={isPreview}
         open={openForm}
         maxWidth="xl"
         PaperProps={{ sx: { margin: 2, width: '100%', borderRadius: 6 } }}
