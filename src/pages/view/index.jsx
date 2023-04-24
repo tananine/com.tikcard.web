@@ -222,7 +222,15 @@ const View = ({ isPreview, profileData }) => {
               <Divider variant="middle" />
             </Box>
           </Fade>
-          {ContactLists(contactItems)}
+          <Fade
+            in={true}
+            timeout={{ enter: 1000 }}
+            style={{
+              transitionDelay: '200ms',
+            }}
+          >
+            <Box>{ContactLists(contactItems)}</Box>
+          </Fade>
         </Box>
       </Box>
       {!isPreview && (
