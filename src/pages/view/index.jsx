@@ -226,7 +226,7 @@ const View = ({ isPreview, profileData }) => {
             in={true}
             timeout={{ enter: 1000 }}
             style={{
-              transitionDelay: '200ms',
+              transitionDelay: '100ms',
             }}
           >
             <Box>{ContactLists(contactItems)}</Box>
