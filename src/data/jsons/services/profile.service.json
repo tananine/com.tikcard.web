@@ -11,5 +11,6 @@
   "viewProfile": "/view",
   "useLink": "/share/link",
   "getLink": "/share/get",
-  "contactToggleShow": "/contact/me/toggle"
+  "contactToggleShow": "/contact/me/toggle",
+  "updateLinkId": "/share/update"
 }
