@@ -14,6 +14,8 @@ import {
 import usePut from '@/hooks/axios/usePut';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 const ContactList = ({ contactId, contactItem, dataItem, show }) => {
   const dispatch = useDispatch();
 
@@ -56,8 +58,10 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
     setShowState((prev) => (prev === 'enable' ? 'disable' : 'enable'));
   };
 
+  const isShowState = showState === 'enable';
+
   const opacityLevel = () => {
-    if (showState !== 'enable') {
+    if (!isShowState) {
       return 0.3;
     }
     return 1;
@@ -118,6 +122,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
               </Box>
             </Box>
           </Box>
+          {!isShowState && <VisibilityOffIcon />}
           <Switch
             size="small"
             defaultChecked={show === 'enable'}
