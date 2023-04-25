@@ -1,4 +1,4 @@
-import { Avatar, Box, Typography } from '@mui/material';
+import { Avatar, Box, Typography, Badge } from '@mui/material';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
@@ -15,7 +15,14 @@ const Select = (isSelect) => {
   }
 };
 
-const Profile = ({ profileImage, cardName, name, company, isSelect }) => {
+const Profile = ({
+  profileImage,
+  logoImage,
+  cardName,
+  name,
+  company,
+  isSelect,
+}) => {
   return (
     <Box
       textAlign="center"
@@ -26,10 +33,19 @@ const Profile = ({ profileImage, cardName, name, company, isSelect }) => {
       height={212}
     >
       {Select(isSelect)}
-      <Avatar
-        sx={{ width: 76, height: 76, marginX: 'auto', marginBottom: 2 }}
-        src={profileImage}
-      />
+      <Badge
+        overlap="circular"
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        sx={{ marginBottom: 2 }}
+        badgeContent={
+          <Avatar
+            sx={{ width: 32, height: 32, border: '2px solid #ffffff' }}
+            src={logoImage}
+          />
+        }
+      >
+        <Avatar sx={{ width: 76, height: 76 }} src={profileImage} />
+      </Badge>
       <Typography variant="h3">{cardName}</Typography>
       <Typography variant="caption" fontSize={14}>
         {name}

@@ -1,5 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Avatar, Box, Card, CircularProgress, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Card,
+  CircularProgress,
+  Typography,
+  Badge,
+} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector, useDispatch } from 'react-redux';
 import { switchProfileToggle } from '@/stores/popup';
@@ -8,14 +15,31 @@ import { setProfiles } from '@/stores/account';
 import useGet from '@/hooks/axios/useGet';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
-const Profile = ({ profileImage, cardName, name, showSelectProfileText }) => {
+const Profile = ({
+  profileImage,
+  logoImage,
+  cardName,
+  name,
+  showSelectProfileText,
+}) => {
   if (showSelectProfileText) {
     return <>เลือกใช้งานนามบัตร</>;
   }
   return (
     <>
       <Box display="flex" gap={2} flexGrow={1} alignItems="center">
-        <Avatar sx={{ width: 46, height: 46 }} src={profileImage} />
+        <Badge
+          overlap="circular"
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+          badgeContent={
+            <Avatar
+              sx={{ width: 26, height: 26, border: '2px solid #ffffff' }}
+              src={logoImage}
+            />
+          }
+        >
+          <Avatar sx={{ width: 46, height: 46 }} src={profileImage} />
+        </Badge>
         <Box height="100%">
           <Typography variant="h3" lineHeight="26.5px">
             {cardName}
@@ -84,6 +108,7 @@ const CurrentProfile = ({ profileActivationId }) => {
       ) : (
         <Profile
           profileImage={activationProfileData?.profileImage}
+          logoImage={activationProfileData?.logoImage}
           cardName={activationProfileData?.cardName}
           name={activationProfileData?.name}
           showSelectProfileText={showSelectProfileText}
