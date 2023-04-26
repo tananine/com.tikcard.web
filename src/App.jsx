@@ -14,6 +14,8 @@ import ProfileFooter from '@/pages/profile/Footer';
 import ConnectionBody from '@/pages/connection/body';
 import ShareBody from '@/pages/share/body';
 
+import BackdropOnFetch from '@/components/BackdropOnFetch';
+
 const App = () => {
   const { page } = useParams();
 
@@ -43,6 +45,7 @@ const App = () => {
       {CurrentPage()}
       {Popups()}
       {Drawers()}
+      <BackdropOnFetch />
     </>
   );
 };

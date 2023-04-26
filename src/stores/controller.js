@@ -5,6 +5,7 @@ export const controllerSlice = createSlice({
   name: 'controller',
   initialState: {
     darkMode: false,
+    fetchQueue: 0,
     profileInUse: {
       profileState: null,
       profileId: null,
@@ -19,9 +20,20 @@ export const controllerSlice = createSlice({
       state.profileInUse.profileId = action.payload.profileId;
       axios.defaults.headers.common['profile'] = state.profileInUse.profileId;
     },
+    startFetchQueue: (state) => {
+      state.fetchQueue += 1;
+    },
+    endFetchQueue: (state) => {
+      state.fetchQueue -= 1;
+    },
   },
 });
 
-export const { darkModeToggle, setProfileInUse } = controllerSlice.actions;
+export const {
+  darkModeToggle,
+  setProfileInUse,
+  startFetchQueue,
+  endFetchQueue,
+} = controllerSlice.actions;
 
 export default controllerSlice.reducer;
