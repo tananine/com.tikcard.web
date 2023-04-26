@@ -80,7 +80,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
               : '1px solid #ffffff',
         }}
       >
-        <Box display="flex" alignItems="center" gap={2}>
+        <Box display="flex" alignItems="center" gap={1}>
           <Box
             display="flex"
             alignItems="center"
@@ -122,7 +122,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
               </Box>
             </Box>
           </Box>
-          {!isShowState && <VisibilityOffIcon />}
+          {!isShowState && <VisibilityOffIcon sx={{ fontSize: 16 }} />}
           <Switch
             size="small"
             defaultChecked={show === 'enable'}
