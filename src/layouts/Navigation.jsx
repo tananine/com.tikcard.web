@@ -21,6 +21,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const ProfilePart = () => {
   const profileActivation = useSelector((state) => state.account.activation);
+  const isScanDouble = useSelector((state) => state.device.isScanDouble);
 
   const navigate = useNavigate();
 
@@ -59,32 +60,34 @@ const ProfilePart = () => {
     }
   }, [setPrimary, setSecondary, type]);
 
-  return (
-    <Paper elevation={2}>
-      <Grid container>
-        <Grid item xs={6}>
-          <Button
-            fullWidth
-            sx={{ borderRadius: 0, opacity: type === 'primary' ? 1 : 0.5 }}
-            onClick={setPrimary}
-            startIcon={type === 'primary' && <EditIcon />}
-          >
-            โพรไฟล์หลัก
-          </Button>
+  if (isScanDouble) {
+    return (
+      <Paper elevation={2}>
+        <Grid container>
+          <Grid item xs={6}>
+            <Button
+              fullWidth
+              sx={{ borderRadius: 0, opacity: type === 'primary' ? 1 : 0.5 }}
+              onClick={setPrimary}
+              startIcon={type === 'primary' && <EditIcon />}
+            >
+              โพรไฟล์หลัก
+            </Button>
+          </Grid>
+          <Grid item xs={6}>
+            <Button
+              fullWidth
+              sx={{ borderRadius: 0, opacity: type === 'secondary' ? 1 : 0.5 }}
+              onClick={setSecondary}
+              startIcon={type === 'secondary' && <EditIcon />}
+            >
+              โพรไฟล์รอง
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Button
-            fullWidth
-            sx={{ borderRadius: 0, opacity: type === 'secondary' ? 1 : 0.5 }}
-            onClick={setSecondary}
-            startIcon={type === 'secondary' && <EditIcon />}
-          >
-            โพรไฟล์รอง
-          </Button>
-        </Grid>
-      </Grid>
-    </Paper>
-  );
+      </Paper>
+    );
+  }
 };
 
 const Navigation = () => {

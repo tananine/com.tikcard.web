@@ -6,6 +6,7 @@ import controllerReducer from '@/stores/controller';
 import layoutReducer from '@/stores/offset';
 import drawerReducer from '@/stores/drawer';
 import reloadReducer from '@/stores/reload';
+import deviceReducer from '@/stores/device';
 
 import editContactDynamicReducer from '@/stores/parse-data/editContactDynamic';
 
@@ -17,6 +18,7 @@ export default configureStore({
     layout: layoutReducer,
     drawer: drawerReducer,
     reload: reloadReducer,
+    device: deviceReducer,
 
     // ParseData
     editContactDynamic: editContactDynamicReducer,

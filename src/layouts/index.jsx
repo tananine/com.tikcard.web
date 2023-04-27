@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActivationProfile } from '@/stores/account';
 import { setProfileInUse } from '@/stores/controller';
+import { setDevice, setIsScanDouble } from '@/stores/device';
 
 import useGet from '@/hooks/axios/useGet';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
+import deviceServicePath from '@/data/jsons/services/device.service.json';
 
 import Header from '@/layouts/Header';
 import Body from '@/layouts/Body';
@@ -23,8 +25,11 @@ const Application = ({ header, body, footer }) => {
 
   const reloadLayoutsIndex = useSelector((state) => state.reload.layoutsIndex);
 
-  const [getActivationAction, getActivationLoading, getActivationData] = useGet(
+  const [getActivationAction, getActivationLoading] = useGet(
     profileServicePath.getActivation
+  );
+  const [getDeviceAllAction, getDeviceAllLoading] = useGet(
+    deviceServicePath.getDeviceAll
   );
 
   useEffect(() => {
@@ -49,7 +54,13 @@ const Application = ({ header, body, footer }) => {
         })
       );
     });
-  }, [getActivationAction, dispatch, reloadLayoutsIndex]);
+    getDeviceAllAction().then((res) => {
+      if (res.data.some((item) => item.DeviceType.typeScan === 'double')) {
+        dispatch(setIsScanDouble(true));
+      }
+      dispatch(setDevice(res.data));
+    });
+  }, [getActivationAction, dispatch, reloadLayoutsIndex, getDeviceAllAction]);
 
   if (showWelcomePage) {
     return (
@@ -67,7 +78,7 @@ const Application = ({ header, body, footer }) => {
     <>
       <Container>
         <Paper elevation={3}>
-          {!getActivationData || getActivationLoading ? (
+          {getActivationLoading && getDeviceAllLoading ? (
             <Loading />
           ) : (
             <>
