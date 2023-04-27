@@ -70,9 +70,11 @@ const ShareBody = () => {
   };
 
   useEffect(() => {
-    getLinkAction().then((res) => {
-      setLinkIdHandler(res.data.linkId);
-    });
+    if (profileActivationId) {
+      getLinkAction().then((res) => {
+        setLinkIdHandler(res.data.linkId);
+      });
+    }
   }, [getLinkAction, profileActivationId]);
 
   const copyClipboard = () => {
