@@ -1,4 +1,4 @@
-import Menu from '@/components/drawer/drawers/Menu';
+import Menu from '@/components/drawer/drawers/menu';
 import Preview from '@/components/drawer/drawers/Preview';
 
 const Drawers = () => {

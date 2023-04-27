@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 export const deviceSlice = createSlice({
   name: 'device',
   initialState: {
-    device: [],
+    devices: [],
     isScanDouble: false,
   },
   reducers: {
     setDevice: (state, action) => {
-      state.device = action.payload;
+      state.devices = action.payload;
     },
     setIsScanDouble: (state, action) => {
       state.isScanDouble = action.payload;
