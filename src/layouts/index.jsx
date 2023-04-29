@@ -2,7 +2,7 @@ import { Container, Paper } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setActivationProfile } from '@/stores/account';
+import { setActivationProfile, setAccount } from '@/stores/account';
 import { setProfileInUse } from '@/stores/controller';
 import { setDevice, setIsScanDouble } from '@/stores/device';
 
@@ -34,8 +34,9 @@ const Application = ({ header, body, footer }) => {
 
   useEffect(() => {
     getActivationAction().then((res) => {
-      const primary = res.data.primary;
-      const secondary = res.data.secondary;
+      const primary = res.data.activation.primary;
+      const secondary = res.data.activation.secondary;
+      const email = res.data.account.email;
       if (!primary) {
         setShowWelcomePage(true);
       } else {
@@ -53,6 +54,7 @@ const Application = ({ header, body, footer }) => {
           profileId: primary,
         })
       );
+      dispatch(setAccount({ email: email }));
     });
     getDeviceAllAction().then((res) => {
       if (res.data.some((item) => item.DeviceType.typeScan === 'double')) {

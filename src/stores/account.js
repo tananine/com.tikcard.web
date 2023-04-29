@@ -3,6 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 export const accountSlice = createSlice({
   name: 'account',
   initialState: {
+    accountData: {
+      email: null,
+    },
     activation: {
       primaryProfile: null,
       secondaryProfile: null,
@@ -23,6 +26,9 @@ export const accountSlice = createSlice({
     setProfiles: (state, action) => {
       state.profiles = action.payload;
     },
+    setAccount: (state, action) => {
+      state.accountData = action.payload;
+    },
   },
 });
 
@@ -31,6 +37,7 @@ export const {
   setPrimaryProfile,
   setSecondaryProfile,
   setProfiles,
+  setAccount,
 } = accountSlice.actions;
 
 export default accountSlice.reducer;
