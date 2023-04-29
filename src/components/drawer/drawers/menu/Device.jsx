@@ -41,12 +41,17 @@ const Device = () => {
   const devices = useSelector((state) => state.device.devices);
 
   return (
-    <Accordion sx={{ boxShadow: 'none', borderBottom: '1px solid #F1F1F1' }}>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
-      >
+    <Accordion
+      sx={{
+        boxShadow: 'none',
+        borderTop: '1px solid #F1F1F1',
+        borderBottom: '1px solid #F1F1F1',
+        '&:before': {
+          display: 'none',
+        },
+      }}
+    >
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>
           Tik Device ที่เชื่อมต่อ ({devices.length ? devices.length : 'ไม่มี'})
         </Typography>

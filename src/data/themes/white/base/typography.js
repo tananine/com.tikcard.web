@@ -93,14 +93,14 @@ const typography = {
 
   body1: {
     fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeXL,
+    fontSize: baseProperties.fontSizeMD,
     fontWeight: baseProperties.fontWeightRegular,
     lineHeight: 1.625,
   },
 
   body2: {
     fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeMD,
+    fontSize: baseProperties.fontSizeSM,
     fontWeight: baseProperties.fontWeightLight,
     lineHeight: 1.6,
   },
