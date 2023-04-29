@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { DndContext } from '@dnd-kit/core';
-import { Box, CircularProgress, Divider } from '@mui/material';
+import { Box, CircularProgress, Divider, Typography } from '@mui/material';
 import { SortableContext, arrayMove } from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import ContactList from '@/pages/profile/body/ContactList';
@@ -98,7 +98,11 @@ const ProfileBody = () => {
 
   return (
     <>
-      <Divider sx={{ width: '60px', margin: 'auto' }} />
+      <Box pl={1} pr={2} display="flex" justifyContent="space-between">
+        <Typography variant="caption">จัดเรียง</Typography>
+        <Divider sx={{ width: '60px', margin: 'auto' }} />
+        <Typography variant="caption">ซ่อน</Typography>
+      </Box>
       <DndContext
         modifiers={[restrictToVerticalAxis]}
         onDragStart={handleDragStart}
@@ -116,7 +120,7 @@ const ProfileBody = () => {
           ))}
         </SortableContext>
       </DndContext>
-      <Divider sx={{ width: '60px', margin: 'auto' }} />
+      <Box height={18} />
     </>
   );
 };
