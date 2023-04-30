@@ -85,7 +85,7 @@ const ShareBody = () => {
   return (
     <>
       {getLinkLoading || !getLinkData ? (
-        <Box display="flex" justifyContent="center" marginTop={4}>
+        <Box display="flex" justifyContent="center" marginY={4}>
           <CircularProgress disableShrink />
         </Box>
       ) : (

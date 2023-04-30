@@ -12,5 +12,8 @@
   "useLink": "/share/link",
   "getLink": "/share/get",
   "contactToggleShow": "/contact/me/toggle",
-  "updateLinkId": "/share/update"
+  "updateLinkId": "/share/update",
+  "sendContact": "/connection/send-contact",
+  "getAllConnectList": "/connection/get-all-connect-list",
+  "deleteConnectList": "/connection/delete-connect-list"
 }

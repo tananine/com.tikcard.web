@@ -204,7 +204,10 @@ const View = ({ isPreview, profileData }) => {
                 sx={{ marginTop: 2, marginBottom: 4 }}
               >
                 <Grid item xs={7}>
-                  <Lead isPreview={isPreview} />
+                  <Lead
+                    isPreview={isPreview}
+                    profileId={profileData?.info.profileId}
+                  />
                 </Grid>
                 <Grid item xs={5}>
                   <Button
