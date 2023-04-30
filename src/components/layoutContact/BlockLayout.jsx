@@ -4,12 +4,12 @@ const BlockLayout = ({ imageIcon, name, note, onClick }) => {
   return (
     <Box
       bgcolor="#f1f1f1"
-      borderRadius={6}
-      padding={2}
+      borderRadius={4}
+      padding={{ xs: 1, md: 1.5, lg: 2 }}
       sx={{ cursor: 'pointer' }}
       onClick={onClick}
     >
-      <Grid container columnSpacing={3}>
+      <Grid container columnSpacing={{ xs: 1.5, md: 2, lg: 3 }}>
         <Grid item xs={3} display="flex" alignSelf="center">
           <Box display="flex" width="100%" style={{ aspectRatio: '1' }}>
             <img src={imageIcon} alt="" width="100%" height="100%" />

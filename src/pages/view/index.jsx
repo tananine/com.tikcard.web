@@ -27,9 +27,9 @@ const ContactLists = (contactItems) => {
         key={section.id}
         container
         rowSpacing={1}
-        columnSpacing={3}
-        marginY={2}
-        paddingX={2}
+        columnSpacing={{ xs: 1.5, md: 2, lg: 3 }}
+        marginY={{ xs: 1, md: 1.5, lg: 2 }}
+        paddingX={{ xs: 1, md: 1.5, lg: 2 }}
       >
         {section.contacts?.map((item) => {
           return (
@@ -53,7 +53,7 @@ const ContactLists = (contactItems) => {
     ) : (
       section.contacts?.map((item) => {
         return (
-          <Box key={item.id} width="100%" marginY={2}>
+          <Box key={item.id} width="100%" marginY={{ xs: 1, md: 1.5, lg: 2 }}>
             <BlockLayout
               onClick={() =>
                 openAppUri(
