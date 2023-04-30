@@ -24,7 +24,7 @@ const BackdropOnFetch = () => {
   }, [fetchQueue]);
 
   return (
-    <Backdrop open={fetchLoading} sx={{ zIndex: 1201 }}>
+    <Backdrop open={fetchLoading} sx={{ zIndex: 1400 }}>
       <CircularProgress />
     </Backdrop>
   );
