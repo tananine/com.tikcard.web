@@ -76,6 +76,7 @@ const ContactLists = (contactItems) => {
                   item.data
                 )
               }
+              title={item.ContactItem.name}
               imageIcon={item.ContactItem.imageIcon}
               name={item.name}
               note={item.note}

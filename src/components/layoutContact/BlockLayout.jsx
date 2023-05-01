@@ -1,6 +1,6 @@
 import { Typography, Grid, Box } from '@mui/material';
 
-const BlockLayout = ({ imageIcon, name, note, onClick }) => {
+const BlockLayout = ({ title, imageIcon, name, note, onClick }) => {
   return (
     <Box
       bgcolor="#f1f1f1"
@@ -16,7 +16,7 @@ const BlockLayout = ({ imageIcon, name, note, onClick }) => {
           </Box>
         </Grid>
         <Grid item xs={9} alignSelf="center">
-          <Typography variant="h4">{name || 'ชื่อบล็อค'}</Typography>
+          <Typography variant="h4">{name || title}</Typography>
           <Typography variant="caption">{note}</Typography>
         </Grid>
       </Grid>

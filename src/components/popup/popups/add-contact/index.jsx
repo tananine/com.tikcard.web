@@ -89,9 +89,6 @@ const AddContact = () => {
       fullHeight
     >
       <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
         position="sticky"
         top={0}
         bgcolor="#ffffff"
@@ -99,9 +96,6 @@ const AddContact = () => {
         paddingBottom={1.5}
       >
         <Typography variant="h3">เพิ่มข้อมูล</Typography>
-        <Typography fontSize="14px">
-          พบ {getAppListData?.data.length || 0} รายการ
-        </Typography>
       </Box>
       {getAppListLoading ? (
         <Box display="flex" justifyContent="center">
@@ -112,7 +106,14 @@ const AddContact = () => {
           <TabContext value={tabValue}>
             <TabList
               onChange={tabChangeHandler}
-              sx={{ justifyContent: 'center' }}
+              sx={{
+                justifyContent: 'center',
+                position: 'sticky',
+                top: '-14px',
+                backgroundColor: '#ffffff',
+                zIndex: 1,
+                paddingBottom: 1,
+              }}
             >
               <Tab
                 icon={<img src={phoneGrid} height={44} />}
@@ -125,11 +126,11 @@ const AddContact = () => {
                 value={'block'}
               />
             </TabList>
-            <TabPanel value={'grid'} sx={{ marginTop: 2, padding: 0 }}>
+            <TabPanel value={'grid'} sx={{ padding: 0 }}>
               {ContactList(gridList, 'grid')}
               <Divider sx={{ width: '60px', margin: 'auto' }} />
             </TabPanel>
-            <TabPanel value={'block'} sx={{ marginTop: 2, padding: 0 }}>
+            <TabPanel value={'block'} sx={{ padding: 0 }}>
               {ContactList(blockList, 'block')}
               <Divider sx={{ width: '60px', margin: 'auto' }} />
             </TabPanel>

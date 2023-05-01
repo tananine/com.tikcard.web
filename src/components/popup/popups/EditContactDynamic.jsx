@@ -128,6 +128,7 @@ const EditContact = () => {
       return (
         <Box marginY={2}>
           <BlockLayout
+            title={appData.name}
             imageIcon={appData.imageIcon}
             name={getValues('name')}
             note={getValues('note')}
@@ -152,7 +153,7 @@ const EditContact = () => {
       return (
         <Box display="flex" flexDirection="column" gap={2}>
           <TextField
-            label="ชื่อบล็อค"
+            label="ชื่อ"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
@@ -167,8 +168,6 @@ const EditContact = () => {
           />
           <TextField
             label="รายละเอียด"
-            multiline
-            rows={2}
             fullWidth
             InputLabelProps={{ shrink: true }}
             {...register('note')}
