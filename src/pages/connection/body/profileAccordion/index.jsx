@@ -57,7 +57,7 @@ const ProfileAccordion = ({ data }) => {
       sx={{
         boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
         borderRadius: '18px !important',
-        marginBottom: 1,
+        marginBottom: 2,
         '&:before': {
           display: 'none',
         },
@@ -84,7 +84,7 @@ const ProfileAccordion = ({ data }) => {
             <Typography variant="h3" lineHeight="26.5px">
               {data.name}
             </Typography>
-            <Typography variant="caption">{dataLength} รายการ</Typography>
+            <Typography variant="caption">{dataLength} รายชื่อ</Typography>
           </Box>
         </Box>
       </AccordionSummary>
