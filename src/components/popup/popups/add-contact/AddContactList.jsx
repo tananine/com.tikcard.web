@@ -41,7 +41,12 @@ const AddContactList = ({
   return (
     <>
       <CardList
-        sx={{ display: 'flex', justifyContent: 'space-between' }}
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          border:
+            typeLayout === 'block' ? '1px solid #c2c2c2' : '1px solid #ffffff',
+        }}
         onClick={editContactDynamicToggleHandler}
       >
         <Box display="flex" gap={1} alignItems="center">
