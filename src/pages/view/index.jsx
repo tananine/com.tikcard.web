@@ -20,6 +20,18 @@ import Lead from '@/pages/view/Lead';
 import GridLayout from '@/components/layoutContact/GridLayout';
 import BlockLayout from '@/components/layoutContact/BlockLayout';
 
+import Verify from '@/assets/images/verify.png';
+
+const jobTitle = (job, company) => {
+  if (job && company) {
+    return `${job} ที่ ${company}`;
+  } else if (job) {
+    return job;
+  } else {
+    return company;
+  }
+};
+
 const ContactLists = (contactItems) => {
   return contactItems?.map((section, index) => {
     return section.typeLayout === 'grid' ? (
@@ -187,21 +199,43 @@ const View = ({ isPreview, profileData }) => {
         <Box padding={2} minHeight={500}>
           <Fade in={true} timeout={{ enter: 1000 }}>
             <Box marginBottom={2}>
-              <Box marginBottom={2}>
-                <Typography marginTop={5} textAlign="center" variant="h1">
+              <Box px={2} marginBottom={2}>
+                <Typography
+                  marginTop={5}
+                  textAlign="center"
+                  alignSelf="center"
+                  variant="h1"
+                >
                   {profileData?.info.name || 'ไม่มีชื่อ'}
+                  <img
+                    src={Verify}
+                    alt=""
+                    width="22px"
+                    style={{
+                      verticalAlign: 'middle',
+                      filter: 'grayscale(100%)',
+                      marginLeft: '4px',
+                    }}
+                  />
                 </Typography>
-                <Typography marginTop={1} textAlign="center" variant="body2">
-                  {profileData?.info.company}
+                <Typography marginTop={2} textAlign="center">
+                  {jobTitle(profileData?.info.job, profileData?.info.company)}
                 </Typography>
-                <Typography marginTop={2} textAlign="center" variant="body2">
-                  {profileData?.info.bio}
+                <Divider sx={{ marginY: 2 }} />
+                <Typography textAlign="center" variant="body2">
+                  {profileData?.info.bio1}
+                </Typography>
+                <Typography mt={1} textAlign="center" variant="body2">
+                  {profileData?.info.bio2}
+                </Typography>
+                <Typography mt={1} textAlign="center" variant="body2">
+                  {profileData?.info.bio3}
                 </Typography>
               </Box>
               <Grid
                 container
                 spacing={1}
-                sx={{ marginTop: 2, marginBottom: 4 }}
+                sx={{ marginTop: 2, marginBottom: { lg: 4 } }}
               >
                 <Grid item xs={7}>
                   <Lead
@@ -222,7 +256,6 @@ const View = ({ isPreview, profileData }) => {
                   </Button>
                 </Grid>
               </Grid>
-              <Divider variant="middle" />
             </Box>
           </Fade>
           <Fade

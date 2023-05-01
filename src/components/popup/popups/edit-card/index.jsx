@@ -3,7 +3,7 @@ import PopupWrapper from '@/components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { editCardToggle } from '@/stores/popup';
 import { reloadCurrentProfile } from '@/stores/reload';
-import { Box, TextField } from '@mui/material';
+import { Box, Divider, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 import useGet from '@/hooks/axios/useGet';
@@ -49,11 +49,11 @@ const EditCard = () => {
       getInformationAction().then((res) => {
         setValue('cardName', res.data.cardName);
         setValue('name', res.data.name);
-        setValue('work', res.data.work);
+        setValue('job', res.data.job);
         setValue('company', res.data.company);
-        setValue('position', res.data.position);
-        setValue('address', res.data.address);
-        setValue('bio', res.data.bio);
+        setValue('bio1', res.data.bio1);
+        setValue('bio2', res.data.bio2);
+        setValue('bio3', res.data.bio3);
         setProfileImage(res.data.profileImage);
         setLogoImage(res.data.logoImage);
       });
@@ -64,11 +64,11 @@ const EditCard = () => {
     const formData = new FormData();
     formData.append('cardName', form.cardName);
     formData.append('name', form.name);
-    formData.append('work', form.work);
+    formData.append('job', form.job);
     formData.append('company', form.company);
-    formData.append('position', form.position);
-    formData.append('address', form.address);
-    formData.append('bio', form.bio);
+    formData.append('bio1', form.bio1);
+    formData.append('bio2', form.bio2);
+    formData.append('bio3', form.bio3);
 
     if (profileImage?.split(':')[0] === 'blob') {
       const profileImageBlob = await fetch(profileImage);
@@ -110,48 +110,49 @@ const EditCard = () => {
         />
         <Box marginTop={8} display="flex" flexDirection="column" gap={2}>
           <TextField
-            label="ชื่อ"
+            label="ชื่อ - นามสกุล"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             {...register('name')}
           />
           <TextField
-            label="อาชีพ"
+            label="ตำแหน่ง หรือ งานที่ฉันทำ"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            {...register('work')}
+            {...register('job')}
           />
           <TextField
-            label="บริษัท"
+            label="ชื่อบริษัท"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             {...register('company')}
           />
+          <Divider sx={{ marginTop: 2 }}>
+            <Typography variant="body2">เกี่ยวกับฉัน</Typography>
+          </Divider>
           <TextField
-            label="ตำแหน่ง"
+            label="บรรทัด 1"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            {...register('position')}
+            {...register('bio1')}
           />
           <TextField
-            label="ที่อยู่"
+            label="บรรทัด 2"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            {...register('address')}
+            {...register('bio2')}
           />
           <TextField
-            label="เกี่ยวกับฉัน"
+            label="บรรทัด 3"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            {...register('bio')}
-            multiline
-            rows={3}
+            {...register('bio3')}
           />
         </Box>
         <Box
