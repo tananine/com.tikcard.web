@@ -171,7 +171,9 @@ const SwitchProfile = () => {
         alignItems="baseline"
       >
         <Typography variant="h4">กระเป๋านามบัตร</Typography>
-        <Button onClick={editToggleHandler}>{edit ? 'เสร็จ' : 'แก้ไข'}</Button>
+        <Button onClick={editToggleHandler}>
+          {edit ? 'ยกเลิก' : 'ลบนามบัตร'}
+        </Button>
       </Box>
       <Flicking
         ref={flickingRef}
