@@ -20,6 +20,7 @@ import Lead from '@/pages/view/Lead';
 import GridLayout from '@/components/layoutContact/GridLayout';
 import BlockLayout from '@/components/layoutContact/BlockLayout';
 
+import Logo from '@/assets/images/logo.png';
 import Verify from '@/assets/images/verify.png';
 
 const jobTitle = (job, company) => {
@@ -273,11 +274,10 @@ const View = ({ isPreview, profileData }) => {
       </Box>
       {!isPreview && (
         <Box textAlign="center" padding={2}>
-          <Typography variant="caption">สร้างโดย</Typography>
-          <Typography variant="caption">Tikcard.me</Typography>
-          <Button variant="text" size="large" onClick={goNewCreate}>
-            สร้างนามบัตรของคุณ ฟรี
-          </Button>
+          <Box onClick={goNewCreate} display="inline">
+            <img src={Logo} height={20} />
+          </Box>
+          <Typography variant="caption">powered by tikcard.me</Typography>
         </Box>
       )}
     </Box>
