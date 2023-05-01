@@ -31,7 +31,7 @@ const Header = ({ component }) => {
 
   return (
     <Container ref={headerRef}>
-      <Box paddingX={2} paddingTop={1} paddingBottom={1} bgcolor="#ffffff">
+      <Box paddingX={2} paddingTop={1} paddingBottom={1}>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <img src={Logo} alt="" height="22px" />
           <IconButton onClick={menuToggleHandler}>

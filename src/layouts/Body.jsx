@@ -2,7 +2,7 @@ import { Box, Container } from '@mui/material';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { useSelector } from 'react-redux';
 
-const mobileSafeZone = 96;
+const mobileSafeZone = 126;
 
 const Body = ({ component }) => {
   const headerHeight = useSelector((state) => state.layout.headerHeight);
@@ -27,7 +27,6 @@ const Body = ({ component }) => {
               ? `${mobileSafeZone}px`
               : `calc(${mobileSafeZone}px + ${footerHeight}px)`
           }
-          bgcolor="#ffffff"
         >
           {component}
         </Box>

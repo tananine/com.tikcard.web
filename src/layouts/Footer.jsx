@@ -28,14 +28,7 @@ const Footer = ({ component }) => {
     <Fade in={isShow}>
       <Box ref={footerRef} position="sticky" bottom={0}>
         <Container>
-          <Box
-            paddingX={component ? 2 : 0}
-            paddingTop={component ? 1 : 0}
-            paddingBottom={component ? 1.5 : 0}
-            bgcolor="#ffffff"
-          >
-            {component}
-          </Box>
+          <Box paddingX={component ? 2 : 0}>{component}</Box>
         </Container>
         <Navigation />
       </Box>
