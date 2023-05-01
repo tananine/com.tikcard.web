@@ -207,16 +207,18 @@ const View = ({ isPreview, profileData }) => {
                   variant="h1"
                 >
                   {profileData?.info.name || 'ไม่มีชื่อ'}
-                  <img
-                    src={Verify}
-                    alt=""
-                    width="22px"
-                    style={{
-                      verticalAlign: 'middle',
-                      filter: 'grayscale(100%)',
-                      marginLeft: '4px',
-                    }}
-                  />
+                  {false && (
+                    <img
+                      src={Verify}
+                      alt=""
+                      width="22px"
+                      style={{
+                        verticalAlign: 'middle',
+                        filter: 'grayscale(100%)',
+                        marginLeft: '4px',
+                      }}
+                    />
+                  )}
                 </Typography>
                 <Typography marginTop={2} textAlign="center">
                   {jobTitle(profileData?.info.job, profileData?.info.company)}
