@@ -120,7 +120,7 @@ const ProfileBody = () => {
           ))}
         </SortableContext>
       </DndContext>
-      <Box height={18} />
+      <Box height={50} />
     </>
   );
 };

@@ -189,7 +189,7 @@ const EditContact = () => {
         flexDirection="column"
         justifyContent="space-between"
       >
-        <Box marginBottom={4}>
+        <Box>
           <Box
             display="flex"
             justifyContent="space-between"
