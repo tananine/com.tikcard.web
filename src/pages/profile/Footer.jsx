@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Button } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContactToggle } from '@/stores/popup';
 
@@ -17,15 +17,23 @@ const ProfileFooter = () => {
   }, [dispatch]);
 
   return (
-    <Button
+    <IconButton
       variant="contained"
-      fullWidth
-      startIcon={<AddIcon />}
       onClick={addContactToggleHandler}
       disabled={!profileActivationId}
+      sx={{
+        backgroundColor: '#ffffff',
+        position: 'absolute',
+        boxShadow:
+          'rgba(0, 0, 0, 0.25) 0px 4px 8px -2px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
+        top: -86,
+        right: 44,
+        width: 60,
+        height: 60,
+      }}
     >
-      เพิ่มข้อมูลติดต่อ
-    </Button>
+      <AddIcon />
+    </IconButton>
   );
 };
 
