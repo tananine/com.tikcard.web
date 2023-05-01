@@ -17,6 +17,7 @@ const PopupWrapper = ({
       onClose={onClose}
       onOpen={onOpen}
       sx={{ ...sx }}
+      minFlingVelocity={1500}
     >
       <Box
         height={4}
