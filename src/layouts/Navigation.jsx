@@ -6,6 +6,7 @@ import {
   Grid,
   Button,
   Paper,
+  Typography,
 } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -16,8 +17,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setProfileInUse } from '@/stores/controller';
 
 import pagePath from '@/data/jsons/page-path.json';
-
-import EditIcon from '@mui/icons-material/Edit';
 
 const ProfilePart = () => {
   const profileActivation = useSelector((state) => state.account.activation);
@@ -67,21 +66,29 @@ const ProfilePart = () => {
           <Grid item xs={6}>
             <Button
               fullWidth
-              sx={{ borderRadius: 0, opacity: type === 'primary' ? 1 : 0.5 }}
+              sx={{
+                borderRadius: 0,
+                opacity: type === 'primary' ? 1 : 0.5,
+                display: 'block',
+              }}
               onClick={setPrimary}
-              startIcon={type === 'primary' && <EditIcon />}
             >
-              โพรไฟล์หลัก
+              <Typography variant="caption">นามบัตร 1</Typography>
+              <Typography fontSize={10}>สแกนซ้าย</Typography>
             </Button>
           </Grid>
           <Grid item xs={6}>
             <Button
               fullWidth
-              sx={{ borderRadius: 0, opacity: type === 'secondary' ? 1 : 0.5 }}
+              sx={{
+                borderRadius: 0,
+                opacity: type === 'secondary' ? 1 : 0.5,
+                display: 'block',
+              }}
               onClick={setSecondary}
-              startIcon={type === 'secondary' && <EditIcon />}
             >
-              โพรไฟล์รอง
+              <Typography variant="caption">นามบัตร 2</Typography>
+              <Typography fontSize={10}>สแกนขวา</Typography>
             </Button>
           </Grid>
         </Grid>
@@ -148,18 +155,18 @@ const Navigation = () => {
       >
         <BottomNavigationAction
           onClick={navigatePageProfile}
-          label="โพรไฟล์"
+          label="นามบัตร"
           icon={<AccountCircleIcon />}
         />
         <BottomNavigationAction
           onClick={navigatePageShare}
-          label="แชร์ QR"
+          label="แชร์"
           icon={<QrCode2Icon />}
           disabled={!profileActivationId}
         />
         <BottomNavigationAction
           onClick={navigatePageConnection}
-          label="คอนเนคชั่น"
+          label="สมุดรายชื่อ"
           icon={<ConnectWithoutContactIcon />}
           disabled={!profileActivationId}
         />
