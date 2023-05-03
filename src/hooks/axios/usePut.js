@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { startFetchQueue, endFetchQueue } from '@/stores/controller';
 import axios from 'axios';
 
-const useFetchData = (path) => {
+const useFetchData = (path, isLoading) => {
   const [data, setData] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(isLoading);
 
   const dispatch = useDispatch();
 
