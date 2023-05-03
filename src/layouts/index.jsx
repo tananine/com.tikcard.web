@@ -18,6 +18,10 @@ import Welcome from '@/pages/welcome';
 
 import Loading from '@/pages/loading';
 
+import Popups from '@/utils/Popups';
+import Drawers from '@/utils/Drawers';
+import BackdropOnFetch from '@/components/BackdropOnFetch';
+
 const Application = ({ header, body, footer }) => {
   const dispatch = useDispatch();
 
@@ -26,10 +30,12 @@ const Application = ({ header, body, footer }) => {
   const reloadLayoutsIndex = useSelector((state) => state.reload.layoutsIndex);
 
   const [getActivationAction, getActivationLoading] = useGet(
-    profileServicePath.getActivation
+    profileServicePath.getActivation,
+    true
   );
   const [getDeviceAllAction, getDeviceAllLoading] = useGet(
-    deviceServicePath.getDeviceAll
+    deviceServicePath.getDeviceAll,
+    true
   );
 
   useEffect(() => {
@@ -76,21 +82,28 @@ const Application = ({ header, body, footer }) => {
     );
   }
 
+  if (getActivationLoading && getDeviceAllLoading) {
+    return (
+      <Container>
+        <Paper elevation={3}>
+          <Loading />
+        </Paper>
+      </Container>
+    );
+  }
+
   return (
     <>
       <Container>
         <Paper elevation={3}>
-          {getActivationLoading && getDeviceAllLoading ? (
-            <Loading />
-          ) : (
-            <>
-              <Header component={header} />
-              <Body component={body} />
-              <Footer component={footer} />
-            </>
-          )}
+          <Header component={header} />
+          <Body component={body} />
+          <Footer component={footer} />
         </Paper>
       </Container>
+      {Popups()}
+      {Drawers()}
+      <BackdropOnFetch />
     </>
   );
 };

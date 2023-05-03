@@ -2,9 +2,6 @@ import { useCallback } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-import Popups from '@/utils/Popups';
-import Drawers from '@/utils/Drawers';
-
 import Layouts from '@/layouts';
 
 import Login from '@/pages/auth/Login';
@@ -14,8 +11,6 @@ import ProfileBody from '@/pages/profile/body';
 import ProfileFooter from '@/pages/profile/Footer';
 import ConnectionBody from '@/pages/connection/body';
 import ShareBody from '@/pages/share/body';
-
-import BackdropOnFetch from '@/components/BackdropOnFetch';
 
 const App = () => {
   const authToken = Cookies.get('authToken');
@@ -47,14 +42,7 @@ const App = () => {
     return window.location.replace('/app/login');
   }
 
-  return (
-    <>
-      {CurrentPage()}
-      {Popups()}
-      {Drawers()}
-      <BackdropOnFetch />
-    </>
-  );
+  return <>{CurrentPage()}</>;
 };
 
 export default App;
