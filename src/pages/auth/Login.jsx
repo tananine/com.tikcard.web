@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Box, Container, Paper, TextField } from '@mui/material';
+import { Box, Button, Container, Paper, TextField } from '@mui/material';
 import Cookies from 'js-cookie';
 import usePost from '@/hooks/axios/usePost';
 import axios from 'axios';
@@ -7,11 +7,33 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
 import authServicePath from '@/data/jsons/services/auth.service.json';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+import Logo from '@/assets/images/logo.png';
+
+const schema = yup
+  .object({
+    email: yup.string().required('โปรดป้อนอีเมล').email('โปรดป้อนอีเมล'),
+    password: yup
+      .string()
+      .required('โปรดป้อนรหัสผ่าน')
+      .min(6, 'รหัสผ่านที่คุณป้อนจะต้องมีความยาวอย่างน้อย 6 อักขระ'),
+  })
+  .required();
 
 const Login = () => {
   const [loginAction, loginLoading] = usePost(authServicePath.login, false);
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const hasErrors = Object.keys(errors).length !== 0;
 
   const location = useLocation();
 
@@ -45,26 +67,40 @@ const Login = () => {
 
   return (
     <Container>
-      <Paper elevation={3}>
+      <Paper
+        elevation={3}
+        sx={{
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <Box textAlign="center" mb={6}>
+          <img src={Logo} alt="" height="32px" />
+        </Box>
         <Box
           sx={{
             padding: 2,
-            height: '100vh',
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
           }}
         >
           <TextField
-            label="Email"
+            label="อีเมล"
             variant="outlined"
             fullWidth
+            error={errors?.email ? true : false}
+            helperText={errors?.email?.message}
             {...register('email')}
           />
           <TextField
-            label="Password"
+            label="รหัสผ่าน"
             variant="outlined"
             fullWidth
+            error={errors?.password ? true : false}
+            helperText={errors?.password?.message}
             {...register('password')}
           />
           <LoadingButton
@@ -74,9 +110,11 @@ const Login = () => {
             fullWidth
             onClick={handleSubmit(login)}
             loading={loginLoading}
+            disabled={hasErrors}
           >
-            Login
+            เข้าสู่ระบบ
           </LoadingButton>
+          <Button>สร้างบัญชีผู้ใช้</Button>
         </Box>
       </Paper>
     </Container>
