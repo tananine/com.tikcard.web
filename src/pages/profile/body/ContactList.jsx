@@ -21,7 +21,10 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
 
   const [showState, setShowState] = useState(show);
 
-  const [toggleShowAction] = usePut(profileServicePath.contactToggleShow);
+  const [toggleShowAction] = usePut(
+    profileServicePath.contactToggleShow,
+    false
+  );
 
   const editContactDynamicToggleHandler = useCallback(() => {
     dispatch(setEditContactDynamicChild({ isChild: false }));

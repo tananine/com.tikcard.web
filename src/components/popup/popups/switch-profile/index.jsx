@@ -58,13 +58,16 @@ const SwitchProfile = () => {
   }, [setEdit]);
 
   const [setPrimaryAction, setPrimaryLoading] = usePut(
-    profileServicePath.setPrimaryProfile
+    profileServicePath.setPrimaryProfile,
+    false
   );
   const [setSecondaryAction, setSecondaryLoading] = usePut(
-    profileServicePath.setSecondaryProfile
+    profileServicePath.setSecondaryProfile,
+    false
   );
   const [removeProfileAction, removeProfileLoading] = useDelete(
-    profileServicePath.getProfile
+    profileServicePath.getProfile,
+    false
   );
 
   const [profileId, setProfileId] = useState();

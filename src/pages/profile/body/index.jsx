@@ -16,7 +16,7 @@ const ProfileBody = () => {
   const [activeId, setActiveId] = useState(null);
   const dispatch = useDispatch();
 
-  const [sortContactAction] = usePut(profileServicePath.sortContact);
+  const [sortContactAction] = usePut(profileServicePath.sortContact, false);
 
   const getIndex = useCallback(
     (id) => {
@@ -66,7 +66,8 @@ const ProfileBody = () => {
   );
 
   const [getMyContactAction, getMyContactLoading] = useGet(
-    profileServicePath.getMyContact
+    profileServicePath.getMyContact,
+    true
   );
 
   const profileActivationId = useSelector(

@@ -13,8 +13,11 @@ import profileServicePath from '@/data/jsons/services/profile.service.json';
 const Welcome = () => {
   const { register, handleSubmit } = useForm();
 
-  const [addProfileAction] = usePost(profileServicePath.getProfile);
-  const [setPrimaryAction] = usePut(profileServicePath.setPrimaryProfile);
+  const [addProfileAction] = usePost(profileServicePath.getProfile, false);
+  const [setPrimaryAction] = usePut(
+    profileServicePath.setPrimaryProfile,
+    false
+  );
 
   const flickingRef = useRef();
 

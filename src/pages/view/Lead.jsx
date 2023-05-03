@@ -23,7 +23,8 @@ const Lead = ({ isPreview, profileId }) => {
   const timeoutRef = useRef(null);
 
   const [sendContactAction, sendContactLoading] = usePost(
-    profileServicePath.sendContact
+    profileServicePath.sendContact,
+    false
   );
 
   const openFormHandler = () => {

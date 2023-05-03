@@ -41,7 +41,8 @@ const ContactList = (appListData, typeLayout) => {
 
 const AddContact = () => {
   const [getAppListAction, getAppListLoading, getAppListData] = useGet(
-    profileServicePath.getAppList
+    profileServicePath.getAppList,
+    true
   );
 
   const [gridList, setGridList] = useState([]);

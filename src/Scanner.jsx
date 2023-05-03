@@ -10,8 +10,8 @@ import deviceServicePath from '@/data/jsons/services/device.service.json';
 const Scanner = () => {
   const [showActivate, setShowActivate] = useState(false);
 
-  const [redirectAction] = useGet(deviceServicePath.getRedirect);
-  const [activationAction] = usePost(deviceServicePath.activation);
+  const [redirectAction] = useGet(deviceServicePath.getRedirect, true);
+  const [activationAction] = usePost(deviceServicePath.activation, false);
 
   const navigate = useNavigate();
   const { scannerId } = useParams();

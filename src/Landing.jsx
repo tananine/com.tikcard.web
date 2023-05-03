@@ -9,7 +9,8 @@ import { useEffect } from 'react';
 
 const Landing = () => {
   const [getProfileAction, getProfileLoading, getProfileData] = useGet(
-    profileServicePath.useLink
+    profileServicePath.useLink,
+    true
   );
 
   const { linkId } = useParams();

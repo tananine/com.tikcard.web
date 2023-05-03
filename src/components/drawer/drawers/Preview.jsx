@@ -10,7 +10,8 @@ import { Box, CircularProgress } from '@mui/material';
 
 const Preview = () => {
   const [getViewProfileAction, getViewProfileLoading] = useGet(
-    profileServicePath.viewProfile
+    profileServicePath.viewProfile,
+    true
   );
 
   const [profileData, setProfileData] = useState(null);

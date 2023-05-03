@@ -19,7 +19,8 @@ import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 const ConnectionItem = ({ data, removeConnection }) => {
   const [deleteConnectListAction, deleteConnectListLoading] = useDelete(
-    profileServicePath.deleteConnectList
+    profileServicePath.deleteConnectList,
+    false
   );
 
   const [open, setOpen] = useState(false);

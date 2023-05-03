@@ -9,7 +9,7 @@ import authServicePath from '@/data/jsons/services/auth.service.json';
 import { useForm } from 'react-hook-form';
 
 const Login = () => {
-  const [loginAction, loginLoading] = usePost(authServicePath.login);
+  const [loginAction, loginLoading] = usePost(authServicePath.login, false);
 
   const { register, handleSubmit } = useForm();
 

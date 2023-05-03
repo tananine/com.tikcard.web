@@ -61,7 +61,7 @@ const ConnectionBody = () => {
     getAllConnectListAction,
     getAllConnectListLoading,
     getAllConnectListData,
-  ] = useGet(profileServicePath.getAllConnectList);
+  ] = useGet(profileServicePath.getAllConnectList, true);
 
   const profileActivationId = useSelector(
     (state) => state.controller.profileInUse.profileId

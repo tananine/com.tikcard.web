@@ -66,7 +66,8 @@ const CurrentProfile = ({ profileActivationId }) => {
   const [activationProfileData, setActivationProfileData] = useState();
 
   const [getProfileAction, getProfileLoading, getProfileData] = useGet(
-    profileServicePath.getProfile
+    profileServicePath.getProfile,
+    true
   );
 
   const switchProfileToggleHandler = useCallback(() => {

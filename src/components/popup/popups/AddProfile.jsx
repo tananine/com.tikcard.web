@@ -19,10 +19,12 @@ const AddProfile = () => {
   const { register, handleSubmit, setValue } = useForm();
 
   const [addProfileAction, addProfileLoading] = usePost(
-    profileServicePath.getProfile
+    profileServicePath.getProfile,
+    false
   );
   const [setPrimaryAction, setPrimaryLoading] = usePut(
-    profileServicePath.setPrimaryProfile
+    profileServicePath.setPrimaryProfile,
+    false
   );
 
   const switchProfileHeight = useSelector(

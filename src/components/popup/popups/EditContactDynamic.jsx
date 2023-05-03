@@ -26,13 +26,16 @@ const EditContact = () => {
   watch();
 
   const [addContactAction, addContactLoading] = usePost(
-    profileServicePath.contactData
+    profileServicePath.contactData,
+    false
   );
   const [updateContactAction, updateContactLoading] = usePut(
-    profileServicePath.contactData
+    profileServicePath.contactData,
+    false
   );
   const [deleteContactAction, deleteContactLoading] = useDelete(
-    profileServicePath.contactData
+    profileServicePath.contactData,
+    false
   );
 
   const addContactListHeight = useSelector(

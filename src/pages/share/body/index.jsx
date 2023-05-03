@@ -51,11 +51,13 @@ const ShareBody = () => {
   );
 
   const [getLinkAction, getLinkLoading, getLinkData] = useGet(
-    profileServicePath.getLink
+    profileServicePath.getLink,
+    true
   );
 
   const [updateLinkIdAction, updateLinkIdLoading] = usePost(
-    profileServicePath.updateLinkId
+    profileServicePath.updateLinkId,
+    false
   );
 
   const saveLinkId = (form) => {
