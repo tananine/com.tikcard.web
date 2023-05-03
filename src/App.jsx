@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import Popups from '@/utils/Popups';
 import Drawers from '@/utils/Drawers';
@@ -17,6 +18,8 @@ import ShareBody from '@/pages/share/body';
 import BackdropOnFetch from '@/components/BackdropOnFetch';
 
 const App = () => {
+  const authToken = Cookies.get('authToken');
+
   const { page } = useParams();
 
   const CurrentPage = useCallback(() => {
@@ -39,6 +42,10 @@ const App = () => {
         return <Navigate to="/app/profile" replace />;
     }
   }, [page]);
+
+  if (!authToken && page !== 'login') {
+    return window.location.replace('/app/login');
+  }
 
   return (
     <>
