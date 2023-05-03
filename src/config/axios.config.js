@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'http://localhost:8080';
 
@@ -12,12 +11,13 @@ if (authToken) {
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
-    switch (error?.response?.status) {
-      case 401:
-        window.location.replace('/app/login');
-        break;
-      default:
-        toast.error(error?.response?.data?.message || 'เกิดข้อผิดพลาด');
+    const status = error?.response?.status;
+    if (status === 401) {
+      window.location.replace('/app/login');
+    } else {
+      console.error(
+        error?.response?.data || 'เกิดข้อผิดพลาดที่ไม่มี response data'
+      );
     }
     return Promise.reject(error);
   }
