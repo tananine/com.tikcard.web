@@ -5,6 +5,8 @@ import { editCardToggle } from '@/stores/popup';
 import { reloadCurrentProfile } from '@/stores/reload';
 import { Box, Divider, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import useGet from '@/hooks/axios/useGet';
 import usePut from '@/hooks/axios/usePut';
@@ -14,6 +16,12 @@ import ProfileImageHead from '@/components/popup/popups/edit-card/ProfileImageHe
 import { LoadingButton } from '@mui/lab';
 
 import toast from 'react-hot-toast';
+
+const schema = yup
+  .object({
+    cardName: yup.string().required('โปรดป้อนชื่อนามบัตร'),
+  })
+  .required();
 
 const EditCard = () => {
   const [profileImage, setProfileImage] = useState(null);
@@ -35,7 +43,18 @@ const EditCard = () => {
     false
   );
 
-  const { register, handleSubmit, setValue, reset } = useForm();
+  const {
+    register,
+    formState: { errors },
+    clearErrors,
+    handleSubmit,
+    setValue,
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const hasErrors = Object.keys(errors).length !== 0;
 
   const editCardToggleHandler = useCallback(() => {
     dispatch(editCardToggle());
@@ -48,7 +67,8 @@ const EditCard = () => {
   };
 
   useEffect(() => {
-    if (profileId && open) {
+    if (open) {
+      clearErrors();
       clearData();
       getInformationAction().then((res) => {
         setValue('cardName', res.data.cardName);
@@ -100,10 +120,19 @@ const EditCard = () => {
     >
       <Box paddingY={1}>
         <TextField
-          label="ชื่อนามบัตร"
+          label={
+            <>
+              ชื่อนามบัตร{' '}
+              <Typography component="span" color="red">
+                *
+              </Typography>
+            </>
+          }
           variant="outlined"
           fullWidth
           InputLabelProps={{ shrink: true }}
+          error={errors?.cardName ? true : false}
+          helperText={errors?.cardName?.message}
           {...register('cardName')}
         />
         <ProfileImageHead
@@ -174,6 +203,7 @@ const EditCard = () => {
             color="secondary"
             onClick={handleSubmit(save)}
             loading={updateInformationLoading}
+            disabled={hasErrors}
           >
             บันทึก
           </LoadingButton>
