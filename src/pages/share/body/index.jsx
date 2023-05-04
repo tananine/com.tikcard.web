@@ -14,6 +14,8 @@ import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import copy from 'copy-to-clipboard';
 import { LoadingButton } from '@mui/lab';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
@@ -25,14 +27,34 @@ import { QRCodeSVG } from 'qrcode.react';
 
 import toast from 'react-hot-toast';
 
+const schema = yup
+  .object({
+    linkId: yup
+      .string()
+      .required('โปรดป้อนข้อมูล')
+      .min(4, 'ต้องมีความยาวอย่างน้อย 4 อักขระ'),
+  })
+  .required();
+
 const ShareBody = () => {
   const [linkIdCache, setLinkIdCache] = useState('');
   const [link, setLink] = useState('');
   const [openEditLink, setOpenEditLink] = useState(false);
 
-  const { register, handleSubmit, setValue } = useForm();
+  const {
+    register,
+    formState: { errors },
+    clearErrors,
+    handleSubmit,
+    setValue,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const hasErrors = Object.keys(errors).length !== 0;
 
   const openEditLinkHandler = () => {
+    clearErrors();
     setValue('linkId', linkIdCache);
     setOpenEditLink(true);
   };
@@ -126,6 +148,8 @@ const ShareBody = () => {
                 fullWidth
                 InputLabelProps={{ shrink: true }}
                 sx={{ marginTop: 2 }}
+                error={errors?.linkId ? true : false}
+                helperText={errors?.linkId?.message}
                 {...register('linkId')}
               />
             </DialogContent>
@@ -134,6 +158,7 @@ const ShareBody = () => {
               <LoadingButton
                 onClick={handleSubmit(saveLinkId)}
                 loading={updateLinkIdLoading}
+                disabled={hasErrors}
               >
                 บันทึก
               </LoadingButton>
