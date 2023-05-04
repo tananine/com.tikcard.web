@@ -129,16 +129,12 @@ const EditContact = () => {
   };
 
   const goContact = () => {
-    if (getValues('data')) {
-      openAppUri(
-        appData.uri.defaultUri,
-        appData.uri.androidUri,
-        appData.uri.iosUri,
-        getValues('data')
-      );
-    } else {
-      alert('กรุณากรอกข้อมูลติดต่อ');
-    }
+    openAppUri(
+      appData.uri.defaultUri,
+      appData.uri.androidUri,
+      appData.uri.iosUri,
+      getValues('data')
+    );
   };
 
   const layoutContact = () => {
@@ -227,7 +223,7 @@ const EditContact = () => {
             zIndex={2}
           >
             <Typography variant="h2">{appData.name}</Typography>
-            <Button onClick={goContact}>ตัวอย่างเมื่อคลิก</Button>
+            <Button onClick={handleSubmit(goContact)}>ตัวอย่างเมื่อคลิก</Button>
           </Box>
           {layoutContact()}
           <Divider sx={{ marginBottom: 2 }}>
