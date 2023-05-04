@@ -33,8 +33,6 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const hasErrors = Object.keys(errors).length !== 0;
-
   const location = useLocation();
 
   useEffect(() => {
@@ -111,7 +109,6 @@ const Login = () => {
             fullWidth
             onClick={handleSubmit(login)}
             loading={loginLoading}
-            disabled={hasErrors}
           >
             เข้าสู่ระบบ
           </LoadingButton>

@@ -54,8 +54,6 @@ const EditCard = () => {
     resolver: yupResolver(schema),
   });
 
-  const hasErrors = Object.keys(errors).length !== 0;
-
   const editCardToggleHandler = useCallback(() => {
     dispatch(editCardToggle());
   }, [dispatch]);
@@ -203,7 +201,6 @@ const EditCard = () => {
             color="secondary"
             onClick={handleSubmit(save)}
             loading={updateInformationLoading}
-            disabled={hasErrors}
           >
             บันทึก
           </LoadingButton>

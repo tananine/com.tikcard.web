@@ -43,8 +43,6 @@ const EditContact = () => {
   });
   watch();
 
-  const hasErrors = Object.keys(errors).length !== 0;
-
   const [addContactAction, addContactLoading] = usePost(
     profileServicePath.contactData,
     false
@@ -268,7 +266,6 @@ const EditContact = () => {
             fullWidth
             onClick={handleSubmit(save)}
             loading={addContactLoading || updateContactLoading}
-            disabled={hasErrors}
           >
             บันทึก
           </LoadingButton>

@@ -34,8 +34,6 @@ const AddProfile = () => {
     resolver: yupResolver(schema),
   });
 
-  const hasErrors = Object.keys(errors).length !== 0;
-
   const [addProfileAction, addProfileLoading] = usePost(
     profileServicePath.getProfile,
     false
@@ -115,7 +113,6 @@ const AddProfile = () => {
             color="secondary"
             onClick={handleSubmit(save)}
             loading={addProfileLoading || setPrimaryLoading}
-            disabled={hasErrors}
           >
             เพิ่ม
           </LoadingButton>

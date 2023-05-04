@@ -51,8 +51,6 @@ const ShareBody = () => {
     resolver: yupResolver(schema),
   });
 
-  const hasErrors = Object.keys(errors).length !== 0;
-
   const openEditLinkHandler = () => {
     clearErrors();
     setValue('linkId', linkIdCache);
@@ -158,7 +156,6 @@ const ShareBody = () => {
               <LoadingButton
                 onClick={handleSubmit(saveLinkId)}
                 loading={updateLinkIdLoading}
-                disabled={hasErrors}
               >
                 บันทึก
               </LoadingButton>
