@@ -61,14 +61,15 @@ const ProfilePart = () => {
 
   if (isScanDouble) {
     return (
-      <Paper elevation={2}>
+      <Paper elevation={2} sx={{ backgroundColor: '#b5b5b5' }}>
         <Grid container>
-          <Grid item xs={6}>
+          <Grid item xs={type === 'primary' ? 7 : 5}>
             <Button
+              disableRipple
               fullWidth
               sx={{
                 borderRadius: 0,
-                opacity: type === 'primary' ? 1 : 0.5,
+                opacity: type === 'primary' ? 0.5 : 1,
                 display: 'block',
               }}
               onClick={setPrimary}
@@ -77,12 +78,13 @@ const ProfilePart = () => {
               <Typography fontSize={10}>สแกนซ้าย</Typography>
             </Button>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={type === 'secondary' ? 7 : 5}>
             <Button
+              disableRipple
               fullWidth
               sx={{
                 borderRadius: 0,
-                opacity: type === 'secondary' ? 1 : 0.5,
+                opacity: type === 'secondary' ? 0.5 : 1,
                 display: 'block',
               }}
               onClick={setSecondary}
