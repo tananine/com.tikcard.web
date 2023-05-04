@@ -2,6 +2,7 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  TextField,
   DialogActions,
   Button,
   Typography,
@@ -10,7 +11,6 @@ import { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 import toast from 'react-hot-toast';
-import TextInput from '@/components/TextInput';
 
 import usePost from '@/hooks/axios/usePost';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
@@ -79,7 +79,7 @@ const Lead = ({ isPreview, profileId }) => {
       >
         <DialogTitle>ข้อมูลติดต่อของคุณ</DialogTitle>
         <DialogContent>
-          <TextInput
+          <TextField
             label="ชื่อ"
             variant="outlined"
             fullWidth
@@ -87,7 +87,7 @@ const Lead = ({ isPreview, profileId }) => {
             sx={{ marginTop: 1 }}
             {...register('name')}
           />
-          <TextInput
+          <TextField
             label="เบอร์โทร"
             variant="outlined"
             fullWidth
@@ -95,7 +95,7 @@ const Lead = ({ isPreview, profileId }) => {
             sx={{ marginTop: 2 }}
             {...register('phone')}
           />
-          <TextInput
+          <TextField
             label="อีเมล"
             variant="outlined"
             fullWidth
@@ -103,7 +103,7 @@ const Lead = ({ isPreview, profileId }) => {
             sx={{ marginTop: 2 }}
             {...register('email')}
           />
-          <TextInput
+          <TextField
             label="ข้อความ"
             variant="outlined"
             fullWidth

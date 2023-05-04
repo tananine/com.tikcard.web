@@ -7,13 +7,13 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  TextField,
   Typography,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import copy from 'copy-to-clipboard';
 import { LoadingButton } from '@mui/lab';
-import TextInput from '@/components/TextInput';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
@@ -120,7 +120,7 @@ const ShareBody = () => {
           >
             <DialogTitle>แก้ไข Link ID</DialogTitle>
             <DialogContent>
-              <TextInput
+              <TextField
                 label="Link ID"
                 variant="outlined"
                 fullWidth

@@ -1,11 +1,10 @@
 import { useCallback, useRef } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import '@egjs/react-flicking/dist/flicking.css';
 import Flicking from '@egjs/react-flicking';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { reloadLayoutsIndex } from '@/stores/reload';
-import TextInput from '@/components/TextInput';
 
 import usePost from '@/hooks/axios/usePost';
 import usePut from '@/hooks/axios/usePut';
@@ -53,7 +52,7 @@ const Welcome = () => {
       </Box>
       <Box width="100%" height="100vh" padding={4} textAlign="center">
         นามบัตรนี้ใช้สำหรับ
-        <TextInput
+        <TextField
           label="ชื่อนามบัตร"
           variant="outlined"
           fullWidth

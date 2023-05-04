@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Box, Button, Container, Paper } from '@mui/material';
+import { Box, Button, Container, Paper, TextField } from '@mui/material';
 import Cookies from 'js-cookie';
 import usePost from '@/hooks/axios/usePost';
 import axios from 'axios';
@@ -9,7 +9,6 @@ import authServicePath from '@/data/jsons/services/auth.service.json';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import TextInput from '@/components/TextInput';
 
 import Logo from '@/assets/images/logo.png';
 
@@ -88,7 +87,7 @@ const Login = () => {
             gap: 2,
           }}
         >
-          <TextInput
+          <TextField
             label="อีเมล"
             variant="outlined"
             fullWidth
@@ -96,7 +95,7 @@ const Login = () => {
             helperText={errors?.email?.message}
             {...register('email')}
           />
-          <TextInput
+          <TextField
             label="รหัสผ่าน"
             variant="outlined"
             fullWidth
