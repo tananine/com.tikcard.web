@@ -1,11 +1,12 @@
 import { useCallback, useEffect } from 'react';
-import { Box, Button, Divider, TextField, Typography } from '@mui/material';
+import { Box, Button, Divider, Typography } from '@mui/material';
 import PopupWrapper from '@/components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContactToggle, editContactDynamicToggle } from '@/stores/popup';
 import { reloadContactList } from '@/stores/reload';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
+import TextInput from '@/components/TextInput';
 
 import GridLayout from '@/components/layoutContact/GridLayout';
 import BlockLayout from '@/components/layoutContact/BlockLayout';
@@ -144,7 +145,7 @@ const EditContact = () => {
   const fieldInput = () => {
     if (appData.typeLayout === 'grid') {
       return (
-        <TextField
+        <TextInput
           label={appData.name}
           variant="outlined"
           fullWidth
@@ -155,21 +156,21 @@ const EditContact = () => {
     } else if (appData.typeLayout === 'block') {
       return (
         <Box display="flex" flexDirection="column" gap={2}>
-          <TextField
+          <TextInput
             label="ชื่อ"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             {...register('name')}
           />
-          <TextField
+          <TextInput
             label={appData.name}
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             {...register('data')}
           />
-          <TextField
+          <TextInput
             label="รายละเอียด"
             fullWidth
             InputLabelProps={{ shrink: true }}

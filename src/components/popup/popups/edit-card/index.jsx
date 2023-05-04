@@ -3,8 +3,9 @@ import PopupWrapper from '@/components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { editCardToggle } from '@/stores/popup';
 import { reloadCurrentProfile } from '@/stores/reload';
-import { Box, Divider, TextField, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import TextInput from '@/components/TextInput';
 
 import useGet from '@/hooks/axios/useGet';
 import usePut from '@/hooks/axios/usePut';
@@ -99,7 +100,7 @@ const EditCard = () => {
       onOpen={editCardToggleHandler}
     >
       <Box paddingY={1}>
-        <TextField
+        <TextInput
           label="ชื่อนามบัตร"
           variant="outlined"
           fullWidth
@@ -113,21 +114,21 @@ const EditCard = () => {
           setLogoImage={setLogoImage}
         />
         <Box marginTop={8} display="flex" flexDirection="column" gap={2}>
-          <TextField
+          <TextInput
             label="ชื่อ - นามสกุล"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             {...register('name')}
           />
-          <TextField
+          <TextInput
             label="ตำแหน่ง หรือ งานที่ฉันทำ"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             {...register('job')}
           />
-          <TextField
+          <TextInput
             label="ชื่อบริษัท"
             variant="outlined"
             fullWidth
@@ -137,21 +138,21 @@ const EditCard = () => {
           <Divider sx={{ marginTop: 2 }}>
             <Typography variant="body2">เกี่ยวกับฉัน</Typography>
           </Divider>
-          <TextField
+          <TextInput
             label="บรรทัด 1"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             {...register('bio1')}
           />
-          <TextField
+          <TextInput
             label="บรรทัด 2"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             {...register('bio2')}
           />
-          <TextField
+          <TextInput
             label="บรรทัด 3"
             variant="outlined"
             fullWidth

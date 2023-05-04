@@ -1,11 +1,12 @@
 import PopupWrapper from '@/components/popup/PopupWrapper';
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { switchProfileToggle, addProfileToggle } from '@/stores/popup';
 import { setPrimaryProfile, setSecondaryProfile } from '@/stores/account';
 import { useCallback, useEffect } from 'react';
 import { LoadingButton } from '@mui/lab';
 import { useForm } from 'react-hook-form';
+import TextInput from '@/components/TextInput';
 
 import usePost from '@/hooks/axios/usePost';
 import usePut from '@/hooks/axios/usePut';
@@ -79,7 +80,7 @@ const AddProfile = () => {
         <Typography textAlign="center" marginBottom={2}>
           เพิ่มนามบัตร
         </Typography>
-        <TextField
+        <TextInput
           label="ชื่อนามบัตร"
           variant="outlined"
           fullWidth
