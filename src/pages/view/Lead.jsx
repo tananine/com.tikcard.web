@@ -11,12 +11,39 @@ import { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 import toast from 'react-hot-toast';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import usePost from '@/hooks/axios/usePost';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
+const schema = yup
+  .object()
+  .shape(
+    {
+      name: yup.string().required('โปรดป้อนชื่อ'),
+      phone: yup.string().when('email', {
+        is: (val) => !val || val === '',
+        then: () => yup.string().required('โปรดป้อนเบอร์โทร หรือ อีเมล'),
+      }),
+      email: yup.string().when('phone', {
+        is: (val) => !val || val === '',
+        then: () => yup.string().required('โปรดป้อนเบอร์โทร หรือ อีเมล'),
+      }),
+    },
+    ['phone', 'email']
+  )
+  .required();
+
 const Lead = ({ isPreview, profileId }) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    clearErrors,
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const [openForm, setOpenForm] = useState(false);
   const [isSend, setIsSend] = useState(false);
@@ -28,6 +55,7 @@ const Lead = ({ isPreview, profileId }) => {
   );
 
   const openFormHandler = () => {
+    clearErrors();
     setOpenForm(true);
     clearTimeout(timeoutRef.current);
   };
@@ -80,27 +108,40 @@ const Lead = ({ isPreview, profileId }) => {
         <DialogTitle>ข้อมูลติดต่อของคุณ</DialogTitle>
         <DialogContent>
           <TextField
-            label="ชื่อ"
+            label={
+              <>
+                ชื่อ{' '}
+                <Typography component="span" color="red">
+                  *
+                </Typography>
+              </>
+            }
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             sx={{ marginTop: 1 }}
+            error={errors?.name ? true : false}
+            helperText={errors?.name?.message}
             {...register('name')}
           />
           <TextField
-            label="เบอร์โทร"
+            label="เบอร์โทร (อย่างใดอย่างหนึ่ง)"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             sx={{ marginTop: 2 }}
+            error={errors?.phone && errors?.email ? true : false}
+            helperText={errors?.phone?.message}
             {...register('phone')}
           />
           <TextField
-            label="อีเมล"
+            label="อีเมล (อย่างใดอย่างหนึ่ง)"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
             sx={{ marginTop: 2 }}
+            error={errors?.email && errors?.phone ? true : false}
+            helperText={errors?.email?.message}
             {...register('email')}
           />
           <TextField
