@@ -99,14 +99,7 @@ const AddProfile = () => {
           เพิ่มนามบัตร
         </Typography>
         <TextField
-          label={
-            <>
-              ชื่อนามบัตร{' '}
-              <Typography component="span" color="red">
-                *
-              </Typography>
-            </>
-          }
+          label="ชื่อนามบัตร"
           variant="outlined"
           fullWidth
           InputLabelProps={{ shrink: true }}
