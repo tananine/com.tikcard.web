@@ -99,6 +99,7 @@ const Login = () => {
             label="รหัสผ่าน"
             variant="outlined"
             fullWidth
+            type="password"
             error={errors?.password ? true : false}
             helperText={errors?.password?.message}
             {...register('password')}
