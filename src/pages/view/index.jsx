@@ -137,6 +137,15 @@ const View = ({ isPreview, profileData }) => {
     window.open('/app/login');
   };
 
+  const saveVCardHandler = () => {
+    if (isPreview) {
+      return alert(
+        'ผู้ชมสามารถบันทึกข้อมูลนามบัตรนี้และสร้างรายชื่อติดต่อในโทรศัพท์ได้'
+      );
+    }
+    saveVCard(profileData?.info);
+  };
+
   return (
     <Box
       minHeight="100vh"
@@ -254,7 +263,7 @@ const View = ({ isPreview, profileData }) => {
                     size="large"
                     color="secondary"
                     startIcon={<PersonAddIcon />}
-                    onClick={() => saveVCard(profileData?.info)}
+                    onClick={saveVCardHandler}
                   >
                     บันทึก
                   </Button>

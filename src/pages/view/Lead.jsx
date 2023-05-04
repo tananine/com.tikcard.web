@@ -55,6 +55,11 @@ const Lead = ({ isPreview, profileId }) => {
   );
 
   const openFormHandler = () => {
+    if (isPreview) {
+      return alert(
+        'ผู้ชมสามารถส่งข้อมูลติดต่อไปยังเจ้าของนามบัตรได้ (ดูข้อมูลติดต่อทั้งหมดในหน้าสมุดรายชื่อ)'
+      );
+    }
     clearErrors();
     setOpenForm(true);
     clearTimeout(timeoutRef.current);
