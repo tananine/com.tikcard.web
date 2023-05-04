@@ -6,6 +6,8 @@ import { setPrimaryProfile, setSecondaryProfile } from '@/stores/account';
 import { useCallback, useEffect } from 'react';
 import { LoadingButton } from '@mui/lab';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import usePost from '@/hooks/axios/usePost';
 import usePut from '@/hooks/axios/usePut';
@@ -13,10 +15,26 @@ import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import toast from 'react-hot-toast';
 
+const schema = yup
+  .object({
+    cardName: yup.string().required('โปรดป้อนชื่อนามบัตร'),
+  })
+  .required();
+
 const AddProfile = () => {
   const open = useSelector((state) => state.popup.addProfilePopup);
 
-  const { register, handleSubmit, setValue } = useForm();
+  const {
+    register,
+    formState: { errors },
+    clearErrors,
+    handleSubmit,
+    setValue,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const hasErrors = Object.keys(errors).length !== 0;
 
   const [addProfileAction, addProfileLoading] = usePost(
     profileServicePath.getProfile,
@@ -33,6 +51,7 @@ const AddProfile = () => {
 
   useEffect(() => {
     if (open) {
+      clearErrors();
       setValue('cardName', '');
     }
   }, [open]);
@@ -84,6 +103,8 @@ const AddProfile = () => {
           variant="outlined"
           fullWidth
           InputLabelProps={{ shrink: true }}
+          error={errors?.cardName ? true : false}
+          helperText={errors?.cardName?.message}
           {...register('cardName')}
         />
         <Box position="absolute" width="100%" bottom={0}>
@@ -94,6 +115,7 @@ const AddProfile = () => {
             color="secondary"
             onClick={handleSubmit(save)}
             loading={addProfileLoading || setPrimaryLoading}
+            disabled={hasErrors}
           >
             เพิ่ม
           </LoadingButton>
