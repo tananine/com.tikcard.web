@@ -24,11 +24,11 @@ const schema = yup
       name: yup.string().required('โปรดป้อนชื่อ'),
       phone: yup.string().when('email', {
         is: (val) => !val || val === '',
-        then: () => yup.string().required('โปรดป้อนเบอร์โทร หรือ อีเมล'),
+        then: () => yup.string().required('โปรดป้อนเบอร์โทรหรืออีเมล'),
       }),
       email: yup.string().when('phone', {
         is: (val) => !val || val === '',
-        then: () => yup.string().required('โปรดป้อนเบอร์โทร หรือ อีเมล'),
+        then: () => yup.string().required('โปรดป้อนเบอร์โทรหรืออีเมล'),
       }),
     },
     ['phone', 'email']
@@ -125,7 +125,7 @@ const Lead = ({ isPreview, profileId }) => {
             {...register('name')}
           />
           <TextField
-            label="เบอร์โทร (อย่างใดอย่างหนึ่ง)"
+            label="เบอร์โทร (อย่างหนึ่ง)"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
@@ -135,7 +135,7 @@ const Lead = ({ isPreview, profileId }) => {
             {...register('phone')}
           />
           <TextField
-            label="อีเมล (อย่างใดอย่างหนึ่ง)"
+            label="อีเมล (อย่างหนึ่ง)"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
