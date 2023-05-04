@@ -6,6 +6,8 @@ import { addContactToggle, editContactDynamicToggle } from '@/stores/popup';
 import { reloadContactList } from '@/stores/reload';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import GridLayout from '@/components/layoutContact/GridLayout';
 import BlockLayout from '@/components/layoutContact/BlockLayout';
@@ -21,9 +23,27 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import toast from 'react-hot-toast';
 
+const schema = yup
+  .object({
+    data: yup.string().required('โปรดป้อนข้อมูล'),
+  })
+  .required();
+
 const EditContact = () => {
-  const { register, handleSubmit, setValue, getValues, watch } = useForm();
+  const {
+    register,
+    formState: { errors },
+    clearErrors,
+    handleSubmit,
+    setValue,
+    getValues,
+    watch,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   watch();
+
+  const hasErrors = Object.keys(errors).length !== 0;
 
   const [addContactAction, addContactLoading] = usePost(
     profileServicePath.contactData,
@@ -64,6 +84,7 @@ const EditContact = () => {
 
   useEffect(() => {
     if (open) {
+      clearErrors();
       setValue('name', appData.dataItem?.name);
       setValue('data', appData.dataItem?.data);
       setValue('note', appData.dataItem?.note);
@@ -149,6 +170,8 @@ const EditContact = () => {
           variant="outlined"
           fullWidth
           InputLabelProps={{ shrink: true }}
+          error={errors?.data ? true : false}
+          helperText={errors?.data?.message}
           {...register('data')}
         />
       );
@@ -167,6 +190,8 @@ const EditContact = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            error={errors?.data ? true : false}
+            helperText={errors?.data?.message}
             {...register('data')}
           />
           <TextField
@@ -216,10 +241,9 @@ const EditContact = () => {
               ดูวิธีใส่ข้อมูล {appData.name}
             </Button>
           </Divider>
-
           {fieldInput()}
         </Box>
-        {appData.contactId && (
+        {appData.contactId ? (
           <Box textAlign="center">
             <LoadingButton
               variant="text"
@@ -231,6 +255,8 @@ const EditContact = () => {
               ลบ
             </LoadingButton>
           </Box>
+        ) : (
+          <Box mb={6} />
         )}
         <Box
           position="sticky"
@@ -246,6 +272,7 @@ const EditContact = () => {
             fullWidth
             onClick={handleSubmit(save)}
             loading={addContactLoading || updateContactLoading}
+            disabled={hasErrors}
           >
             บันทึก
           </LoadingButton>
