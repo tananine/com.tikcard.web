@@ -9,6 +9,7 @@ import {
   Button,
   Input,
   Slider,
+  Card,
 } from '@mui/material';
 import Cropper from 'react-easy-crop';
 import Resizer from '@/functions/resizer';
@@ -145,12 +146,7 @@ const ProfileImageHead = ({
                 }}
               >
                 {profileImage ? (
-                  <img
-                    src={profileImage}
-                    alt=""
-                    width="100%"
-                    height="100%"
-                  />
+                  <img src={profileImage} alt="" width="100%" height="100%" />
                 ) : (
                   <EditIcon />
                 )}
@@ -189,12 +185,7 @@ const ProfileImageHead = ({
               }}
             >
               {logoImage ? (
-                <img
-                  src={logoImage}
-                  alt=""
-                  width="100%"
-                  height="100%"
-                />
+                <img src={logoImage} alt="" width="100%" height="100%" />
               ) : (
                 <EditIcon sx={{ fontSize: 16 }} />
               )}
@@ -220,13 +211,17 @@ const ProfileImageHead = ({
         PaperProps={{ sx: { margin: 2, width: '100%', borderRadius: 6 } }}
       >
         <DialogTitle>เปลี่ยนรูป</DialogTitle>
-        <DialogContent>
+        <DialogContent
+          sx={{ display: 'flex', flexDirection: 'column', height: '80vh' }}
+        >
           <Box
-            width="100%"
+            maxWidth="100%"
+            flexGrow={1}
             overflow="hidden"
             position="relative"
             borderRadius={6}
             sx={{ aspectRatio: '1' }}
+            margin="auto"
           >
             <Cropper
               image={cacheImage}
@@ -239,13 +234,16 @@ const ProfileImageHead = ({
               onCropComplete={onCropComplete}
             />
           </Box>
-          <Slider
-            value={zoom}
-            onChange={setZoomHandler}
-            min={1}
-            max={3}
-            step={0.1}
-          />
+          <Card variant="outlined" sx={{ marginTop: 2, paddingX: 4 }}>
+            <Typography textAlign="center">ซูม</Typography>
+            <Slider
+              value={zoom}
+              onChange={setZoomHandler}
+              min={1}
+              max={3}
+              step={0.1}
+            />
+          </Card>
         </DialogContent>
         <DialogActions>
           <Button onClick={closeEditDialogHandler}>ยกเลิก</Button>
