@@ -139,7 +139,7 @@ const ShareBody = () => {
             PaperProps={{ sx: { margin: 2, width: '100%', borderRadius: 6 } }}
           >
             <DialogTitle>แก้ไข Link ID</DialogTitle>
-            <DialogContent>
+            <DialogContent sx={{ paddingX: 2 }}>
               <TextField
                 label="Link ID"
                 variant="outlined"

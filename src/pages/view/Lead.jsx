@@ -108,7 +108,7 @@ const Lead = ({ isPreview, profileId }) => {
       <Dialog
         open={openForm}
         maxWidth="xl"
-        PaperProps={{ sx: { margin: 1, width: '100%', borderRadius: 6 } }}
+        PaperProps={{ sx: { margin: 2, width: '100%', borderRadius: 6 } }}
       >
         <DialogTitle>ข้อมูลติดต่อของคุณ</DialogTitle>
         <DialogContent sx={{ paddingX: 1.5 }}>

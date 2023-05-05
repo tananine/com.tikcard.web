@@ -218,14 +218,14 @@ const View = ({ isPreview, profileData }) => {
                   variant="h1"
                 >
                   {profileData?.info.name || 'ไม่มีชื่อ'}
-                  {false && (
+                  {true && (
                     <img
                       src={Verify}
                       alt=""
                       width="22px"
                       style={{
                         verticalAlign: 'middle',
-                        filter: 'grayscale(100%)',
+                        // filter: 'grayscale(100%)',
                         marginLeft: '4px',
                       }}
                     />
