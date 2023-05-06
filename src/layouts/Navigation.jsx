@@ -4,6 +4,7 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Typography,
+  Box,
 } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -21,11 +22,13 @@ const ProfilePart = () => {
 
   const navigate = useNavigate();
 
-  const [type, setType] = useState(0);
+  const [type, setType] = useState('primary');
+  const [value, setValue] = useState(0);
 
   const dispatch = useDispatch();
 
   const setPrimary = useCallback(() => {
+    setType('primary');
     dispatch(
       setProfileInUse({
         profileState: 'primary',
@@ -35,6 +38,7 @@ const ProfilePart = () => {
   }, [dispatch, profileActivation]);
 
   const setSecondary = useCallback(() => {
+    setType('secondary');
     dispatch(
       setProfileInUse({
         profileState: 'secondary',
@@ -47,7 +51,7 @@ const ProfilePart = () => {
   }, [dispatch, profileActivation]);
 
   const changeActiveScan = (event, newValue) => {
-    setType(newValue);
+    setValue(newValue);
   };
 
   useEffect(() => {
@@ -60,45 +64,47 @@ const ProfilePart = () => {
 
   if (isScanDouble) {
     return (
-      <BottomNavigation
-        showLabels
-        value={type}
-        sx={{
-          height: '40px',
-          backgroundColor: '#e8e8e8',
-          borderRadius: '25px',
-          margin: 'auto',
-          width: '96%',
-          boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',
-          overflow: 'hidden',
-        }}
-        onChange={changeActiveScan}
-      >
-        <BottomNavigationAction
-          onClick={setPrimary}
-          label={
-            <>
-              <Typography variant="caption">นามบัตร 1</Typography>
-              <Typography fontSize={10} lineHeight={1}>
-                สแกนซ้าย
-              </Typography>
-            </>
-          }
-          sx={{ maxWidth: 'none' }}
-        />
-        <BottomNavigationAction
-          onClick={setSecondary}
-          label={
-            <>
-              <Typography variant="caption">นามบัตร 2</Typography>
-              <Typography fontSize={10} lineHeight={1}>
-                สแกนขวา
-              </Typography>
-            </>
-          }
-          sx={{ maxWidth: 'none' }}
-        />
-      </BottomNavigation>
+      <Box pb={1}>
+        <BottomNavigation
+          showLabels
+          value={value}
+          sx={{
+            height: '40px',
+            backgroundColor: '#e8e8e8',
+            borderRadius: '25px',
+            margin: 'auto',
+            width: '96%',
+            boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',
+            overflow: 'hidden',
+          }}
+          onChange={changeActiveScan}
+        >
+          <BottomNavigationAction
+            onClick={setPrimary}
+            label={
+              <>
+                <Typography variant="caption">นามบัตร 1</Typography>
+                <Typography fontSize={10} lineHeight={1}>
+                  สแกนซ้าย
+                </Typography>
+              </>
+            }
+            sx={{ maxWidth: 'none' }}
+          />
+          <BottomNavigationAction
+            onClick={setSecondary}
+            label={
+              <>
+                <Typography variant="caption">นามบัตร 2</Typography>
+                <Typography fontSize={10} lineHeight={1}>
+                  สแกนขวา
+                </Typography>
+              </>
+            }
+            sx={{ maxWidth: 'none' }}
+          />
+        </BottomNavigation>
+      </Box>
     );
   }
 };
@@ -152,7 +158,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <Container sx={{ paddingBottom: 1 }}>
+    <Container>
       <BottomNavigation
         showLabels
         value={value}
