@@ -3,9 +3,6 @@ import {
   Container,
   BottomNavigation,
   BottomNavigationAction,
-  Grid,
-  Button,
-  Paper,
   Typography,
 } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -24,12 +21,11 @@ const ProfilePart = () => {
 
   const navigate = useNavigate();
 
-  const [type, setType] = useState('primary');
+  const [type, setType] = useState(0);
 
   const dispatch = useDispatch();
 
   const setPrimary = useCallback(() => {
-    setType('primary');
     dispatch(
       setProfileInUse({
         profileState: 'primary',
@@ -39,7 +35,6 @@ const ProfilePart = () => {
   }, [dispatch, profileActivation]);
 
   const setSecondary = useCallback(() => {
-    setType('secondary');
     dispatch(
       setProfileInUse({
         profileState: 'secondary',
@@ -51,6 +46,10 @@ const ProfilePart = () => {
     }
   }, [dispatch, profileActivation]);
 
+  const changeActiveScan = (event, newValue) => {
+    setType(newValue);
+  };
+
   useEffect(() => {
     if (type === 'primary') {
       setPrimary();
@@ -61,40 +60,45 @@ const ProfilePart = () => {
 
   if (isScanDouble) {
     return (
-      <Paper elevation={2} sx={{ backgroundColor: '#b5b5b5' }}>
-        <Grid container>
-          <Grid item xs={type === 'primary' ? 7 : 5}>
-            <Button
-              disableRipple
-              fullWidth
-              sx={{
-                borderRadius: 0,
-                opacity: type === 'primary' ? 0.5 : 1,
-                display: 'block',
-              }}
-              onClick={setPrimary}
-            >
+      <BottomNavigation
+        showLabels
+        value={type}
+        sx={{
+          height: '40px',
+          backgroundColor: '#e8e8e8',
+          borderRadius: '25px',
+          margin: 'auto',
+          width: '96%',
+          boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',
+          overflow: 'hidden',
+        }}
+        onChange={changeActiveScan}
+      >
+        <BottomNavigationAction
+          onClick={setPrimary}
+          label={
+            <>
               <Typography variant="caption">นามบัตร 1</Typography>
-              <Typography fontSize={10}>สแกนซ้าย</Typography>
-            </Button>
-          </Grid>
-          <Grid item xs={type === 'secondary' ? 7 : 5}>
-            <Button
-              disableRipple
-              fullWidth
-              sx={{
-                borderRadius: 0,
-                opacity: type === 'secondary' ? 0.5 : 1,
-                display: 'block',
-              }}
-              onClick={setSecondary}
-            >
+              <Typography fontSize={10} lineHeight={1}>
+                สแกนซ้าย
+              </Typography>
+            </>
+          }
+          sx={{ maxWidth: 'none' }}
+        />
+        <BottomNavigationAction
+          onClick={setSecondary}
+          label={
+            <>
               <Typography variant="caption">นามบัตร 2</Typography>
-              <Typography fontSize={10}>สแกนขวา</Typography>
-            </Button>
-          </Grid>
-        </Grid>
-      </Paper>
+              <Typography fontSize={10} lineHeight={1}>
+                สแกนขวา
+              </Typography>
+            </>
+          }
+          sx={{ maxWidth: 'none' }}
+        />
+      </BottomNavigation>
     );
   }
 };
@@ -148,7 +152,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <Container>
+    <Container sx={{ paddingBottom: 1 }}>
       <BottomNavigation
         showLabels
         value={value}
