@@ -80,6 +80,7 @@ const ProfilePart = () => {
           onChange={changeActiveScan}
         >
           <BottomNavigationAction
+            disableRipple
             onClick={setPrimary}
             label={
               <>
@@ -89,9 +90,17 @@ const ProfilePart = () => {
                 </Typography>
               </>
             }
-            sx={{ maxWidth: 'none' }}
+            sx={{
+              maxWidth: 'none',
+              backgroundColor: '#ededed',
+              '&.Mui-selected': {
+                color: '#000000',
+                backgroundColor: '#e6e6e6',
+              },
+            }}
           />
           <BottomNavigationAction
+            disableRipple
             onClick={setSecondary}
             label={
               <>
@@ -101,7 +110,14 @@ const ProfilePart = () => {
                 </Typography>
               </>
             }
-            sx={{ maxWidth: 'none' }}
+            sx={{
+              maxWidth: 'none',
+              backgroundColor: '#ededed',
+              '&.Mui-selected': {
+                color: '#000000',
+                backgroundColor: '#e6e6e6',
+              },
+            }}
           />
         </BottomNavigation>
       </Box>
