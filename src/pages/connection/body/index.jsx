@@ -27,30 +27,18 @@ const profileConnectionList = (
   return (
     <>
       {primaryProfileData && (
-        <>
-          <Typography variant="body2" mb={1}>
-            นามบัตร 1
-          </Typography>
-          <ProfileAccordion data={primaryProfileData} />
-        </>
+        <ProfileAccordion data={primaryProfileData} role="primary" />
       )}
       {secondaryProfileData && (
-        <>
-          <Typography variant="body2" mt={2} mb={1}>
-            นามบัตร 2
-          </Typography>
-          <ProfileAccordion data={secondaryProfileData} />
-        </>
+        <ProfileAccordion data={secondaryProfileData} role="secondary" />
       )}
       {dataWithOutPrimarySecondary?.length > 0 && (
-        <>
-          <Typography variant="body2" mt={5} mb={1}>
-            นามบัตรอื่น
-          </Typography>
+        <Box mt={2}>
+          <Typography>นามบัตรอื่น</Typography>
           {dataWithOutPrimarySecondary?.map((profile) => {
             return <ProfileAccordion key={profile.id} data={profile} />;
           })}
-        </>
+        </Box>
       )}
     </>
   );

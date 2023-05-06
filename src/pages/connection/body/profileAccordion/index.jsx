@@ -42,7 +42,7 @@ const ConnectionList = (connections, increaseAmountDestroy) => {
   });
 };
 
-const ProfileAccordion = ({ data }) => {
+const ProfileAccordion = ({ data, role }) => {
   const [amountDestroy, setAmountDestroy] = useState(0);
 
   const increaseAmountDestroy = () => {
@@ -55,9 +55,10 @@ const ProfileAccordion = ({ data }) => {
     <Accordion
       disableGutters
       sx={{
-        boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
-        borderRadius: '18px !important',
-        marginBottom: 2,
+        boxShadow: 'none',
+        border: '1px solid #e7e7e7',
+        borderRadius: '25px !important',
+        marginBottom: 1,
         '&:before': {
           display: 'none',
         },
@@ -81,14 +82,29 @@ const ProfileAccordion = ({ data }) => {
             />
           </Badge>
           <Box>
-            <Typography variant="h3" lineHeight="26.5px">
-              {data.name}
+            <Typography variant="h5">{data.name}</Typography>
+            <Typography variant="caption" fontWeight={500}>
+              {dataLength} รายชื่อ
             </Typography>
-            <Typography variant="caption">{dataLength} รายชื่อ</Typography>
+            {role && (
+              <Box display="flex" alignItems="center" gap={1}>
+                <Box
+                  sx={{
+                    borderRadius: '50%',
+                    backgroundColor: 'lightgreen',
+                    width: '6px',
+                    height: '6px',
+                  }}
+                />
+                <Typography variant="caption">
+                  ใช้งานในนามบัตร {role === 'primary' ? 1 : 2}
+                </Typography>
+              </Box>
+            )}
           </Box>
         </Box>
       </AccordionSummary>
-      <AccordionDetails sx={{ paddingX: 2, paddingTop: 0, paddingBottom: 1 }}>
+      <AccordionDetails sx={{ paddingX: 2, paddingTop: 1, paddingBottom: 1 }}>
         {ConnectionList(data.Connections, increaseAmountDestroy)}
       </AccordionDetails>
     </Accordion>

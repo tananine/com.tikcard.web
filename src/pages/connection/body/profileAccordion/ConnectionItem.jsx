@@ -47,7 +47,7 @@ const ConnectionItem = ({ data, removeConnection }) => {
         <Box display="flex" gap={2} flexGrow={1} alignItems="center">
           <Avatar sx={{ width: 46, height: 46 }}>ธ</Avatar>
           <Box>
-            <Typography variant="h3" lineHeight="26.5px">
+            <Typography variant="h5" lineHeight="26.5px">
               {data.name}
             </Typography>
             <Typography variant="caption">{data.createdAt}</Typography>
