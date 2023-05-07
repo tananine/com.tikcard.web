@@ -34,11 +34,13 @@ const ConnectionItem = ({ data, removeConnection }) => {
   };
 
   const deleteConnectList = () => {
-    deleteConnectListAction(`${data.profileId}/${data.id}`).then(() => {
-      removeConnection(data.id);
-      setOpen(false);
-      toast.success('ลบสำเร็จ');
-    });
+    if (confirm('คุณต้องการจะลบใช่หรือไม่ ?')) {
+      deleteConnectListAction(`${data.profileId}/${data.id}`).then(() => {
+        removeConnection(data.id);
+        setOpen(false);
+        toast.success('ลบสำเร็จ');
+      });
+    }
   };
 
   return (

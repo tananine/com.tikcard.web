@@ -153,11 +153,13 @@ const SwitchProfile = () => {
   }, [dispatch, open, switchProfilePopupRef]);
 
   const removeProfileHandler = useCallback(() => {
-    removeProfileAction(profileId).then(() => {
-      dispatch(reloadCurrentProfile());
-      switchProfileToggleHandler();
-      toast.success('ลบสำเร็จ');
-    });
+    if (confirm('คุณต้องการจะลบใช่หรือไม่ ?')) {
+      removeProfileAction(profileId).then(() => {
+        dispatch(reloadCurrentProfile());
+        switchProfileToggleHandler();
+        toast.success('ลบสำเร็จ');
+      });
+    }
   }, [removeProfileAction, profileId]);
 
   return (

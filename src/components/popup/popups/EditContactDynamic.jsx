@@ -120,10 +120,12 @@ const EditContact = () => {
   };
 
   const deleteContact = () => {
-    deleteContactAction(appData.contactId).then(() => {
-      closePopupHandler();
-      toast.success('ลบสำเร็จ');
-    });
+    if (confirm('คุณต้องการจะลบใช่หรือไม่ ?')) {
+      deleteContactAction(appData.contactId).then(() => {
+        closePopupHandler();
+        toast.success('ลบสำเร็จ');
+      });
+    }
   };
 
   const goContact = () => {
