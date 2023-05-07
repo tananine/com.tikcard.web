@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Typography, CircularProgress, Box, Divider } from '@mui/material';
+import { Typography, CircularProgress, Box } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 import ProfileAccordion from '@/pages/connection/body/profileAccordion';
@@ -26,11 +26,17 @@ const profileConnectionList = (
 
   return (
     <>
-      {primaryProfileData && (
-        <ProfileAccordion data={primaryProfileData} role="primary" />
-      )}
-      {secondaryProfileData && (
-        <ProfileAccordion data={secondaryProfileData} role="secondary" />
+      {primaryProfileData.id === secondaryProfileData.id ? (
+        <ProfileAccordion data={primaryProfileData} role="equal" />
+      ) : (
+        <>
+          {primaryProfileData && (
+            <ProfileAccordion data={primaryProfileData} role="primary" />
+          )}
+          {secondaryProfileData && (
+            <ProfileAccordion data={secondaryProfileData} role="secondary" />
+          )}
+        </>
       )}
       {dataWithOutPrimarySecondary?.length > 0 && (
         <Box mt={2}>

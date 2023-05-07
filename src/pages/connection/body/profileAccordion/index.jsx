@@ -51,6 +51,16 @@ const ProfileAccordion = ({ data, role }) => {
 
   const dataLength = data.Connections.length - amountDestroy;
 
+  const statusActivate = () => {
+    if (role === 'equal') {
+      return 'ใช้งานในนามบัตร 1 และ 2';
+    } else if (role === 'primary') {
+      return 'ใช้งานในนามบัตร 1';
+    } else {
+      return 'ใช้งานในนามบัตร 2';
+    }
+  };
+
   return (
     <Accordion
       disableGutters
@@ -96,9 +106,7 @@ const ProfileAccordion = ({ data, role }) => {
                     height: '6px',
                   }}
                 />
-                <Typography variant="caption">
-                  ใช้งานในนามบัตร {role === 'primary' ? 1 : 2}
-                </Typography>
+                <Typography variant="caption">{statusActivate()}</Typography>
               </Box>
             )}
           </Box>
