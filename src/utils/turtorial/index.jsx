@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTutorialSuccess } from '@/stores/account';
 
+import usePut from '@/hooks/axios/usePut';
+import authServicePath from '@/data/jsons/services/auth.service.json';
+
 const steps = {
   profilePage: [
     {
@@ -42,12 +45,18 @@ const Tutorial = ({ step }) => {
 
   const [isShow, setIsShow] = useState(false);
 
+  const [successTutorialDataAction] = usePut(
+    authServicePath.successTutorial,
+    false
+  );
+
   const exit = () => {
     return;
   };
 
   const complete = () => {
     setIsShow(false);
+    successTutorialDataAction();
     dispatch(setTutorialSuccess(step));
   };
 

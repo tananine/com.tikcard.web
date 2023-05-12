@@ -1,4 +1,5 @@
 {
   "login": "/auth/login",
-  "accountData": "/account/data"
+  "accountData": "/account/data",
+  "successTutorial": "/account/success-tutorial"
 }

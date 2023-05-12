@@ -7,7 +7,7 @@ import { setProfileInUse } from '@/stores/controller';
 import { setDevice, setIsScanDouble } from '@/stores/device';
 
 import useGet from '@/hooks/axios/useGet';
-import accountServicePath from '@/data/jsons/services/auth.service.json';
+import authServicePath from '@/data/jsons/services/auth.service.json';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 import deviceServicePath from '@/data/jsons/services/device.service.json';
 
@@ -40,7 +40,7 @@ const Application = ({ header, body, footer, tutorial }) => {
     deviceServicePath.getDeviceAll,
     true
   );
-  const [accountDataAction] = useGet(accountServicePath.accountData, true);
+  const [accountDataAction] = useGet(authServicePath.accountData, true);
 
   useEffect(() => {
     accountDataAction().then((res) => {
