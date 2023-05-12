@@ -7,6 +7,7 @@ import { setProfileInUse } from '@/stores/controller';
 import { setDevice, setIsScanDouble } from '@/stores/device';
 
 import useGet from '@/hooks/axios/useGet';
+import accountServicePath from '@/data/jsons/services/auth.service.json';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 import deviceServicePath from '@/data/jsons/services/device.service.json';
 
@@ -22,7 +23,7 @@ import Popups from '@/utils/Popups';
 import Drawers from '@/utils/Drawers';
 import BackdropOnFetch from '@/components/BackdropOnFetch';
 
-const Application = ({ header, body, footer }) => {
+const Application = ({ header, body, footer, tutorial }) => {
   const dispatch = useDispatch();
 
   const [showWelcomePage, setShowWelcomePage] = useState(false);
@@ -37,12 +38,26 @@ const Application = ({ header, body, footer }) => {
     deviceServicePath.getDeviceAll,
     true
   );
+  const [accountDataAction] = useGet(accountServicePath.accountData, true);
+
+  useEffect(() => {
+    accountDataAction().then((res) => {
+      const email = res.data.email;
+      const tutorial = res.data.tutorial;
+      dispatch(setAccount({ email: email, tutorial: tutorial }));
+    });
+    getDeviceAllAction().then((res) => {
+      if (res.data.some((item) => item.DeviceType.typeScan === 'double')) {
+        dispatch(setIsScanDouble(true));
+      }
+      dispatch(setDevice(res.data));
+    });
+  }, []);
 
   useEffect(() => {
     getActivationAction().then((res) => {
       const primary = res.data.activation.primary;
       const secondary = res.data.activation.secondary;
-      const email = res.data.account.email;
       if (!primary) {
         setShowWelcomePage(true);
       } else {
@@ -60,15 +75,8 @@ const Application = ({ header, body, footer }) => {
           profileId: primary,
         })
       );
-      dispatch(setAccount({ email: email }));
     });
-    getDeviceAllAction().then((res) => {
-      if (res.data.some((item) => item.DeviceType.typeScan === 'double')) {
-        dispatch(setIsScanDouble(true));
-      }
-      dispatch(setDevice(res.data));
-    });
-  }, [getActivationAction, dispatch, reloadLayoutsIndex, getDeviceAllAction]);
+  }, [reloadLayoutsIndex]);
 
   if (showWelcomePage) {
     return (
@@ -103,6 +111,7 @@ const Application = ({ header, body, footer }) => {
       </Container>
       {Popups()}
       {Drawers()}
+      {tutorial}
       <BackdropOnFetch />
     </>
   );

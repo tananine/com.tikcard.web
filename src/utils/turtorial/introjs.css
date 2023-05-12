@@ -1,0 +1,31 @@
+.introjs-helperLayer {
+  box-shadow: rgba(33, 33, 33, 0.5) 0px 0px 0px 5000px !important;
+}
+
+.introjs-tooltip {
+  border-radius: 8px;
+}
+
+.introjs-tooltipReferenceLayer * {
+  font-family: 'Anuphan', sans-serif;
+}
+
+.introjs-button {
+  border-radius: 25px;
+  background-color: #e8e8e8;
+  color: black;
+  font-weight: 600;
+  text-shadow: none;
+}
+
+.introjs-skipbutton {
+  display: none;
+}
+
+.introjs-prevbutton {
+  display: none;
+}
+
+.introjs-tooltipbuttons {
+  border-top: none;
+}

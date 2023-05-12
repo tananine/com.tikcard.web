@@ -28,6 +28,7 @@ const ProfileHeader = () => {
       <Grid container marginTop={0} spacing={1.5}>
         <Grid item xs={6}>
           <Button
+            id="edit-profile-button"
             fullWidth
             variant="contained"
             color="secondary"
@@ -40,6 +41,7 @@ const ProfileHeader = () => {
         </Grid>
         <Grid item xs={6}>
           <Button
+            id="preview-button"
             fullWidth
             variant="contained"
             onClick={previewToggleHandler}

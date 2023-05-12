@@ -12,6 +12,8 @@ import ProfileFooter from '@/pages/profile/Footer';
 import ConnectionBody from '@/pages/connection/body';
 import ShareBody from '@/pages/share/body';
 
+import Tutorial from '@/utils/turtorial';
+
 const App = () => {
   const authToken = Cookies.get('authToken');
 
@@ -27,6 +29,7 @@ const App = () => {
             header={<ProfileHeader />}
             body={<ProfileBody />}
             footer={<ProfileFooter />}
+            tutorial={<Tutorial step="profilePage" />}
           />
         );
       case 'share':

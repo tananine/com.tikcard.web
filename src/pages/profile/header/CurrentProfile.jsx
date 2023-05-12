@@ -93,6 +93,7 @@ const CurrentProfile = ({ profileActivationId }) => {
 
   return (
     <Card
+      id="select-profile-card"
       sx={{
         display: 'flex',
         alignItems: 'center',

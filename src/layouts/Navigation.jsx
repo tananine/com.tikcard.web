@@ -187,6 +187,7 @@ const Navigation = () => {
           icon={<AccountCircleIcon />}
         />
         <BottomNavigationAction
+          id="share-button-navigation"
           onClick={navigatePageShare}
           label="แชร์"
           icon={<QrCode2Icon />}

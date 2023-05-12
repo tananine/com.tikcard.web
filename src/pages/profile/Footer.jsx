@@ -18,6 +18,7 @@ const ProfileFooter = () => {
 
   return (
     <IconButton
+      id="add-contact-button"
       variant="contained"
       onClick={addContactToggleHandler}
       disabled={!profileActivationId}

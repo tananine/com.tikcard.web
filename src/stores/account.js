@@ -5,6 +5,7 @@ export const accountSlice = createSlice({
   initialState: {
     accountData: {
       email: null,
+      tutorial: null,
     },
     activation: {
       primaryProfile: null,
@@ -29,6 +30,9 @@ export const accountSlice = createSlice({
     setAccount: (state, action) => {
       state.accountData = action.payload;
     },
+    setTutorialSuccess: (state, action) => {
+      state.accountData.tutorial[action.payload] = true;
+    },
   },
 });
 
@@ -38,6 +42,7 @@ export const {
   setSecondaryProfile,
   setProfiles,
   setAccount,
+  setTutorialSuccess,
 } = accountSlice.actions;
 
 export default accountSlice.reducer;
