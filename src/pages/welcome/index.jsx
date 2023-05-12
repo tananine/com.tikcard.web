@@ -4,7 +4,7 @@ import '@egjs/react-flicking/dist/flicking.css';
 import Flicking from '@egjs/react-flicking';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { reloadLayoutsIndex } from '@/stores/reload';
+import { reloadGetActivation } from '@/stores/reload';
 
 import usePost from '@/hooks/axios/usePost';
 import usePut from '@/hooks/axios/usePut';
@@ -38,7 +38,7 @@ const Welcome = () => {
     addProfileAction(body).then((res) => {
       const profileId = res.data.returnData.id;
       setPrimaryAction({}, profileId).then(() => {
-        dispatch(reloadLayoutsIndex());
+        dispatch(reloadGetActivation());
       });
     });
   };

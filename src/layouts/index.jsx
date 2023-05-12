@@ -28,7 +28,9 @@ const Application = ({ header, body, footer, tutorial }) => {
 
   const [showWelcomePage, setShowWelcomePage] = useState(false);
 
-  const reloadLayoutsIndex = useSelector((state) => state.reload.layoutsIndex);
+  const reloadGetActivation = useSelector(
+    (state) => state.reload.getActivation
+  );
 
   const [getActivationAction, getActivationLoading] = useGet(
     profileServicePath.getActivation,
@@ -76,7 +78,7 @@ const Application = ({ header, body, footer, tutorial }) => {
         })
       );
     });
-  }, [reloadLayoutsIndex]);
+  }, [reloadGetActivation]);
 
   if (showWelcomePage) {
     return (

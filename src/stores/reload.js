@@ -5,7 +5,7 @@ export const reloadSlice = createSlice({
   initialState: {
     contactList: 0,
     currentProfile: 0,
-    layoutsIndex: 0,
+    getActivation: 0,
   },
   reducers: {
     reloadContactList: (state) => {
@@ -14,13 +14,13 @@ export const reloadSlice = createSlice({
     reloadCurrentProfile: (state) => {
       state.currentProfile += 1;
     },
-    reloadLayoutsIndex: (state) => {
-      state.layoutsIndex += 1;
+    reloadGetActivation: (state) => {
+      state.getActivation += 1;
     },
   },
 });
 
-export const { reloadContactList, reloadCurrentProfile, reloadLayoutsIndex } =
+export const { reloadContactList, reloadCurrentProfile, reloadGetActivation } =
   reloadSlice.actions;
 
 export default reloadSlice.reducer;
