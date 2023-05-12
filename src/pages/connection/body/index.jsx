@@ -26,7 +26,7 @@ const profileConnectionList = (
 
   return (
     <>
-      {primaryProfileData.id === secondaryProfileData.id ? (
+      {primaryProfileData?.id === secondaryProfileData?.id ? (
         <ProfileAccordion data={primaryProfileData} role="equal" />
       ) : (
         <>
