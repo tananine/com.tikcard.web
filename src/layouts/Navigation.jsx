@@ -126,7 +126,7 @@ const ProfilePart = () => {
             />
           </BottomNavigation>
         </Box>
-        <Tutorial step="profileScan" />
+        <Tutorial step="profileScan" delay={1} />
       </>
     );
   }

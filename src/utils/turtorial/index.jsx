@@ -1,9 +1,10 @@
 import 'intro.js/introjs.css';
 import '@/utils/turtorial/introjs.css';
 import { Steps } from 'intro.js-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTutorialSuccess } from '@/stores/account';
+import { pushTutorialQue, removeTutorialQue } from '@/stores/controller';
 
 import usePut from '@/hooks/axios/usePut';
 import authServicePath from '@/data/jsons/services/auth.service.json';
@@ -16,12 +17,14 @@ const steps = {
   profileScan: profileScanJSON,
 };
 
-const Tutorial = ({ step }) => {
+const Tutorial = ({ step, delay }) => {
   const tutorial = useSelector((state) => state.account.accountData.tutorial);
-
+  const tutorialQue = useSelector((state) => state.controller.tutorialQue);
   const dispatch = useDispatch();
 
   const [isShow, setIsShow] = useState(false);
+
+  const isTutorialToShow = !tutorial[step];
 
   const [successTutorialDataAction] = usePut(
     authServicePath.successTutorial,
@@ -36,16 +39,27 @@ const Tutorial = ({ step }) => {
     const body = {
       tutorial: step,
     };
-    setIsShow(false);
     successTutorialDataAction(body);
     dispatch(setTutorialSuccess(step));
+    setIsShow(false);
+    dispatch(removeTutorialQue(step));
   };
 
   useEffect(() => {
-    setIsShow(true);
+    if (tutorialQue[0] === step) {
+      setIsShow(true);
+    }
+  }, [tutorialQue]);
+
+  useEffect(() => {
+    if (isTutorialToShow) {
+      setTimeout(() => {
+        dispatch(pushTutorialQue(step));
+      }, delay || 0);
+    }
   }, []);
 
-  if (!tutorial[step]) {
+  if (isTutorialToShow) {
     return (
       <>
         <Steps

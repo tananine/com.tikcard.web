@@ -6,6 +6,7 @@ export const controllerSlice = createSlice({
   initialState: {
     darkMode: false,
     fetchQueue: 0,
+    tutorialQue: [],
     profileInUse: {
       profileState: null,
       profileId: null,
@@ -26,6 +27,15 @@ export const controllerSlice = createSlice({
     endFetchQueue: (state) => {
       state.fetchQueue -= 1;
     },
+    pushTutorialQue: (state, action) => {
+      if (!state.tutorialQue.includes(action.payload)) {
+        state.tutorialQue.push(action.payload);
+      }
+    },
+    removeTutorialQue: (state, action) => {
+      const index = state.tutorialQue.indexOf(action.payload);
+      state.tutorialQue.splice(index, 1);
+    },
   },
 });
 
@@ -34,6 +44,8 @@ export const {
   setProfileInUse,
   startFetchQueue,
   endFetchQueue,
+  pushTutorialQue,
+  removeTutorialQue,
 } = controllerSlice.actions;
 
 export default controllerSlice.reducer;
