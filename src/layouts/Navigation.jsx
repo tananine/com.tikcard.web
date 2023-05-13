@@ -16,6 +16,8 @@ import { setProfileInUse } from '@/stores/controller';
 
 import pagePath from '@/data/jsons/page-path.json';
 
+import Tutorial from '@/utils/turtorial';
+
 const ProfilePart = () => {
   const profileActivation = useSelector((state) => state.account.activation);
   const isScanDouble = useSelector((state) => state.device.isScanDouble);
@@ -64,63 +66,68 @@ const ProfilePart = () => {
 
   if (isScanDouble) {
     return (
-      <Box pb={1}>
-        <BottomNavigation
-          showLabels
-          value={value}
-          sx={{
-            height: '40px',
-            backgroundColor: '#e8e8e8',
-            borderRadius: '25px',
-            margin: 'auto',
-            width: '96%',
-            boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',
-            overflow: 'hidden',
-          }}
-          onChange={changeActiveScan}
-        >
-          <BottomNavigationAction
-            disableRipple
-            onClick={setPrimary}
-            label={
-              <>
-                <Typography variant="caption">นามบัตร 1</Typography>
-                <Typography fontSize={10} lineHeight={1}>
-                  สแกนซ้าย
-                </Typography>
-              </>
-            }
+      <>
+        <Box pb={1}>
+          <BottomNavigation
+            showLabels
+            value={value}
             sx={{
-              maxWidth: 'none',
-              backgroundColor: '#ededed',
-              '&.Mui-selected': {
-                color: '#000000',
-                backgroundColor: '#e6e6e6',
-              },
+              height: '40px',
+              backgroundColor: '#e8e8e8',
+              borderRadius: '25px',
+              margin: 'auto',
+              width: '96%',
+              boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',
+              overflow: 'hidden',
             }}
-          />
-          <BottomNavigationAction
-            disableRipple
-            onClick={setSecondary}
-            label={
-              <>
-                <Typography variant="caption">นามบัตร 2</Typography>
-                <Typography fontSize={10} lineHeight={1}>
-                  สแกนขวา
-                </Typography>
-              </>
-            }
-            sx={{
-              maxWidth: 'none',
-              backgroundColor: '#ededed',
-              '&.Mui-selected': {
-                color: '#000000',
-                backgroundColor: '#e6e6e6',
-              },
-            }}
-          />
-        </BottomNavigation>
-      </Box>
+            onChange={changeActiveScan}
+          >
+            <BottomNavigationAction
+              id="primary-change-button"
+              disableRipple
+              onClick={setPrimary}
+              label={
+                <>
+                  <Typography variant="caption">นามบัตร 1</Typography>
+                  <Typography fontSize={10} lineHeight={1}>
+                    สแกนซ้าย
+                  </Typography>
+                </>
+              }
+              sx={{
+                maxWidth: 'none',
+                backgroundColor: '#ededed',
+                '&.Mui-selected': {
+                  color: '#000000',
+                  backgroundColor: '#e6e6e6',
+                },
+              }}
+            />
+            <BottomNavigationAction
+              id="secondary-change-button"
+              disableRipple
+              onClick={setSecondary}
+              label={
+                <>
+                  <Typography variant="caption">นามบัตร 2</Typography>
+                  <Typography fontSize={10} lineHeight={1}>
+                    สแกนขวา
+                  </Typography>
+                </>
+              }
+              sx={{
+                maxWidth: 'none',
+                backgroundColor: '#ededed',
+                '&.Mui-selected': {
+                  color: '#000000',
+                  backgroundColor: '#e6e6e6',
+                },
+              }}
+            />
+          </BottomNavigation>
+        </Box>
+        <Tutorial step="profileScan" />
+      </>
     );
   }
 };

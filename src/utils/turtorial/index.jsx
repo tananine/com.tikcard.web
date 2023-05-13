@@ -9,9 +9,11 @@ import usePut from '@/hooks/axios/usePut';
 import authServicePath from '@/data/jsons/services/auth.service.json';
 
 import profilePageJSON from '@/data/jsons/tutorials/profilePage.json';
+import profileScanJSON from '@/data/jsons/tutorials/profileScan.json';
 
 const steps = {
   profilePage: profilePageJSON,
+  profileScan: profileScanJSON,
 };
 
 const Tutorial = ({ step }) => {

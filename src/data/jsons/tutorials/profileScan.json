@@ -1,0 +1,16 @@
+[
+  {
+    "title": "เชื่อมนามบัตรเรียบร้อยแล้ว",
+    "intro": "เริ่มต้นใช้งานนามบัตรดับเบิลสแกน"
+  },
+  {
+    "title": "นามบัตร 1 สแกนซ้าย",
+    "element": "#primary-change-button",
+    "intro": "รูปภาพ"
+  },
+  {
+    "title": "นามบัตร 2 สแกนขวา",
+    "element": "#secondary-change-button",
+    "intro": "รูปภาพ"
+  }
+]
