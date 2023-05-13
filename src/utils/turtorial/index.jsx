@@ -8,34 +8,10 @@ import { setTutorialSuccess } from '@/stores/account';
 import usePut from '@/hooks/axios/usePut';
 import authServicePath from '@/data/jsons/services/auth.service.json';
 
+import profilePageJSON from '@/data/jsons/tutorials/profilePage.json';
+
 const steps = {
-  profilePage: [
-    {
-      title: 'Step 1',
-      element: '#edit-profile-button',
-      intro: 'เพิ่มข้อมูลหน้านามบัตร',
-    },
-    {
-      title: 'Step 2',
-      element: '#add-contact-button',
-      intro: 'เพิ่มข้อมูลติดต่อคุณ',
-    },
-    {
-      title: 'Step 3',
-      element: '#preview-button',
-      intro: 'ดูตัวอย่างที่ผู้ชมเห็น',
-    },
-    {
-      title: 'Step 4',
-      element: '#share-button-navigation',
-      intro: 'ทุกอย่างเรียบร้อย แชร์นามบัตรให้คู่สนทนาของคุณได้ที่นี่',
-    },
-    {
-      title: 'Tip',
-      element: '#select-profile-card',
-      intro: 'คุณสามารถมีนามบัตรกี่ใบก็ได้ เปลี่ยนหรือเพิ่มได้ที่นี่',
-    },
-  ],
+  profilePage: profilePageJSON,
 };
 
 const Tutorial = ({ step }) => {
