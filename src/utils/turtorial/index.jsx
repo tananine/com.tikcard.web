@@ -55,8 +55,11 @@ const Tutorial = ({ step }) => {
   };
 
   const complete = () => {
+    const body = {
+      tutorial: step,
+    };
     setIsShow(false);
-    successTutorialDataAction();
+    successTutorialDataAction(body);
     dispatch(setTutorialSuccess(step));
   };
 
