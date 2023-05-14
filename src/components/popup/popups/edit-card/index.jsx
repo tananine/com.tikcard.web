@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import PopupWrapper from '@/components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { editCardToggle } from '@/stores/popup';
+import { setEditProfileHeight } from '@/stores/offset';
 import { reloadCurrentProfile } from '@/stores/reload';
 import { Box, Divider, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
@@ -27,6 +28,8 @@ const EditCard = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [logoImage, setLogoImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
+
+  const editProfilePopupRef = useRef();
 
   const open = useSelector((state) => state.popup.editCardPopup);
   const profileId = useSelector(
@@ -66,7 +69,7 @@ const EditCard = () => {
   };
 
   useEffect(() => {
-    if (open) {
+    if (editProfilePopupRef.current && open) {
       clearErrors();
       clearData();
       getInformationAction().then((res) => {
@@ -81,6 +84,7 @@ const EditCard = () => {
         setLogoImage(res.data.logoImage);
         setCoverImage(res.data.coverImage);
       });
+      dispatch(setEditProfileHeight(editProfilePopupRef.current.offsetHeight));
     }
   }, [getInformationAction, profileId, setValue, open]);
 
@@ -114,6 +118,7 @@ const EditCard = () => {
 
   return (
     <PopupWrapper
+      forwardedRef={editProfilePopupRef}
       open={open}
       onClose={editCardToggleHandler}
       onOpen={editCardToggleHandler}

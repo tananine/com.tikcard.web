@@ -19,6 +19,8 @@ import getCropOutput from '@/functions/cropOutput';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import EditIcon from '@mui/icons-material/Edit';
 
+import EditCoverImage from '@/components/popup/popups/edit-card/EditCoverImage';
+
 const ProfileImageHead = ({
   profileImage,
   setProfileImage,
@@ -31,6 +33,16 @@ const ProfileImageHead = ({
   const [cacheImage, setCacheImage] = useState(null);
   const [type, setType] = useState(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+
+  const [openEditCover, setOpenEditCover] = useState(false);
+
+  const openEditCoverHandler = () => {
+    setOpenEditCover(true);
+  };
+
+  const closeEditCoverHandler = () => {
+    setOpenEditCover(false);
+  };
 
   const openEditDialogHandler = () => {
     setOpenDialog(true);
@@ -115,9 +127,9 @@ const ProfileImageHead = ({
             cursor: 'pointer',
             overflow: 'hidden',
           }}
+          onClick={openEditCoverHandler}
         >
           <img src={coverImage} alt="" width="100%" height="100%" />
-
           <CollectionsIcon
             variant="caption"
             sx={{ position: 'absolute', right: 6, top: 6 }}
@@ -247,6 +259,11 @@ const ProfileImageHead = ({
           <Button onClick={saveCropImage}>บันทึก</Button>
         </DialogActions>
       </Dialog>
+      <EditCoverImage
+        open={openEditCover}
+        openEditCoverHandler={closeEditCoverHandler}
+        closeEditCoverHandler={closeEditCoverHandler}
+      />
     </>
   );
 };
