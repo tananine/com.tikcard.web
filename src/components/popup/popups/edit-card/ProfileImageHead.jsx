@@ -24,6 +24,8 @@ const ProfileImageHead = ({
   setProfileImage,
   logoImage,
   setLogoImage,
+  coverImage,
+  setCoverImage,
 }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [cacheImage, setCacheImage] = useState(null);
@@ -114,12 +116,7 @@ const ProfileImageHead = ({
             overflow: 'hidden',
           }}
         >
-          <img
-            src="https://img.freepik.com/free-vector/minimal-white-gray-background-with-wavy-lines_1017-25099.jpg?w=2000"
-            alt=""
-            width="100%"
-            height="100%"
-          />
+          <img src={coverImage} alt="" width="100%" height="100%" />
 
           <CollectionsIcon
             variant="caption"

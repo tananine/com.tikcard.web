@@ -160,7 +160,7 @@ const View = ({ isPreview, profileData }) => {
           sx={{ borderBottomRightRadius: 60, overflow: 'hidden' }}
         >
           <img
-            src="https://img.freepik.com/free-vector/minimal-white-gray-background-with-wavy-lines_1017-25099.jpg?w=2000"
+            src={profileData?.info.Profile.coverImage}
             alt="cover image"
             width="100%"
             height="100%"

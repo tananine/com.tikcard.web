@@ -26,6 +26,7 @@ const schema = yup
 const EditCard = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [logoImage, setLogoImage] = useState(null);
+  const [coverImage, setCoverImage] = useState(null);
 
   const open = useSelector((state) => state.popup.editCardPopup);
   const profileId = useSelector(
@@ -78,6 +79,7 @@ const EditCard = () => {
         setValue('bio3', res.data.bio3);
         setProfileImage(res.data.profileImage);
         setLogoImage(res.data.logoImage);
+        setCoverImage(res.data.coverImage);
       });
     }
   }, [getInformationAction, profileId, setValue, open]);
@@ -138,6 +140,8 @@ const EditCard = () => {
           setProfileImage={setProfileImage}
           logoImage={logoImage}
           setLogoImage={setLogoImage}
+          coverImage={coverImage}
+          setCoverImage={setCoverImage}
         />
         <Box marginTop={8} display="flex" flexDirection="column" gap={2}>
           <TextField
