@@ -263,6 +263,7 @@ const ProfileImageHead = ({
         open={openEditCover}
         openEditCoverHandler={closeEditCoverHandler}
         closeEditCoverHandler={closeEditCoverHandler}
+        setCoverImage={setCoverImage}
       />
     </>
   );

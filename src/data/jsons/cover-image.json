@@ -1,0 +1,11 @@
+{
+  "colors": [{ "id": 1, "objectImage": "grey", "color": "#dbdbdb" }],
+  "data": [
+    {
+      "id": 1,
+      "coverImage": {
+        "grey": "https://img.freepik.com/free-vector/minimal-white-gray-background-with-wavy-lines_1017-25099.jpg?w=2000"
+      }
+    }
+  ]
+}
