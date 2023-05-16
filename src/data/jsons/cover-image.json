@@ -1,7 +1,7 @@
 {
   "colors": [
     { "id": 1, "objectImage": "grey", "color": "#dbdbdb" },
-    { "id": 2, "objectImage": "yellow", "color": "##fcba03" }
+    { "id": 2, "objectImage": "yellow", "color": "#fcba03" }
   ],
   "data": [
     {
