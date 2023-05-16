@@ -3,9 +3,11 @@ import { Box, Button, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 import coverImage from '@/data/jsons/cover-image.json';
 
-const CoverItem = ({ id, coverImage, selected, setCoverImageDataHandler }) => {
+const CoverItem = ({ id, coverImage, selected, setSelected }) => {
   const isSelected = selected === id;
 
   return (
@@ -19,7 +21,7 @@ const CoverItem = ({ id, coverImage, selected, setCoverImageDataHandler }) => {
         overflow: 'hidden',
         boxShadow: isSelected && 'rgba(33, 35, 38, 0.4) 0px 10px 10px -10px',
       }}
-      onClick={() => setCoverImageDataHandler(id)}
+      onClick={() => setSelected(id)}
     >
       {isSelected && (
         <Box
@@ -71,9 +73,6 @@ const EditCoverImage = ({
 
   const setCoverImageDataHandler = (coverId, colorId) => {
     setCoverImageData(`json$${coverId || selected}$${colorId || useColor}`);
-    if (coverId) {
-      setSelected(coverId);
-    }
   };
 
   const listCover = () => {
@@ -84,7 +83,7 @@ const EditCoverImage = ({
           id={item.id}
           coverImage={item.coverImage[objectImage]}
           selected={selected}
-          setCoverImageDataHandler={setCoverImageDataHandler}
+          setSelected={setSelected}
         />
       );
     });
@@ -93,7 +92,6 @@ const EditCoverImage = ({
   const changeColorHandler = (id, object) => {
     setUseColor(id);
     setObjectImage(object);
-    setCoverImageDataHandler(selected, id);
   };
 
   const colorLists = () => {
@@ -106,14 +104,20 @@ const EditCoverImage = ({
           borderRadius={2}
           bgcolor={item.color}
           border={useColor === item.id && '1px solid #858585'}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
           sx={{ cursor: 'pointer' }}
           onClick={() => changeColorHandler(item.id, item.objectImage)}
-        />
+        >
+          {useColor === item.id && <CheckCircleIcon />}
+        </Box>
       );
     });
   };
 
   const submitSelected = () => {
+    setCoverImageDataHandler(selected, useColor);
     closeEditCoverHandler();
   };
 
