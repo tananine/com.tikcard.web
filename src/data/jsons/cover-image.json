@@ -1,10 +1,23 @@
 {
-  "colors": [{ "id": 1, "objectImage": "grey", "color": "#dbdbdb" }],
+  "colors": [
+    { "id": 1, "objectImage": "grey", "color": "#dbdbdb" },
+    { "id": 2, "objectImage": "yellow", "color": "##fcba03" }
+  ],
   "data": [
     {
       "id": 1,
+      "name": "shovel",
       "coverImage": {
-        "grey": "https://img.freepik.com/free-vector/minimal-white-gray-background-with-wavy-lines_1017-25099.jpg?w=2000"
+        "grey": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/grey.png",
+        "yellow": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/yellow.png"
+      }
+    },
+    {
+      "id": 2,
+      "name": "necklace",
+      "coverImage": {
+        "grey": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/necklace/grey.png",
+        "yellow": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/necklace/yellow.png"
       }
     }
   ]
