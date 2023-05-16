@@ -1,11 +1,13 @@
 import PopupWrapper from '@/components/popup/PopupWrapper';
 import { Box, Button, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import coverImage from '@/data/jsons/cover-image.json';
 
-const CoverItem = ({ id, coverImage, selected, setCoverImageHandler }) => {
+const CoverItem = ({ id, coverImage, selected, setCoverImageDataHandler }) => {
+  const isSelected = selected === id;
+
   return (
     <Box
       position="relative"
@@ -15,11 +17,24 @@ const CoverItem = ({ id, coverImage, selected, setCoverImageHandler }) => {
         borderBottomRightRadius: 60,
         cursor: 'pointer',
         overflow: 'hidden',
-        boxShadow:
-          selected === id && 'rgba(33, 35, 38, 0.4) 0px 10px 10px -10px',
+        boxShadow: isSelected && 'rgba(33, 35, 38, 0.4) 0px 10px 10px -10px',
       }}
-      onClick={() => setCoverImageHandler(id, coverImage)}
+      onClick={() => setCoverImageDataHandler(id)}
     >
+      {isSelected && (
+        <Box
+          sx={{
+            position: 'absolute',
+            backgroundColor: '#ffffff',
+            paddingX: 1,
+            borderRadius: '25px',
+            margin: 1,
+            boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+          }}
+        >
+          ใช้งาน
+        </Box>
+      )}
       <img src={coverImage} loading="lazy" alt="" width="100%" height="100%" />
     </Box>
   );
@@ -29,22 +44,36 @@ const EditCoverImage = ({
   open,
   openEditCoverHandler,
   closeEditCoverHandler,
-  setCoverImage,
+  coverIdSelected,
+  colorIdSelected,
+  setCoverImageData,
 }) => {
-  const [selected, setSelected] = useState(coverImage.data[0].id);
+  const [selected, setSelected] = useState(null);
 
-  const [useColor, setUseColor] = useState(coverImage.colors[0].id);
-  const [objectImage, setObjectImage] = useState(
-    coverImage.colors[0].objectImage
-  );
+  const [useColor, setUseColor] = useState(null);
+  const [objectImage, setObjectImage] = useState(null);
+
+  useEffect(() => {
+    if (open) {
+      setSelected(coverIdSelected);
+      setUseColor(colorIdSelected);
+      setObjectImage(
+        coverImage.colors.find(
+          (color) => color.id === parseInt(colorIdSelected)
+        )?.objectImage
+      );
+    }
+  }, [coverIdSelected, colorIdSelected, open]);
 
   const editProfileHeight = useSelector(
     (state) => state.layout.editProfileHeight
   );
 
-  const setCoverImageHandler = (id, imageUrl) => {
-    setCoverImage(imageUrl);
-    setSelected(id);
+  const setCoverImageDataHandler = (coverId, colorId) => {
+    setCoverImageData(`json$${coverId || selected}$${colorId || useColor}`);
+    if (coverId) {
+      setSelected(coverId);
+    }
   };
 
   const listCover = () => {
@@ -55,7 +84,7 @@ const EditCoverImage = ({
           id={item.id}
           coverImage={item.coverImage[objectImage]}
           selected={selected}
-          setCoverImageHandler={setCoverImageHandler}
+          setCoverImageDataHandler={setCoverImageDataHandler}
         />
       );
     });
@@ -64,6 +93,7 @@ const EditCoverImage = ({
   const changeColorHandler = (id, object) => {
     setUseColor(id);
     setObjectImage(object);
+    setCoverImageDataHandler(selected, id);
   };
 
   const colorLists = () => {

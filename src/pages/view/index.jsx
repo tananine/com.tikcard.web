@@ -23,6 +23,8 @@ import BlockLayout from '@/components/layoutContact/BlockLayout';
 import Logo from '@/assets/images/logo.png';
 import Verify from '@/assets/images/verify.png';
 
+import splitCoverImage from '@/functions/splitCoverImage';
+
 const jobTitle = (job, company) => {
   if (job && company) {
     return `${job} ที่ ${company}`;
@@ -160,7 +162,7 @@ const View = ({ isPreview, profileData }) => {
           sx={{ borderBottomRightRadius: 60, overflow: 'hidden' }}
         >
           <img
-            src={profileData?.info.Profile.coverImage}
+            src={splitCoverImage(profileData?.info.Profile.coverImage, 'url')}
             alt="cover image"
             width="100%"
             height="100%"

@@ -21,14 +21,17 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import EditCoverImage from '@/components/popup/popups/edit-card/EditCoverImage';
 
+import splitCoverImage from '@/functions/splitCoverImage';
+
 const ProfileImageHead = ({
   profileImage,
   setProfileImage,
   logoImage,
   setLogoImage,
-  coverImage,
-  setCoverImage,
+  coverImageData,
+  setCoverImageData,
 }) => {
+  const [coverImage, setCoverImage] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [cacheImage, setCacheImage] = useState(null);
   const [type, setType] = useState(null);
@@ -37,6 +40,7 @@ const ProfileImageHead = ({
   const [openEditCover, setOpenEditCover] = useState(false);
 
   const openEditCoverHandler = () => {
+    setCoverImage(splitCoverImage(coverImageData));
     setOpenEditCover(true);
   };
 
@@ -129,7 +133,12 @@ const ProfileImageHead = ({
           }}
           onClick={openEditCoverHandler}
         >
-          <img src={coverImage} alt="" width="100%" height="100%" />
+          <img
+            src={splitCoverImage(coverImageData, 'url')}
+            alt=""
+            width="100%"
+            height="100%"
+          />
           <CollectionsIcon
             variant="caption"
             sx={{ position: 'absolute', right: 6, top: 6 }}
@@ -263,7 +272,9 @@ const ProfileImageHead = ({
         open={openEditCover}
         openEditCoverHandler={closeEditCoverHandler}
         closeEditCoverHandler={closeEditCoverHandler}
-        setCoverImage={setCoverImage}
+        coverIdSelected={parseInt(coverImage?.coverId)}
+        colorIdSelected={parseInt(coverImage?.colorId)}
+        setCoverImageData={setCoverImageData}
       />
     </>
   );

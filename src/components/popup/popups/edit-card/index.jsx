@@ -27,7 +27,8 @@ const schema = yup
 const EditCard = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [logoImage, setLogoImage] = useState(null);
-  const [coverImage, setCoverImage] = useState(null);
+
+  const [coverImageData, setCoverImageData] = useState(null);
 
   const editProfilePopupRef = useRef();
 
@@ -82,7 +83,7 @@ const EditCard = () => {
         setValue('bio3', res.data.bio3);
         setProfileImage(res.data.profileImage);
         setLogoImage(res.data.logoImage);
-        setCoverImage(res.data.coverImage);
+        setCoverImageData(res.data.coverImage);
       });
       dispatch(setEditProfileHeight(editProfilePopupRef.current.offsetHeight));
     }
@@ -97,7 +98,7 @@ const EditCard = () => {
     formData.append('bio1', form.bio1);
     formData.append('bio2', form.bio2);
     formData.append('bio3', form.bio3);
-    formData.append('coverImage', coverImage);
+    formData.append('coverImage', coverImageData);
 
     if (profileImage?.split(':')[0] === 'blob') {
       const profileImageBlob = await fetch(profileImage);
@@ -146,8 +147,8 @@ const EditCard = () => {
           setProfileImage={setProfileImage}
           logoImage={logoImage}
           setLogoImage={setLogoImage}
-          coverImage={coverImage}
-          setCoverImage={setCoverImage}
+          coverImageData={coverImageData}
+          setCoverImageData={setCoverImageData}
         />
         <Box marginTop={8} display="flex" flexDirection="column" gap={2}>
           <TextField
