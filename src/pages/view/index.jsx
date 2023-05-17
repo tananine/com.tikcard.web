@@ -22,6 +22,8 @@ import Lead from '@/pages/view/Lead';
 import GridLayout from '@/components/layoutContact/GridLayout';
 import BlockLayout from '@/components/layoutContact/BlockLayout';
 
+import MapLayout from '@/components/layoutContact/spacials/MapLayout';
+
 import Logo from '@/assets/images/logo.png';
 import Verify from '@/assets/images/verify.png';
 
@@ -300,6 +302,7 @@ const View = ({ isPreview, profileData }) => {
           >
             <Box>{ContactLists(contactItems)}</Box>
           </Fade>
+          <MapLayout />
         </Box>
       </Box>
       {!isPreview && (
