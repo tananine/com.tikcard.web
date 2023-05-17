@@ -40,7 +40,6 @@ const CoverItem = ({ id, coverImage, selected, setSelected }) => {
       )}
       <Img
         src={coverImage}
-        loading="lazy"
         alt=""
         width="100%"
         height="100%"
