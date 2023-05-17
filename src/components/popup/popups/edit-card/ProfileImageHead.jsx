@@ -19,7 +19,6 @@ import getCropOutput from '@/functions/cropOutput';
 import { Img } from 'react-image';
 
 import CollectionsIcon from '@mui/icons-material/Collections';
-import EditIcon from '@mui/icons-material/Edit';
 
 import EditCoverImage from '@/components/popup/popups/edit-card/EditCoverImage';
 
@@ -181,23 +180,21 @@ const ProfileImageHead = ({
                     'rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em',
                 }}
               >
-                {profileImage ? (
-                  <Img src={profileImage} alt="" width="100%" height="100%" />
-                ) : (
-                  <EditIcon />
-                )}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: '50%',
-                    width: '100%',
-                    textAlign: 'center',
-                    transform: 'translateX(-50%)',
-                  }}
-                >
-                  <Typography variant="caption">เปลี่ยน</Typography>
-                </Box>
+                <Img
+                  src={profileImage}
+                  alt=""
+                  width="100%"
+                  height="100%"
+                  loader={
+                    <Skeleton
+                      animation="wave"
+                      variant="rounded"
+                      width="100%"
+                      height="100%"
+                    />
+                  }
+                  unloader={<Typography variant="body2">เพิ่มรูป</Typography>}
+                />
               </Avatar>
             </Box>
           </label>
@@ -220,23 +217,21 @@ const ProfileImageHead = ({
                 boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
               }}
             >
-              {logoImage ? (
-                <Img src={logoImage} alt="" width="100%" height="100%" />
-              ) : (
-                <EditIcon sx={{ fontSize: 16 }} />
-              )}
-              <Box
-                sx={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: '50%',
-                  width: '100%',
-                  textAlign: 'center',
-                  transform: 'translateX(-50%)',
-                }}
-              >
-                <Typography variant="caption">เปลี่ยน</Typography>
-              </Box>
+              <Img
+                src={logoImage}
+                alt=""
+                width="100%"
+                height="100%"
+                loader={
+                  <Skeleton
+                    animation="wave"
+                    variant="rounded"
+                    width="100%"
+                    height="100%"
+                  />
+                }
+                unloader={<Typography variant="caption">เพิ่มรูป</Typography>}
+              />
             </Avatar>
           </label>
         </Box>
