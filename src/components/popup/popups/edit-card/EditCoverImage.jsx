@@ -1,5 +1,5 @@
 import PopupWrapper from '@/components/popup/PopupWrapper';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, Skeleton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Img } from 'react-image';
@@ -38,7 +38,29 @@ const CoverItem = ({ id, coverImage, selected, setSelected }) => {
           ใช้งาน
         </Box>
       )}
-      <Img src={coverImage} loading="lazy" alt="" width="100%" height="100%" />
+      <Img
+        src={coverImage}
+        loading="lazy"
+        alt=""
+        width="100%"
+        height="100%"
+        loader={
+          <Skeleton
+            animation="wave"
+            variant="rounded"
+            width="100%"
+            height="100%"
+          />
+        }
+        unloader={
+          <Skeleton
+            animation="wave"
+            variant="rounded"
+            width="100%"
+            height="100%"
+          />
+        }
+      />
     </Box>
   );
 };

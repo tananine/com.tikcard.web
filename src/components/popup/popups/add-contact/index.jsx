@@ -11,6 +11,7 @@ import {
   Divider,
   Tab,
   Typography,
+  Skeleton,
 } from '@mui/material';
 import { Img } from 'react-image';
 
@@ -118,12 +119,58 @@ const AddContact = () => {
               }}
             >
               <Tab
-                icon={<Img src={phoneGrid} height={44} />}
+                icon={
+                  <Img
+                    src={phoneGrid}
+                    height={44}
+                    loader={
+                      <Skeleton
+                        animation="wave"
+                        variant="rounded"
+                        width="26px"
+                        height="44px"
+                        sx={{ mb: 0.5 }}
+                      />
+                    }
+                    unloader={
+                      <Skeleton
+                        animation="wave"
+                        variant="rounded"
+                        width="26px"
+                        height="44px"
+                        sx={{ mb: 0.5 }}
+                      />
+                    }
+                  />
+                }
                 label="ตารางแอพ"
                 value={'grid'}
               />
               <Tab
-                icon={<Img src={phoneBlock} height={44} />}
+                icon={
+                  <Img
+                    src={phoneBlock}
+                    height={44}
+                    loader={
+                      <Skeleton
+                        animation="wave"
+                        variant="rounded"
+                        width="26px"
+                        height="44px"
+                        sx={{ mb: 0.5 }}
+                      />
+                    }
+                    unloader={
+                      <Skeleton
+                        animation="wave"
+                        variant="rounded"
+                        width="26px"
+                        height="44px"
+                        sx={{ mb: 0.5 }}
+                      />
+                    }
+                  />
+                }
                 label="โฟกัสบล็อค"
                 value={'block'}
               />

@@ -8,6 +8,7 @@ import {
   Fade,
   Grow,
   Typography,
+  Skeleton,
 } from '@mui/material';
 import { Img } from 'react-image';
 
@@ -167,6 +168,22 @@ const View = ({ isPreview, profileData }) => {
             alt="cover image"
             width="100%"
             height="100%"
+            loader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="100%"
+                height="100%"
+              />
+            }
+            unloader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="100%"
+                height="100%"
+              />
+            }
           />
         </Box>
         <Grow

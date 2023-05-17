@@ -1,4 +1,4 @@
-import { Typography, Grid, Box } from '@mui/material';
+import { Typography, Grid, Box, Skeleton } from '@mui/material';
 import { Img } from 'react-image';
 
 const BlockLayout = ({ title, imageIcon, name, note, onClick }) => {
@@ -13,7 +13,28 @@ const BlockLayout = ({ title, imageIcon, name, note, onClick }) => {
       <Grid container columnSpacing={{ xs: 1.5, md: 2, lg: 3 }}>
         <Grid item xs={3} display="flex" alignSelf="center">
           <Box display="flex" width="100%" style={{ aspectRatio: '1' }}>
-            <Img src={imageIcon} alt="" width="100%" height="100%" />
+            <Img
+              src={imageIcon}
+              alt=""
+              width="100%"
+              height="100%"
+              loader={
+                <Skeleton
+                  animation="wave"
+                  variant="rounded"
+                  width="100%"
+                  height="100%"
+                />
+              }
+              unloader={
+                <Skeleton
+                  animation="wave"
+                  variant="rounded"
+                  width="100%"
+                  height="100%"
+                />
+              }
+            />
           </Box>
         </Grid>
         <Grid item xs={9} alignSelf="center">

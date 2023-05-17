@@ -1,14 +1,35 @@
 import CardList from '@/components/CardList';
 import { Img } from 'react-image';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Skeleton } from '@mui/material';
 
 const InsightContact = () => {
   return (
     <CardList>
       <Box display="flex">
         <Box display="flex" gap={2} width="100%" sx={{ cursor: 'pointer' }}>
-          <Img src={''} alt="" width="46px" height="46px" />
+          <Img
+            src={''}
+            alt=""
+            width="46px"
+            height="46px"
+            loader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="46px"
+                height="46px"
+              />
+            }
+            unloader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="46px"
+                height="46px"
+              />
+            }
+          />
           <Box>
             <Typography variant="h3" lineHeight="26.5px">
               Phone

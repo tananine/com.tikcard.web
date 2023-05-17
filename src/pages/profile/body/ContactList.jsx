@@ -115,6 +115,22 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
                 alt=""
                 width="46px"
                 height="46px"
+                loader={
+                  <Skeleton
+                    animation="wave"
+                    variant="rounded"
+                    width={46}
+                    height={46}
+                  />
+                }
+                unloader={
+                  <Skeleton
+                    animation="wave"
+                    variant="rounded"
+                    width={46}
+                    height={46}
+                  />
+                }
               />
               <Box>
                 <Typography variant="h3" lineHeight="26.5px">

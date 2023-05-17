@@ -10,6 +10,7 @@ import {
   Input,
   Slider,
   Card,
+  Skeleton,
 } from '@mui/material';
 import Cropper from 'react-easy-crop';
 import Resizer from '@/functions/resizer';
@@ -139,6 +140,22 @@ const ProfileImageHead = ({
             alt=""
             width="100%"
             height="100%"
+            loader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="100%"
+                height="100%"
+              />
+            }
+            unloader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="100%"
+                height="100%"
+              />
+            }
           />
           <CollectionsIcon
             variant="caption"
