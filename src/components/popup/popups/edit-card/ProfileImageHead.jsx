@@ -15,6 +15,7 @@ import Cropper from 'react-easy-crop';
 import Resizer from '@/functions/resizer';
 import { useState, useCallback } from 'react';
 import getCropOutput from '@/functions/cropOutput';
+import { Img } from 'react-image';
 
 import CollectionsIcon from '@mui/icons-material/Collections';
 import EditIcon from '@mui/icons-material/Edit';
@@ -133,7 +134,7 @@ const ProfileImageHead = ({
           }}
           onClick={openEditCoverHandler}
         >
-          <img
+          <Img
             src={splitCoverImage(coverImageData, 'url')}
             alt=""
             width="100%"
@@ -164,7 +165,7 @@ const ProfileImageHead = ({
                 }}
               >
                 {profileImage ? (
-                  <img src={profileImage} alt="" width="100%" height="100%" />
+                  <Img src={profileImage} alt="" width="100%" height="100%" />
                 ) : (
                   <EditIcon />
                 )}
@@ -203,7 +204,7 @@ const ProfileImageHead = ({
               }}
             >
               {logoImage ? (
-                <img src={logoImage} alt="" width="100%" height="100%" />
+                <Img src={logoImage} alt="" width="100%" height="100%" />
               ) : (
                 <EditIcon sx={{ fontSize: 16 }} />
               )}

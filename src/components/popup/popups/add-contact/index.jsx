@@ -12,6 +12,7 @@ import {
   Tab,
   Typography,
 } from '@mui/material';
+import { Img } from 'react-image';
 
 import useGet from '@/hooks/axios/useGet';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
@@ -117,12 +118,12 @@ const AddContact = () => {
               }}
             >
               <Tab
-                icon={<img src={phoneGrid} height={44} />}
+                icon={<Img src={phoneGrid} height={44} />}
                 label="ตารางแอพ"
                 value={'grid'}
               />
               <Tab
-                icon={<img src={phoneBlock} height={44} />}
+                icon={<Img src={phoneBlock} height={44} />}
                 label="โฟกัสบล็อค"
                 value={'block'}
               />

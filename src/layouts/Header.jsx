@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setHeaderHeight } from '@/stores/offset';
 import { menuToggle } from '@/stores/drawer';
 import { useParams } from 'react-router-dom';
+import { Img } from 'react-image';
 
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
@@ -33,7 +34,7 @@ const Header = ({ component }) => {
     <Container ref={headerRef}>
       <Box paddingX={2} paddingTop={1} paddingBottom={1}>
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          <img src={Logo} alt="" height="22px" />
+          <Img src={Logo} alt="" height="22px" />
           <IconButton onClick={menuToggleHandler}>
             <MoreHorizIcon sx={{ fontSize: '30px' }} />
           </IconButton>

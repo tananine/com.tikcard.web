@@ -8,6 +8,7 @@ import {
   setEditContactDynamicChild,
   setEditContactDynamicData,
 } from '@/stores/parse-data/editContactDynamic';
+import { Img } from 'react-image';
 
 const AddContactList = ({
   id,
@@ -50,7 +51,7 @@ const AddContactList = ({
         onClick={editContactDynamicToggleHandler}
       >
         <Box display="flex" gap={1} alignItems="center">
-          <img src={imageIcon} alt="" width="34px" height="34px" />
+          <Img src={imageIcon} alt="" width="34px" height="34px" />
           <Typography variant="h4">{name}</Typography>
         </Box>
         <Button startIcon={<AddIcon />} variant="contained" size="small">

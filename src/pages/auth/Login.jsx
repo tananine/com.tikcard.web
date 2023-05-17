@@ -9,6 +9,7 @@ import authServicePath from '@/data/jsons/services/auth.service.json';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { Img } from 'react-image';
 
 import Logo from '@/assets/images/logo.png';
 
@@ -75,7 +76,7 @@ const Login = () => {
         }}
       >
         <Box textAlign="center" mb={6}>
-          <img src={Logo} alt="" height="32px" />
+          <Img src={Logo} alt="" height="32px" />
         </Box>
         <Box
           sx={{

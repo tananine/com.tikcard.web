@@ -2,6 +2,7 @@ import PopupWrapper from '@/components/popup/PopupWrapper';
 import { Box, Button, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Img } from 'react-image';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
@@ -37,7 +38,7 @@ const CoverItem = ({ id, coverImage, selected, setSelected }) => {
           ใช้งาน
         </Box>
       )}
-      <img src={coverImage} loading="lazy" alt="" width="100%" height="100%" />
+      <Img src={coverImage} loading="lazy" alt="" width="100%" height="100%" />
     </Box>
   );
 };

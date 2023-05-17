@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Box, Switch, Typography } from '@mui/material';
+import { Box, Switch, Typography, Skeleton } from '@mui/material';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import CardList from '@/components/CardList';
 import { useDispatch } from 'react-redux';
@@ -10,6 +10,7 @@ import {
   setEditContactDynamicChild,
   setEditContactDynamicData,
 } from '@/stores/parse-data/editContactDynamic';
+import { Img } from 'react-image';
 
 import usePut from '@/hooks/axios/usePut';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
@@ -109,7 +110,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
               sx={{ cursor: 'pointer', opacity: opacityLevel }}
               onClick={editContactDynamicToggleHandler}
             >
-              <img
+              <Img
                 src={contactItem.imageIcon}
                 alt=""
                 width="46px"

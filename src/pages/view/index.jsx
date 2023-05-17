@@ -9,6 +9,7 @@ import {
   Grow,
   Typography,
 } from '@mui/material';
+import { Img } from 'react-image';
 
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
@@ -161,7 +162,7 @@ const View = ({ isPreview, profileData }) => {
           bgcolor="#ced4da"
           sx={{ borderBottomRightRadius: 60, overflow: 'hidden' }}
         >
-          <img
+          <Img
             src={splitCoverImage(profileData?.info.Profile.coverImage, 'url')}
             alt="cover image"
             width="100%"
@@ -221,7 +222,7 @@ const View = ({ isPreview, profileData }) => {
                 >
                   {profileData?.info.name || 'ไม่มีชื่อ'}
                   {true && (
-                    <img
+                    <Img
                       src={Verify}
                       alt=""
                       width="22px"
@@ -287,7 +288,7 @@ const View = ({ isPreview, profileData }) => {
       {!isPreview && (
         <Box textAlign="center" padding={2}>
           <Box onClick={goNewCreate} display="inline">
-            <img src={Logo} height={20} />
+            <Img src={Logo} height={20} />
           </Box>
           <Typography variant="caption">powered by tikcard.me</Typography>
         </Box>
