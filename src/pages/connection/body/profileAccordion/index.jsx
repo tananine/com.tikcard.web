@@ -53,7 +53,7 @@ const ProfileAccordion = ({ data, role }) => {
 
   const statusActivate = () => {
     if (role === 'equal') {
-      return 'ใช้งานในนามบัตร 1 และ 2';
+      return 'กำลังใช้งาน';
     } else if (role === 'primary') {
       return 'ใช้งานในนามบัตร 1';
     } else {

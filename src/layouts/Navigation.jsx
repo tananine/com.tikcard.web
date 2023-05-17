@@ -67,7 +67,7 @@ const ProfilePart = () => {
   if (isScanDouble) {
     return (
       <>
-        <Box pb={1}>
+        <Box pb={1} bgcolor="#ffffff">
           <BottomNavigation
             showLabels
             value={value}

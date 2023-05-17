@@ -129,7 +129,7 @@ const AddContact = () => {
                         variant="rounded"
                         width="26px"
                         height="44px"
-                        sx={{ mb: 0.5 }}
+                        sx={{ mb: '6px' }}
                       />
                     }
                     unloader={
@@ -138,7 +138,7 @@ const AddContact = () => {
                         variant="rounded"
                         width="26px"
                         height="44px"
-                        sx={{ mb: 0.5 }}
+                        sx={{ mb: '6px' }}
                       />
                     }
                   />
@@ -157,7 +157,7 @@ const AddContact = () => {
                         variant="rounded"
                         width="26px"
                         height="44px"
-                        sx={{ mb: 0.5 }}
+                        sx={{ mb: '6px' }}
                       />
                     }
                     unloader={
@@ -166,7 +166,7 @@ const AddContact = () => {
                         variant="rounded"
                         width="26px"
                         height="44px"
-                        sx={{ mb: 0.5 }}
+                        sx={{ mb: '6px' }}
                       />
                     }
                   />
