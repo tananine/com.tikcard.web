@@ -7,7 +7,6 @@ import { reloadContactList } from '@/stores/reload';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
 import GridLayout from '@/components/layoutContact/GridLayout';
 import BlockLayout from '@/components/layoutContact/BlockLayout';
@@ -23,26 +22,12 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import toast from 'react-hot-toast';
 
-const schema = yup
-  .object({
-    data: yup.string().required('โปรดป้อนข้อมูล'),
-  })
-  .required();
+import LayoutPreviewSpacial from '@/components/popup/popups/edit-contact-dynamic/spacials/LayoutPreview';
+import FieldInputSpacial from '@/components/popup/popups/edit-contact-dynamic/spacials/FieldInput';
+
+import { validateSchema } from '@/components/popup/popups/edit-contact-dynamic/validateSchema';
 
 const EditContact = () => {
-  const {
-    register,
-    formState: { errors },
-    clearErrors,
-    handleSubmit,
-    setValue,
-    getValues,
-    watch,
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-  watch();
-
   const [addContactAction, addContactLoading] = usePost(
     profileServicePath.contactData,
     false
@@ -72,7 +57,21 @@ const EditContact = () => {
     typeLayout: useSelector(
       (state) => state.editContactDynamic.data.typeLayout
     ),
+    component: useSelector((state) => state.editContactDynamic.data.component),
   };
+
+  const {
+    register,
+    formState: { errors },
+    clearErrors,
+    handleSubmit,
+    setValue,
+    getValues,
+    watch,
+  } = useForm({
+    resolver: yupResolver(validateSchema(appData.typeLayout, 'googleMap')),
+  });
+  watch();
 
   const isChild = useSelector((state) => state.editContactDynamic.isChild);
 
@@ -155,6 +154,17 @@ const EditContact = () => {
           />
         </Box>
       );
+    } else if (appData.typeLayout === 'spacial') {
+      return (
+        <Box marginY={2}>
+          <LayoutPreviewSpacial
+            title={appData.name}
+            imageIcon={appData.imageIcon}
+            component={appData.component}
+            getValues={getValues}
+          />
+        </Box>
+      );
     }
   };
 
@@ -197,6 +207,16 @@ const EditContact = () => {
             {...register('note')}
           />
         </Box>
+      );
+    } else if (appData.typeLayout === 'spacial') {
+      return (
+        <FieldInputSpacial
+          open={open}
+          register={register}
+          errors={errors}
+          setValue={setValue}
+          component={appData.component}
+        />
       );
     }
   };

@@ -54,7 +54,6 @@ const EditCard = () => {
     clearErrors,
     handleSubmit,
     setValue,
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -64,7 +63,6 @@ const EditCard = () => {
   }, [dispatch]);
 
   const clearData = () => {
-    reset();
     setProfileImage(null);
     setLogoImage(null);
   };

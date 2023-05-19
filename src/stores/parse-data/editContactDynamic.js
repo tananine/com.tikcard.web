@@ -16,6 +16,7 @@ export const editContactDynamicSlice = createSlice({
         iosUri: null,
       },
       typeLayout: 'grid',
+      component: null,
     },
   },
   reducers: {
@@ -33,7 +34,8 @@ export const editContactDynamicSlice = createSlice({
       state.data.uri.androidUri = action.payload.uri.androidUri || null;
       state.data.uri.iosUri = action.payload.uri.iosUri || null;
 
-      state.data.typeLayout = action.payload.typeLayout || null;
+      state.data.typeLayout = action.payload.typeLayout || 'grid';
+      state.data.component = action.payload.component || null;
     },
   },
 });

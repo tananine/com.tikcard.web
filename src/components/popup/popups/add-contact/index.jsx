@@ -36,6 +36,7 @@ const ContactList = (appListData, typeLayout) => {
         iosUri={app.iosUri}
         imageIcon={app.imageIcon}
         typeLayout={typeLayout}
+        component={app.component}
       />
     );
   });
@@ -49,6 +50,7 @@ const AddContact = () => {
 
   const [gridList, setGridList] = useState([]);
   const [blockList, setBlockList] = useState([]);
+  const [spacialList, setSpacialList] = useState([]);
 
   const [tabValue, setTabValue] = useState('grid');
 
@@ -75,6 +77,9 @@ const AddContact = () => {
       getAppListAction().then((res) => {
         setGridList(res.data.filter((item) => item.typeLayout === 'grid'));
         setBlockList(res.data.filter((item) => item.typeLayout === 'block'));
+        setSpacialList(
+          res.data.filter((item) => item.typeLayout === 'spacial')
+        );
       });
     }
   }, [getAppListAction, open]);
@@ -174,6 +179,34 @@ const AddContact = () => {
                 label="โฟกัสบล็อค"
                 value={'block'}
               />
+              <Tab
+                icon={
+                  <Img
+                    src={phoneBlock}
+                    height={44}
+                    loader={
+                      <Skeleton
+                        animation="wave"
+                        variant="rounded"
+                        width="26px"
+                        height="44px"
+                        sx={{ mb: '6px' }}
+                      />
+                    }
+                    unloader={
+                      <Skeleton
+                        animation="wave"
+                        variant="rounded"
+                        width="26px"
+                        height="44px"
+                        sx={{ mb: '6px' }}
+                      />
+                    }
+                  />
+                }
+                label="พิเศษ"
+                value={'spacial'}
+              />
             </TabList>
             <TabPanel value={'grid'} sx={{ padding: 0 }}>
               {ContactList(gridList, 'grid')}
@@ -181,6 +214,10 @@ const AddContact = () => {
             </TabPanel>
             <TabPanel value={'block'} sx={{ padding: 0 }}>
               {ContactList(blockList, 'block')}
+              <Divider sx={{ width: '60px', margin: 'auto' }} />
+            </TabPanel>
+            <TabPanel value={'spacial'} sx={{ padding: 0 }}>
+              {ContactList(spacialList, 'spacial')}
               <Divider sx={{ width: '60px', margin: 'auto' }} />
             </TabPanel>
           </TabContext>

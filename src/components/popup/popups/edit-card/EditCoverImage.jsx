@@ -28,14 +28,14 @@ const CoverItem = ({ id, coverImage, selected, setSelected }) => {
         <Box
           sx={{
             position: 'absolute',
-            backgroundColor: '#ffffff',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
             paddingX: 1,
             borderRadius: '25px',
             margin: 1,
             boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
           }}
         >
-          ใช้งาน
+          กำลังเลือกปกนี้
         </Box>
       )}
       <Img
@@ -172,7 +172,7 @@ const EditCoverImage = ({
             fullWidth
             onClick={submitSelected}
           >
-            ตกลง
+            ใช้งาน
           </Button>
         </Box>
       </Box>

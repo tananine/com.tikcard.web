@@ -16,7 +16,7 @@ const MapComponent = ({ lat, lng }) => {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={{ lat: lat, lng: lng }}
+      center={{ lat: parseFloat(lat), lng: parseFloat(lng) }}
       zoom={15}
       options={{
         fullscreenControl: false,
@@ -28,7 +28,7 @@ const MapComponent = ({ lat, lng }) => {
   );
 };
 
-const MapLayout = ({ title, name, note, onClick }) => {
+const MapLayout = ({ title, name, note, lat, lng, onClick }) => {
   return (
     <Box
       bgcolor="#f1f1f1"
@@ -42,7 +42,16 @@ const MapLayout = ({ title, name, note, onClick }) => {
       <Typography variant="caption" marginBottom={1}>
         {note}
       </Typography>
-      <MapComponent />
+      {lat && lng ? (
+        <MapComponent lat={lat} lng={lng} />
+      ) : (
+        <Skeleton
+          animation={false}
+          variant="rounded"
+          width="100%"
+          height="150px"
+        />
+      )}
     </Box>
   );
 };

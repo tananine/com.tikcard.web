@@ -302,7 +302,6 @@ const View = ({ isPreview, profileData }) => {
           >
             <Box>{ContactLists(contactItems)}</Box>
           </Fade>
-          <MapLayout />
         </Box>
       </Box>
       {!isPreview && (
