@@ -1,6 +1,34 @@
+import React from 'react';
 import { Typography, Box, Skeleton } from '@mui/material';
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
-const MapLayout = () => {
+const containerStyle = {
+  width: '100%',
+  height: '150px',
+};
+
+const MapComponent = ({ lat, lng }) => {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_API_KEY,
+  });
+
+  return isLoaded ? (
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      center={{ lat: lat, lng: lng }}
+      zoom={15}
+      options={{
+        fullscreenControl: false,
+        draggable: false,
+      }}
+    />
+  ) : (
+    <Skeleton animation="wave" variant="rounded" width="100%" height="150px" />
+  );
+};
+
+const MapLayout = ({ title, name, note, onClick }) => {
   return (
     <Box
       bgcolor="#f1f1f1"
@@ -9,17 +37,12 @@ const MapLayout = () => {
       sx={{ cursor: 'pointer' }}
     >
       <Typography variant="h4" marginBottom={1}>
-        Map
+        {name || title}
       </Typography>
       <Typography variant="caption" marginBottom={1}>
-        อุทยานวิทยาศาสตร์ 88/3 ขอนแก่น 40000
+        {note}
       </Typography>
-      <Skeleton
-        animation="wave"
-        variant="rounded"
-        width="100%"
-        height="150px"
-      />
+      <MapComponent />
     </Box>
   );
 };
