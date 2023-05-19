@@ -96,7 +96,7 @@ const EditCard = () => {
     formData.append('bio1', form.bio1);
     formData.append('bio2', form.bio2);
     formData.append('bio3', form.bio3);
-    formData.append('coverImage', coverImageData);
+    coverImageData && formData.append('coverImage', coverImageData);
 
     if (profileImage?.split(':')[0] === 'blob') {
       const profileImageBlob = await fetch(profileImage);
