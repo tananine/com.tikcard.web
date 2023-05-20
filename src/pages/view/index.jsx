@@ -27,7 +27,7 @@ import MapLayout from '@/components/layoutContact/spacials/MapLayout';
 import Logo from '@/assets/images/logo.png';
 import Verify from '@/assets/images/verify.png';
 
-import splitCoverImage from '@/functions/splitCoverImage';
+import splitCoverImage from '@/functions/getCoverImage';
 
 const jobTitle = (job, company) => {
   if (job && company) {
@@ -166,7 +166,13 @@ const View = ({ isPreview, profileData }) => {
           sx={{ borderBottomRightRadius: 60, overflow: 'hidden' }}
         >
           <Img
-            src={splitCoverImage(profileData?.info.Profile.coverImage, 'url')}
+            src={
+              profileData?.info.Profile &&
+              splitCoverImage(
+                profileData?.info.Profile.coverImage,
+                profileData?.info.Profile.colorCoverImage
+              )
+            }
             alt="cover image"
             width="100%"
             height="100%"

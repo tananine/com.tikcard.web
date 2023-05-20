@@ -81,7 +81,10 @@ const EditCard = () => {
         setValue('bio3', res.data.bio3);
         setProfileImage(res.data.profileImage);
         setLogoImage(res.data.logoImage);
-        setCoverImageData(res.data.coverImage);
+        setCoverImageData({
+          coverImage: res.data.coverImage,
+          colorCoverImage: res.data.colorCoverImage,
+        });
       });
       dispatch(setEditProfileHeight(editProfilePopupRef.current.offsetHeight));
     }
@@ -96,7 +99,10 @@ const EditCard = () => {
     formData.append('bio1', form.bio1);
     formData.append('bio2', form.bio2);
     formData.append('bio3', form.bio3);
-    coverImageData && formData.append('coverImage', coverImageData);
+    coverImageData.coverImage &&
+      formData.append('coverImage', coverImageData.coverImage);
+    coverImageData.colorCoverImage &&
+      formData.append('colorCoverImage', coverImageData.colorCoverImage);
 
     if (profileImage?.split(':')[0] === 'blob') {
       const profileImageBlob = await fetch(profileImage);

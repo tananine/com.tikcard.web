@@ -93,10 +93,6 @@ const EditCoverImage = ({
     (state) => state.layout.editProfileHeight
   );
 
-  const setCoverImageDataHandler = (coverId, colorId) => {
-    setCoverImageData(`json$${coverId || selected}$${colorId || useColor}`);
-  };
-
   const listCover = () => {
     return coverImage.data.map((item) => {
       return (
@@ -139,7 +135,10 @@ const EditCoverImage = ({
   };
 
   const submitSelected = () => {
-    setCoverImageDataHandler(selected, useColor);
+    setCoverImageData({
+      coverImage: selected,
+      colorCoverImage: useColor,
+    });
     closeEditCoverHandler();
   };
 
