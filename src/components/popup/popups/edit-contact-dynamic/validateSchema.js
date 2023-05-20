@@ -12,7 +12,7 @@ export function validateSchema(typeLayout, component) {
     return schemaDefault;
   }
 
-  if (component === 'googleMap') {
+  if (component === 'MapLayout') {
     return schema;
   }
 

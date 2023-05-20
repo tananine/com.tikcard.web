@@ -7,7 +7,7 @@ const containerStyle = {
   height: '150px',
 };
 
-const MapComponent = ({ lat, lng }) => {
+const MapComponent = ({ latitude, longitude }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_API_KEY,
@@ -16,7 +16,10 @@ const MapComponent = ({ lat, lng }) => {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={{ lat: parseFloat(lat), lng: parseFloat(lng) }}
+      center={{
+        latitude: parseFloat(latitude),
+        longitude: parseFloat(longitude),
+      }}
       zoom={15}
       options={{
         fullscreenControl: false,
@@ -28,7 +31,7 @@ const MapComponent = ({ lat, lng }) => {
   );
 };
 
-const MapLayout = ({ title, name, note, lat, lng, onClick }) => {
+const MapLayout = ({ title, name, note, latitude, longitude, onClick }) => {
   return (
     <Box
       bgcolor="#f1f1f1"
@@ -42,8 +45,8 @@ const MapLayout = ({ title, name, note, lat, lng, onClick }) => {
       <Typography variant="caption" marginBottom={1}>
         {note}
       </Typography>
-      {lat && lng ? (
-        <MapComponent lat={lat} lng={lng} />
+      {latitude && longitude ? (
+        <MapComponent latitude={latitude} longitude={longitude} />
       ) : (
         <Skeleton
           animation={false}

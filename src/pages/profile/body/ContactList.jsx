@@ -40,6 +40,8 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
           name: dataItem.name,
           data: dataItem.data,
           note: dataItem.note,
+          latitude: dataItem.latitude,
+          longitude: dataItem.longitude,
         },
         uri: {
           defaultUri: contactItem.defaultUri,
@@ -47,6 +49,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
           iosUri: contactItem.iosUri,
         },
         typeLayout: contactItem.typeLayout,
+        component: contactItem.component,
       })
     );
   }, [dispatch, contactId, contactItem, dataItem]);
@@ -132,7 +135,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
                   />
                 }
               />
-              <Box>
+              <Box display="grid" alignContent="center">
                 <Typography variant="h3" lineHeight="26.5px">
                   {contactItem.name}
                 </Typography>

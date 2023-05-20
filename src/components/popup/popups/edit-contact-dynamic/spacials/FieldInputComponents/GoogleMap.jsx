@@ -3,8 +3,8 @@ import * as yup from 'yup';
 
 export const schema = yup
   .object({
-    lat: yup.string().required('โปรดป้อนข้อมูล'),
-    lng: yup.string().required('โปรดป้อนข้อมูล'),
+    latitude: yup.string().required('โปรดป้อนข้อมูล'),
+    longitude: yup.string().required('โปรดป้อนข้อมูล'),
   })
   .required();
 
@@ -23,18 +23,18 @@ const GoogleMapFieldInput = ({ register, errors }) => {
         variant="outlined"
         fullWidth
         InputLabelProps={{ shrink: true }}
-        error={errors?.lat ? true : false}
-        helperText={errors?.lat?.message}
-        {...register('lat')}
+        error={errors?.latitude ? true : false}
+        helperText={errors?.latitude?.message}
+        {...register('latitude')}
       />
       <TextField
         label="ลองจิจูด"
         variant="outlined"
         fullWidth
         InputLabelProps={{ shrink: true }}
-        error={errors?.lng ? true : false}
-        helperText={errors?.lng?.message}
-        {...register('lng')}
+        error={errors?.longitude ? true : false}
+        helperText={errors?.longitude?.message}
+        {...register('longitude')}
       />
       <TextField
         label="รายละเอียด"

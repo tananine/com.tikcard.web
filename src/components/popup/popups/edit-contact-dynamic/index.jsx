@@ -69,7 +69,7 @@ const EditContact = () => {
     getValues,
     watch,
   } = useForm({
-    resolver: yupResolver(validateSchema(appData.typeLayout, 'googleMap')),
+    resolver: yupResolver(validateSchema(appData.typeLayout, 'MapLayout')),
   });
   watch();
 
@@ -85,6 +85,8 @@ const EditContact = () => {
       setValue('name', appData.dataItem?.name);
       setValue('data', appData.dataItem?.data);
       setValue('note', appData.dataItem?.note);
+      setValue('latitude', appData.dataItem?.latitude);
+      setValue('longitude', appData.dataItem?.longitude);
     }
   }, [setValue, appData.data, open]);
 
@@ -104,6 +106,8 @@ const EditContact = () => {
       name: form.name,
       data: form.data,
       note: form.note,
+      latitude: form.latitude,
+      longitude: form.longitude,
     };
     if (appData.contactId) {
       return updateContactAction(body).then(() => {
@@ -211,10 +215,8 @@ const EditContact = () => {
     } else if (appData.typeLayout === 'spacial') {
       return (
         <FieldInputSpacial
-          open={open}
           register={register}
           errors={errors}
-          setValue={setValue}
           component={appData.component}
         />
       );
