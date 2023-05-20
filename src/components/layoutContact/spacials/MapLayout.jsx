@@ -17,8 +17,8 @@ const MapComponent = ({ latitude, longitude }) => {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={{
-        latitude: parseFloat(latitude),
-        longitude: parseFloat(longitude),
+        lat: parseFloat(latitude),
+        lng: parseFloat(longitude),
       }}
       zoom={15}
       options={{
