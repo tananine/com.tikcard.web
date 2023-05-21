@@ -116,7 +116,7 @@ const ShareBody = () => {
             <QRCodeSVG value={link} />
           </Box>
           <Typography variant="h2" textAlign="center">
-            QR Code ของฉัน
+            QR Code
           </Typography>
           <Box marginTop={2} display="flex" flexDirection="column" gap={1}>
             <Button
