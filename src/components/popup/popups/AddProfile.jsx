@@ -42,6 +42,10 @@ const AddProfile = () => {
     profileServicePath.setPrimaryProfile,
     false
   );
+  const [setSecondaryAction, setSecondaryLoading] = usePut(
+    profileServicePath.setSecondaryProfile,
+    false
+  );
 
   const switchProfileHeight = useSelector(
     (state) => state.layout.switchProfileHeight
