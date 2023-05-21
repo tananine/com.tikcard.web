@@ -18,6 +18,9 @@ import pagePath from '@/data/jsons/page-path.json';
 
 import Tutorial from '@/utils/turtorial';
 
+import profile1sim from '@/assets/svg/profile-1-sim.svg';
+import profile2sim from '@/assets/svg/profile-2-sim.svg';
+
 const ProfilePart = () => {
   const profileActivation = useSelector((state) => state.account.activation);
   const isScanDouble = useSelector((state) => state.device.isScanDouble);
@@ -87,12 +90,17 @@ const ProfilePart = () => {
               disableRipple
               onClick={setPrimary}
               label={
-                <>
-                  <Typography variant="caption">นามบัตร 1</Typography>
-                  <Typography fontSize={10} lineHeight={1}>
-                    สแกนซ้าย
-                  </Typography>
-                </>
+                <Box display="flex" gap={1} alignItems="center">
+                  <img src={profile1sim} height="24px" />
+                  <Box>
+                    <Typography variant="caption" lineHeight={1.2}>
+                      นามบัตร 1
+                    </Typography>
+                    <Typography fontSize={10} lineHeight={1.2} textAlign="left">
+                      สแกนซ้าย
+                    </Typography>
+                  </Box>
+                </Box>
               }
               sx={{
                 maxWidth: 'none',
@@ -108,12 +116,17 @@ const ProfilePart = () => {
               disableRipple
               onClick={setSecondary}
               label={
-                <>
-                  <Typography variant="caption">นามบัตร 2</Typography>
-                  <Typography fontSize={10} lineHeight={1}>
-                    สแกนขวา
-                  </Typography>
-                </>
+                <Box display="flex" gap={1} alignItems="center">
+                  <img src={profile2sim} height="24px" />
+                  <Box>
+                    <Typography variant="caption" lineHeight={1.2}>
+                      นามบัตร 2
+                    </Typography>
+                    <Typography fontSize={10} lineHeight={1.2} textAlign="left">
+                      สแกนขวา
+                    </Typography>
+                  </Box>
+                </Box>
               }
               sx={{
                 maxWidth: 'none',
