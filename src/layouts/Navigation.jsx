@@ -13,6 +13,8 @@ import QrCode2Icon from '@mui/icons-material/QrCode2';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setProfileInUse } from '@/stores/controller';
+import { reloadCurrentProfile } from '@/stores/reload';
+import { reloadContactList } from '@/stores/reload';
 
 import pagePath from '@/data/jsons/page-path.json';
 
@@ -32,6 +34,15 @@ const ProfilePart = () => {
 
   const dispatch = useDispatch();
 
+  const reloadWhenDuplicateProfileState = () => {
+    if (
+      profileActivation.primaryProfile === profileActivation.secondaryProfile
+    ) {
+      dispatch(reloadCurrentProfile());
+      dispatch(reloadContactList());
+    }
+  };
+
   const setPrimary = useCallback(() => {
     setType('primary');
     dispatch(
@@ -40,6 +51,8 @@ const ProfilePart = () => {
         profileId: profileActivation.primaryProfile,
       })
     );
+    navigate('/app/profile', { replace: true });
+    reloadWhenDuplicateProfileState();
   }, [dispatch, profileActivation]);
 
   const setSecondary = useCallback(() => {
@@ -50,9 +63,8 @@ const ProfilePart = () => {
         profileId: profileActivation.secondaryProfile,
       })
     );
-    if (!profileActivation.secondaryProfile) {
-      navigate('/app/profile', { replace: true });
-    }
+    navigate('/app/profile', { replace: true });
+    reloadWhenDuplicateProfileState();
   }, [dispatch, profileActivation]);
 
   const changeActiveScan = (event, newValue) => {
@@ -88,7 +100,7 @@ const ProfilePart = () => {
             <BottomNavigationAction
               id="primary-change-button"
               disableRipple
-              onClick={setPrimary}
+              onClick={value !== 0 && setPrimary}
               label={
                 <Box display="flex" gap={1} alignItems="center">
                   <img src={profile1sim} height="24px" />
@@ -114,7 +126,7 @@ const ProfilePart = () => {
             <BottomNavigationAction
               id="secondary-change-button"
               disableRipple
-              onClick={setSecondary}
+              onClick={value !== 1 && setSecondary}
               label={
                 <Box display="flex" gap={1} alignItems="center">
                   <img src={profile2sim} height="24px" />
