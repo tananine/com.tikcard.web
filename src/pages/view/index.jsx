@@ -21,8 +21,7 @@ import Lead from '@/pages/view/Lead';
 
 import GridLayout from '@/components/layoutContact/GridLayout';
 import BlockLayout from '@/components/layoutContact/BlockLayout';
-
-import MapLayout from '@/components/layoutContact/spacials/MapLayout';
+import SpacialLayout from '@/components/layoutContact/spacials';
 
 import Logo from '@/assets/images/logo.png';
 import Verify from '@/assets/images/verify.png';
@@ -40,20 +39,43 @@ const jobTitle = (job, company) => {
 };
 
 const ContactLists = (contactItems) => {
-  return contactItems?.map((section, index) => {
-    return section.typeLayout === 'grid' ? (
-      <Grid
-        key={section.id}
-        container
-        rowSpacing={1}
-        columnSpacing={{ xs: 1.5, md: 2, lg: 3 }}
-        marginY={{ xs: 1, md: 1.5, lg: 2 }}
-        paddingX={{ xs: 1, md: 1.5, lg: 2 }}
-      >
-        {section.contacts?.map((item) => {
+  return contactItems?.map((section) => {
+    switch (section.typeLayout) {
+      case 'grid':
+        return (
+          <Grid
+            key={section.id}
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1.5, md: 2, lg: 3 }}
+            marginY={{ xs: 1, md: 1.5, lg: 2 }}
+            paddingX={{ xs: 1, md: 1.5, lg: 2 }}
+          >
+            {section.contacts?.map((item) => {
+              return (
+                <Grid key={item.id} item xs={3} textAlign="center">
+                  <GridLayout
+                    onClick={() =>
+                      openAppUri(
+                        item.ContactItem.defaultUri,
+                        item.ContactItem.androidUri,
+                        item.ContactItem.iosUri,
+                        item.data
+                      )
+                    }
+                    imageIcon={item.ContactItem.imageIcon}
+                    title={item.ContactItem.name}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+        );
+      case 'block':
+        return section.contacts?.map((item) => {
           return (
-            <Grid key={item.id} item xs={3} textAlign="center">
-              <GridLayout
+            <Box key={item.id} width="100%" marginY={{ xs: 1, md: 1.5, lg: 2 }}>
+              <BlockLayout
                 onClick={() =>
                   openAppUri(
                     item.ContactItem.defaultUri,
@@ -62,35 +84,25 @@ const ContactLists = (contactItems) => {
                     item.data
                   )
                 }
-                imageIcon={item.ContactItem.imageIcon}
                 title={item.ContactItem.name}
+                imageIcon={item.ContactItem.imageIcon}
+                name={item.name}
+                note={item.note}
               />
-            </Grid>
+            </Box>
           );
-        })}
-      </Grid>
-    ) : (
-      section.contacts?.map((item) => {
-        return (
-          <Box key={item.id} width="100%" marginY={{ xs: 1, md: 1.5, lg: 2 }}>
-            <BlockLayout
-              onClick={() =>
-                openAppUri(
-                  item.ContactItem.defaultUri,
-                  item.ContactItem.androidUri,
-                  item.ContactItem.iosUri,
-                  item.data
-                )
-              }
-              title={item.ContactItem.name}
-              imageIcon={item.ContactItem.imageIcon}
-              name={item.name}
-              note={item.note}
-            />
-          </Box>
-        );
-      })
-    );
+        });
+      case 'spacial':
+        return section.contacts?.map((item) => {
+          return (
+            <Box key={item.id} width="100%" marginY={{ xs: 1, md: 1.5, lg: 2 }}>
+              <SpacialLayout data={item} />
+            </Box>
+          );
+        });
+      default:
+        return <></>;
+    }
   });
 };
 
