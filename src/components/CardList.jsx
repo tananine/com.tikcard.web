@@ -5,7 +5,7 @@ const CardList = ({ children, sx, forwardedRef, onClick }) => {
     <Card
       ref={forwardedRef}
       elevation={0}
-      sx={{ marginY: 1, bgcolor: '#f7f7f7', ...sx }}
+      sx={{ marginY: 1, bgcolor: '#f7f7f7', borderRadius: '25px', ...sx }}
       onClick={onClick}
     >
       {children}

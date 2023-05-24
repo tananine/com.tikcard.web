@@ -17,7 +17,7 @@ const contained = {
     padding: `${pxToRem(9)} ${pxToRem(9)}`,
     fontWeight: fontWeightBold,
     boxShadow: xs,
-    borderRadius: borderRadius.xxl,
+    borderRadius: borderRadius.xxxl,
     textTransform: 'none',
 
     '&:hover': {

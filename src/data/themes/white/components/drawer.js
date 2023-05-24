@@ -13,8 +13,8 @@ const swipeableDrawer = {
       '& .MuiDrawer-paperAnchorBottom': {
         maxWidth: xl,
         margin: 'auto',
-        borderTopLeftRadius: borderRadius.xxl,
-        borderTopRightRadius: borderRadius.xxl,
+        borderTopLeftRadius: borderRadius.xxxl,
+        borderTopRightRadius: borderRadius.xxxl,
       },
     },
   },

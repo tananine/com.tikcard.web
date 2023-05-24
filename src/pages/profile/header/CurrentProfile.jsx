@@ -101,6 +101,7 @@ const CurrentProfile = ({ profileActivationId }) => {
         cursor: 'pointer',
         marginTop: 0.5,
         height: 70,
+        borderRadius: '25px'
       }}
       elevation={3}
       onClick={switchProfileToggleHandler}
