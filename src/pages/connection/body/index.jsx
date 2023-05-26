@@ -11,7 +11,8 @@ const profileConnectionList = (
   profiles,
   profileActivationId,
   primaryProfile,
-  secondaryProfile
+  secondaryProfile,
+  isScanDouble
 ) => {
   const primaryProfileData = profiles?.find(
     (item) => item.id === primaryProfile
@@ -27,17 +28,21 @@ const profileConnectionList = (
   return (
     <>
       <Typography>นามบัตรปัจจุบัน</Typography>
-      {primaryProfileData?.id === secondaryProfileData?.id ? (
-        <ProfileAccordion data={primaryProfileData} role="equal" />
+      {isScanDouble ? (
+        primaryProfileData?.id === secondaryProfileData?.id ? (
+          <ProfileAccordion data={primaryProfileData} role="equal" />
+        ) : (
+          <>
+            {primaryProfileData && (
+              <ProfileAccordion data={primaryProfileData} role="primary" />
+            )}
+            {secondaryProfileData && (
+              <ProfileAccordion data={secondaryProfileData} role="secondary" />
+            )}
+          </>
+        )
       ) : (
-        <>
-          {primaryProfileData && (
-            <ProfileAccordion data={primaryProfileData} role="primary" />
-          )}
-          {secondaryProfileData && (
-            <ProfileAccordion data={secondaryProfileData} role="secondary" />
-          )}
-        </>
+        <ProfileAccordion data={primaryProfileData} />
       )}
       {dataWithOutPrimarySecondary?.length > 0 && (
         <Box mt={2}>
@@ -57,6 +62,8 @@ const ConnectionBody = () => {
     getAllConnectListLoading,
     getAllConnectListData,
   ] = useGet(profileServicePath.getAllConnectList, true);
+
+  const isScanDouble = useSelector((state) => state.device.isScanDouble);
 
   const profileActivationId = useSelector(
     (state) => state.controller.profileInUse.profileId
@@ -89,7 +96,8 @@ const ConnectionBody = () => {
           getAllConnectListData?.data,
           profileActivationId,
           primaryProfile,
-          secondaryProfile
+          secondaryProfile,
+          isScanDouble
         )
       )}
     </>
