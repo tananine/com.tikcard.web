@@ -99,7 +99,8 @@ const ProfilePart = () => {
             <BottomNavigationAction
               id="primary-change-button"
               disableRipple
-              onClick={value !== 0 && setPrimary}
+              onClick={setPrimary}
+              disabled={value === 0}
               label={
                 <Box display="flex" gap={1} alignItems="center">
                   <img src={profile1sim} height="24px" />
@@ -127,7 +128,8 @@ const ProfilePart = () => {
             <BottomNavigationAction
               id="secondary-change-button"
               disableRipple
-              onClick={value !== 1 && setSecondary}
+              onClick={setSecondary}
+              disabled={value === 1}
               label={
                 <Box display="flex" gap={1} alignItems="center">
                   <img src={profile2sim} height="24px" />
