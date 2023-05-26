@@ -13,8 +13,7 @@ import QrCode2Icon from '@mui/icons-material/QrCode2';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setProfileInUse } from '@/stores/controller';
-import { reloadCurrentProfile } from '@/stores/reload';
-import { reloadContactList } from '@/stores/reload';
+import { reloadCurrentProfile, reloadContactList } from '@/stores/reload';
 
 import pagePath from '@/data/jsons/page-path.json';
 
@@ -88,7 +87,7 @@ const ProfilePart = () => {
             value={value}
             sx={{
               height: '40px',
-              backgroundColor: '#e8e8e8',
+              backgroundColor: '#ededed',
               borderRadius: '25px',
               margin: 'auto',
               width: '96%',
@@ -120,6 +119,8 @@ const ProfilePart = () => {
                 '&.Mui-selected': {
                   color: '#000000',
                   backgroundColor: '#e6e6e6',
+                  border: '0.5px solid grey',
+                  borderRadius: '25px',
                 },
               }}
             />
@@ -146,6 +147,8 @@ const ProfilePart = () => {
                 '&.Mui-selected': {
                   color: '#000000',
                   backgroundColor: '#e6e6e6',
+                  border: '0.5px solid grey',
+                  borderRadius: '25px',
                 },
               }}
             />
