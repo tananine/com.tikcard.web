@@ -13,6 +13,9 @@ import ConnectionItem from '@/pages/connection/body/profileAccordion/ConnectionI
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import profile1sim from '@/assets/svg/profile-1-sim.svg';
+import profile2sim from '@/assets/svg/profile-2-sim.svg';
+
 const ConnectionList = (connections, increaseAmountDestroy) => {
   const [list, setList] = useState(connections);
 
@@ -53,11 +56,16 @@ const ProfileAccordion = ({ data, role }) => {
 
   const statusActivate = () => {
     if (role === 'equal') {
-      return 'กำลังใช้งาน';
+      return (
+        <Box display="flex" gap={0.3}>
+          <img src={profile1sim} height="16px" />
+          <img src={profile2sim} height="16px" />
+        </Box>
+      );
     } else if (role === 'primary') {
-      return 'ใช้งานในนามบัตร 1';
+      return <img src={profile1sim} height="16px" />;
     } else {
-      return 'ใช้งานในนามบัตร 2';
+      return <img src={profile2sim} height="16px" />;
     }
   };
 
@@ -92,23 +100,13 @@ const ProfileAccordion = ({ data, role }) => {
             />
           </Badge>
           <Box>
-            <Typography variant="h5">{data.name}</Typography>
+            <Box display="flex" gap={0.6} alignItems="center">
+              {role && statusActivate()}
+              <Typography variant="h5">{data.name}</Typography>
+            </Box>
             <Typography variant="caption" fontWeight={500}>
               {dataLength} รายชื่อ
             </Typography>
-            {role && (
-              <Box display="flex" alignItems="center" gap={1}>
-                <Box
-                  sx={{
-                    borderRadius: '50%',
-                    backgroundColor: 'lightgreen',
-                    width: '6px',
-                    height: '6px',
-                  }}
-                />
-                <Typography variant="caption">{statusActivate()}</Typography>
-              </Box>
-            )}
           </Box>
         </Box>
       </AccordionSummary>

@@ -26,6 +26,7 @@ const profileConnectionList = (
 
   return (
     <>
+      <Typography>นามบัตรปัจจุบัน</Typography>
       {primaryProfileData?.id === secondaryProfileData?.id ? (
         <ProfileAccordion data={primaryProfileData} role="equal" />
       ) : (
