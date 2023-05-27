@@ -30,6 +30,7 @@ const ButtonStatus = (flickingMove, edit) => {
 };
 
 const ProfileCard = (profiles, selectProfileId) => {
+  const isScanDouble = useSelector((state) => state.device.isScanDouble);
   const primaryProfile = useSelector(
     (state) => state.account.activation.primaryProfile
   );
@@ -52,6 +53,7 @@ const ProfileCard = (profiles, selectProfileId) => {
           name={profile.name}
           company={profile.company}
           isSelect={isSelect}
+          isScanDouble={isScanDouble}
           isPrimary={isPrimary}
           isSecondary={isSecondary}
         />

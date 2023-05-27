@@ -18,7 +18,7 @@ const Select = (isSelect) => {
   }
 };
 
-const inUseScan = (isPrimary, isSecondary) => {
+const inUseDoubleScan = (isPrimary, isSecondary) => {
   return (
     <Box position="absolute" right={14} top={10}>
       {(isPrimary || isSecondary) && (
@@ -39,6 +39,7 @@ const Profile = ({
   name,
   company,
   isSelect,
+  isScanDouble,
   isPrimary,
   isSecondary,
 }) => {
@@ -52,7 +53,7 @@ const Profile = ({
       height={212}
     >
       {Select(isSelect)}
-      {inUseScan(isPrimary, isSecondary)}
+      {isScanDouble && inUseDoubleScan(isPrimary, isSecondary)}
       <Badge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
