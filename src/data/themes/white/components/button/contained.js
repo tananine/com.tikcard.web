@@ -73,6 +73,7 @@ const contained = {
 
     '&.Mui-disabled': {
       backgroundColor: error.disable,
+      color: white.main,
     },
   },
 };

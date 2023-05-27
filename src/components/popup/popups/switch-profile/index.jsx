@@ -16,12 +16,21 @@ import useDelete from '@/hooks/axios/useDelete';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
+import PersonIcon from '@mui/icons-material/Person';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import toast from 'react-hot-toast';
 
-const ButtonStatus = (flickingMove, edit) => {
+const ButtonStatus = (
+  flickingMove,
+  edit,
+  isPrimaryProfile,
+  isSecondaryProfile
+) => {
   if (flickingMove) {
     return <CircularProgress color="black" size={20} />;
+  } else if (edit && (isPrimaryProfile || isSecondaryProfile)) {
+    return <>ไม่สามารถลบได้</>;
   } else if (edit) {
     return <>ลบ</>;
   } else {
@@ -29,15 +38,13 @@ const ButtonStatus = (flickingMove, edit) => {
   }
 };
 
-const ProfileCard = (profiles, selectProfileId) => {
-  const isScanDouble = useSelector((state) => state.device.isScanDouble);
-  const primaryProfile = useSelector(
-    (state) => state.account.activation.primaryProfile
-  );
-  const secondaryProfile = useSelector(
-    (state) => state.account.activation.secondaryProfile
-  );
-
+const ProfileCard = (
+  profiles,
+  selectProfileId,
+  isScanDouble,
+  primaryProfile,
+  secondaryProfile
+) => {
   return profiles.map((profile) => {
     const isSelect = selectProfileId === profile.profileId;
 
@@ -84,6 +91,14 @@ const SwitchProfile = () => {
     false
   );
 
+  const isScanDouble = useSelector((state) => state.device.isScanDouble);
+  const primaryProfile = useSelector(
+    (state) => state.account.activation.primaryProfile
+  );
+  const secondaryProfile = useSelector(
+    (state) => state.account.activation.secondaryProfile
+  );
+
   const [profileId, setProfileId] = useState();
   const [indexFlicking, setIndexFlicking] = useState();
   const [disableButton, setDisableButton] = useState();
@@ -98,14 +113,28 @@ const SwitchProfile = () => {
     (state) => state.controller.profileInUse.profileState
   );
 
+  const isPrimaryProfile =
+    profiles[indexFlicking]?.profileId === primaryProfile;
+  const isSecondaryProfile =
+    profiles[indexFlicking]?.profileId === secondaryProfile;
+
   const isSelectHandler = useCallback(() => {
     if (profiles[indexFlicking]?.profileId === selectProfileId) {
+      setDisableButton(true);
+    } else if ((isPrimaryProfile || isSecondaryProfile) && edit) {
       setDisableButton(true);
     } else {
       setDisableButton(false);
       setProfileId(profiles[indexFlicking]?.profileId);
     }
-  }, [indexFlicking, profiles, selectProfileId]);
+  }, [
+    indexFlicking,
+    profiles,
+    selectProfileId,
+    primaryProfile,
+    secondaryProfile,
+    edit,
+  ]);
 
   const changeIndexToSelected = useCallback(() => {
     const select = profiles.findIndex(
@@ -189,10 +218,24 @@ const SwitchProfile = () => {
         justifyContent="space-between"
         alignItems="baseline"
       >
-        <Typography variant="h4">กระเป๋านามบัตร</Typography>
-        <Button onClick={editToggleHandler}>
-          {edit ? 'ยกเลิก' : 'ลบนามบัตร'}
-        </Button>
+        {edit ? (
+          <Box display="flex" alignSelf="center" gap={0.5}>
+            <DeleteIcon color="error" />
+            <Typography variant="h4">เลือกลบนามบัตร</Typography>
+          </Box>
+        ) : (
+          <Box display="flex" alignSelf="center" gap={0.5}>
+            <PersonIcon />
+            <Typography variant="h4">กระเป๋านามบัตร</Typography>
+          </Box>
+        )}
+        {edit ? (
+          <Button onClick={editToggleHandler} color="error">
+            ยกเลิก
+          </Button>
+        ) : (
+          <Button onClick={editToggleHandler}>ลบนามบัตร</Button>
+        )}
       </Box>
       <Flicking
         ref={flickingRef}
@@ -200,7 +243,13 @@ const SwitchProfile = () => {
         onMoveStart={() => setFlickingMove(true)}
         onMoveEnd={() => setFlickingMove(false)}
       >
-        {ProfileCard(profiles, selectProfileId)}
+        {ProfileCard(
+          profiles,
+          selectProfileId,
+          isScanDouble,
+          primaryProfile,
+          secondaryProfile
+        )}
         {selectProfileId && (
           <Box key={99} width="80%" paddingTop={1} marginX={1}>
             <Box
@@ -252,7 +301,12 @@ const SwitchProfile = () => {
             setPrimaryLoading || setSecondaryLoading || removeProfileLoading
           }
         >
-          {ButtonStatus(flickingMove, edit)}
+          {ButtonStatus(
+            flickingMove,
+            edit,
+            isPrimaryProfile,
+            isSecondaryProfile
+          )}
         </LoadingButton>
       )}
     </PopupWrapper>
