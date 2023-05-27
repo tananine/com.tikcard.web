@@ -30,8 +30,18 @@ const ButtonStatus = (flickingMove, edit) => {
 };
 
 const ProfileCard = (profiles, selectProfileId) => {
+  const primaryProfile = useSelector(
+    (state) => state.account.activation.primaryProfile
+  );
+  const secondaryProfile = useSelector(
+    (state) => state.account.activation.secondaryProfile
+  );
+
   return profiles.map((profile) => {
     const isSelect = selectProfileId === profile.profileId;
+
+    const isPrimary = primaryProfile === profile.profileId;
+    const isSecondary = secondaryProfile === profile.profileId;
 
     return (
       <Box key={profile.profileId} width="80%" paddingTop={1} marginX={1}>
@@ -42,6 +52,8 @@ const ProfileCard = (profiles, selectProfileId) => {
           name={profile.name}
           company={profile.company}
           isSelect={isSelect}
+          isPrimary={isPrimary}
+          isSecondary={isSecondary}
         />
       </Box>
     );

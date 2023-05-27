@@ -2,6 +2,9 @@ import { Avatar, Box, Typography, Badge } from '@mui/material';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
+import profile1sim from '@/assets/svg/profile-1-sim.svg';
+import profile2sim from '@/assets/svg/profile-2-sim.svg';
+
 const Select = (isSelect) => {
   if (isSelect) {
     return (
@@ -15,6 +18,20 @@ const Select = (isSelect) => {
   }
 };
 
+const inUseScan = (isPrimary, isSecondary) => {
+  return (
+    <Box position="absolute" right={14} top={10}>
+      {(isPrimary || isSecondary) && (
+        <Typography variant="caption">กำลังใช้ใน</Typography>
+      )}
+      <Box display="flex" gap={0.5} justifyContent="center">
+        {isPrimary && <img src={profile1sim} height="18px" />}
+        {isSecondary && <img src={profile2sim} height="18px" />}
+      </Box>
+    </Box>
+  );
+};
+
 const Profile = ({
   profileImage,
   logoImage,
@@ -22,6 +39,8 @@ const Profile = ({
   name,
   company,
   isSelect,
+  isPrimary,
+  isSecondary,
 }) => {
   return (
     <Box
@@ -33,6 +52,7 @@ const Profile = ({
       height={212}
     >
       {Select(isSelect)}
+      {inUseScan(isPrimary, isSecondary)}
       <Badge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}

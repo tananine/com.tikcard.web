@@ -64,7 +64,7 @@ const ProfileAccordion = ({ data, role }) => {
       );
     } else if (role === 'primary') {
       return <img src={profile1sim} height="16px" />;
-    } else {
+    } else if (role === 'secondary') {
       return <img src={profile2sim} height="16px" />;
     }
   };
