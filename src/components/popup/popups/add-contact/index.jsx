@@ -20,6 +20,7 @@ import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import phoneGrid from '@/assets/svg/phone-grid.svg';
 import phoneBlock from '@/assets/svg/phone-block.svg';
+import phoneSpacial from '@/assets/svg/phone-spacial.svg';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
@@ -182,7 +183,7 @@ const AddContact = () => {
               <Tab
                 icon={
                   <Img
-                    src={phoneBlock}
+                    src={phoneSpacial}
                     height={44}
                     loader={
                       <Skeleton

@@ -48,7 +48,7 @@ const AddContactList = ({
           display: 'flex',
           justifyContent: 'space-between',
           border:
-            typeLayout === 'block' ? '1px solid #c2c2c2' : '1px solid #ffffff',
+            typeLayout === 'grid' ? '1px solid #ffffff' : '1px solid #c2c2c2',
         }}
         onClick={editContactDynamicToggleHandler}
       >

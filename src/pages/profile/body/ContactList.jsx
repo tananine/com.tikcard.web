@@ -17,6 +17,10 @@ import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
+import phoneGrid from '@/assets/svg/phone-grid.svg';
+import phoneBlock from '@/assets/svg/phone-block.svg';
+import phoneSpacial from '@/assets/svg/phone-spacial.svg';
+
 const ContactList = ({ contactId, contactItem, dataItem, show }) => {
   const dispatch = useDispatch();
 
@@ -74,6 +78,19 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
     return 1;
   };
 
+  const iconTypeContact = () => {
+    switch (dataItem.ContactItem.typeLayout) {
+      case 'grid':
+        return phoneGrid;
+      case 'block':
+        return phoneBlock;
+      case 'spacial':
+        return phoneSpacial;
+      default:
+        return phoneGrid;
+    }
+  };
+
   return (
     <>
       <CardList
@@ -82,9 +99,9 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
           transform: CSS.Transform.toString(transform),
           transition,
           border:
-            dataItem.ContactItem.typeLayout === 'block'
-              ? '1px solid #c2c2c2'
-              : '1px solid #ffffff',
+            dataItem.ContactItem.typeLayout === 'grid'
+              ? '1px solid #ffffff'
+              : '1px solid #c2c2c2',
         }}
       >
         <Box display="flex" alignItems="center" gap={1}>
@@ -108,11 +125,24 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
             </Box>
             <Box
               display="flex"
-              gap={2}
+              gap={1.5}
+              alignItems="center"
               width="100%"
               sx={{ cursor: 'pointer', opacity: opacityLevel }}
               onClick={editContactDynamicToggleHandler}
             >
+              <Img
+                src={iconTypeContact()}
+                height={44}
+                loader={
+                  <Skeleton
+                    animation="wave"
+                    variant="rounded"
+                    width="26px"
+                    height="44px"
+                  />
+                }
+              />
               <Img
                 src={contactItem.imageIcon}
                 alt=""
