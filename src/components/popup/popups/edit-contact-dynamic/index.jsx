@@ -1,5 +1,12 @@
 import { useCallback, useEffect } from 'react';
-import { Box, Button, Divider, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  TextField,
+  Typography,
+  Skeleton,
+} from '@mui/material';
 import PopupWrapper from '@/components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContactToggle, editContactDynamicToggle } from '@/stores/popup';
@@ -7,6 +14,7 @@ import { reloadContactList } from '@/stores/reload';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Img } from 'react-image';
 
 import GridLayout from '@/components/layoutContact/GridLayout';
 import BlockLayout from '@/components/layoutContact/BlockLayout';
@@ -26,6 +34,10 @@ import LayoutPreviewSpacial from '@/components/popup/popups/edit-contact-dynamic
 import FieldInputSpacial from '@/components/popup/popups/edit-contact-dynamic/spacials/FieldInput';
 
 import { validateSchema } from '@/components/popup/popups/edit-contact-dynamic/validateSchema';
+
+import phoneGrid from '@/assets/svg/phone-grid.svg';
+import phoneBlock from '@/assets/svg/phone-block.svg';
+import phoneSpacial from '@/assets/svg/phone-spacial.svg';
 
 const EditContact = () => {
   const [addContactAction, addContactLoading] = usePost(
@@ -223,6 +235,19 @@ const EditContact = () => {
     }
   };
 
+  const iconTypeContact = () => {
+    switch (appData.typeLayout) {
+      case 'grid':
+        return phoneGrid;
+      case 'block':
+        return phoneBlock;
+      case 'spacial':
+        return phoneSpacial;
+      default:
+        return null;
+    }
+  };
+
   return (
     <PopupWrapper
       open={open}
@@ -244,7 +269,29 @@ const EditContact = () => {
             bgcolor="#ffffff"
             zIndex={2}
           >
-            <Typography variant="h2">{appData.name}</Typography>
+            <Box display="flex" gap={1} alignItems="center">
+              <Img
+                src={iconTypeContact()}
+                height={34}
+                loader={
+                  <Skeleton
+                    animation="wave"
+                    variant="rounded"
+                    width="20px"
+                    height="34px"
+                  />
+                }
+                unloader={
+                  <Skeleton
+                    animation="wave"
+                    variant="rounded"
+                    width="20px"
+                    height="34px"
+                  />
+                }
+              />
+              <Typography variant="h2">{appData.name}</Typography>
+            </Box>
             <Button onClick={handleSubmit(goContact)}>ตัวอย่างเมื่อคลิก</Button>
           </Box>
           {layoutContact()}
