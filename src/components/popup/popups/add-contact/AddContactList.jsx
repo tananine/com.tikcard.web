@@ -10,6 +10,10 @@ import {
 } from '@/stores/parse-data/editContactDynamic';
 import { Img } from 'react-image';
 
+import phoneGrid from '@/assets/svg/phone-grid.svg';
+import phoneBlock from '@/assets/svg/phone-block.svg';
+import phoneSpacial from '@/assets/svg/phone-spacial.svg';
+
 const AddContactList = ({
   id,
   name,
@@ -41,18 +45,49 @@ const AddContactList = ({
     dispatch(editContactDynamicToggle());
   }, [dispatch, id, name, defaultUri, androidUri, iosUri, imageIcon]);
 
+  const iconTypeContact = () => {
+    switch (typeLayout) {
+      case 'grid':
+        return phoneGrid;
+      case 'block':
+        return phoneBlock;
+      case 'spacial':
+        return phoneSpacial;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <CardList
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          border:
-            typeLayout === 'grid' ? '1px solid #ffffff' : '1px solid #c2c2c2',
         }}
         onClick={editContactDynamicToggleHandler}
       >
         <Box display="flex" gap={1} alignItems="center">
+          <Img
+            src={iconTypeContact()}
+            height={34}
+            loader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="20px"
+                height="34px"
+              />
+            }
+            unloader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="20px"
+                height="34px"
+              />
+            }
+          />
           <Img
             src={imageIcon}
             alt=""

@@ -87,7 +87,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
       case 'spacial':
         return phoneSpacial;
       default:
-        return phoneGrid;
+        return null;
     }
   };
 
@@ -98,10 +98,6 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
         sx={{
           transform: CSS.Transform.toString(transform),
           transition,
-          border:
-            dataItem.ContactItem.typeLayout === 'grid'
-              ? '1px solid #ffffff'
-              : '1px solid #c2c2c2',
         }}
       >
         <Box display="flex" alignItems="center" gap={1}>
@@ -135,6 +131,14 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
                 src={iconTypeContact()}
                 height={44}
                 loader={
+                  <Skeleton
+                    animation="wave"
+                    variant="rounded"
+                    width="26px"
+                    height="44px"
+                  />
+                }
+                unloader={
                   <Skeleton
                     animation="wave"
                     variant="rounded"
