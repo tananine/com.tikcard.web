@@ -148,11 +148,18 @@ const EditCoverImage = ({
       onOpen={openEditCoverHandler}
       onClose={closeEditCoverHandler}
     >
-      <Box height={`calc(${editProfileHeight}px - 38px)`}>
-        <Typography variant="h3" marginBottom={2}>
-          เปลี่ยนปก
-        </Typography>
-        {listCover()}
+      <Box
+        height={`calc(${editProfileHeight}px - 38px)`}
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+      >
+        <Box>
+          <Typography variant="h3" marginBottom={2}>
+            เปลี่ยนปก
+          </Typography>
+          {listCover()}
+        </Box>
         <Box
           position="sticky"
           bottom={0}
