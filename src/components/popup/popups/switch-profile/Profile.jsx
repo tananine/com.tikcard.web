@@ -59,13 +59,56 @@ const Profile = ({
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         sx={{ marginBottom: 2 }}
         badgeContent={
-          <Avatar
-            sx={{ width: 32, height: 32, border: '2px solid #ffffff' }}
-            src={logoImage}
-          />
+          <Avatar sx={{ width: 32, height: 32, border: '2px solid #ffffff' }}>
+            <Img
+              src={logoImage}
+              alt=""
+              width="100%"
+              height="100%"
+              loader={
+                <Skeleton
+                  animation="wave"
+                  variant="rounded"
+                  width="100%"
+                  height="100%"
+                />
+              }
+              unloader={
+                <Skeleton
+                  animation="wave"
+                  variant="rounded"
+                  width="100%"
+                  height="100%"
+                />
+              }
+            />
+          </Avatar>
         }
       >
-        <Avatar sx={{ width: 76, height: 76 }} src={profileImage} />
+        <Avatar sx={{ width: 76, height: 76 }}>
+          <Img
+            src={profileImage}
+            alt=""
+            width="100%"
+            height="100%"
+            loader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="100%"
+                height="100%"
+              />
+            }
+            unloader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="100%"
+                height="100%"
+              />
+            }
+          />
+        </Avatar>
       </Badge>
       <Typography variant="h3">{cardName}</Typography>
       <Typography variant="caption" fontSize={14}>

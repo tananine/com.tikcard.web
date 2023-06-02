@@ -224,8 +224,30 @@ const View = ({ isPreview, profileData }) => {
                   boxShadow:
                     'rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em',
                 }}
-                src={profileData?.info.profileImage}
-              />
+              >
+                <Img
+                  src={profileData?.info.profileImage}
+                  alt=""
+                  width="100%"
+                  height="100%"
+                  loader={
+                    <Skeleton
+                      animation="wave"
+                      variant="rounded"
+                      width="100%"
+                      height="100%"
+                    />
+                  }
+                  unloader={
+                    <Skeleton
+                      animation="wave"
+                      variant="rounded"
+                      width="100%"
+                      height="100%"
+                    />
+                  }
+                />
+              </Avatar>
             </Box>
             <Box
               sx={{
@@ -242,8 +264,30 @@ const View = ({ isPreview, profileData }) => {
                   height: 52,
                   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
                 }}
-                src={profileData?.info.logoImage}
-              />
+              >
+                <Img
+                  src={profileData?.info.logoImage}
+                  alt=""
+                  width="100%"
+                  height="100%"
+                  loader={
+                    <Skeleton
+                      animation="wave"
+                      variant="rounded"
+                      width="100%"
+                      height="100%"
+                    />
+                  }
+                  unloader={
+                    <Skeleton
+                      animation="wave"
+                      variant="rounded"
+                      width="100%"
+                      height="100%"
+                    />
+                  }
+                />
+              </Avatar>
             </Box>
           </Box>
         </Grow>

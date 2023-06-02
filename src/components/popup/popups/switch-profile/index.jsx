@@ -46,19 +46,22 @@ const ProfileCard = (
   secondaryProfile
 ) => {
   return profiles.map((profile) => {
+    const { profileId, profileImage, logoImage, cardName, name, company } =
+      profile;
+
     const isSelect = selectProfileId === profile.profileId;
 
     const isPrimary = primaryProfile === profile.profileId;
     const isSecondary = secondaryProfile === profile.profileId;
 
     return (
-      <Box key={profile.profileId} width="80%" paddingTop={1} marginX={1}>
+      <Box key={profileId} width="80%" paddingTop={1} marginX={1}>
         <Profile
-          profileImage={profile.profileImage}
-          logoImage={profile.logoImage}
-          cardName={profile.cardName}
-          name={profile.name}
-          company={profile.company}
+          profileImage={profileImage}
+          logoImage={logoImage}
+          cardName={cardName}
+          name={name}
+          company={company}
           isSelect={isSelect}
           isScanDouble={isScanDouble}
           isPrimary={isPrimary}

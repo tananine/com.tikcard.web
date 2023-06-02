@@ -32,13 +32,56 @@ const Profile = ({
           overlap="circular"
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           badgeContent={
-            <Avatar
-              sx={{ width: 26, height: 26, border: '2px solid #ffffff' }}
-              src={logoImage}
-            />
+            <Avatar sx={{ width: 26, height: 26, border: '2px solid #ffffff' }}>
+              <Img
+                src={logoImage}
+                alt=""
+                width="100%"
+                height="100%"
+                loader={
+                  <Skeleton
+                    animation="wave"
+                    variant="rounded"
+                    width="100%"
+                    height="100%"
+                  />
+                }
+                unloader={
+                  <Skeleton
+                    animation="wave"
+                    variant="rounded"
+                    width="100%"
+                    height="100%"
+                  />
+                }
+              />
+            </Avatar>
           }
         >
-          <Avatar sx={{ width: 46, height: 46 }} src={profileImage} />
+          <Avatar sx={{ width: 46, height: 46 }}>
+            <Img
+              src={profileImage}
+              alt=""
+              width="100%"
+              height="100%"
+              loader={
+                <Skeleton
+                  animation="wave"
+                  variant="rounded"
+                  width="100%"
+                  height="100%"
+                />
+              }
+              unloader={
+                <Skeleton
+                  animation="wave"
+                  variant="rounded"
+                  width="100%"
+                  height="100%"
+                />
+              }
+            />
+          </Avatar>
         </Badge>
         <Box height="100%">
           <Typography variant="h3" lineHeight="26.5px">
@@ -101,7 +144,7 @@ const CurrentProfile = ({ profileActivationId }) => {
         cursor: 'pointer',
         marginTop: 0.5,
         height: 70,
-        borderRadius: '25px'
+        borderRadius: '25px',
       }}
       elevation={3}
       onClick={switchProfileToggleHandler}
