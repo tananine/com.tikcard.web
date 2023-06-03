@@ -17,10 +17,6 @@ import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-import phoneGrid from '@/assets/svg/phone-grid.svg';
-import phoneBlock from '@/assets/svg/phone-block.svg';
-import phoneSpacial from '@/assets/svg/phone-spacial.svg';
-
 const ContactList = ({ contactId, contactItem, dataItem, show }) => {
   const dispatch = useDispatch();
 
@@ -78,16 +74,16 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
     return 1;
   };
 
-  const iconTypeContact = () => {
+  const typeContact = () => {
     switch (dataItem.ContactItem.typeLayout) {
       case 'grid':
-        return phoneGrid;
+        return 'ตารางแอพ';
       case 'block':
-        return phoneBlock;
+        return 'โฟกัสบล็อค';
       case 'spacial':
-        return phoneSpacial;
+        return 'พิเศษ';
       default:
-        return null;
+        return '';
     }
   };
 
@@ -128,26 +124,6 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
               onClick={editContactDynamicToggleHandler}
             >
               <Img
-                src={iconTypeContact()}
-                height={44}
-                loader={
-                  <Skeleton
-                    animation="wave"
-                    variant="rounded"
-                    width="26px"
-                    height="44px"
-                  />
-                }
-                unloader={
-                  <Skeleton
-                    animation="wave"
-                    variant="rounded"
-                    width="26px"
-                    height="44px"
-                  />
-                }
-              />
-              <Img
                 src={contactItem.imageIcon}
                 alt=""
                 width="46px"
@@ -173,9 +149,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
                 <Typography variant="h3" lineHeight="26.5px">
                   {contactItem.name}
                 </Typography>
-                <Typography variant="caption" noWrap>
-                  {dataItem.data}
-                </Typography>
+                <Typography variant="caption">{typeContact()}</Typography>
               </Box>
             </Box>
           </Box>
