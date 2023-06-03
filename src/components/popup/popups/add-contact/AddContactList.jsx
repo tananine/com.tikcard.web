@@ -41,12 +41,26 @@ const AddContactList = ({
     dispatch(editContactDynamicToggle());
   }, [dispatch, id, name, defaultUri, androidUri, iosUri, imageIcon]);
 
+  const typeContactLayoutStyle = () => {
+    switch (typeLayout) {
+      case 'grid':
+        return { bgcolor: '#ffffff', border: '0.5px solid #cecece' };
+      case 'block':
+        return { bgcolor: '#f7f7f7', border: '0.5px solid #ffffff' };
+      case 'spacial':
+        return { bgcolor: '#f7f7f7', border: '0.5px solid #ffffff' };
+      default:
+        return {};
+    }
+  };
+
   return (
     <>
       <CardList
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
+          ...typeContactLayoutStyle(),
         }}
         onClick={editContactDynamicToggleHandler}
       >

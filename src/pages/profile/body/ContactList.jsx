@@ -87,11 +87,25 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
     }
   };
 
+  const typeContactLayoutStyle = () => {
+    switch (dataItem.ContactItem.typeLayout) {
+      case 'grid':
+        return { bgcolor: '#ffffff', border: '0.5px solid #cecece' };
+      case 'block':
+        return { bgcolor: '#f7f7f7', border: '0.5px solid #ffffff' };
+      case 'spacial':
+        return { bgcolor: '#f7f7f7', border: '0.5px solid #ffffff' };
+      default:
+        return {};
+    }
+  };
+
   return (
     <>
       <CardList
         forwardedRef={setNodeRef}
         sx={{
+          ...typeContactLayoutStyle(),
           transform: CSS.Transform.toString(transform),
           transition,
         }}
