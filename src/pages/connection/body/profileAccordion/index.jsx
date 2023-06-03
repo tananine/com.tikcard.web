@@ -7,7 +7,9 @@ import {
   Avatar,
   Box,
   Badge,
+  Skeleton,
 } from '@mui/material';
+import { Img } from 'react-image';
 
 import ConnectionItem from '@/pages/connection/body/profileAccordion/ConnectionItem';
 

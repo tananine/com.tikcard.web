@@ -1,4 +1,5 @@
-import { Avatar, Box, Typography, Badge } from '@mui/material';
+import { Avatar, Box, Typography, Badge, Skeleton } from '@mui/material';
+import { Img } from 'react-image';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
