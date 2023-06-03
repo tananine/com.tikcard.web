@@ -34,30 +34,34 @@ const Profile = ({
           overlap="circular"
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           badgeContent={
-            <Avatar sx={{ width: 26, height: 26, border: '2px solid #ffffff' }}>
-              <Img
-                src={logoImage}
-                alt=""
-                width="100%"
-                height="100%"
-                loader={
-                  <Skeleton
-                    animation="wave"
-                    variant="rounded"
-                    width="100%"
-                    height="100%"
-                  />
-                }
-                unloader={
-                  <Skeleton
-                    animation="wave"
-                    variant="rounded"
-                    width="100%"
-                    height="100%"
-                  />
-                }
-              />
-            </Avatar>
+            logoImage && (
+              <Avatar
+                sx={{ width: 26, height: 26, border: '2px solid #ffffff' }}
+              >
+                <Img
+                  src={logoImage}
+                  alt=""
+                  width="100%"
+                  height="100%"
+                  loader={
+                    <Skeleton
+                      animation="wave"
+                      variant="rounded"
+                      width="100%"
+                      height="100%"
+                    />
+                  }
+                  unloader={
+                    <Skeleton
+                      animation="wave"
+                      variant="rounded"
+                      width="100%"
+                      height="100%"
+                    />
+                  }
+                />
+              </Avatar>
+            )
           }
         >
           <Avatar sx={{ width: 46, height: 46 }}>

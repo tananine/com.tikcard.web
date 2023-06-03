@@ -249,46 +249,48 @@ const View = ({ isPreview, profileData }) => {
                 />
               </Avatar>
             </Box>
-            <Box
-              sx={{
-                border: '2px solid white',
-                borderRadius: '50%',
-                position: 'absolute',
-                left: 100,
-                top: 80,
-              }}
-            >
-              <Avatar
+            {profileData?.info.logoImage && (
+              <Box
                 sx={{
-                  width: 52,
-                  height: 52,
-                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
+                  border: '2px solid white',
+                  borderRadius: '50%',
+                  position: 'absolute',
+                  left: 100,
+                  top: 80,
                 }}
               >
-                <Img
-                  src={profileData?.info.logoImage}
-                  alt=""
-                  width="100%"
-                  height="100%"
-                  loader={
-                    <Skeleton
-                      animation="wave"
-                      variant="rounded"
-                      width="100%"
-                      height="100%"
-                    />
-                  }
-                  unloader={
-                    <Skeleton
-                      animation="wave"
-                      variant="rounded"
-                      width="100%"
-                      height="100%"
-                    />
-                  }
-                />
-              </Avatar>
-            </Box>
+                <Avatar
+                  sx={{
+                    width: 52,
+                    height: 52,
+                    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
+                  }}
+                >
+                  <Img
+                    src={profileData?.info.logoImage}
+                    alt=""
+                    width="100%"
+                    height="100%"
+                    loader={
+                      <Skeleton
+                        animation="wave"
+                        variant="rounded"
+                        width="100%"
+                        height="100%"
+                      />
+                    }
+                    unloader={
+                      <Skeleton
+                        animation="wave"
+                        variant="rounded"
+                        width="100%"
+                        height="100%"
+                      />
+                    }
+                  />
+                </Avatar>
+              </Box>
+            )}
           </Box>
         </Grow>
         <Box padding={2} minHeight={500}>
