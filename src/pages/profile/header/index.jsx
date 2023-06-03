@@ -7,8 +7,15 @@ import { previewToggle } from '@/stores/drawer';
 
 import EditIcon from '@mui/icons-material/Edit';
 
+import profile1sim from '@/assets/svg/profile-1-sim.svg';
+import profile2sim from '@/assets/svg/profile-2-sim.svg';
+
 const ProfileHeader = () => {
   const dispatch = useDispatch();
+
+  const profileState = useSelector(
+    (state) => state.controller.profileInUse.profileState
+  );
 
   const profileActivationId = useSelector(
     (state) => state.controller.profileInUse.profileId
@@ -21,6 +28,14 @@ const ProfileHeader = () => {
   const previewToggleHandler = useCallback(() => {
     dispatch(previewToggle());
   }, [dispatch]);
+
+  const iconProfileState = () => {
+    if (profileState === 'primary') {
+      return profile1sim;
+    } else if (profileState === 'secondary') {
+      return profile2sim;
+    }
+  };
 
   return (
     <>
@@ -44,6 +59,7 @@ const ProfileHeader = () => {
             id="preview-button"
             fullWidth
             variant="contained"
+            endIcon={<img src={iconProfileState()} height="18px" />}
             onClick={previewToggleHandler}
             disabled={!profileActivationId}
           >
