@@ -17,6 +17,8 @@ const ProfileHeader = () => {
     (state) => state.controller.profileInUse.profileState
   );
 
+  const isScanDouble = useSelector((state) => state.device.isScanDouble);
+
   const profileActivationId = useSelector(
     (state) => state.controller.profileInUse.profileId
   );
@@ -59,7 +61,9 @@ const ProfileHeader = () => {
             id="preview-button"
             fullWidth
             variant="contained"
-            endIcon={<img src={iconProfileState()} height="18px" />}
+            endIcon={
+              isScanDouble && <img src={iconProfileState()} height="18px" />
+            }
             onClick={previewToggleHandler}
             disabled={!profileActivationId}
           >
