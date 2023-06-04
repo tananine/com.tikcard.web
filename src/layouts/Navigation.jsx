@@ -119,7 +119,7 @@ const ProfilePart = () => {
                 backgroundColor: '#ededed',
                 '&.Mui-selected': {
                   color: '#000000',
-                  backgroundColor: '#e6e6e6',
+                  backgroundColor: '#ffffff',
                   border: '0.5px solid grey',
                   borderRadius: '25px',
                 },
@@ -148,7 +148,7 @@ const ProfilePart = () => {
                 backgroundColor: '#ededed',
                 '&.Mui-selected': {
                   color: '#000000',
-                  backgroundColor: '#e6e6e6',
+                  backgroundColor: '#ffffff',
                   border: '0.5px solid grey',
                   borderRadius: '25px',
                 },
