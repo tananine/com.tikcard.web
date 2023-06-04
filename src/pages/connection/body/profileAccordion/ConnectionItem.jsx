@@ -47,7 +47,10 @@ const ConnectionItem = ({ data, removeConnection }) => {
 
   return (
     <>
-      <CardList onClick={openDialogHandler} sx={{ cursor: 'pointer' }}>
+      <CardList
+        onClick={openDialogHandler}
+        sx={{ cursor: 'pointer', bgcolor: '#f7f7f7' }}
+      >
         <Box display="flex" gap={2} flexGrow={1} alignItems="center">
           <Avatar sx={{ width: 46, height: 46 }}>
             <Img
