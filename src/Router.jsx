@@ -43,7 +43,7 @@ const Router = () => {
                 </div>
               }
             />
-            <Route path="/scan/:scannerId" element={<Scanner />} />
+            <Route path="/scan/:scannerId/:key" element={<Scanner />} />
             <Route path="/:linkId" element={<Landing />} />
             <Route path="*" element={<Navigate to="/app/profile" replace />} />
           </Routes>

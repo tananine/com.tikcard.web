@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Button, CircularProgress, Container } from '@mui/material';
 
 import useGet from '@/hooks/axios/useGet';
@@ -14,11 +14,7 @@ const Scanner = () => {
   const [activationAction] = usePost(deviceServicePath.activation, false);
 
   const navigate = useNavigate();
-  const { scannerId } = useParams();
-
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const key = searchParams.get('key');
+  const { scannerId, key } = useParams();
 
   const checkLogin = () => {
     const authToken = Cookies.get('authToken');
