@@ -35,6 +35,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
         contactId: contactId,
         contactItemId: contactItem.id,
         name: contactItem.name,
+        example: contactItem.example,
         imageIcon: contactItem.imageIcon,
         dataItem: {
           name: dataItem.name,

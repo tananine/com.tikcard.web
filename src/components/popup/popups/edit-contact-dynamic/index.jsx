@@ -1,12 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import {
-  Box,
-  Button,
-  Divider,
-  TextField,
-  Typography,
-  Skeleton,
-} from '@mui/material';
+import { Box, Button, Divider, TextField, Typography } from '@mui/material';
 import PopupWrapper from '@/components/popup/PopupWrapper';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContactToggle, editContactDynamicToggle } from '@/stores/popup';
@@ -14,7 +7,6 @@ import { reloadContactList } from '@/stores/reload';
 import { useForm } from 'react-hook-form';
 import { LoadingButton } from '@mui/lab';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Img } from 'react-image';
 
 import GridLayout from '@/components/layoutContact/GridLayout';
 import BlockLayout from '@/components/layoutContact/BlockLayout';
@@ -60,6 +52,7 @@ const EditContact = () => {
     ),
     name: useSelector((state) => state.editContactDynamic.data.name),
     dataItem: useSelector((state) => state.editContactDynamic.data.dataItem),
+    example: useSelector((state) => state.editContactDynamic.data.example),
     imageIcon: useSelector((state) => state.editContactDynamic.data.imageIcon),
     uri: useSelector((state) => state.editContactDynamic.data.uri),
     typeLayout: useSelector(
@@ -183,15 +176,20 @@ const EditContact = () => {
   const fieldInput = () => {
     if (appData.typeLayout === 'grid') {
       return (
-        <TextField
-          label={appData.name}
-          variant="outlined"
-          fullWidth
-          InputLabelProps={{ shrink: true }}
-          error={errors?.data ? true : false}
-          helperText={errors?.data?.message}
-          {...register('data')}
-        />
+        <>
+          <TextField
+            label={appData.name}
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            error={errors?.data ? true : false}
+            helperText={errors?.data?.message}
+            {...register('data')}
+          />
+          <Typography variant="caption" marginX={1} color="#8d8d8d">
+            {appData.example}
+          </Typography>
+        </>
       );
     } else if (appData.typeLayout === 'block') {
       return (
@@ -203,15 +201,20 @@ const EditContact = () => {
             InputLabelProps={{ shrink: true }}
             {...register('name')}
           />
-          <TextField
-            label={appData.name}
-            variant="outlined"
-            fullWidth
-            InputLabelProps={{ shrink: true }}
-            error={errors?.data ? true : false}
-            helperText={errors?.data?.message}
-            {...register('data')}
-          />
+          <Box>
+            <TextField
+              label={appData.name}
+              variant="outlined"
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              error={errors?.data ? true : false}
+              helperText={errors?.data?.message}
+              {...register('data')}
+            />
+            <Typography variant="caption" marginX={1} color="#8d8d8d">
+              {appData.example}
+            </Typography>
+          </Box>
           <TextField
             label="รายละเอียด"
             fullWidth

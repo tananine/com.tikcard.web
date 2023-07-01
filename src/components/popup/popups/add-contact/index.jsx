@@ -35,6 +35,7 @@ const ContactList = (appListData, typeLayout) => {
         defaultUri={app.defaultUri}
         androidUri={app.androidUri}
         iosUri={app.iosUri}
+        example={app.example}
         imageIcon={app.imageIcon}
         typeLayout={typeLayout}
         component={app.component}

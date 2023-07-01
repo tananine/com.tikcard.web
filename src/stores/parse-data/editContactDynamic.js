@@ -10,6 +10,7 @@ export const editContactDynamicSlice = createSlice({
       name: null,
       imageIcon: null,
       dataItem: null,
+      example: null,
       uri: {
         defaultUri: null,
         androidUri: null,
@@ -30,6 +31,7 @@ export const editContactDynamicSlice = createSlice({
       state.data.imageIcon = action.payload.imageIcon || null;
 
       state.data.dataItem = action.payload.dataItem || null;
+      state.data.example = action.payload.example || null;
       state.data.uri.defaultUri = action.payload.uri.defaultUri || null;
       state.data.uri.androidUri = action.payload.uri.androidUri || null;
       state.data.uri.iosUri = action.payload.uri.iosUri || null;

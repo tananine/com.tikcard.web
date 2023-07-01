@@ -16,6 +16,7 @@ const AddContactList = ({
   defaultUri,
   androidUri,
   iosUri,
+  example,
   imageIcon,
   typeLayout,
   component,
@@ -28,6 +29,7 @@ const AddContactList = ({
         contactItemId: id,
         name: name,
         imageIcon: imageIcon,
+        example: example,
         uri: {
           defaultUri: defaultUri,
           androidUri: androidUri,
