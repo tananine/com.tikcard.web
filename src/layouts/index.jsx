@@ -58,8 +58,8 @@ const Application = ({ header, body, footer, tutorial }) => {
 
   useEffect(() => {
     getActivationAction().then((res) => {
-      const primary = res.data.activation.primary;
-      const secondary = res.data.activation.secondary;
+      const primary = res.data.activation?.primary;
+      const secondary = res.data.activation?.secondary;
       if (!primary) {
         setShowWelcomePage(true);
       } else {
