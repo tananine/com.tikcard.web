@@ -171,12 +171,14 @@ const Welcome = () => {
         </Box>
         <Img src={BlogImage} alt="" width="100%" />
         <Box>
-          {!addProfileLoading && !setPrimaryLoading && (
-            <Box display="flex" gap={2} justifyContent="center">
-              <Button onClick={pageBack}>กลับ</Button>
-              <Button onClick={handleSubmit(save)}>ข้าม</Button>
-            </Box>
-          )}
+          <Box height={45}>
+            {!addProfileLoading && !setPrimaryLoading && (
+              <Box display="flex" gap={2} justifyContent="center">
+                <Button onClick={pageBack}>กลับ</Button>
+                <Button onClick={handleSubmit(save)}>ข้าม</Button>
+              </Box>
+            )}
+          </Box>
           <LoadingButton
             onClick={handleSubmit(save)}
             variant="contained"
