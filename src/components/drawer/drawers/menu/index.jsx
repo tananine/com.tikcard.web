@@ -2,9 +2,12 @@ import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { menuToggle } from '@/stores/drawer';
 import DrawerWrapper from '@/components/drawer/DrawerWrapper';
-import { Button, Typography, Box } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import Account from '@/components/drawer/drawers/menu/Account';
 import Device from '@/components/drawer/drawers/menu/Device';
+import { Img } from 'react-image';
+
+import Logo from '@/assets/images/logo.png';
 
 const Menu = () => {
   const open = useSelector((state) => state.drawer.menuDrawer);
@@ -41,16 +44,13 @@ const Menu = () => {
       >
         ออกจากระบบ
       </Button>
-      <Typography
-        variant="caption"
-        textAlign="end"
-        position="fixed"
-        marginRight={1}
-        bottom={0}
-        right={0}
-      >
-        v1.0.0
-      </Typography>
+      <Box textAlign="center" marginTop={4} marginBottom={1}>
+        <Img src={Logo} alt="" height="28px" />
+        <Typography variant="caption">version 1.0.00</Typography>
+        <Button variant="text" size="small" sx={{ marginY: 2 }}>
+          นโยบายความเป็นส่วนตัว
+        </Button>
+      </Box>
     </DrawerWrapper>
   );
 };
