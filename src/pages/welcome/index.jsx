@@ -97,6 +97,7 @@ const Welcome = () => {
           color="secondary"
           size="large"
           fullWidth
+          sx={{ marginBottom: 8 }}
           onClick={pageNext}
         >
           ถัดไป
@@ -137,6 +138,7 @@ const Welcome = () => {
           color="secondary"
           size="large"
           fullWidth
+          sx={{ marginBottom: 8 }}
           onClick={handleSubmit(pageNext)}
         >
           ถัดไป
@@ -185,7 +187,7 @@ const Welcome = () => {
             color="secondary"
             size="large"
             fullWidth
-            sx={{ marginTop: 2 }}
+            sx={{ marginTop: 2, marginBottom: 8 }}
             loading={addProfileLoading || setPrimaryLoading}
           >
             บันทึก

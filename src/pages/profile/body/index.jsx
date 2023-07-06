@@ -1,15 +1,24 @@
 import { useState, useCallback, useEffect } from 'react';
 import { DndContext } from '@dnd-kit/core';
-import { Box, CircularProgress, Divider, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Divider,
+  Typography,
+} from '@mui/material';
 import { SortableContext, arrayMove } from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import ContactList from '@/pages/profile/body/ContactList';
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowFooter, setHideFooter } from '@/stores/offset';
+import { Img } from 'react-image';
 
 import useGet from '@/hooks/axios/useGet';
 import usePut from '@/hooks/axios/usePut';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
+
+import SuccessImage from '@/assets/images/success.png';
 
 const ProfileBody = () => {
   const [items, setItems] = useState([]);
@@ -93,6 +102,18 @@ const ProfileBody = () => {
         sx={{ transform: 'translate(-50%, -50%)' }}
       >
         <CircularProgress disableShrink />
+      </Box>
+    );
+  }
+
+  if (items.length === 0) {
+    return (
+      <Box marginTop={2} textAlign="center">
+        <Typography>นามบัตรนี้ยังไม่มีข้อมูลติดต่อของคุณ</Typography>
+        <Button variant="text" fontWeight={600} sx={{ margin: 2 }}>
+          เพิ่มข้อมูลติดต่อ
+        </Button>
+        <Img src={SuccessImage} alt="" width="100%" />
       </Box>
     );
   }
