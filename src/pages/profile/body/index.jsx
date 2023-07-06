@@ -12,6 +12,7 @@ import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import ContactList from '@/pages/profile/body/ContactList';
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowFooter, setHideFooter } from '@/stores/offset';
+import { addContactToggle } from '@/stores/popup';
 import { Img } from 'react-image';
 
 import useGet from '@/hooks/axios/useGet';
@@ -93,6 +94,10 @@ const ProfileBody = () => {
     }
   }, [getMyContactAction, profileActivationId, reloadContactList]);
 
+  const addContactToggleHandler = useCallback(() => {
+    dispatch(addContactToggle());
+  }, [dispatch]);
+
   if (getMyContactLoading) {
     return (
       <Box
@@ -110,7 +115,12 @@ const ProfileBody = () => {
     return (
       <Box marginTop={2} textAlign="center">
         <Typography>นามบัตรนี้ยังไม่มีข้อมูลติดต่อของคุณ</Typography>
-        <Button variant="text" fontWeight={600} sx={{ margin: 2 }}>
+        <Button
+          variant="text"
+          fontWeight={600}
+          sx={{ margin: 2 }}
+          onClick={addContactToggleHandler}
+        >
           เพิ่มข้อมูลติดต่อ
         </Button>
         <Img src={SuccessImage} alt="" width="100%" />
