@@ -196,14 +196,7 @@ const View = ({ isPreview, profileData }) => {
                 height="100%"
               />
             }
-            unloader={
-              <Skeleton
-                animation="wave"
-                variant="rounded"
-                width="100%"
-                height="100%"
-              />
-            }
+            unloader={<Avatar />}
           />
         </Box>
         <Grow
@@ -238,14 +231,7 @@ const View = ({ isPreview, profileData }) => {
                       height="100%"
                     />
                   }
-                  unloader={
-                    <Skeleton
-                      animation="wave"
-                      variant="rounded"
-                      width="100%"
-                      height="100%"
-                    />
-                  }
+                  unloader={<Avatar sx={{ width: 60, height: 60 }} />}
                 />
               </Avatar>
             </Box>

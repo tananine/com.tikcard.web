@@ -66,14 +66,7 @@ const ConnectionItem = ({ data, removeConnection }) => {
                   height="100%"
                 />
               }
-              unloader={
-                <Skeleton
-                  animation="wave"
-                  variant="rounded"
-                  width="100%"
-                  height="100%"
-                />
-              }
+              unloader={<Avatar />}
             />
           </Avatar>
           <Box>
