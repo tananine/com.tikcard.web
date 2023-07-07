@@ -20,7 +20,7 @@ import toast from 'react-hot-toast';
 
 const schema = yup
   .object({
-    cardName: yup.string().required('โปรดป้อนชื่อนามบัตร'),
+    cardName: yup.string().required('โปรดป้อนชื่อเรียกนามบัตร'),
   })
   .required();
 
@@ -133,7 +133,7 @@ const EditCard = () => {
         <TextField
           label={
             <>
-              ชื่อนามบัตร{' '}
+              ชื่อเรียกนามบัตร{' '}
               <Typography component="span" color="red">
                 *
               </Typography>

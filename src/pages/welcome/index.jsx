@@ -117,7 +117,7 @@ const Welcome = () => {
             นามบัตรนี้ใช้สำหรับ
           </Typography>
           <TextField
-            label="ชื่อนามบัตร"
+            label="ชื่อเรียกนามบัตร"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}

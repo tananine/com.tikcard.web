@@ -17,7 +17,7 @@ import toast from 'react-hot-toast';
 
 const schema = yup
   .object({
-    cardName: yup.string().required('โปรดป้อนชื่อนามบัตร'),
+    cardName: yup.string().required('โปรดป้อนชื่อเรียกนามบัตร'),
   })
   .required();
 
@@ -101,7 +101,7 @@ const AddProfile = () => {
           เพิ่มนามบัตร
         </Typography>
         <TextField
-          label="ชื่อนามบัตร"
+          label="ชื่อเรียกนามบัตร"
           variant="outlined"
           fullWidth
           InputLabelProps={{ shrink: true }}
