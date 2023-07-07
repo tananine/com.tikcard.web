@@ -116,7 +116,9 @@ const AddProfile = () => {
             size="large"
             color="secondary"
             onClick={handleSubmit(save)}
-            loading={addProfileLoading || setPrimaryLoading}
+            loading={
+              addProfileLoading || setPrimaryLoading || setSecondaryLoading
+            }
           >
             เพิ่ม
           </LoadingButton>
