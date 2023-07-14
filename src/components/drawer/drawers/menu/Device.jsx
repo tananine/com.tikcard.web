@@ -32,7 +32,7 @@ const deviceItem = (devices) => {
   }
   return (
     <Box textAlign="center">
-      <Typography variant="body2">ซื้อสินค้า</Typography>
+      <Typography variant="body2">ไปที่ร้านค้า</Typography>
     </Box>
   );
 };
