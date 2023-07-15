@@ -21,7 +21,11 @@ import BlogImage from '@/assets/images/blog.png';
 
 const schema = yup
   .object({
-    cardName: yup.string().required('โปรดป้อนชื่อ'),
+    cardName: yup
+      .string()
+      .required('โปรดป้อนชื่อเรียกนามบัตร')
+      .max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
+    name: yup.string().max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
   })
   .required();
 
@@ -126,7 +130,7 @@ const Welcome = () => {
             {...register('cardName')}
           />
           <Typography variant="caption" marginTop={1} textAlign="start">
-            ส่วนตัว, ธุรกิจ, งานออนไลน์
+            เช่น ส่วนตัว, ธุรกิจ, งานออนไลน์ หรือ อื่นๆ
           </Typography>
           <Typography variant="caption" marginTop={1}>
             สามารถแก้ไขได้ในภายหลัง
@@ -165,6 +169,8 @@ const Welcome = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            error={errors?.name ? true : false}
+            helperText={errors?.name?.message}
             {...register('name')}
           />
           <Typography variant="caption" marginTop={1}>
@@ -176,7 +182,7 @@ const Welcome = () => {
           <Box height={45}>
             {!addProfileLoading && !setPrimaryLoading && (
               <Box display="flex" gap={2} justifyContent="center">
-                <Button onClick={pageBack}>กลับ</Button>
+                <Button onClick={handleSubmit(pageBack)}>กลับ</Button>
                 <Button onClick={handleSubmit(save)}>ข้าม</Button>
               </Box>
             )}

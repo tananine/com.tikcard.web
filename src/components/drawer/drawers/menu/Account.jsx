@@ -15,7 +15,7 @@ const Account = () => {
           แผน :{' '}
         </Typography>
         <Typography display="inline" variant="h5">
-          Free
+          เริ่มต้น
         </Typography>
       </Box>
     </Box>

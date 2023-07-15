@@ -72,7 +72,7 @@ const Lead = ({ isPreview, profileId }) => {
     if (!isPreview) {
       timeoutRef.current = setTimeout(() => {
         setOpenForm(true);
-      }, 3500);
+      }, 500);
 
       return () => {
         clearTimeout(timeoutRef.current);

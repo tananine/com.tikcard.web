@@ -15,9 +15,14 @@ import { LoadingButton } from '@mui/lab';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Img } from 'react-image';
+import dayjs from 'dayjs';
 
 import useDelete from '@/hooks/axios/useDelete';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
+
+const dayFormat = (date) => {
+  return dayjs(date).format('ได้รับเมื่อ DD/MM/YYYY เวลา HH:mm');
+};
 
 const ConnectionItem = ({ data, removeConnection }) => {
   const [deleteConnectListAction, deleteConnectListLoading] = useDelete(
@@ -73,7 +78,9 @@ const ConnectionItem = ({ data, removeConnection }) => {
             <Typography variant="h5" lineHeight="26.5px">
               {data.name}
             </Typography>
-            <Typography variant="caption">{data.createdAt}</Typography>
+            <Typography variant="caption">
+              {dayFormat(data.createdAt)}
+            </Typography>
           </Box>
         </Box>
       </CardList>
@@ -92,9 +99,17 @@ const ConnectionItem = ({ data, removeConnection }) => {
           {data.message && (
             <Typography mb={2}>ข้อความ : {data.message}</Typography>
           )}
+          <Button
+            variant="contained"
+            color="secondary"
+            fullWidth
+            sx={{ marginTop: 2 }}
+          >
+            บันทึก
+          </Button>
           <Divider sx={{ marginTop: 2, marginBottom: 1 }} />
           <Typography textAlign="center" variant="caption">
-            {data.createdAt}
+            {dayFormat(data.createdAt)}
           </Typography>
         </DialogContent>
         <DialogActions>

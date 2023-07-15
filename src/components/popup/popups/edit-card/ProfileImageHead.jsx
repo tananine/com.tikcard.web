@@ -24,6 +24,8 @@ import EditCoverImage from '@/components/popup/popups/edit-card/EditCoverImage';
 
 import splitCoverImage from '@/functions/getCoverImage';
 
+const acceptWhiteList = 'image/png, image/jpeg, image/jpg, image/webp';
+
 const ProfileImageHead = ({
   profileImage,
   setProfileImage,
@@ -103,6 +105,7 @@ const ProfileImageHead = ({
       }
     } catch (error) {
       console.error(error);
+      alert('Failed to crop image');
     }
     closeEditDialogHandler();
   };
@@ -111,12 +114,14 @@ const ProfileImageHead = ({
     <>
       <Input
         type="file"
+        inputProps={{ accept: acceptWhiteList }}
         id="upload-profile-image"
         sx={{ display: 'none' }}
         onChange={(e) => inputImage(e, 'profileImage')}
       />
       <Input
         type="file"
+        inputProps={{ accept: acceptWhiteList }}
         id="upload-logo-image"
         sx={{ display: 'none' }}
         onChange={(e) => inputImage(e, 'logoImage')}

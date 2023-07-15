@@ -17,7 +17,11 @@ import toast from 'react-hot-toast';
 
 const schema = yup
   .object({
-    cardName: yup.string().required('โปรดป้อนชื่อเรียกนามบัตร'),
+    cardName: yup
+      .string()
+      .trim()
+      .required('โปรดป้อนชื่อเรียกนามบัตร')
+      .max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
   })
   .required();
 
@@ -109,6 +113,9 @@ const AddProfile = () => {
           helperText={errors?.cardName?.message}
           {...register('cardName')}
         />
+        <Typography variant="caption" marginTop={1}>
+          เช่น ส่วนตัว, ธุรกิจ, งานออนไลน์ หรือ อื่นๆ
+        </Typography>
         <Box position="absolute" width="100%" bottom={0}>
           <LoadingButton
             variant="contained"

@@ -20,7 +20,16 @@ import toast from 'react-hot-toast';
 
 const schema = yup
   .object({
-    cardName: yup.string().required('โปรดป้อนชื่อเรียกนามบัตร'),
+    // cardName: yup
+    //   .string()
+    //   .required('โปรดป้อนชื่อเรียกนามบัตร')
+    //   .max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
+    // name: yup.string().max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
+    // job: yup.string().max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
+    // company: yup.string().max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
+    // bio1: yup.string().max(80, 'ต้องมีความยาวไม่เกิน 80 อักขระ'),
+    // bio2: yup.string().max(80, 'ต้องมีความยาวไม่เกิน 80 อักขระ'),
+    // bio3: yup.string().max(80, 'ต้องมีความยาวไม่เกิน 80 อักขระ'),
   })
   .required();
 
@@ -146,6 +155,9 @@ const EditCard = () => {
           helperText={errors?.cardName?.message}
           {...register('cardName')}
         />
+        <Typography variant="caption" marginTop={1}>
+          เช่น ส่วนตัว, ธุรกิจ, งานออนไลน์ หรือ อื่นๆ
+        </Typography>
         <ProfileImageHead
           profileImage={profileImage}
           setProfileImage={setProfileImage}
@@ -160,6 +172,8 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            error={errors?.name ? true : false}
+            helperText={errors?.name?.message}
             {...register('name')}
           />
           <TextField
@@ -167,6 +181,8 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            error={errors?.job ? true : false}
+            helperText={errors?.job?.message}
             {...register('job')}
           />
           <TextField
@@ -174,6 +190,8 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            error={errors?.company ? true : false}
+            helperText={errors?.company?.message}
             {...register('company')}
           />
           <Divider sx={{ marginTop: 2 }}>
@@ -184,6 +202,8 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            error={errors?.bio1 ? true : false}
+            helperText={errors?.bio1?.message}
             {...register('bio1')}
           />
           <TextField
@@ -191,6 +211,8 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            error={errors?.bio2 ? true : false}
+            helperText={errors?.bio2?.message}
             {...register('bio2')}
           />
           <TextField
@@ -198,6 +220,8 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            error={errors?.bio3 ? true : false}
+            helperText={errors?.bio3?.message}
             {...register('bio3')}
           />
         </Box>

@@ -32,7 +32,8 @@ const schema = yup
     linkId: yup
       .string()
       .required('โปรดป้อนข้อมูล')
-      .min(4, 'ต้องมีความยาวอย่างน้อย 4 อักขระ'),
+      .min(4, 'ต้องมีความยาวอย่างน้อย 4 อักขระ')
+      .max(18, 'ต้องมีความยาวไม่เกิน 18 อักขระ'),
   })
   .required();
 
@@ -62,8 +63,8 @@ const ShareBody = () => {
   };
 
   const setLinkIdHandler = (linkId) => {
-    setLinkIdCache(linkId);
-    setLink('info.tikcard.me/' + linkId);
+    setLinkIdCache(linkId.toLocaleLowerCase());
+    setLink(location.host + '/' + linkId.toLocaleLowerCase());
   };
 
   const profileActivationId = useSelector(
@@ -145,11 +146,23 @@ const ShareBody = () => {
                 variant="outlined"
                 fullWidth
                 InputLabelProps={{ shrink: true }}
-                sx={{ marginTop: 2 }}
+                sx={{ marginTop: 2, marginBottom: 1 }}
                 error={errors?.linkId ? true : false}
                 helperText={errors?.linkId?.message}
                 {...register('linkId')}
               />
+              <Typography variant="caption">
+                • ตัวพิมพ์เล็กทั้งหมด (อัตโนมัติ)
+              </Typography>
+              <Typography variant="caption">
+                • A-Z , 0-9 หรือ _ (Apostrophe)
+              </Typography>
+              <Typography variant="caption">
+                • ต้องมีความยาว 4 ถึง 18 อักขระ
+              </Typography>
+              <Typography variant="caption">
+                • ไม่ซ้ำกับ Link ID ที่มีอยู่แล้ว
+              </Typography>
             </DialogContent>
             <DialogActions>
               <Button onClick={closeEditLinkHandler}>ปิด</Button>
