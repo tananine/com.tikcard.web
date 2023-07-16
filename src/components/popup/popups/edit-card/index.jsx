@@ -20,16 +20,17 @@ import toast from 'react-hot-toast';
 
 const schema = yup
   .object({
-    // cardName: yup
-    //   .string()
-    //   .required('โปรดป้อนชื่อเรียกนามบัตร')
-    //   .max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
-    // name: yup.string().max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
-    // job: yup.string().max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
-    // company: yup.string().max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
-    // bio1: yup.string().max(80, 'ต้องมีความยาวไม่เกิน 80 อักขระ'),
-    // bio2: yup.string().max(80, 'ต้องมีความยาวไม่เกิน 80 อักขระ'),
-    // bio3: yup.string().max(80, 'ต้องมีความยาวไม่เกิน 80 อักขระ'),
+    cardName: yup
+      .string()
+      .trim()
+      .required('โปรดป้อนชื่อเรียกนามบัตร')
+      .max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
+    name: yup.string().trim().max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
+    job: yup.string().trim().max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
+    company: yup.string().trim().max(50, 'ต้องมีความยาวไม่เกิน 50 อักขระ'),
+    bio1: yup.string().trim().max(80, 'ต้องมีความยาวไม่เกิน 80 อักขระ'),
+    bio2: yup.string().trim().max(80, 'ต้องมีความยาวไม่เกิน 80 อักขระ'),
+    bio3: yup.string().trim().max(80, 'ต้องมีความยาวไม่เกิน 80 อักขระ'),
   })
   .required();
 
