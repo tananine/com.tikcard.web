@@ -3,7 +3,13 @@ import * as yup from 'yup';
 
 export const schemaDefault = yup
   .object({
-    data: yup.string().required('โปรดป้อนข้อมูล'),
+    data: yup
+      .string()
+      .trim()
+      .required('โปรดป้อนข้อมูล')
+      .max(250, 'ข้อมูลต้องไม่เกิน 250 ตัวอักษร'),
+    name: yup.string().trim().max(50, 'ชื่อต้องไม่เกิน 50 ตัวอักษร'),
+    note: yup.string().trim().max(150, 'รายละเอียดต้องไม่เกิน 150 ตัวอักษร'),
   })
   .required();
 

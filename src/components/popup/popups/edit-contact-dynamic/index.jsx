@@ -70,7 +70,9 @@ const EditContact = () => {
     getValues,
     watch,
   } = useForm({
-    resolver: yupResolver(validateSchema(appData.typeLayout, 'MapLayout')),
+    resolver: yupResolver(
+      validateSchema(appData.typeLayout, appData.component)
+    ),
   });
   watch();
 
@@ -199,6 +201,8 @@ const EditContact = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            error={errors?.name ? true : false}
+            helperText={errors?.name?.message}
             {...register('name')}
           />
           <Box>
@@ -219,6 +223,8 @@ const EditContact = () => {
             label="รายละเอียด"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            error={errors?.note ? true : false}
+            helperText={errors?.note?.message}
             {...register('note')}
           />
         </Box>

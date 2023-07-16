@@ -84,7 +84,7 @@ const Lead = ({ isPreview, profileId }) => {
     const body = {
       profileId: profileId,
       name: form.name,
-      phone: form.phone,
+      phone: form.phone || null,
       email: form.email,
       message: form.message,
     };
@@ -136,7 +136,9 @@ const Lead = ({ isPreview, profileId }) => {
             InputLabelProps={{ shrink: true }}
             sx={{ marginTop: 2 }}
             error={errors?.phone && errors?.email ? true : false}
-            helperText={errors?.phone?.message}
+            helperText={
+              errors?.phone && errors?.email && errors?.phone?.message
+            }
             {...register('phone')}
           />
           <TextField
@@ -146,7 +148,9 @@ const Lead = ({ isPreview, profileId }) => {
             InputLabelProps={{ shrink: true }}
             sx={{ marginTop: 2 }}
             error={errors?.email && errors?.phone ? true : false}
-            helperText={errors?.email?.message}
+            helperText={
+              errors?.phone && errors?.email && errors?.email?.message
+            }
             {...register('email')}
           />
           <TextField
