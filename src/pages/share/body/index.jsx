@@ -85,6 +85,9 @@ const ShareBody = () => {
   );
 
   const saveLinkId = (form) => {
+    if (form.linkId === linkIdCache) {
+      return closeEditLinkHandler();
+    }
     const body = {
       linkId: form.linkId,
     };
