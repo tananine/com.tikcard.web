@@ -60,6 +60,7 @@ const Welcome = () => {
   const save = (form) => {
     const body = {
       cardName: form.cardName,
+      name: form.name,
     };
     addProfileAction(body).then((res) => {
       const profileId = res.data.returnData.id;

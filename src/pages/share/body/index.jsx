@@ -31,7 +31,10 @@ const schema = yup
   .object({
     linkId: yup
       .string()
+      .trim()
+      .lowercase()
       .required('โปรดป้อนข้อมูล')
+      .matches(/^[A-Za-z0-9_]+$/, 'ต้องเป็นอักษร a-z , 0-9 หรือ _ (Apostrophe)')
       .min(4, 'ต้องมีความยาวอย่างน้อย 4 อักขระ')
       .max(18, 'ต้องมีความยาวไม่เกิน 18 อักขระ'),
   })
@@ -63,8 +66,8 @@ const ShareBody = () => {
   };
 
   const setLinkIdHandler = (linkId) => {
-    setLinkIdCache(linkId.toLocaleLowerCase());
-    setLink(location.host + '/' + linkId.toLocaleLowerCase());
+    setLinkIdCache(linkId);
+    setLink(location.host + '/' + linkId);
   };
 
   const profileActivationId = useSelector(
@@ -155,7 +158,7 @@ const ShareBody = () => {
                 • ตัวพิมพ์เล็กทั้งหมด (อัตโนมัติ)
               </Typography>
               <Typography variant="caption">
-                • A-Z , 0-9 หรือ _ (Apostrophe)
+                • a-z , 0-9 หรือ _ (Apostrophe)
               </Typography>
               <Typography variant="caption">
                 • ต้องมีความยาว 4 ถึง 18 อักขระ
