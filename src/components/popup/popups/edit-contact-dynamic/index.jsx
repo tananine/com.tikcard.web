@@ -109,8 +109,8 @@ const EditContact = () => {
       name: form.name,
       data: form.data,
       note: form.note,
-      latitude: form.latitude,
-      longitude: form.longitude,
+      latitude: form.latitude || null,
+      longitude: form.longitude || null,
     };
     if (appData.contactId) {
       return updateContactAction(body).then(() => {
