@@ -71,7 +71,7 @@ const Lead = ({ isPreview, profileId }) => {
   useEffect(() => {
     if (!isPreview) {
       timeoutRef.current = setTimeout(() => {
-        setOpenForm(true);
+        // setOpenForm(true);
       }, 500);
 
       return () => {
