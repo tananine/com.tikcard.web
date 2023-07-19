@@ -1,23 +1,42 @@
 import { saveAs } from 'file-saver';
 import VCard from 'vcard-creator';
 
-const saveVCard = (data) => {
+const addWithType = (name, data, type, vCardData) => {
+  switch (type) {
+    case 'number':
+      vCardData.addPhoneNumber(data);
+      break;
+    case 'email':
+      vCardData.addEmail(data);
+      break;
+    case 'link':
+      vCardData.addSocial(
+        data.includes('http://') || data.includes('https://')
+          ? data
+          : `https://${data}`,
+        name
+      );
+      break;
+    default:
+      break;
+  }
+};
+
+const saveVCard = (data, linkId) => {
   const vCardData = new VCard();
 
   vCardData.addName(data.info.name || 'ไม่มีชื่อ');
   data.info.company && vCardData.addCompany(data.info.company);
   data.info.job && vCardData.addJobtitle(data.info.job);
 
-  vCardData.addURL('http://192.168.1.13:5173/mt9KiZz');
-
-  console.log(data);
+  vCardData.addURL(location.host + '/' + linkId);
 
   data.contacts.forEach((contact) => {
-    vCardData.addSocial(
-      contact.data.includes('https://')
-        ? contact.data
-        : `https://${contact.data}`,
-      contact.ContactItem.name
+    addWithType(
+      contact.ContactItem.name,
+      contact.data,
+      contact.ContactItem.type,
+      vCardData
     );
   });
 
@@ -26,7 +45,7 @@ const saveVCard = (data) => {
   );
 
   const blob = new Blob([vCardData], { type: 'text/vcard' });
-  saveAs(blob, data.info.name + '.vcf');
+  saveAs(blob, data.info.name || 'TikCard Profile' + '.vcf');
 };
 
 export default saveVCard;

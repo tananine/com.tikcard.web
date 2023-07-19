@@ -11,6 +11,7 @@ import {
   Skeleton,
 } from '@mui/material';
 import { Img } from 'react-image';
+import { useParams } from 'react-router-dom';
 
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
@@ -109,6 +110,8 @@ const ContactLists = (contactItems) => {
 const View = ({ isPreview, profileData }) => {
   const [contactItems, setContactItems] = useState([]);
 
+  const { linkId } = useParams();
+
   const setListContactItems = () => {
     const contactSection = [];
     let contactList = [];
@@ -161,7 +164,7 @@ const View = ({ isPreview, profileData }) => {
         'ผู้ชมสามารถบันทึกข้อมูลนามบัตรนี้และสร้างรายชื่อติดต่อในโทรศัพท์ได้'
       );
     }
-    saveVCard(profileData);
+    saveVCard(profileData, linkId);
   };
 
   return (
