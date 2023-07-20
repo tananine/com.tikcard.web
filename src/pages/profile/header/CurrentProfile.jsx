@@ -29,7 +29,13 @@ const Profile = ({
   }
   return (
     <>
-      <Box display="flex" gap={2} flexGrow={1} alignItems="center">
+      <Box
+        display="flex"
+        gap={2}
+        flexGrow={1}
+        alignItems="center"
+        overflow="hidden"
+      >
         <Badge
           overlap="circular"
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -75,11 +81,23 @@ const Profile = ({
             />
           </Avatar>
         </Badge>
-        <Box height="100%">
-          <Typography variant="h3" lineHeight="26.5px">
+        <Box height="100%" overflow="hidden">
+          <Typography
+            variant="h3"
+            lineHeight="26.5px"
+            whiteSpace="nowrap"
+            overflow="hidden"
+            textOverflow="ellipsis"
+          >
             {cardName}
           </Typography>
-          <Typography variant="caption" fontSize={14}>
+          <Typography
+            variant="caption"
+            fontSize={14}
+            whiteSpace="nowrap"
+            overflow="hidden"
+            textOverflow="ellipsis"
+          >
             {name}
           </Typography>
         </Box>
