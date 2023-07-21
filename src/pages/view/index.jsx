@@ -298,6 +298,7 @@ const View = ({ isPreview, profileData }) => {
                   textAlign="center"
                   alignSelf="center"
                   variant="h1"
+                  sx={{ lineBreak: 'anywhere' }}
                 >
                   {profileData?.info.name || 'ไม่มีชื่อ'}
                   {true && (
@@ -313,17 +314,35 @@ const View = ({ isPreview, profileData }) => {
                     />
                   )}
                 </Typography>
-                <Typography marginTop={2} textAlign="center">
+                <Typography
+                  marginTop={2}
+                  textAlign="center"
+                  sx={{ lineBreak: 'anywhere' }}
+                >
                   {jobTitle(profileData?.info.job, profileData?.info.company)}
                 </Typography>
                 <Divider sx={{ marginY: 2 }} />
-                <Typography textAlign="center" variant="body2">
+                <Typography
+                  textAlign="center"
+                  variant="body2"
+                  sx={{ lineBreak: 'anywhere' }}
+                >
                   {profileData?.info.bio1}
                 </Typography>
-                <Typography mt={1} textAlign="center" variant="body2">
+                <Typography
+                  mt={1}
+                  textAlign="center"
+                  variant="body2"
+                  sx={{ lineBreak: 'anywhere' }}
+                >
                   {profileData?.info.bio2}
                 </Typography>
-                <Typography mt={1} textAlign="center" variant="body2">
+                <Typography
+                  mt={1}
+                  textAlign="center"
+                  variant="body2"
+                  sx={{ lineBreak: 'anywhere' }}
+                >
                   {profileData?.info.bio3}
                 </Typography>
               </Box>

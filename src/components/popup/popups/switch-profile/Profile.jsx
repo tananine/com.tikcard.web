@@ -99,11 +99,31 @@ const Profile = ({
           />
         </Avatar>
       </Badge>
-      <Typography variant="h3">{cardName}</Typography>
-      <Typography variant="caption" fontSize={14}>
+      <Typography
+        variant="h3"
+        whiteSpace="nowrap"
+        overflow="hidden"
+        textOverflow="ellipsis"
+      >
+        {cardName}
+      </Typography>
+      <Typography
+        variant="caption"
+        fontSize={14}
+        whiteSpace="nowrap"
+        overflow="hidden"
+        textOverflow="ellipsis"
+      >
         {name}
       </Typography>
-      <Typography variant="caption">{company}</Typography>
+      <Typography
+        variant="caption"
+        whiteSpace="nowrap"
+        overflow="hidden"
+        textOverflow="ellipsis"
+      >
+        {company}
+      </Typography>
     </Box>
   );
 };

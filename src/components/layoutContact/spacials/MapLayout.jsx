@@ -39,10 +39,14 @@ const MapLayout = ({ title, name, note, latitude, longitude, onClick }) => {
       padding={{ xs: 1, md: 1.5, lg: 2 }}
       sx={{ cursor: 'pointer' }}
     >
-      <Typography variant="h4" marginBottom={1}>
+      <Typography variant="h4" marginBottom={1} sx={{ lineBreak: 'anywhere' }}>
         {name || title}
       </Typography>
-      <Typography variant="caption" marginBottom={1}>
+      <Typography
+        variant="caption"
+        marginBottom={1}
+        sx={{ lineBreak: 'anywhere' }}
+      >
         {note}
       </Typography>
       {latitude && longitude ? (

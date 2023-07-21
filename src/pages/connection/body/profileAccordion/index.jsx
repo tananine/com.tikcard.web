@@ -84,8 +84,13 @@ const ProfileAccordion = ({ data, role }) => {
         },
       }}
     >
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Box display="flex" gap={2} alignItems="center">
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        sx={{
+          '& .MuiAccordionSummary-content': { overflow: 'hidden' },
+        }}
+      >
+        <Box display="flex" gap={2} alignItems="center" overflow="hidden">
           <Badge
             overlap="circular"
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -131,10 +136,17 @@ const ProfileAccordion = ({ data, role }) => {
               />
             </Avatar>
           </Badge>
-          <Box>
+          <Box overflow="hidden">
             <Box display="flex" gap={0.6} alignItems="center">
               {role && statusActivate()}
-              <Typography variant="h5">{data.name}</Typography>
+              <Typography
+                variant="h5"
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
+              >
+                {data.name}
+              </Typography>
             </Box>
             <Typography variant="caption" fontWeight={500}>
               {dataLength} รายชื่อ

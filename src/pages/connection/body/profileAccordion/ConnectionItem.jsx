@@ -54,9 +54,15 @@ const ConnectionItem = ({ data, removeConnection }) => {
     <>
       <CardList
         onClick={openDialogHandler}
-        sx={{ cursor: 'pointer', bgcolor: '#f7f7f7' }}
+        sx={{ cursor: 'pointer', bgcolor: '#f7f7f7', overflow: 'hidden' }}
       >
-        <Box display="flex" gap={2} flexGrow={1} alignItems="center">
+        <Box
+          display="flex"
+          gap={2}
+          flexGrow={1}
+          alignItems="center"
+          overflow="hidden"
+        >
           <Avatar sx={{ width: 46, height: 46 }}>
             <Img
               src={''}
@@ -74,8 +80,14 @@ const ConnectionItem = ({ data, removeConnection }) => {
               unloader={<Avatar />}
             />
           </Avatar>
-          <Box>
-            <Typography variant="h5" lineHeight="26.5px">
+          <Box overflow="hidden">
+            <Typography
+              variant="h5"
+              lineHeight="26.5px"
+              whiteSpace="nowrap"
+              overflow="hidden"
+              textOverflow="ellipsis"
+            >
               {data.name}
             </Typography>
             <Typography variant="caption">
@@ -91,13 +103,23 @@ const ConnectionItem = ({ data, removeConnection }) => {
       >
         <DialogTitle>ข้อมูลติดต่อ</DialogTitle>
         <DialogContent>
-          <Typography mb={1}>ชื่อ : {data.name}</Typography>
+          <Typography mb={1} sx={{ lineBreak: 'anywhere' }}>
+            ชื่อ : {data.name}
+          </Typography>
           {data.phone && (
-            <Typography mb={1}>เบอร์โทร : {data.phone}</Typography>
+            <Typography mb={1} sx={{ lineBreak: 'anywhere' }}>
+              เบอร์โทร : {data.phone}
+            </Typography>
           )}
-          {data.email && <Typography mb={1}>อีเมล : {data.email}</Typography>}
+          {data.email && (
+            <Typography mb={1} sx={{ lineBreak: 'anywhere' }}>
+              อีเมล : {data.email}
+            </Typography>
+          )}
           {data.message && (
-            <Typography mb={2}>ข้อความ : {data.message}</Typography>
+            <Typography mb={2} sx={{ lineBreak: 'anywhere' }}>
+              ข้อความ : {data.message}
+            </Typography>
           )}
           <Button
             variant="contained"

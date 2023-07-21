@@ -38,8 +38,12 @@ const BlockLayout = ({ title, imageIcon, name, note, onClick }) => {
           </Box>
         </Grid>
         <Grid item xs={9} alignSelf="center">
-          <Typography variant="h4">{name || title}</Typography>
-          <Typography variant="caption">{note}</Typography>
+          <Typography variant="h4" sx={{ lineBreak: 'anywhere' }}>
+            {name || title}
+          </Typography>
+          <Typography variant="caption" sx={{ lineBreak: 'anywhere' }}>
+            {note}
+          </Typography>
         </Grid>
       </Grid>
     </Box>
