@@ -20,6 +20,8 @@ import dayjs from 'dayjs';
 import useDelete from '@/hooks/axios/useDelete';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
+import saveVCard from '@/functions/saveVCard';
+
 const dayFormat = (date) => {
   return dayjs(date).format('ได้รับเมื่อ DD/MM/YYYY เวลา HH:mm');
 };
@@ -48,6 +50,15 @@ const ConnectionItem = ({ data, removeConnection }) => {
         toast.success('ลบสำเร็จ');
       });
     }
+  };
+
+  const saveVCardHandler = () => {
+    saveVCard('connection', {
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      message: data.message,
+    });
   };
 
   return (
@@ -126,6 +137,7 @@ const ConnectionItem = ({ data, removeConnection }) => {
             color="secondary"
             fullWidth
             sx={{ marginTop: 2 }}
+            onClick={saveVCardHandler}
           >
             บันทึก
           </Button>

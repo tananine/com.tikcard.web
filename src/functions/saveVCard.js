@@ -22,30 +22,41 @@ const addWithType = (name, data, type, vCardData) => {
   }
 };
 
-const saveVCard = (data, linkId) => {
+const saveVCard = (type, data, linkId) => {
   const vCardData = new VCard();
-
-  vCardData.addName(data.info.name || 'ไม่มีชื่อ');
-  data.info.company && vCardData.addCompany(data.info.company);
-  data.info.job && vCardData.addJobtitle(data.info.job);
-
-  vCardData.addURL(location.host + '/' + linkId);
-
-  data.contacts.forEach((contact) => {
-    addWithType(
-      contact.ContactItem.name,
-      contact.data,
-      contact.ContactItem.type,
-      vCardData
-    );
-  });
 
   vCardData.addNote(
     '• กดสร้างรายชื่อใหม่ด้านล่างนี้เพื่อบันทึกลงสมุดรายชื่อของคุณ\n\nPowered by TikCard.me'
   );
 
-  const blob = new Blob([vCardData], { type: 'text/vcard' });
-  saveAs(blob, data.info.name || 'TikCard Profile' + '.vcf');
+  if (type === 'landing') {
+    vCardData.addName(data.info.name || 'ไม่มีชื่อ');
+    data.info.company && vCardData.addCompany(data.info.company);
+    data.info.job && vCardData.addJobtitle(data.info.job);
+
+    vCardData.addURL(location.host + '/' + linkId);
+
+    data.contacts.forEach((contact) => {
+      addWithType(
+        contact.ContactItem.name,
+        contact.data,
+        contact.ContactItem.type,
+        vCardData
+      );
+    });
+
+    const blob = new Blob([vCardData], { type: 'text/vcard' });
+    saveAs(blob, data.info.name || 'TikCard Profile' + '.vcf');
+  } else if (type === 'connection') {
+    vCardData.addName(data.name || 'ไม่มีชื่อ');
+    data.phone && vCardData.addPhoneNumber(data.phone);
+    data.email && vCardData.addEmail(data.email);
+
+    const blob = new Blob([vCardData], { type: 'text/vcard' });
+    saveAs(blob, data.name || 'TikCard Profile' + '.vcf');
+  } else {
+    return;
+  }
 };
 
 export default saveVCard;

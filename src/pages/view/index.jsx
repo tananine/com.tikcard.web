@@ -164,7 +164,7 @@ const View = ({ isPreview, profileData }) => {
         'ผู้ชมสามารถบันทึกข้อมูลนามบัตรนี้และสร้างรายชื่อติดต่อในโทรศัพท์ได้'
       );
     }
-    saveVCard(profileData, linkId);
+    saveVCard('landing', profileData, linkId);
   };
 
   return (
