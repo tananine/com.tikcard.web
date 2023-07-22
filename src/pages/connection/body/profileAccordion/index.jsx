@@ -90,7 +90,13 @@ const ProfileAccordion = ({ data, role }) => {
           '& .MuiAccordionSummary-content': { overflow: 'hidden' },
         }}
       >
-        <Box display="flex" gap={2} alignItems="center" overflow="hidden">
+        <Box
+          display="flex"
+          gap={2}
+          alignItems="center"
+          paddingY={1}
+          overflow="hidden"
+        >
           <Badge
             overlap="circular"
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
