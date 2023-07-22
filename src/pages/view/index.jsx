@@ -308,7 +308,7 @@ const View = ({ isPreview, profileData }) => {
                       width="22px"
                       style={{
                         verticalAlign: 'middle',
-                        // filter: 'grayscale(100%)',
+                        // filter: 'grayscale(100%)', // TODO: Icon verify grayscale
                         marginLeft: '4px',
                       }}
                     />

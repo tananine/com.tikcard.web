@@ -20,7 +20,6 @@ export default configureStore({
     reload: reloadReducer,
     device: deviceReducer,
 
-    // ParseData
     editContactDynamic: editContactDynamicReducer,
   },
 });

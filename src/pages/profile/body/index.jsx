@@ -98,7 +98,7 @@ const ProfileBody = () => {
     dispatch(addContactToggle());
   }, [dispatch]);
 
-  if (getMyContactLoading) {
+  if (getMyContactLoading && profileActivationId) {
     return (
       <Box
         position="absolute"
@@ -120,6 +120,7 @@ const ProfileBody = () => {
           fontWeight={600}
           sx={{ margin: 2 }}
           onClick={addContactToggleHandler}
+          disabled={!profileActivationId}
         >
           เพิ่มข้อมูลติดต่อ
         </Button>

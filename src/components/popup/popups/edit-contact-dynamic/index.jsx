@@ -266,7 +266,7 @@ const EditContact = () => {
           </Box>
           {layoutContact()}
           <Divider sx={{ marginBottom: 2 }}>
-            <Button
+            {/* <Button // TODO Button "ดูวิธีใส่ข้อมูล"
               sx={{
                 display: 'flex',
                 marginLeft: 'auto',
@@ -274,7 +274,7 @@ const EditContact = () => {
               endIcon={<InfoOutlinedIcon />}
             >
               ดูวิธีใส่ข้อมูล {appData.name}
-            </Button>
+            </Button> */}
           </Divider>
           {fieldInput()}
         </Box>
