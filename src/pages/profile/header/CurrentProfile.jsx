@@ -34,6 +34,7 @@ const Profile = ({
         gap={2}
         flexGrow={1}
         alignItems="center"
+        paddingY={1}
         overflow="hidden"
       >
         <Badge

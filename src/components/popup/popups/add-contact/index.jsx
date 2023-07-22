@@ -6,7 +6,7 @@ import PopupWrapper from '@/components/popup/PopupWrapper';
 import AddContactList from '@/components/popup/popups/add-contact/AddContactList';
 import {
   Box,
-  Button,
+  // Button,
   CircularProgress,
   Divider,
   Tab,
@@ -22,7 +22,7 @@ import phoneGrid from '@/assets/svg/phone-grid.svg';
 import phoneBlock from '@/assets/svg/phone-block.svg';
 import phoneSpacial from '@/assets/svg/phone-spacial.svg';
 
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 const ContactList = (appListData, typeLayout) => {
@@ -223,7 +223,8 @@ const AddContact = () => {
               <Divider sx={{ width: '60px', margin: 'auto' }} />
             </TabPanel>
           </TabContext>
-          <Button
+          <Box marginY={6} />
+          {/* <Button // TODO Button 'ไม่พบตัวเลือกของคุณใช่ไหม'
             sx={{
               display: 'flex',
               marginX: 'auto',
@@ -232,7 +233,7 @@ const AddContact = () => {
             endIcon={<InfoOutlinedIcon />}
           >
             ไม่พบตัวเลือกของคุณใช่ไหม
-          </Button>
+          </Button> */}
         </>
       )}
     </PopupWrapper>

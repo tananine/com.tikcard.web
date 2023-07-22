@@ -46,10 +46,12 @@ const Menu = () => {
       </Button>
       <Box textAlign="center" marginTop={4} marginBottom={1}>
         <Img src={Logo} alt="" height="28px" />
-        <Typography variant="caption">version 1.0.00</Typography>
-        <Button variant="text" size="small" sx={{ marginY: 2 }}>
+        <Typography variant="caption" sx={{ marginBottom: 2 }}>
+          version 1.0.00
+        </Typography>
+        {/* <Button variant="text" size="small" sx={{ marginY: 2 }}> // TODO Privacy Policy
           นโยบายความเป็นส่วนตัว
-        </Button>
+        </Button> */}
       </Box>
     </DrawerWrapper>
   );

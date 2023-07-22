@@ -301,14 +301,14 @@ const View = ({ isPreview, profileData }) => {
                   sx={{ lineBreak: 'anywhere' }}
                 >
                   {profileData?.info.name || 'ไม่มีชื่อ'}
-                  {true && (
+                  {false && ( // TODO: Icon verify
                     <Img
                       src={Verify}
                       alt=""
                       width="22px"
                       style={{
                         verticalAlign: 'middle',
-                        // filter: 'grayscale(100%)', // TODO: Icon verify grayscale
+                        // filter: 'grayscale(100%)',
                         marginLeft: '4px',
                       }}
                     />
