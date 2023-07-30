@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   Paper,
+  Skeleton,
   TextField,
   Typography,
 } from '@mui/material';
@@ -74,7 +75,20 @@ const Register = () => {
       >
         <Box paddingX={2} paddingTop={6} display="grid" gap={4} overflow="auto">
           <Box textAlign="center">
-            <Img src={Logo} alt="" height="32px" />
+            <Img
+              src={Logo}
+              alt=""
+              height="32px"
+              loader={
+                <Skeleton
+                  animation="wave"
+                  variant="rounded"
+                  width="120px"
+                  height="32px"
+                  sx={{ margin: 'auto' }}
+                />
+              }
+            />
           </Box>
           <Typography textAlign="center" variant="h5">
             สร้างบัญชีผู้ใช้

@@ -1,5 +1,12 @@
 import { useEffect } from 'react';
-import { Box, Button, Container, Paper, TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  Paper,
+  Skeleton,
+  TextField,
+} from '@mui/material';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -78,7 +85,20 @@ const Login = () => {
         }}
       >
         <Box textAlign="center" mb={6}>
-          <Img src={Logo} alt="" height="32px" />
+          <Img
+            src={Logo}
+            alt=""
+            height="32px"
+            loader={
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="120px"
+                height="32px"
+                sx={{ margin: 'auto' }}
+              />
+            }
+          />
         </Box>
         <Box
           sx={{
