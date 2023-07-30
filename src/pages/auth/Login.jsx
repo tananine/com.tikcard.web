@@ -6,6 +6,7 @@ import {
   Paper,
   Skeleton,
   TextField,
+  Typography,
 } from '@mui/material';
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -21,6 +22,8 @@ import authServicePath from '@/data/jsons/services/auth.service.json';
 import usePost from '@/hooks/axios/usePost';
 
 import Logo from '@/assets/images/logo.png';
+
+import LinkIcon from '@mui/icons-material/Link';
 
 const schema = yup
   .object({
@@ -52,6 +55,8 @@ const Login = () => {
   }, []);
 
   const navigate = useNavigate();
+  const searchParams = new URLSearchParams(location.search);
+  const connectText = searchParams.get('connected');
 
   const login = async (form) => {
     const body = {
@@ -63,7 +68,6 @@ const Login = () => {
       axios.defaults.headers.common[
         'Authorization'
       ] = `Bearer ${res.data.token}`;
-      const searchParams = new URLSearchParams(location.search);
       const redirect = searchParams.get('redirect');
       if (redirect) {
         navigate(redirect, { replace: true });
@@ -84,7 +88,7 @@ const Login = () => {
           justifyContent: 'center',
         }}
       >
-        <Box textAlign="center" mb={6}>
+        <Box mb={2} display="grid" gap={1}>
           <Img
             src={Logo}
             alt=""
@@ -98,7 +102,20 @@ const Login = () => {
                 sx={{ margin: 'auto' }}
               />
             }
+            style={{ margin: 'auto' }}
           />
+          {connectText === 'true' && (
+            <>
+              <LinkIcon sx={{ marginX: 'auto' }} />
+              <Typography textAlign="center" variant="body2">
+                เข้าสู่ระบบเพื่อเชื่อมต่อกับ{' '}
+                <Typography component="span" fontWeight={500}>
+                  Tik Device
+                </Typography>{' '}
+                ในขั้นตอนถัดไป
+              </Typography>
+            </>
+          )}
         </Box>
         <Box
           sx={{

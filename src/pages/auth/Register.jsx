@@ -73,7 +73,7 @@ const Register = () => {
           justifyContent: 'center',
         }}
       >
-        <Box paddingX={2} paddingTop={6} display="grid" gap={4} overflow="auto">
+        <Box paddingX={2} paddingTop={6} display="grid" gap={2} overflow="auto">
           <Box textAlign="center">
             <Img
               src={Logo}

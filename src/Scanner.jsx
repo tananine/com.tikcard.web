@@ -19,7 +19,7 @@ const Scanner = () => {
   const checkLogin = () => {
     const authToken = Cookies.get('authToken');
     if (!authToken) {
-      navigate(`/app/login?redirect=/scan/${scannerId}/${key}&connect=1`, {
+      navigate(`/app/login?redirect=/scan/${scannerId}/${key}&connected=true`, {
         replace: true,
       });
     }
