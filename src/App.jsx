@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import Layouts from '@/layouts';
 
 import Login from '@/pages/auth/Login';
+import Register from '@/pages/auth/Register';
 
 import ProfileHeader from '@/pages/profile/header';
 import ProfileBody from '@/pages/profile/body';
@@ -23,6 +24,8 @@ const App = () => {
     switch (page) {
       case 'login':
         return <Login />;
+      case 'register':
+        return <Register />;
       case 'profile':
         return (
           <Layouts
@@ -41,7 +44,7 @@ const App = () => {
     }
   }, [page]);
 
-  if (!authToken && page !== 'login') {
+  if (!authToken && page !== 'login' && page !== 'register') {
     return window.location.replace('/app/login');
   }
 

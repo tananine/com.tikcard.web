@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
 import { Box, Button, Container, Paper, TextField } from '@mui/material';
 import Cookies from 'js-cookie';
-import usePost from '@/hooks/axios/usePost';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
-import authServicePath from '@/data/jsons/services/auth.service.json';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Img } from 'react-image';
+
+import authServicePath from '@/data/jsons/services/auth.service.json';
+
+import usePost from '@/hooks/axios/usePost';
 
 import Logo from '@/assets/images/logo.png';
 
@@ -113,7 +115,9 @@ const Login = () => {
           >
             เข้าสู่ระบบ
           </LoadingButton>
-          <Button>สร้างบัญชีผู้ใช้</Button>
+          <Button onClick={() => navigate('/app/register', { replace: true })}>
+            สร้างบัญชีผู้ใช้
+          </Button>
         </Box>
       </Paper>
     </Container>
