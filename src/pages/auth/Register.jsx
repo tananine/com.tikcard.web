@@ -72,7 +72,7 @@ const Register = () => {
           justifyContent: 'center',
         }}
       >
-        <Box padding={2} display="grid" gap={4}>
+        <Box paddingX={2} paddingTop={6} display="grid" gap={4} overflow="auto">
           <Box textAlign="center">
             <Img src={Logo} alt="" height="32px" />
           </Box>
@@ -107,7 +107,7 @@ const Register = () => {
               {...register('confirmPassword')}
             />
           </Box>
-          <Box display="grid" gap={2}>
+          <Box display="grid" gap={2} marginBottom={12}>
             <LoadingButton
               variant="contained"
               color="secondary"
