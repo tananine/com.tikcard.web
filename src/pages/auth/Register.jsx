@@ -35,12 +35,12 @@ const schema = yup
   })
   .required();
 
-const currentUrl = window.location.href;
-const query =
-  currentUrl.split('?').length >= 2 ? '?' + currentUrl.split('?')[1] : '';
-
 const Register = () => {
   const navigate = useNavigate();
+
+  const currentUrl = window.location.href;
+  const query =
+    currentUrl.split('?').length >= 2 ? '?' + currentUrl.split('?')[1] : '';
 
   const [registerAction, registerLoading] = usePost(
     authServicePath.register,

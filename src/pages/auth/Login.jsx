@@ -35,12 +35,12 @@ const schema = yup
   })
   .required();
 
-const currentUrl = window.location.href;
-const query =
-  currentUrl.split('?').length >= 2 ? '?' + currentUrl.split('?')[1] : '';
-
 const Login = () => {
   const [loginAction, loginLoading] = usePost(authServicePath.login, false);
+
+  const currentUrl = window.location.href;
+  const query =
+    currentUrl.split('?').length >= 2 ? '?' + currentUrl.split('?')[1] : '';
 
   const {
     register,
