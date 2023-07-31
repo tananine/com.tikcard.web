@@ -1,20 +1,45 @@
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Box, Button, CircularProgress, Container } from '@mui/material';
+import {
+  Box,
+  Button,
+  Card,
+  CircularProgress,
+  Container,
+  Typography,
+} from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 
 import useGet from '@/hooks/axios/useGet';
 import usePost from '@/hooks/axios/usePost';
 import deviceServicePath from '@/data/jsons/services/device.service.json';
+import authServicePath from '@/data/jsons/services/auth.service.json';
+
+import LinkIcon from '@mui/icons-material/Link';
 
 const Scanner = () => {
   const [showActivate, setShowActivate] = useState(false);
+  const [tikDeviceId, setTikDeviceId] = useState(false);
 
   const [redirectAction] = useGet(deviceServicePath.getRedirect, true);
-  const [activationAction] = usePost(deviceServicePath.activation, false);
+  const [activationAction, activationLoading] = usePost(
+    deviceServicePath.activation,
+    false
+  );
 
   const navigate = useNavigate();
   const { scannerId, key } = useParams();
+
+  const [email, setEmail] = useState(null);
+
+  const [accountDataAction] = useGet(authServicePath.accountData, true);
+  useEffect(() => {
+    accountDataAction().then((res) => {
+      const email = res.data.email;
+      setEmail(email);
+    });
+  }, []);
 
   const checkLogin = () => {
     const authToken = Cookies.get('authToken');
@@ -29,6 +54,7 @@ const Scanner = () => {
     redirectAction(`${scannerId}/${key}`).then((res) => {
       if (res.data?.setAccountAction) {
         checkLogin();
+        setTikDeviceId(res.data.tikDeviceId);
         return setShowActivate(true);
       }
       navigate(`/${res.data.linkId}`, { replace: true });
@@ -45,11 +71,48 @@ const Scanner = () => {
     });
   };
 
+  const changeAccount = () => {
+    navigate(`/app/login?redirect=/scan/${scannerId}/${key}&connected=true`, {
+      replace: true,
+    });
+  };
+
   if (showActivate) {
     return (
-      <Container>
-        <Box>Connect to this account</Box>
-        <Button onClick={activation}>Connect</Button>
+      <Container
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          height: '100vh',
+        }}
+      >
+        <Box padding={2}>
+          <Box textAlign="center" marginBottom={4}>
+            <Typography variant="h4" marginBottom={4}>
+              เชื่อมต่อกับ Tik Device
+            </Typography>
+            <Card variant="outlined" sx={{ display: 'grid', gap: 1 }}>
+              <Typography>Email : {email}</Typography>
+              <LinkIcon sx={{ marginX: 'auto' }} />
+              <Typography>Tik Device : {tikDeviceId}</Typography>
+            </Card>
+          </Box>
+          <LoadingButton
+            variant="contained"
+            color="secondary"
+            size="large"
+            fullWidth
+            onClick={activation}
+            loading={activationLoading}
+            sx={{ marginBottom: 2 }}
+          >
+            เชื่อมต่อ
+          </LoadingButton>
+          <Button fullWidth onClick={changeAccount}>
+            เปลี่ยนบัญชี
+          </Button>
+        </Box>
       </Container>
     );
   }
