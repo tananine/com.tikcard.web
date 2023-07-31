@@ -35,6 +35,10 @@ const schema = yup
   })
   .required();
 
+const currentUrl = window.location.href;
+const query =
+  currentUrl.split('?').length >= 2 ? '?' + currentUrl.split('?')[1] : '';
+
 const Register = () => {
   const navigate = useNavigate();
 
@@ -57,7 +61,7 @@ const Register = () => {
       password: form.password,
     };
     registerAction(body).then(async (res) => {
-      navigate('/app/login', { replace: true });
+      navigate('/app/login' + query, { replace: true });
       toast.success('สร้างบัญชีผู้ใช้สำเร็จแล้ว');
     });
   };
@@ -132,7 +136,9 @@ const Register = () => {
             >
               สร้างบัญชี
             </LoadingButton>
-            <Button onClick={() => navigate('/app/login', { replace: true })}>
+            <Button
+              onClick={() => navigate('/app/login' + query, { replace: true })}
+            >
               เข้าสู่ระบบ
             </Button>
           </Box>

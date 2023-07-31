@@ -95,7 +95,7 @@ const Scanner = () => {
             <Card variant="outlined" sx={{ display: 'grid', gap: 1 }}>
               <Typography>Email : {email}</Typography>
               <LinkIcon sx={{ marginX: 'auto' }} />
-              <Typography>Tik Device : {tikDeviceId}</Typography>
+              <Typography>Tik Device ID : {tikDeviceId}</Typography>
             </Card>
           </Box>
           <LoadingButton
