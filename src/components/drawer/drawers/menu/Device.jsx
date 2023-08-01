@@ -32,7 +32,10 @@ const deviceItem = (devices) => {
   }
   return (
     <Box textAlign="center">
-      <Typography variant="body2">ไปที่ร้านค้า</Typography>
+      {/*
+       <Typography variant="body2">ไปที่ร้านค้า</Typography> // TODO Go to store
+      */}
+      <Typography variant="body2">ไม่พบ Tik Device</Typography>
     </Box>
   );
 };

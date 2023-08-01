@@ -1,5 +1,12 @@
-import { Container, CircularProgress, Box } from '@mui/material';
+import {
+  Container,
+  CircularProgress,
+  Box,
+  Typography,
+  Button,
+} from '@mui/material';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import View from '@/pages/view';
 
@@ -15,6 +22,8 @@ const Landing = () => {
 
   const { linkId } = useParams();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.getElementsByTagName('body')[0].style.overflow = 'auto';
     document.getElementsByTagName('html')[0].style.overflow = 'auto';
@@ -24,6 +33,31 @@ const Landing = () => {
   useEffect(() => {
     getProfileAction(linkId);
   }, [getProfileAction, linkId]);
+
+  if (!getProfileData && !getProfileLoading) {
+    return (
+      <Container>
+        <Box
+          textAlign="center"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          height="100vh"
+          padding={2}
+        >
+          <Typography variant="h2" marginBottom={2}>
+            404
+          </Typography>
+          <Typography marginBottom={2}>
+            ไม่พบนามบัตรนี้หรือนามบัตรนี้ถูกเปลี่ยนแล้ว
+          </Typography>
+          <Button onClick={() => navigate('/app/login', { replace: true })}>
+            กลับ
+          </Button>
+        </Box>
+      </Container>
+    );
+  }
 
   return (
     <Container>
