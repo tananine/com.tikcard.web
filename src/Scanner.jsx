@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import toast from 'react-hot-toast';
 
 import useGet from '@/hooks/axios/useGet';
 import usePost from '@/hooks/axios/usePost';
@@ -51,14 +52,21 @@ const Scanner = () => {
   };
 
   useEffect(() => {
-    redirectAction(`${scannerId}/${key}`).then((res) => {
-      if (res.data?.setAccountAction) {
-        checkLogin();
-        setTikDeviceId(res.data.tikDeviceId);
-        return setShowActivate(true);
-      }
-      navigate(`/${res.data.linkId}`, { replace: true });
-    });
+    redirectAction(`${scannerId}/${key}`)
+      .then((res) => {
+        if (res.data?.setAccountAction) {
+          checkLogin();
+          setTikDeviceId(res.data.tikDeviceId);
+          return setShowActivate(true);
+        }
+        navigate(`/${res.data.linkId}`, { replace: true });
+      })
+      .catch(() => {
+        navigate(`/app/login`, {
+          replace: true,
+        });
+        toast.error('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง');
+      });
   }, []);
 
   const activation = () => {
