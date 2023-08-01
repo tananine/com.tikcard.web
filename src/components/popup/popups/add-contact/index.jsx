@@ -181,7 +181,7 @@ const AddContact = () => {
                 label="โฟกัสบล็อค"
                 value={'block'}
               />
-              <Tab
+              {/* <Tab // TODO Spacial tab is not ready
                 icon={
                   <Img
                     src={phoneSpacial}
@@ -208,7 +208,7 @@ const AddContact = () => {
                 }
                 label="พิเศษ"
                 value={'spacial'}
-              />
+              /> */}
             </TabList>
             <TabPanel value={'grid'} sx={{ padding: 0 }}>
               {ContactList(gridList, 'grid')}
