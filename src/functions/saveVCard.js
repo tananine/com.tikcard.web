@@ -37,6 +37,7 @@ const saveVCard = (type, data, linkId) => {
     vCardData.addURL(location.host + '/' + linkId);
 
     data.contacts.forEach((contact) => {
+      console.log(contact.ContactItem);
       addWithType(
         contact.ContactItem.name,
         contact.data,
