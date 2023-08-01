@@ -138,6 +138,7 @@ const Login = () => {
             label="อีเมล"
             variant="outlined"
             fullWidth
+            type="email"
             error={errors?.email ? true : false}
             helperText={errors?.email?.message}
             {...register('email')}
