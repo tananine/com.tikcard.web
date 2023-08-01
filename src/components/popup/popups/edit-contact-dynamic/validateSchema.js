@@ -1,7 +1,17 @@
 import { schema } from '@/components/popup/popups/edit-contact-dynamic/spacials/FieldInputComponents/GoogleMap';
 import * as yup from 'yup';
 
-export const schemaDefault = yup
+export const schemaGrid = yup
+  .object({
+    data: yup
+      .string()
+      .trim()
+      .required('โปรดป้อนข้อมูล')
+      .max(250, 'ข้อมูลต้องไม่เกิน 250 ตัวอักษร'),
+  })
+  .required();
+
+export const schemaBlock = yup
   .object({
     data: yup
       .string()
@@ -14,8 +24,10 @@ export const schemaDefault = yup
   .required();
 
 export function validateSchema(typeLayout, component) {
-  if (typeLayout !== 'spacial') {
-    return schemaDefault;
+  if (typeLayout !== 'Grid') {
+    return schemaGrid;
+  } else if (typeLayout !== 'Block') {
+    return schemaBlock;
   }
 
   if (component === 'MapLayout') {

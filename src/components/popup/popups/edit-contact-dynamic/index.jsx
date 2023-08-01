@@ -18,7 +18,7 @@ import usePut from '@/hooks/axios/usePut';
 import useDelete from '@/hooks/axios/useDelete';
 import profileServicePath from '@/data/jsons/services/profile.service.json';
 
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import toast from 'react-hot-toast';
 
