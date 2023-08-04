@@ -125,7 +125,7 @@ const Lead = ({ isPreview, profileId }) => {
             fullWidth
             InputLabelProps={{ shrink: true }}
             sx={{ marginTop: 1 }}
-            error={errors?.name ? true : false}
+            error={!!errors?.name}
             helperText={errors?.name?.message}
             {...register('name')}
           />
@@ -133,9 +133,10 @@ const Lead = ({ isPreview, profileId }) => {
             label="เบอร์โทร (อย่างหนึ่ง)"
             variant="outlined"
             fullWidth
+            type="tel"
             InputLabelProps={{ shrink: true }}
             sx={{ marginTop: 2 }}
-            error={errors?.phone && errors?.email ? true : false}
+            error={!!(errors?.phone && errors?.email)}
             helperText={
               errors?.phone && errors?.email && errors?.phone?.message
             }
@@ -145,9 +146,10 @@ const Lead = ({ isPreview, profileId }) => {
             label="อีเมล (อย่างหนึ่ง)"
             variant="outlined"
             fullWidth
+            type="email"
             InputLabelProps={{ shrink: true }}
             sx={{ marginTop: 2 }}
-            error={errors?.email && errors?.phone ? true : false}
+            error={!!(errors?.email && errors?.phone)}
             helperText={
               errors?.phone && errors?.email && errors?.email?.message
             }
