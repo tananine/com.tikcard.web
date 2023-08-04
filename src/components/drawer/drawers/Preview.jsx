@@ -45,7 +45,7 @@ const Preview = () => {
     >
       {getViewProfileLoading ? (
         <Box display="flex" justifyContent="center" marginY={4}>
-          <CircularProgress disableShrink />
+          Loading...
         </Box>
       ) : (
         <View isPreview profileData={profileData} />
