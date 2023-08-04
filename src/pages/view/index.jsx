@@ -9,6 +9,7 @@ import {
   Grow,
   Typography,
   Skeleton,
+  CircularProgress,
 } from '@mui/material';
 import { Img } from 'react-image';
 import { useParams } from 'react-router-dom';
@@ -177,7 +178,6 @@ const View = ({ isPreview, profileData }) => {
       <Box marginBottom={8}>
         <Box
           height={180}
-          bgcolor="#ced4da"
           sx={{ borderBottomRightRadius: 60, overflow: 'hidden' }}
         >
           <Img
@@ -192,12 +192,14 @@ const View = ({ isPreview, profileData }) => {
             width="100%"
             height="100%"
             loader={
-              <Skeleton
-                animation="wave"
-                variant="rounded"
-                width="100%"
-                height="100%"
-              />
+              <Box
+                textAlign="center"
+                position="relative"
+                top="50%"
+                sx={{ transform: 'translateY(-50%)' }}
+              >
+                <CircularProgress disableShrink />
+              </Box>
             }
             unloader={
               <Skeleton

@@ -63,7 +63,7 @@ const Landing = () => {
     <Container>
       {!getProfileData || getProfileLoading ? (
         <Box textAlign="center" marginTop={6}>
-          <CircularProgress disableShrink />
+          Loading...
         </Box>
       ) : (
         <View profileData={getProfileData.data} />

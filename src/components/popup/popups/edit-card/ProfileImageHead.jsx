@@ -11,6 +11,7 @@ import {
   Slider,
   Card,
   Skeleton,
+  CircularProgress,
 } from '@mui/material';
 import Cropper from 'react-easy-crop';
 import Resizer from '@/functions/resizer';
@@ -149,12 +150,14 @@ const ProfileImageHead = ({
             width="100%"
             height="100%"
             loader={
-              <Skeleton
-                animation="wave"
-                variant="rounded"
-                width="100%"
-                height="100%"
-              />
+              <Box
+                textAlign="center"
+                position="relative"
+                top="50%"
+                sx={{ transform: 'translateY(-50%)' }}
+              >
+                <CircularProgress disableShrink />
+              </Box>
             }
             unloader={
               <Skeleton

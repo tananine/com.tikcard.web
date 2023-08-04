@@ -1,5 +1,11 @@
 import PopupWrapper from '@/components/popup/PopupWrapper';
-import { Box, Button, Typography, Skeleton } from '@mui/material';
+import {
+  Box,
+  Button,
+  Typography,
+  Skeleton,
+  CircularProgress,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Img } from 'react-image';
@@ -44,12 +50,14 @@ const CoverItem = ({ id, coverImage, selected, setSelected }) => {
         width="100%"
         height="100%"
         loader={
-          <Skeleton
-            animation="wave"
-            variant="rounded"
-            width="100%"
-            height="100%"
-          />
+          <Box
+            textAlign="center"
+            position="relative"
+            top="50%"
+            sx={{ transform: 'translateY(-50%)' }}
+          >
+            <CircularProgress disableShrink />
+          </Box>
         }
         unloader={
           <Skeleton
