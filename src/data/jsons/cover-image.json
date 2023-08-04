@@ -1,23 +1,27 @@
 {
   "colors": [
-    { "id": 1, "objectImage": "grey", "color": "#dbdbdb" },
-    { "id": 2, "objectImage": "yellow", "color": "#fcba03" }
+    { "id": 1, "objectImage": "chineseSilver", "color": "#CACACA" },
+    { "id": 2, "objectImage": "desertSand", "color": "#E2C69F" },
+    { "id": 3, "objectImage": "uclaBlue", "color": "#5D6D91" },
+    { "id": 4, "objectImage": "paleChestnut", "color": "#D8B4AD" },
+    { "id": 5, "objectImage": "desaturatedCyan", "color": "#709999" },
+    { "id": 6, "objectImage": "jellyBean", "color": "#DC5951" },
+    { "id": 7, "objectImage": "Bazaar", "color": "#997877" },
+    { "id": 8, "objectImage": "twilightLavender", "color": "#8E4367" }
   ],
   "data": [
     {
       "id": 1,
       "name": "shovel",
       "coverImage": {
-        "grey": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/grey.png",
-        "yellow": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/yellow.png"
-      }
-    },
-    {
-      "id": 2,
-      "name": "necklace",
-      "coverImage": {
-        "grey": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/necklace/grey.png",
-        "yellow": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/necklace/yellow.png"
+        "chineseSilver": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/chineseSilver.png",
+        "desertSand": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/desertSand.png",
+        "uclaBlue": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/uclaBlue.png",
+        "paleChestnut": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/paleChestnut.png",
+        "desaturatedCyan": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/desaturatedCyan.png",
+        "jellyBean": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/jellyBean.png",
+        "Bazaar": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/Bazaar.png",
+        "twilightLavender": "https://tikcard-storage.sgp1.digitaloceanspaces.com/theme-cover/shovel/twilightLavender.png"
       }
     }
   ]
