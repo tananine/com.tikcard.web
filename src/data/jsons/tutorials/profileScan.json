@@ -6,11 +6,11 @@
   {
     "title": "นามบัตร 1 สแกนซ้าย",
     "element": "#primary-change-button",
-    "intro": "<img src='../../../../public/left-scan.png' style='width: 100%' />"
+    "intro": "<div><p style='margin-bottom: 8px'>ลักษณะเด่น สีน้ำเงิน</p><img src='../../../../public/left-scan.png' style='width: 100%' /><div>"
   },
   {
     "title": "นามบัตร 2 สแกนขวา",
     "element": "#secondary-change-button",
-    "intro": "<img src='../../../../public/right-scan.png' style='width: 100%' />"
+    "intro": "<div><p style='margin-bottom: 8px'>ลักษณะเด่น สีส้ม</p><p style='margin-bottom: 8px'>สามารถใช้นามบัตรเดียวกันกับนามบัตร 1 ได้</p><img src='../../../../public/right-scan.png' style='width: 100%' /><div>"
   }
 ]
