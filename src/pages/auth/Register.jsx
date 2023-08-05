@@ -45,7 +45,7 @@ const Register = () => {
 
   const currentUrl = window.location.href;
   const query =
-    currentUrl.split('?').length >= 2 ? '&' + currentUrl.split('?')[1] : '';
+    currentUrl.split('?').length >= 2 ? currentUrl.split('?')[1] : '';
 
   const [registerAction, registerLoading] = usePost(
     authServicePath.register,
@@ -66,7 +66,9 @@ const Register = () => {
       password: form.password,
     };
     registerAction(body).then(async (res) => {
-      navigate(`/app/login?email=${form.email}` + query, { replace: true });
+      navigate(`/app/login?email=${form.email}` + (query && '&' + query), {
+        replace: true,
+      });
       toast.success('สร้างบัญชีผู้ใช้สำเร็จแล้ว');
     });
   };
@@ -143,7 +145,11 @@ const Register = () => {
               สร้างบัญชี
             </LoadingButton>
             <Button
-              onClick={() => navigate('/app/login' + query, { replace: true })}
+              onClick={() =>
+                navigate('/app/login' + (query && '?' + query), {
+                  replace: true,
+                })
+              }
             >
               เข้าสู่ระบบ
             </Button>
