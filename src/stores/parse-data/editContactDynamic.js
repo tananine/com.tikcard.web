@@ -18,6 +18,7 @@ export const editContactDynamicSlice = createSlice({
       },
       typeLayout: 'grid',
       component: null,
+      inputType: null,
     },
   },
   reducers: {
@@ -38,6 +39,7 @@ export const editContactDynamicSlice = createSlice({
 
       state.data.typeLayout = action.payload.typeLayout || 'grid';
       state.data.component = action.payload.component || null;
+      state.data.inputType = action.payload.inputType || null;
     },
   },
 });

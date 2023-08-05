@@ -51,6 +51,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
         },
         typeLayout: contactItem.typeLayout,
         component: contactItem.component,
+        inputType: contactItem.inputType,
       })
     );
   }, [dispatch, contactId, contactItem, dataItem]);

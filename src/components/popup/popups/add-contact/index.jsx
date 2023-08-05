@@ -39,6 +39,7 @@ const ContactList = (appListData, typeLayout) => {
         imageIcon={app.imageIcon}
         typeLayout={typeLayout}
         component={app.component}
+        inputType={app.inputType}
       />
     );
   });

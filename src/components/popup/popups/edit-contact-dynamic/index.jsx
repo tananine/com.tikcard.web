@@ -59,6 +59,7 @@ const EditContact = () => {
       (state) => state.editContactDynamic.data.typeLayout
     ),
     component: useSelector((state) => state.editContactDynamic.data.component),
+    inputType: useSelector((state) => state.editContactDynamic.data.inputType),
   };
 
   const {
@@ -183,8 +184,9 @@ const EditContact = () => {
             label={appData.name}
             variant="outlined"
             fullWidth
+            type={appData.inputType || 'text'}
             InputLabelProps={{ shrink: true }}
-            error={errors?.data ? true : false}
+            error={!!errors?.data}
             helperText={errors?.data?.message}
             {...register('data')}
           />
@@ -201,7 +203,7 @@ const EditContact = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            error={errors?.name ? true : false}
+            error={!!errors?.name}
             helperText={errors?.name?.message}
             {...register('name')}
           />
@@ -210,8 +212,9 @@ const EditContact = () => {
               label={appData.name}
               variant="outlined"
               fullWidth
+              type={appData.inputType || 'text'}
               InputLabelProps={{ shrink: true }}
-              error={errors?.data ? true : false}
+              error={!!errors?.data}
               helperText={errors?.data?.message}
               {...register('data')}
             />
@@ -223,7 +226,7 @@ const EditContact = () => {
             label="รายละเอียด"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            error={errors?.note ? true : false}
+            error={!!errors?.note}
             helperText={errors?.note?.message}
             {...register('note')}
           />

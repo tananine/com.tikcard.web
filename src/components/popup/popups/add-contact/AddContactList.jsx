@@ -20,6 +20,7 @@ const AddContactList = ({
   imageIcon,
   typeLayout,
   component,
+  inputType,
 }) => {
   const dispatch = useDispatch();
 
@@ -37,6 +38,7 @@ const AddContactList = ({
         },
         typeLayout: typeLayout,
         component: component,
+        inputType: inputType,
       })
     );
     dispatch(setEditContactDynamicChild({ isChild: true }));
