@@ -61,7 +61,13 @@ const Scanner = () => {
         }
         navigate(`/${res.data.linkId}`, { replace: true });
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.data?.noProfile) {
+          navigate(`/app/profile`, {
+            replace: true,
+          });
+          return toast.success('สร้างนามบัตรครั้งแรก');
+        }
         navigate(`/app/login`, {
           replace: true,
         });
