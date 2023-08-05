@@ -20,7 +20,7 @@ import profileServicePath from '@/data/jsons/services/profile.service.json';
 
 import phoneGrid from '@/assets/svg/phone-grid.svg';
 import phoneBlock from '@/assets/svg/phone-block.svg';
-import phoneSpacial from '@/assets/svg/phone-spacial.svg';
+// import phoneSpacial from '@/assets/svg/phone-spacial.svg';
 
 // import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
@@ -151,7 +151,7 @@ const AddContact = () => {
                     }
                   />
                 }
-                label="ตารางแอพ"
+                label="ตาราง"
                 value={'grid'}
               />
               <Tab
@@ -179,7 +179,7 @@ const AddContact = () => {
                     }
                   />
                 }
-                label="โฟกัสบล็อค"
+                label="บล็อค"
                 value={'block'}
               />
               {/* <Tab // TODO Spacial tab is not ready

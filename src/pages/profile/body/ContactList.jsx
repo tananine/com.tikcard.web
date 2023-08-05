@@ -79,9 +79,9 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
   const typeContact = () => {
     switch (dataItem.ContactItem.typeLayout) {
       case 'grid':
-        return 'ตารางแอพ';
+        return 'ตาราง';
       case 'block':
-        return 'โฟกัสบล็อค';
+        return 'บล็อค';
       case 'spacial':
         return 'พิเศษ';
       default:
