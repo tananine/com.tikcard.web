@@ -45,7 +45,7 @@ const Register = () => {
 
   const currentUrl = window.location.href;
   const query =
-    currentUrl.split('?').length >= 2 ? '?' + currentUrl.split('?')[1] : '';
+    currentUrl.split('?').length >= 2 ? '&' + currentUrl.split('?')[1] : '';
 
   const [registerAction, registerLoading] = usePost(
     authServicePath.register,
@@ -66,7 +66,7 @@ const Register = () => {
       password: form.password,
     };
     registerAction(body).then(async (res) => {
-      navigate('/app/login' + query, { replace: true });
+      navigate(`/app/login?email=${form.email}` + query, { replace: true });
       toast.success('สร้างบัญชีผู้ใช้สำเร็จแล้ว');
     });
   };
@@ -108,7 +108,7 @@ const Register = () => {
               variant="outlined"
               fullWidth
               type="email"
-              error={errors?.email ? true : false}
+              error={!!errors?.email}
               helperText={errors?.email?.message}
               {...register('email')}
             />
@@ -117,7 +117,7 @@ const Register = () => {
               variant="outlined"
               fullWidth
               type="password"
-              error={errors?.password ? true : false}
+              error={!!errors?.password}
               helperText={errors?.password?.message}
               {...register('password')}
             />
@@ -126,7 +126,7 @@ const Register = () => {
               variant="outlined"
               fullWidth
               type="password"
-              error={errors?.confirmPassword ? true : false}
+              error={!!errors?.confirmPassword}
               helperText={errors?.confirmPassword?.message}
               {...register('confirmPassword')}
             />

@@ -51,6 +51,7 @@ const Login = () => {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -61,6 +62,8 @@ const Login = () => {
     Cookies.remove('authToken');
     delete axios.defaults.headers.common['Authorization'];
     delete axios.defaults.headers.common['profile'];
+    const email = searchParams.get('email');
+    setValue('email', email);
   }, []);
 
   const navigate = useNavigate();
@@ -139,7 +142,7 @@ const Login = () => {
             variant="outlined"
             fullWidth
             type="email"
-            error={errors?.email ? true : false}
+            error={!!errors?.email}
             helperText={errors?.email?.message}
             {...register('email')}
           />
@@ -148,7 +151,7 @@ const Login = () => {
             variant="outlined"
             fullWidth
             type="password"
-            error={errors?.password ? true : false}
+            error={!!errors?.password}
             helperText={errors?.password?.message}
             {...register('password')}
           />
