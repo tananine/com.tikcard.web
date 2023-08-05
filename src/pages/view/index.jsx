@@ -387,7 +387,11 @@ const View = ({ isPreview, profileData }) => {
       </Box>
       {!isPreview && (
         <Box textAlign="center" padding={2}>
-          <Box onClick={goNewCreate} display="inline">
+          <Box
+            onClick={goNewCreate}
+            display="inline"
+            sx={{ cursor: 'pointer' }}
+          >
             <Img src={Logo} height={20} />
           </Box>
           <Typography variant="caption">powered by tikcard.me</Typography>
