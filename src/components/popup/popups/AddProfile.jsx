@@ -1,5 +1,5 @@
 import PopupWrapper from '@/components/popup/PopupWrapper';
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, Chip, TextField, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { switchProfileToggle, addProfileToggle } from '@/stores/popup';
 import { setPrimaryProfile, setSecondaryProfile } from '@/stores/account';
@@ -94,6 +94,10 @@ const AddProfile = () => {
     });
   };
 
+  const selectedCardName = (cardName) => {
+    setValue('cardName', cardName);
+  };
+
   return (
     <PopupWrapper
       open={open}
@@ -106,16 +110,38 @@ const AddProfile = () => {
         </Typography>
         <TextField
           label="ชื่อเรียกนามบัตร"
+          placeholder="เลือก หรือ กรอกข้อมูล"
           variant="outlined"
           fullWidth
           InputLabelProps={{ shrink: true }}
-          error={errors?.cardName ? true : false}
+          error={!!errors?.cardName}
           helperText={errors?.cardName?.message}
           {...register('cardName')}
         />
-        <Typography variant="caption" marginTop={1}>
-          เช่น ส่วนตัว, ธุรกิจ, งานออนไลน์ หรือ อื่นๆ
-        </Typography>
+        <Box
+          display="flex"
+          gap={0.5}
+          marginTop={2}
+          alignItems="center"
+          flexWrap="wrap"
+        >
+          <Chip
+            label="ส่วนตัว"
+            sx={{ cursor: 'pointer' }}
+            onClick={() => selectedCardName('ส่วนตัว')}
+          />
+          <Chip
+            label="ธุรกิจ"
+            sx={{ cursor: 'pointer' }}
+            onClick={() => selectedCardName('ธุรกิจ')}
+          />
+          <Chip
+            label="งานออนไลน์"
+            sx={{ cursor: 'pointer' }}
+            onClick={() => selectedCardName('งานออนไลน์')}
+          />
+          <Typography variant="caption">หรือ ชื่องานที่คุณทำ</Typography>
+        </Box>
         <Box position="absolute" width="100%" bottom={0}>
           <LoadingButton
             variant="contained"

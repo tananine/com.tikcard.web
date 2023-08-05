@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, Chip, TextField, Typography } from '@mui/material';
 import '@egjs/react-flicking/dist/flicking.css';
 import Flicking from '@egjs/react-flicking';
 import { useForm } from 'react-hook-form';
@@ -34,6 +34,7 @@ const Welcome = () => {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm({ resolver: yupResolver(schema) });
 
   const [addProfileAction, addProfileLoading] = usePost(
@@ -68,6 +69,10 @@ const Welcome = () => {
         dispatch(reloadGetActivation());
       });
     });
+  };
+
+  const selectedCardName = (cardName) => {
+    setValue('cardName', cardName);
   };
 
   const onMoveEndHandler = (e) => {};
@@ -123,17 +128,39 @@ const Welcome = () => {
           </Typography>
           <TextField
             label="ชื่อเรียกนามบัตร"
+            placeholder="เลือก หรือ กรอกข้อมูล"
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            error={errors?.cardName ? true : false}
+            error={!!errors?.cardName}
             helperText={errors?.cardName?.message}
             {...register('cardName')}
           />
-          <Typography variant="caption" marginTop={1} textAlign="start">
-            เช่น ส่วนตัว, ธุรกิจ, งานออนไลน์ หรือ อื่นๆ
-          </Typography>
-          <Typography variant="caption" marginTop={1}>
+          <Box
+            display="flex"
+            gap={0.5}
+            marginTop={2}
+            alignItems="center"
+            flexWrap="wrap"
+          >
+            <Chip
+              label="ส่วนตัว"
+              sx={{ cursor: 'pointer' }}
+              onClick={() => selectedCardName('ส่วนตัว')}
+            />
+            <Chip
+              label="ธุรกิจ"
+              sx={{ cursor: 'pointer' }}
+              onClick={() => selectedCardName('ธุรกิจ')}
+            />
+            <Chip
+              label="งานออนไลน์"
+              sx={{ cursor: 'pointer' }}
+              onClick={() => selectedCardName('งานออนไลน์')}
+            />
+            <Typography variant="caption">หรือ ชื่องานที่คุณทำ</Typography>
+          </Box>
+          <Typography variant="caption" marginTop={2}>
             สามารถแก้ไขได้ในภายหลัง
           </Typography>
         </Box>
@@ -170,7 +197,7 @@ const Welcome = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            error={errors?.name ? true : false}
+            error={!!errors?.name}
             helperText={errors?.name?.message}
             {...register('name')}
           />
