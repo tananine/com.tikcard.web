@@ -6,11 +6,11 @@
   {
     "title": "นามบัตร 1 สแกนซ้าย",
     "element": "#primary-change-button",
-    "intro": "<div><p style='margin-bottom: 8px'>ลักษณะเด่น สีน้ำเงิน</p><img src='../../../../public/left-scan.png' style='width: 100%' /><div>"
+    "intro": "<div><p style='margin-bottom: 12px'>สแกนด้านซ้ายตามรูป ระบบจะแสดงนามบัตรที่ถูกเลือกในแถบนี้</p><div><div style='position: absolute'>กำลังโหลดรูปภาพ...</div><img src='https://tikcard-storage.sgp1.digitaloceanspaces.com/tutorial/profileScan/left-scan.png' style='width: 100%' /></div><div>"
   },
   {
     "title": "นามบัตร 2 สแกนขวา",
     "element": "#secondary-change-button",
-    "intro": "<div><p style='margin-bottom: 8px'>ลักษณะเด่น สีส้ม</p><p style='margin-bottom: 8px'>สามารถใช้นามบัตรเดียวกันกับนามบัตร 1 ได้</p><img src='../../../../public/right-scan.png' style='width: 100%' /><div>"
+    "intro": "<div><p style='margin-bottom: 8px'>สแกนด้านขวาตามรูป ระบบจะแสดงนามบัตรที่ถูกเลือกในแถบนี้</p><p style='margin-bottom: 12px; font-size: 14px'>*สามารถใช้นามบัตรเดียวกันกับนามบัตร 1 ได้ โดยการเลือกนามบัตรที่เหมือนกัน</p><div><div style='position: absolute'>กำลังโหลดรูปภาพ...</div><img src='https://tikcard-storage.sgp1.digitaloceanspaces.com/tutorial/profileScan/right-scan.png' style='width: 100%' /></div><div>"
   }
 ]

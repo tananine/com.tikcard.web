@@ -157,6 +157,9 @@ const ProfilePart = () => {
           </BottomNavigation>
         </Box>
         <Tutorial step="profileScan" delay={100} />
+        {type === 'secondary' && (
+          <Tutorial step="profileSecondary" delay={200} />
+        )}
       </>
     );
   }
