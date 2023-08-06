@@ -192,14 +192,12 @@ const View = ({ isPreview, profileData }) => {
             width="100%"
             height="100%"
             loader={
-              <Box
-                textAlign="center"
-                position="relative"
-                top="50%"
-                sx={{ transform: 'translateY(-50%)' }}
-              >
-                <CircularProgress disableShrink />
-              </Box>
+              <Skeleton
+                animation="wave"
+                variant="rounded"
+                width="100%"
+                height="100%"
+              />
             }
             unloader={
               <Skeleton
