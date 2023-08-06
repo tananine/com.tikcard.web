@@ -152,12 +152,12 @@ const EditCard = () => {
           variant="outlined"
           fullWidth
           InputLabelProps={{ shrink: true }}
-          error={errors?.cardName ? true : false}
+          error={!!errors?.cardName}
           helperText={errors?.cardName?.message}
           {...register('cardName')}
         />
         <Typography variant="caption" marginTop={1}>
-          เช่น ส่วนตัว, ธุรกิจ, งานออนไลน์ หรือ อื่นๆ
+          เช่น ส่วนตัว, ธุรกิจ, งานออนไลน์ หรือ ชื่องานที่คุณทำ
         </Typography>
         <ProfileImageHead
           profileImage={profileImage}
@@ -173,7 +173,7 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            error={errors?.name ? true : false}
+            error={!!errors?.name}
             helperText={errors?.name?.message}
             {...register('name')}
           />
@@ -182,7 +182,7 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            error={errors?.job ? true : false}
+            error={!!errors?.job}
             helperText={errors?.job?.message}
             {...register('job')}
           />
@@ -191,7 +191,7 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            error={errors?.company ? true : false}
+            error={!!errors?.company}
             helperText={errors?.company?.message}
             {...register('company')}
           />
@@ -203,7 +203,7 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            error={errors?.bio1 ? true : false}
+            error={!!errors?.bio1}
             helperText={errors?.bio1?.message}
             {...register('bio1')}
           />
@@ -212,7 +212,7 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            error={errors?.bio2 ? true : false}
+            error={!!errors?.bio2}
             helperText={errors?.bio2?.message}
             {...register('bio2')}
           />
@@ -221,7 +221,7 @@ const EditCard = () => {
             variant="outlined"
             fullWidth
             InputLabelProps={{ shrink: true }}
-            error={errors?.bio3 ? true : false}
+            error={!!errors?.bio3}
             helperText={errors?.bio3?.message}
             {...register('bio3')}
           />
