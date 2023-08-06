@@ -25,9 +25,7 @@ const addWithType = (name, data, type, vCardData) => {
 const saveVCard = (type, data, linkId) => {
   const vCardData = new VCard();
 
-  vCardData.addNote(
-    '• กดสร้างรายชื่อใหม่ด้านล่างนี้เพื่อบันทึกลงสมุดรายชื่อของคุณ\n\nPowered by TikCard.me'
-  );
+  vCardData.addNote('กดสร้างรายชื่อใหม่ เพื่อบันทึกลงสมุดรายชื่อของคุณ');
 
   if (type === 'landing') {
     vCardData.addName(data.info.name || 'ไม่มีชื่อ');
@@ -37,7 +35,6 @@ const saveVCard = (type, data, linkId) => {
     vCardData.addURL(location.host + '/' + linkId);
 
     data.contacts.forEach((contact) => {
-      console.log(contact.ContactItem);
       addWithType(
         contact.ContactItem.name,
         contact.data,
