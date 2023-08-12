@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'http://info.tikcard.me:8080';
+axios.defaults.baseURL = 'https://info.tikcard.me:9000';
 
 const authToken = Cookies.get('authToken');
 if (authToken) {
