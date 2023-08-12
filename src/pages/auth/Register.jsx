@@ -84,7 +84,15 @@ const Register = () => {
           justifyContent: 'center',
         }}
       >
-        <Box paddingX={2} paddingTop={6} display="grid" gap={2} overflow="auto">
+        <Box
+          component="form"
+          paddingX={2}
+          paddingTop={6}
+          display="grid"
+          gap={2}
+          overflow="auto"
+          onSubmit={handleSubmit(registerFunction)}
+        >
           <Box textAlign="center">
             <Img
               src={Logo}
@@ -139,7 +147,7 @@ const Register = () => {
               color="secondary"
               size="large"
               fullWidth
-              onClick={handleSubmit(registerFunction)}
+              type="submit"
               loading={registerLoading}
             >
               สร้างบัญชี

@@ -130,6 +130,8 @@ const Login = () => {
           )}
         </Box>
         <Box
+          component="form"
+          onSubmit={handleSubmit(login)}
           sx={{
             padding: 2,
             display: 'flex',
@@ -160,7 +162,7 @@ const Login = () => {
             color="secondary"
             size="large"
             fullWidth
-            onClick={handleSubmit(login)}
+            type="submit"
             loading={loginLoading}
           >
             เข้าสู่ระบบ
