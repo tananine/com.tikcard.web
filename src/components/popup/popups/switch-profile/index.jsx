@@ -264,6 +264,7 @@ const SwitchProfile = () => {
               borderRadius={4}
               padding={3}
               height={212}
+              onClick={!edit && addProfileToggleHandler}
             >
               <Box display="inline" textAlign="center">
                 <PersonAddAltRoundedIcon
