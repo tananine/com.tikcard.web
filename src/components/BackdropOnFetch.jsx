@@ -8,13 +8,15 @@ const BackdropOnFetch = () => {
   const timeoutRef = useRef(null);
 
   useEffect(() => {
+    if (fetchQueue === 0) {
+      document.getElementsByTagName('html')[0].style.pointerEvents = 'auto';
+    }
     if (fetchQueue > 0) {
       document.getElementsByTagName('html')[0].style.pointerEvents = 'none';
       timeoutRef.current = setTimeout(() => {
         setFetchLoading(true);
       }, 1200);
     } else {
-      document.getElementsByTagName('html')[0].style.pointerEvents = 'auto';
       clearTimeout(timeoutRef.current);
       setFetchLoading(false);
     }
