@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Box, Switch, Typography, Skeleton } from '@mui/material';
+import { Box, Switch, Typography, Skeleton, Divider } from '@mui/material';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import CardList from '@/components/CardList';
 import { useDispatch } from 'react-redux';
@@ -81,18 +81,49 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
       case 'grid':
         return (
           <>
-            ตาราง
-            <Box display="flex" gap={0.2}>
-              <Skeleton width={12} animation={false} />
-              <Skeleton width={12} animation={false} />
-              <Skeleton width={12} animation={false} />
+            <Divider orientation="vertical" sx={{ marginRight: 1 }} />
+            <Box display="flex" gap={0.3}>
+              <Box
+                width={12}
+                height={12}
+                border="0.5px solid #a1a1a1"
+                borderRadius={1}
+              />
+              <Box
+                width={12}
+                height={12}
+                border="0.5px solid #a1a1a1"
+                borderRadius={1}
+              />
+              <Box
+                width={12}
+                height={12}
+                border="0.5px solid #a1a1a1"
+                borderRadius={1}
+              />
             </Box>
+            <Divider
+              orientation="vertical"
+              sx={{ marginLeft: 1, marginRight: 1 }}
+            />
+            ตาราง
           </>
         );
       case 'block':
         return (
           <>
-            บล็อค <Skeleton width={39} animation={false} />
+            <Divider orientation="vertical" sx={{ marginRight: 1 }} />
+            <Box
+              width={41}
+              height={12}
+              border="0.5px solid #a1a1a1"
+              borderRadius={1}
+            />
+            <Divider
+              orientation="vertical"
+              sx={{ marginLeft: 1, marginRight: 1 }}
+            />
+            บล็อค
           </>
         );
       case 'spacial':
@@ -178,6 +209,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
                 <Typography
                   variant="h3"
                   lineHeight="26.5px"
+                  marginBottom={0.5}
                   sx={{
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
@@ -190,8 +222,6 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
                   variant="caption"
                   display="flex"
                   alignItems="center"
-                  width={80}
-                  justifyContent="space-between"
                 >
                   {typeContact()}
                 </Typography>
