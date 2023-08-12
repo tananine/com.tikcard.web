@@ -81,17 +81,22 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
       case 'grid':
         return (
           <>
-            ตาราง <Skeleton width={10} animation={false} />
+            ตาราง
+            <Box display="flex" gap={0.2}>
+              <Skeleton width={12} animation={false} />
+              <Skeleton width={12} animation={false} />
+              <Skeleton width={12} animation={false} />
+            </Box>
           </>
         );
       case 'block':
         return (
           <>
-            บล็อค <Skeleton width={40} animation={false} />
+            บล็อค <Skeleton width={39} animation={false} />
           </>
         );
       case 'spacial':
-        return 'พิเศษ';
+        return <>พิเศษ</>;
       default:
         return <></>;
     }
@@ -181,7 +186,13 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
                 >
                   {contactItem.name}
                 </Typography>
-                <Typography variant="caption" display="flex" gap={0.5}>
+                <Typography
+                  variant="caption"
+                  display="flex"
+                  alignItems="center"
+                  width={80}
+                  justifyContent="space-between"
+                >
                   {typeContact()}
                 </Typography>
               </Box>
