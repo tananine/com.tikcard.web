@@ -79,13 +79,21 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
   const typeContact = () => {
     switch (dataItem.ContactItem.typeLayout) {
       case 'grid':
-        return 'ตาราง';
+        return (
+          <>
+            ตาราง <Skeleton width={10} animation={false} />
+          </>
+        );
       case 'block':
-        return 'บล็อค';
+        return (
+          <>
+            บล็อค <Skeleton width={40} animation={false} />
+          </>
+        );
       case 'spacial':
         return 'พิเศษ';
       default:
-        return '';
+        return <></>;
     }
   };
 
@@ -162,10 +170,20 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
                 }
               />
               <Box display="grid" alignContent="center">
-                <Typography variant="h3" lineHeight="26.5px">
+                <Typography
+                  variant="h3"
+                  lineHeight="26.5px"
+                  sx={{
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
                   {contactItem.name}
                 </Typography>
-                <Typography variant="caption">{typeContact()}</Typography>
+                <Typography variant="caption" display="flex" gap={0.5}>
+                  {typeContact()}
+                </Typography>
               </Box>
             </Box>
           </Box>

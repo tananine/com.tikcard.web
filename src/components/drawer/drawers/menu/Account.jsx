@@ -6,9 +6,25 @@ const Account = () => {
 
   return (
     <Box padding={2}>
-      <Box display="flex" justifyContent="space-between">
-        <Typography variant="body2">บัญชีของฉัน</Typography>
-        <Typography variant="h4">{email}</Typography>
+      <Box
+        display="flex"
+        gap={1}
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Typography variant="body2" sx={{ whiteSpace: 'nowrap' }}>
+          บัญชีของฉัน
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
+        >
+          {email}
+        </Typography>
       </Box>
       <Box>
         <Typography display="inline" variant="body2">
