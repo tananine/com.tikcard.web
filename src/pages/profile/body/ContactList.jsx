@@ -86,19 +86,19 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
               <Box
                 width={12}
                 height={12}
-                border="0.5px solid #a1a1a1"
+                border="1px solid #b8b8b8"
                 borderRadius={1}
               />
               <Box
                 width={12}
                 height={12}
-                border="0.5px solid #a1a1a1"
+                border="1px solid #b8b8b8"
                 borderRadius={1}
               />
               <Box
                 width={12}
                 height={12}
-                border="0.5px solid #a1a1a1"
+                border="1px solid #b8b8b8"
                 borderRadius={1}
               />
             </Box>
@@ -116,7 +116,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
             <Box
               width={41}
               height={12}
-              border="0.5px solid #a1a1a1"
+              border="1px solid #b8b8b8"
               borderRadius={1}
             />
             <Divider
