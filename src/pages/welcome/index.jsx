@@ -37,6 +37,8 @@ const Welcome = () => {
     setValue,
   } = useForm({ resolver: yupResolver(schema) });
 
+  const [toSuccess, setToSuccess] = useState(false);
+
   const [addProfileAction, addProfileLoading] = usePost(
     profileServicePath.getProfile,
     false
@@ -64,6 +66,7 @@ const Welcome = () => {
       name: form.name,
     };
     addProfileAction(body).then((res) => {
+      setToSuccess(true);
       const profileId = res.data.returnData.id;
       setPrimaryAction({}, profileId).then(() => {
         dispatch(reloadGetActivation());
@@ -222,7 +225,7 @@ const Welcome = () => {
             size="large"
             fullWidth
             sx={{ marginTop: 2, marginBottom: 8 }}
-            loading={addProfileLoading || setPrimaryLoading}
+            loading={addProfileLoading || setPrimaryLoading || toSuccess}
           >
             บันทึก
           </LoadingButton>
