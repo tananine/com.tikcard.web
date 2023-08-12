@@ -32,7 +32,7 @@ const saveVCard = (type, data, linkId) => {
     data.info.company && vCardData.addCompany(data.info.company);
     data.info.job && vCardData.addJobtitle(data.info.job);
 
-    vCardData.addURL(location.host + '/' + linkId);
+    vCardData.addURL('https://' + location.host + '/' + linkId);
 
     data.contacts.forEach((contact) => {
       addWithType(
