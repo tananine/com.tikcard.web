@@ -7,7 +7,7 @@ import store from '@/stores';
 import Router from '@/Router';
 
 import '@/assets/css/disable-scroll.css';
-// import '@/assets/css/disable-text-selection.css'; TODO disable-text-selection
+// import '@/assets/css/disable-text-selection.css'; TODO: disable-text-selection
 
 import '@/assets/css/custom-mui.css';
 

@@ -26,14 +26,14 @@ const Account = () => {
           {email}
         </Typography>
       </Box>
-      <Box>
+      {/* <Box> // TODO: แผน
         <Typography display="inline" variant="body2">
           แผน :{' '}
         </Typography>
         <Typography display="inline" variant="h5">
           เริ่มต้น
         </Typography>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

@@ -49,7 +49,7 @@ const Menu = () => {
         <Typography variant="caption" sx={{ marginBottom: 2 }}>
           version 1.0.00
         </Typography>
-        {/* <Button variant="text" size="small" sx={{ marginY: 2 }}> // TODO Privacy Policy
+        {/* <Button variant="text" size="small" sx={{ marginY: 2 }}> // TODO: Privacy Policy
           นโยบายความเป็นส่วนตัว
         </Button> */}
       </Box>
