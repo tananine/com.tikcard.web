@@ -132,11 +132,14 @@ const CurrentProfile = ({ profileActivationId }) => {
   }, [dispatch, getProfileData]);
 
   useEffect(() => {
-    getProfileAction().then((res) => {
-      const profileData = res.data.filter((item) => {
+    getProfileAction().then(async (res) => {
+      const profileData = await res.data.filter((item) => {
         return item.profileId === profileActivationId;
       });
       if (!profileData[0]) {
+        if (profileActivationId) {
+          window.location.reload();
+        }
         setShowSelectProfileText(true);
       } else {
         setShowSelectProfileText(false);
