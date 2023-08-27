@@ -159,7 +159,7 @@ const Register = () => {
                 })
               }
             >
-              เข้าสู่ระบบ
+              กลับ
             </Button>
           </Box>
         </Box>
