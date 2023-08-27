@@ -100,78 +100,82 @@ const Login = () => {
           justifyContent: 'center',
         }}
       >
-        <Box mb={2} display="grid" gap={1}>
-          <Img
-            src={Logo}
-            alt=""
-            height="32px"
-            loader={
-              <Skeleton
-                animation="wave"
-                variant="rounded"
-                width="120px"
-                height="32px"
-                sx={{ margin: 'auto' }}
-              />
-            }
-            style={{ margin: 'auto' }}
-          />
-          {connectText === 'true' && (
-            <>
-              <LinkIcon sx={{ marginX: 'auto' }} />
-              <Typography textAlign="center" variant="body2">
-                เข้าสู่ระบบเพื่อเชื่อมต่อกับ{' '}
-                <Typography component="span" fontWeight={500}>
-                  Tik Device
-                </Typography>{' '}
-                ในขั้นตอนถัดไป
-              </Typography>
-            </>
-          )}
-        </Box>
-        <Box
-          component="form"
-          onSubmit={handleSubmit(login)}
-          sx={{
-            padding: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-          }}
-        >
-          <TextField
-            label="อีเมล"
-            variant="outlined"
-            fullWidth
-            type="email"
-            error={!!errors?.email}
-            helperText={errors?.email?.message}
-            {...register('email')}
-          />
-          <TextField
-            label="รหัสผ่าน"
-            variant="outlined"
-            fullWidth
-            type="password"
-            error={!!errors?.password}
-            helperText={errors?.password?.message}
-            {...register('password')}
-          />
-          <LoadingButton
-            variant="contained"
-            color="secondary"
-            size="large"
-            fullWidth
-            type="submit"
-            loading={loginLoading}
+        <Box overflow="auto">
+          <Box mb={2} display="grid" gap={1}>
+            <Img
+              src={Logo}
+              alt=""
+              height="32px"
+              loader={
+                <Skeleton
+                  animation="wave"
+                  variant="rounded"
+                  width="120px"
+                  height="32px"
+                  sx={{ margin: 'auto' }}
+                />
+              }
+              style={{ margin: 'auto' }}
+            />
+            {connectText === 'true' && (
+              <>
+                <LinkIcon sx={{ marginX: 'auto' }} />
+                <Typography textAlign="center" variant="body2">
+                  เข้าสู่ระบบเพื่อเชื่อมต่อกับ{' '}
+                  <Typography component="span" fontWeight={500}>
+                    Tik Device
+                  </Typography>{' '}
+                  ในขั้นตอนถัดไป
+                </Typography>
+              </>
+            )}
+          </Box>
+          <Box
+            component="form"
+            onSubmit={handleSubmit(login)}
+            sx={{
+              padding: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2,
+            }}
           >
-            เข้าสู่ระบบ
-          </LoadingButton>
-          <Button
-            onClick={() => navigate('/app/register' + query, { replace: true })}
-          >
-            สร้างบัญชีผู้ใช้
-          </Button>
+            <TextField
+              label="อีเมล"
+              variant="outlined"
+              fullWidth
+              type="email"
+              error={!!errors?.email}
+              helperText={errors?.email?.message}
+              {...register('email')}
+            />
+            <TextField
+              label="รหัสผ่าน"
+              variant="outlined"
+              fullWidth
+              type="password"
+              error={!!errors?.password}
+              helperText={errors?.password?.message}
+              {...register('password')}
+            />
+            <LoadingButton
+              variant="contained"
+              color="secondary"
+              size="large"
+              fullWidth
+              type="submit"
+              loading={loginLoading}
+            >
+              เข้าสู่ระบบ
+            </LoadingButton>
+            <Button
+              onClick={() =>
+                navigate('/app/register' + query, { replace: true })
+              }
+            >
+              สร้างบัญชีผู้ใช้
+            </Button>
+          </Box>
         </Box>
       </Paper>
     </Container>

@@ -13,6 +13,8 @@ import App from '@/App';
 import Landing from '@/Landing';
 import Scanner from '@/Scanner';
 
+import ComingLanding from '@/pages/coming-landing';
+
 const createEmotionCache = createCache({ key: 'css', prepend: true });
 
 import toast, { Toaster, useToasterStore } from 'react-hot-toast';
@@ -43,6 +45,7 @@ const Router = () => {
                 </div>
               }
             />
+            <Route path="/app/coming-landing" element={<ComingLanding />} />
             <Route path="/scan/:scannerId/:key" element={<Scanner />} />
             <Route path="/:linkId" element={<Landing />} />
             <Route path="*" element={<Navigate to="/app/profile" replace />} />
