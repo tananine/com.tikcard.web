@@ -96,6 +96,7 @@ const Welcome = () => {
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
+        overflow="auto"
       >
         <Box textAlign="center" mb={6}>
           <Img src={Logo} alt="" height="38px" />
@@ -123,6 +124,7 @@ const Welcome = () => {
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
+        overflow="auto"
       >
         <Box>
           <Typography variant="h4" marginBottom={2}>
@@ -145,6 +147,7 @@ const Welcome = () => {
             alignItems="center"
             flexWrap="wrap"
           >
+            <Typography variant="caption">กรอกอัตโนมัติ</Typography>
             <Chip
               label="ส่วนตัว"
               sx={{ cursor: 'pointer' }}
@@ -164,6 +167,10 @@ const Welcome = () => {
           </Box>
           <Typography variant="caption" marginTop={2}>
             สามารถแก้ไขได้ในภายหลัง
+          </Typography>
+          <Typography variant="caption" marginTop={1}>
+            * ชื่อนี้มีแค่คุณเห็นเท่านั้น จะไม่แสดงที่นามบัตร
+            แนะนำตั้งชื่อให้เข้าใจว่าคือนามบัตรสำหรับอะไร เช่น นามบัตรส่วนตัว
           </Typography>
         </Box>
         <Img src={BuildUpImage} alt="" width="100%" />
@@ -185,6 +192,7 @@ const Welcome = () => {
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
+        overflow="auto"
       >
         <Box>
           <Typography variant="h5" marginBottom={1}>
@@ -204,6 +212,9 @@ const Welcome = () => {
           />
           <Typography variant="caption" marginTop={1}>
             สามารถแก้ไขได้ในภายหลัง
+          </Typography>
+          <Typography variant="caption" marginTop={1}>
+            * ชื่อนี้จะแสดงที่นามบัตร เพื่อให้คนอื่นรู้จักคุณ
           </Typography>
         </Box>
         <Img src={BlogImage} alt="" width="100%" />
