@@ -223,7 +223,7 @@ const ContactList = ({ contactId, contactItem, dataItem, show }) => {
                   display="flex"
                   alignItems="center"
                 >
-                  {typeContact()}
+                  แสดงผลแบบ&nbsp;&nbsp;&nbsp;{typeContact()}
                 </Typography>
               </Box>
             </Box>
