@@ -159,8 +159,8 @@ const EditCard = () => {
         <Typography variant="caption" marginTop={1}>
           เช่น ส่วนตัว, ธุรกิจ, งานออนไลน์ หรือ ชื่องานที่คุณทำ
         </Typography>
-        <Divider sx={{ marginY: 2 }} />
-        <Typography variant="caption" textAlign="center">
+        <Divider sx={{ marginTop: 4, marginBottom: 2 }} />
+        <Typography variant="body2" textAlign="center">
           ข้อมูลด้านล่างนี้จะแสดงที่นามบัตร
         </Typography>
         <ProfileImageHead
