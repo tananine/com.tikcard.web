@@ -55,11 +55,6 @@ const Lead = ({ isPreview, profileId }) => {
   );
 
   const openFormHandler = () => {
-    if (isPreview) {
-      return alert(
-        'ผู้ชมสามารถส่งข้อมูลติดต่อไปยังเจ้าของนามบัตรได้ (ดูข้อมูลติดต่อทั้งหมดในหน้าสมุดรายชื่อ)'
-      );
-    }
     clearErrors();
     setOpenForm(true);
     clearTimeout(timeoutRef.current);
@@ -181,6 +176,7 @@ const Lead = ({ isPreview, profileId }) => {
           <LoadingButton
             onClick={handleSubmit(sendContact)}
             loading={sendContactLoading}
+            disabled={isPreview}
           >
             {isSend ? 'ส่งอีกครั้ง' : 'ส่ง'}
           </LoadingButton>

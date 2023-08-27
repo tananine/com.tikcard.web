@@ -9,7 +9,6 @@ import {
   Grow,
   Typography,
   Skeleton,
-  CircularProgress,
 } from '@mui/material';
 import { Img } from 'react-image';
 import { useParams } from 'react-router-dom';
@@ -160,11 +159,6 @@ const View = ({ isPreview, profileData }) => {
   };
 
   const saveVCardHandler = () => {
-    if (isPreview) {
-      return alert(
-        'ผู้ชมสามารถบันทึกข้อมูลนามบัตรนี้และสร้างรายชื่อติดต่อในโทรศัพท์ได้'
-      );
-    }
     saveVCard('landing', profileData, linkId);
   };
 
