@@ -176,7 +176,7 @@ const ProfileImageHead = ({
           sx={{
             position: 'absolute',
             left: 30,
-            top: 160,
+            top: 230,
           }}
         >
           <label htmlFor="upload-profile-image">
@@ -213,7 +213,7 @@ const ProfileImageHead = ({
           sx={{
             position: 'absolute',
             left: 130,
-            top: 240,
+            top: 310,
             border: '2px solid white',
             borderRadius: '50%',
           }}
