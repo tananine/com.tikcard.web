@@ -90,7 +90,7 @@ const Welcome = () => {
     >
       <Box
         width="100%"
-        height="100vh"
+        height="100svh"
         padding={4}
         textAlign="center"
         display="flex"
@@ -110,7 +110,6 @@ const Welcome = () => {
           color="secondary"
           size="large"
           fullWidth
-          sx={{ marginBottom: 8 }}
           onClick={pageNext}
         >
           ถัดไป
@@ -118,7 +117,7 @@ const Welcome = () => {
       </Box>
       <Box
         width="100%"
-        height="100vh"
+        height="100svh"
         padding={4}
         textAlign="center"
         display="flex"
@@ -173,7 +172,6 @@ const Welcome = () => {
           color="secondary"
           size="large"
           fullWidth
-          sx={{ marginBottom: 8 }}
           onClick={handleSubmit(pageNext)}
         >
           ถัดไป
@@ -181,7 +179,7 @@ const Welcome = () => {
       </Box>
       <Box
         width="100%"
-        height="100vh"
+        height="100svh"
         padding={4}
         textAlign="center"
         display="flex"
@@ -211,7 +209,7 @@ const Welcome = () => {
         <Img src={BlogImage} alt="" width="100%" />
         <Box>
           <Box height={45}>
-            {!addProfileLoading && !setPrimaryLoading && (
+            {!addProfileLoading && !setPrimaryLoading && !toSuccess && (
               <Box display="flex" gap={2} justifyContent="center">
                 <Button onClick={handleSubmit(pageBack)}>กลับ</Button>
                 <Button onClick={handleSubmit(save)}>ข้าม</Button>
@@ -224,7 +222,7 @@ const Welcome = () => {
             color="secondary"
             size="large"
             fullWidth
-            sx={{ marginTop: 2, marginBottom: 8 }}
+            sx={{ marginTop: 2 }}
             loading={addProfileLoading || setPrimaryLoading || toSuccess}
           >
             บันทึก
