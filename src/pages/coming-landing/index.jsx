@@ -15,7 +15,7 @@ const ComingLanding = () => {
   return (
     <Container>
       <Paper
-        elevation={3}
+        elevation={0}
         sx={{
           height: '100svh',
           display: 'flex',
